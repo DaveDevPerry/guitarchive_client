@@ -32,6 +32,12 @@ const SongForm = ({
 		arranger: '',
 		style: '',
 		status: '',
+		difficulty: 3,
+		pages: 0,
+		format: '',
+		deadlineDate: '',
+		reason: '',
+		isFavourite: false,
 		selectedFile: '',
 	});
 	// const song = useSelector((state) =>
@@ -86,6 +92,12 @@ const SongForm = ({
 			arranger: '',
 			style: '',
 			status: '',
+			difficulty: 3,
+			pages: 0,
+			format: '',
+			deadlineDate: '',
+			reason: '',
+			isFavourite: false,
 			selectedFile: '',
 		});
 	};
@@ -191,7 +203,231 @@ const SongForm = ({
 	return (
 		<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
 			<h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2>
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>Title</label>
+					{/* <input type="text" name="title" value="<%= song.title %>" autofocus /> */}
+					<input
+						type='text'
+						name='title'
+						variant='outlined'
+						label='Title'
+						value={songData.title}
+						onChange={(e) =>
+							setSongData({ ...songData, title: e.target.value })
+						}
+						placeholder='title'
+					/>
+				</div>
+			</div>
+			{/* <div className="form-row">
+	<div className="form-item">
+		<label>Artist</label>
+		<div className="choice-wrapper">
+			<select name="artist">
+				{artists.forEach(artist => {
+					artist.id === songData.artist ? (
+						<option
+					selected
+					label={artist.name}
+					value={artist.id}
+				></option>
+					) :(
+						<option label={artist.name} value={artist.id}></option>
+					)  })}
+			</select>
 			<input
+				type="text"
+				name="artist"
+				value={songData.artist}
+				placeholder="add an artist here, if not listed above"
+				className="input-create"
+			/>
+		</div>
+	</div>
+</div> */}
+			{/* <div className="form-row">
+	<div className="form-item">
+		<label>Arranged By</label>
+		<div className="choice-wrapper">
+			<select name="arranger">
+				{arrangers.forEach(arranger => { 
+					arranger.id ===
+				songData.arranger ? (
+					<option
+					selected
+					label={arranger.name}
+					value={arranger.id}
+				></option>
+				) :(
+					<option
+					label={arranger.name}
+					value={arranger.id}
+				></option>
+				)
+			 })}
+			</select>
+			<input
+				type="text"
+				name="arranger"
+				value={songData.arranger}
+				placeholder="add an arranger here, if not listed above"
+				className="input-create"
+			/>
+		</div>
+	</div>
+</div> */}
+			{/* <div className="form-row">
+	<div className="form-item">
+		<label>Style</label>
+		<div className="choice-wrapper">
+			<select name="style">
+				{styles.forEach(style => { 
+					style.id === songData.style ? (
+						<option
+					selected
+					label={style.name}
+					value={style.id}
+				></option>
+					):(
+						<option 	label={style.name}
+					value={style.id}></option>
+
+					) })}
+			</select>
+			<input
+				type="text"
+				name="style"
+				value={songData.style}
+				placeholder="add a style here, if not listed above"
+				className="input-create"
+			/>
+		</div>
+	</div>
+</div> */}
+			{/* 
+<div className="form-row">
+	<div className="form-item">
+		<label>Status</label>
+		<div className="choice-wrapper">
+			<select name="status">
+				{statuses.forEach(status => { 
+				status.id === songData.status ? (
+					<option
+					selected
+					label={status.name}
+					value={status.id}
+				></option>
+				):(
+					<option label={status.name}
+					value={status.id}></option>
+
+				)})}
+			</select>
+			<input
+				type="text"
+				name="status"
+				value={songData.status}
+				placeholder="add a status here, if not listed above"
+				className="input-create"
+			/>
+		</div>
+	</div>
+</div> */}
+
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>difficulty</label>
+					<input
+						type='range'
+						min='1'
+						max='5'
+						name='difficulty'
+						value={songData.difficulty}
+						onChange={(e) =>
+							setSongData({ ...songData, difficulty: e.target.value })
+						}
+					/>
+				</div>
+			</div>
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>favourite</label>
+					<input
+						type='text'
+						name='isFavourite'
+						value={songData.isFavourite}
+						onChange={(e) =>
+							setSongData({ ...songData, isFavourite: e.target.value })
+						}
+					/>
+				</div>
+			</div>
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>pages</label>
+					<input
+						type='number'
+						name='pages'
+						value={songData.pages}
+						onChange={(e) =>
+							setSongData({ ...songData, pages: e.target.value })
+						}
+					/>
+				</div>
+			</div>
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>format</label>
+					<input
+						type='text'
+						name='format'
+						value={songData.format}
+						onChange={(e) =>
+							setSongData({ ...songData, format: e.target.value })
+						}
+					/>
+				</div>
+			</div>
+
+			<div className='form-row'>
+				<div className='form-item-date'>
+					<div className='date-item'>
+						<label className='input-date'>Deadline Date </label>
+
+						<input
+							type='date'
+							name='deadlineDate'
+							value={
+								songData.deadlineDate == null ? '' : songData.deadlineDate
+								// : songData.deadlineDate.toISOString().split('T')[0]
+							}
+							className='date-input'
+							onChange={(e) =>
+								setSongData({ ...songData, deadlineDate: e.target.value })
+							}
+						/>
+					</div>
+				</div>
+
+				{/* <div className='form-item'>
+					<label>Reason</label>
+					<textarea name='reason' className='input-grow'>
+						{' '}
+						{songData.reason}
+					</textarea>
+				</div> */}
+			</div>
+			<div className='file-input'>
+				<FileBase
+					type='false'
+					multiple={false}
+					onDone={({ base64 }) =>
+						setSongData({ ...songData, selectedFile: base64 })
+					}
+				/>
+			</div>
+			{/* <input
 				type='text'
 				name='artist'
 				variant='outlined'
@@ -235,7 +471,7 @@ const SongForm = ({
 				value={songData.status}
 				onChange={(e) => setSongData({ ...songData, status: e.target.value })}
 				placeholder='status'
-			/>
+			/> */}
 			{/* <input
 				type='text'
 				name='style'
@@ -247,7 +483,7 @@ const SongForm = ({
 				}
 				placeholder='style'
 			/> */}
-			<div className='file-input'>
+			{/* <div className='file-input'>
 				<FileBase
 					type='false'
 					multiple={false}
@@ -255,7 +491,7 @@ const SongForm = ({
 						setSongData({ ...songData, selectedFile: base64 })
 					}
 				/>
-			</div>
+			</div> */}
 			<button
 				// className='button-submit'
 				// variant='contained'
@@ -323,18 +559,57 @@ const SongForm = ({
 	);
 };
 const StyledSongForm = styled.form`
-	/* display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	flex: unset;
-	row-gap: 1rem;
-	border-radius: 0.5rem;
-	padding: 2rem 1rem;
-	background-color: white;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	.form-row {
+		// border: 1px solid white;
+		// background-color: white;
+		.form-item {
+			label {
+				font-size: 1.6rem;
+				text-transform: uppercase;
+				margin: 10px 0 2px;
+			}
+			.choice-wrapper {
+				/* @include flex(space-between, center, row); */
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				column-gap: 2rem;
+			}
+			.input-grow {
+				flex: 1;
+				width: 100%;
+			}
+			select {
+				font-size: 1.6rem;
+				padding: 0.2rem;
+				option {
+					font-size: 1.6rem;
+					font-style: italic;
+					/* color: $engraved-brown; */
+					color: ${({ theme }) => theme.engravedBrown};
+					background-color: rgba(36, 14, 0, 0.08);
+					// box-shadow: inset -2px -2px 2px rgba(150, 150, 150, 0.1),
+					// 	inset 3px 3px 3px #1d0b0120;
+					padding: 0.2rem;
+					border: 1px solid ${({ theme }) => theme.darkBrown};
+					// border-radius: 0.7rem 0 0 0.7rem;
+					border-radius: 1rem 0 0 1rem;
+					width: 25rem;
+					margin-left: 2rem;
+					&:focus {
+						border: 1px solid ${({ theme }) => theme.darkBrown};
+						outline: none;
+					}
+				}
+			}
+		}
+	}
+	.input-date {
+		font-size: 1.6rem;
+		text-transform: uppercase;
+		margin: 10px 0 2px;
+	}
+
 	.file-input {
 		width: 97%;
 		margin: 10px 0;
@@ -343,6 +618,27 @@ const StyledSongForm = styled.form`
 		margin-bottom: 10px;
 	}
 `;
+// const StyledSongForm = styled.form`
+// 	/* display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	flex: unset;
+// 	row-gap: 1rem;
+// 	border-radius: 0.5rem;
+// 	padding: 2rem 1rem;
+// 	background-color: white;
+// 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: center;
+// 	.file-input {
+// 		width: 97%;
+// 		margin: 10px 0;
+// 	}
+// 	.button-submit {
+// 		margin-bottom: 10px;
+// 	}
+// `;
 // const StyledSongForm = styled.form`
 // 	display: flex;
 // 	flex-direction: column;

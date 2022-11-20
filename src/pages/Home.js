@@ -17,6 +17,7 @@ const Home = () => {
 	const { songs } = useSongsContext();
 
 	const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
+	console.log(currentId);
 
 	let navigate = useNavigate();
 	useEffect(() => {

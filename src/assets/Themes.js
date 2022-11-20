@@ -1,6 +1,8 @@
 export const lightTheme = {
 	primaryColor: '#fff',
 	secondaryColor: '#1f1c1e',
+	engravedBrown: '#1d0b01',
+	darkBrown: 'rgba(105, 54, 25, 1)',
 	error: '#e7195a',
 	borderGrey: '#ddd',
 	bgGrey: '#efefef',
