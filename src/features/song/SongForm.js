@@ -55,7 +55,7 @@ const SongForm = ({
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
 				{
-					method: 'SONG',
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${user.token}`,
