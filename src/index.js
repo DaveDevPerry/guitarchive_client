@@ -5,6 +5,10 @@ import App from './App';
 import { ViewportContextProvider } from './context/ViewportContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { SongsContextProvider } from './context/SongContext';
+import { ArtistsContextProvider } from './context/ArtistContext';
+import { ArrangersContextProvider } from './context/ArrangerContext';
+import { StatusContextProvider } from './context/StatusContext';
+import { StylesContextProvider } from './context/StyleContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +16,15 @@ root.render(
 		<ViewportContextProvider>
 			<AuthContextProvider>
 				<SongsContextProvider>
-					<App />
+					<ArtistsContextProvider>
+						<ArrangersContextProvider>
+							<StatusContextProvider>
+								<StylesContextProvider>
+									<App />
+								</StylesContextProvider>
+							</StatusContextProvider>
+						</ArrangersContextProvider>
+					</ArtistsContextProvider>
 				</SongsContextProvider>
 			</AuthContextProvider>
 		</ViewportContextProvider>

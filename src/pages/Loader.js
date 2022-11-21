@@ -8,11 +8,19 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import AuthVerify from '../common/AuthVerify';
 import { useSongsContext } from '../hooks/useSongContext';
+import { useArtistsContext } from '../hooks/useArtistContext';
+import { useArrangersContext } from '../hooks/useArrangerContext';
+import { useStatusContext } from '../hooks/useStatusContext';
+import { useStylesContext } from '../hooks/useStyleContext';
 
 const Loader = () => {
 	const { user } = useAuthContext();
 	const { setDataLoaded } = useStateContext();
 	const { dispatch } = useSongsContext();
+	const { dispatch: artistDispatch } = useArtistsContext();
+	const { dispatch: arrangerDispatch } = useArrangersContext();
+	const { dispatch: statusDispatch } = useStatusContext();
+	const { dispatch: stylesDispatch } = useStylesContext();
 
 	const navigate = useNavigate();
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
@@ -24,7 +32,7 @@ const Loader = () => {
 			);
 			const json = await response.json();
 			// log(user, 'user');
-			log(json, 'json user');
+			log(json, 'json songs');
 			if (response.ok) {
 				// dispatch({
 				// 	type: 'SET_USERS',
@@ -48,6 +56,138 @@ const Loader = () => {
 				navigate('/home');
 			}, 1000);
 		}, 3000);
+	}, []);
+
+	useEffect(() => {
+		const fetchArtists = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/artists`
+			);
+			const json = await response.json();
+			// log(user, 'user');
+			log(json, 'json artist');
+			if (response.ok) {
+				// dispatch({
+				// 	type: 'SET_USERS',
+				// 	payload: json,
+				// });
+				artistDispatch({
+					type: 'SET_ARTISTS',
+					payload: json,
+				});
+			}
+		};
+
+		// fetchArtists();
+
+		if (user) {
+			fetchArtists();
+		}
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 3000);
+	}, []);
+
+	useEffect(() => {
+		const fetchArrangers = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/arrangers`
+			);
+			const json = await response.json();
+			// log(user, 'user');
+			log(json, 'json arrangers');
+			if (response.ok) {
+				// dispatch({
+				// 	type: 'SET_USERS',
+				// 	payload: json,
+				// });
+				arrangerDispatch({
+					type: 'SET_ARRANGERS',
+					payload: json,
+				});
+			}
+		};
+
+		// fetchArrangers();
+
+		if (user) {
+			fetchArrangers();
+		}
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 3000);
+	}, []);
+
+	useEffect(() => {
+		const fetchStatuses = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/status`
+			);
+			const json = await response.json();
+			// log(user, 'user');
+			log(json, 'json statuses');
+			if (response.ok) {
+				// dispatch({
+				// 	type: 'SET_USERS',
+				// 	payload: json,
+				// });
+				statusDispatch({
+					type: 'SET_STATUSES',
+					payload: json,
+				});
+			}
+		};
+
+		// fetchStatuses();
+
+		if (user) {
+			fetchStatuses();
+		}
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 3000);
+	}, []);
+
+	useEffect(() => {
+		const fetchStyles = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/styles`
+			);
+			const json = await response.json();
+			// log(user, 'user');
+			log(json, 'json styles');
+			if (response.ok) {
+				// dispatch({
+				// 	type: 'SET_USERS',
+				// 	payload: json,
+				// });
+				stylesDispatch({
+					type: 'SET_STYLES',
+					payload: json,
+				});
+			}
+		};
+
+		// fetchStyles();
+
+		if (user) {
+			fetchStyles();
+		}
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 3000);
 	}, []);
 	// useEffect(() => {
 	// 	// const fetchUsers = async () => {
