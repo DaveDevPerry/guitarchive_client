@@ -6,11 +6,6 @@ import { useSongsContext } from '../../hooks/useSongContext';
 import { useStateContext } from '../../lib/context';
 import { log } from '../../utils/helper';
 import toast from 'react-hot-toast';
-import { useArtistsContext } from '../../hooks/useArtistContext';
-import { useArrangersContext } from '../../hooks/useArrangerContext';
-import { useStylesContext } from '../../hooks/useStyleContext';
-import { useStatusContext } from '../../hooks/useStatusContext';
-import { useNavigate } from 'react-router-dom';
 // import { NavLink } from 'react-router-dom';
 // import SongMetrics from './SongMetrics';
 // import Filter from './Filter';
@@ -28,13 +23,8 @@ const SongForm = ({
 	currentId,
 	setCurrentId,
 }) => {
-	let navigate = useNavigate();
 	const { setIsFormOpen } = useStateContext();
 	const { dispatch: songDispatch } = useSongsContext();
-	const { artists } = useArtistsContext();
-	const { arrangers } = useArrangersContext();
-	const { styles } = useStylesContext();
-	const { statuses } = useStatusContext();
 	const { user } = useAuthContext();
 
 	const [songData, setSongData] = useState({
@@ -49,7 +39,6 @@ const SongForm = ({
 		deadlineDate: '',
 		reason: '',
 		isFavourite: false,
-		isTab: true,
 		selectedFile: '',
 	});
 	// const song = useSelector((state) =>
@@ -95,7 +84,6 @@ const SongForm = ({
 		clear();
 		setIsFormOpen(false);
 		notify();
-		navigate('/');
 	};
 	const clear = () => {
 		setCurrentId(null);
@@ -111,7 +99,6 @@ const SongForm = ({
 			deadlineDate: '',
 			reason: '',
 			isFavourite: false,
-			isTab: true,
 			selectedFile: '',
 		});
 	};
@@ -222,8 +209,10 @@ const SongForm = ({
 		<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
 			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
 			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
-			<div className='form-section'>
-				<div className='form-row'>
+			<div className='form-row'>
+				<div className='form-item'>
+					<label>Title</label>
+					{/* <input type="text" name="title" value="<%= song.title %>" autofocus /> */}
 					<input
 						type='text'
 						name='title'
@@ -233,197 +222,10 @@ const SongForm = ({
 						onChange={(e) =>
 							setSongData({ ...songData, title: e.target.value })
 						}
-						placeholder='Song Title'
-						className='form-input'
+						placeholder='title'
 					/>
-					<div className='form-item-row'>
-						<label className='song-label' htmlFor='favourite'>
-							{' '}
-							Is Favourite?
-						</label>
-						{/* const onInputChange = (e) => {
-		const { target } = e;
-		if (target.type === 'checkbox') {
-			setFormData((prevState) => ({
-				...prevState,
-				[target.name]: target.checked,
-			}));
-		} else {
-			setFormData((prevState) => ({
-				...prevState,
-				[target.name]: target.value,
-			}));
-		}
-	}; */}
-						<input
-							checked={songData.isFavourite}
-							// onChange={onInputChange}
-							onChange={(e) =>
-								setSongData({ ...songData, isFavourite: e.target.checked })
-							}
-							type='checkbox'
-							// id='storeData'
-							name='favourite'
-							// value={songData.isFavourite}
-							// value='true'
-						/>
-					</div>
-					<div className='form-item-row'>
-						<label className='song-label' htmlFor='difficulty'>
-							{' '}
-							difficulty
-						</label>
-						<input
-							type='number'
-							value={songData.difficulty}
-							onChange={(e) =>
-								setSongData({ ...songData, difficulty: e.target.value })
-							}
-							className='form-number'
-							name='difficulty'
-						/>
-					</div>
 				</div>
 			</div>
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							{/* onChange={this.change} value={this.state.value} */}
-							<select
-								name='artist'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-								value={songData.artist}
-								// label={songData.artist}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select artist --
-								</option>
-								{artists.map((artist) => (
-									<option
-										key={artist._id}
-										// selected
-										label={artist.name}
-										value={artist._id}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-							/>
-							{/* </div> */}
-							{/* <select name='artist'>
-								{artists.forEach((artist) => {
-									artist.id === songData.artist ? (
-										<option
-											selected
-											label={artist.name}
-											value={artist.name}
-										></option>
-									) : (
-										<option label={artist.name} value={artist.name}></option>
-									);
-								})}
-							</select> */}
-							{/* <input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-							/>
-						</div> */}
-						</div>
-					</div>
-
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='arranger'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-								value={songData.arranger}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select arranger --
-								</option>
-								{arrangers.map((arranger) => (
-									<option
-										key={arranger._id}
-										// selected
-										label={arranger.name}
-										value={arranger._id}
-									></option>
-								))}
-								{/* {arrangers.forEach((arranger) => {
-									arranger.id === songData.arranger ? (
-										<option
-											selected
-											label={arranger.name}
-											value={arranger.id}
-										></option>
-									) : (
-										<option label={arranger.name} value={arranger.id}></option>
-									);
-								})} */}
-							</select>
-							<input
-								type='text'
-								name='arranger'
-								value={songData.arranger}
-								placeholder='add an arranger here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-
-					{/* <div className='form-item'>
-						<div className='choice-wrapper'>
-							<select name='artist'>
-								{artists.forEach((artist) => {
-									artist.id === songData.artist ? (
-										<option
-											selected
-											label={artist.name}
-											value={artist.id}
-										></option>
-									) : (
-										<option label={artist.name} value={artist.id}></option>
-									);
-								})}
-							</select>
-							<input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-							/>
-						</div> */}
-					{/* </div> */}
-				</div>
-			</div>
-
 			{/* <div className="form-row">
 	<div className="form-item">
 		<label>Artist</label>
@@ -539,7 +341,7 @@ const SongForm = ({
 	</div>
 </div> */}
 
-			{/* <div className='form-row'>
+			<div className='form-row'>
 				<div className='form-item'>
 					<label>difficulty</label>
 					<input
@@ -553,8 +355,8 @@ const SongForm = ({
 						}
 					/>
 				</div>
-			</div> */}
-			{/* <div className='form-row'>
+			</div>
+			<div className='form-row'>
 				<div className='form-item'>
 					<label>favourite</label>
 					<input
@@ -566,8 +368,8 @@ const SongForm = ({
 						}
 					/>
 				</div>
-			</div> */}
-			{/* <div className='form-row'>
+			</div>
+			<div className='form-row'>
 				<div className='form-item'>
 					<label>pages</label>
 					<input
@@ -592,272 +394,45 @@ const SongForm = ({
 						}
 					/>
 				</div>
-			</div> */}
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item-row'>
-						<div className='date-item'>
-							<label className='input-date'>Deadline Date</label>
-							<input
-								type='date'
-								name='deadlineDate'
-								// value={
-								// 	songData.deadlineDate == null ? '' : songData.deadlineDate
-								// 	// : songData.deadlineDate.toISOString().split('T')[0]
-								// }
-								className='date-input'
-								onChange={(e) =>
-									setSongData({ ...songData, deadlineDate: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-				</div>
-				{/* <textarea
-						value={formData.deadlineReason}
-						onChange={onInputChange}
-						className='form-deadline-reason'
-						name='deadlineReason'
-						placeholder='deadline Reason'
-					/> */}
-				<div className='form-row'>
-					<div className='form-item'>
-						{/* <label>Reason for deadline</label> */}
-						<textarea
-							name='reason'
-							className='input-grow'
-							placeholder='reason for deadline'
-							value={songData.reason}
-							onChange={(e) =>
-								setSongData({ ...songData, reason: e.target.value })
-							}
-						/>
-						{/* {' '}
-							{songData.reason}
-						</textarea> */}
-					</div>
-				</div>
 			</div>
 
-			{/* <div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='artist'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-								value={songData.artist}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select artist --
-								</option>
-								{artists.map((artist) => (
-									<option
-										key={artist._id}
-										// selected
-										label={artist.name}
-										value={artist.name}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-							/>
-						</div>
-					</div>
+			<div className='form-row'>
+				<div className='form-item-date'>
+					<div className='date-item'>
+						<label className='input-date'>Deadline Date </label>
 
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='arranger'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-								value={songData.arranger}
-							>
-								<option>-- select arranger --</option>
-								{arrangers.map((arranger) => (
-									<option
-										key={arranger._id}
-										selected
-										label={arranger.name}
-										value={arranger.name}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='arranger'
-								value={songData.arranger}
-								placeholder='add an arranger here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-				</div>
-			</div> */}
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='style'
-								onChange={(e) =>
-									setSongData({ ...songData, style: e.target.value })
-								}
-								value={songData.style}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select style --
-								</option>
-								{styles.map((style) => (
-									<option
-										key={style._id}
-										// selected
-										label={style.name}
-										value={style._id}
-									></option>
-								))}
-							</select>
-							{/* <input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-							/> */}
-						</div>
-						{/* <input
-							type='text'
-							name='style'
-							variant='outlined'
-							label='Tags'
-							value={songData.style}
-							onChange={(e) =>
-								setSongData({ ...songData, style: e.target.value })
-							}
-							placeholder='style'
-						/> */}
-					</div>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='status'
-								onChange={(e) =>
-									setSongData({ ...songData, status: e.target.value })
-								}
-								value={songData.status}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select status --
-								</option>
-								{statuses.map((status) => (
-									<option
-										key={status._id}
-										// selected
-										label={status.name}
-										value={status._id}
-									></option>
-								))}
-							</select>
-							{/* <input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-							/> */}
-						</div>
-						{/* <input
-							type='text'
-							name='status'
-							variant='outlined'
-							label='Tags'
-							value={songData.status}
-							onChange={(e) =>
-								setSongData({ ...songData, status: e.target.value })
-							}
-							placeholder='status'
-						/> */}
-					</div>
-				</div>
-			</div>
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='file-input'>
-						<FileBase
-							type='false'
-							multiple={false}
-							onDone={({ base64 }) =>
-								setSongData({ ...songData, selectedFile: base64 })
-							}
-						/>
-					</div>
-					<div className='form-item-row'>
-						<label className='song-label' htmlFor='tab'>
-							{' '}
-							Is tab?
-						</label>
-						{/* const onInputChange = (e) => {
-		const { target } = e;
-		if (target.type === 'checkbox') {
-			setFormData((prevState) => ({
-				...prevState,
-				[target.name]: target.checked,
-			}));
-		} else {
-			setFormData((prevState) => ({
-				...prevState,
-				[target.name]: target.value,
-			}));
-		}
-	}; */}
 						<input
-							checked={songData.isTab}
-							// onChange={onInputChange}
-							onChange={(e) =>
-								setSongData({ ...songData, isTab: e.target.checked })
+							type='date'
+							name='deadlineDate'
+							value={
+								songData.deadlineDate == null ? '' : songData.deadlineDate
+								// : songData.deadlineDate.toISOString().split('T')[0]
 							}
-							type='checkbox'
-							// id='storeData'
-							name='tab'
-							// value={songData.isFavourite}
-							// value='true'
+							className='date-input'
+							onChange={(e) =>
+								setSongData({ ...songData, deadlineDate: e.target.value })
+							}
 						/>
 					</div>
 				</div>
-			</div>
 
+				{/* <div className='form-item'>
+					<label>Reason</label>
+					<textarea name='reason' className='input-grow'>
+						{' '}
+						{songData.reason}
+					</textarea>
+				</div> */}
+			</div>
+			<div className='file-input'>
+				<FileBase
+					type='false'
+					multiple={false}
+					onDone={({ base64 }) =>
+						setSongData({ ...songData, selectedFile: base64 })
+					}
+				/>
+			</div>
 			{/* <input
 				type='text'
 				name='artist'
@@ -923,34 +498,31 @@ const SongForm = ({
 					}
 				/>
 			</div> */}
-			<div className='form-section'>
-				<button
-					// className='button-submit'
-					// variant='contained'
-					// color='primary'
-					// size='large'
-					type='submit'
-				>
-					Submit
-				</button>
-				<button
-					// variant='contained'
-					// color='secondary'
-					// size='small'
-					onClick={clear}
-				>
-					Clear
-				</button>
-				<button
-					// variant='contained'
-					// color='secondary'
-					// size='small'
-					onClick={back}
-				>
-					back
-				</button>
-			</div>
-
+			<button
+				// className='button-submit'
+				// variant='contained'
+				// color='primary'
+				// size='large'
+				type='submit'
+			>
+				Submit
+			</button>
+			<button
+				// variant='contained'
+				// color='secondary'
+				// size='small'
+				onClick={clear}
+			>
+				Clear
+			</button>
+			<button
+				// variant='contained'
+				// color='secondary'
+				// size='small'
+				onClick={back}
+			>
+				back
+			</button>
 			{/* <NavLink to='/songs'>back</NavLink> */}
 			{/* <div className='form-group'>
 				<input
@@ -1003,25 +575,10 @@ const SongForm = ({
 };
 const StyledSongForm = styled.form`
 	/* background-image: url('/images/dark wood texture.webp'); */
-	display: flex;
-	flex-direction: column;
-	row-gap: 1rem;
-	.form-section {
-		border: 2px solid yellow;
-	}
 	.form-row {
 		// border: 1px solid white;
 		// background-color: white;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		column-gap: 2rem;
-		.form-input {
-			width: unset;
-			flex: 1;
-		}
 		.form-item {
-			flex: 1;
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
@@ -1030,105 +587,14 @@ const StyledSongForm = styled.form`
 			.choice-wrapper {
 				/* @include flex(space-between, center, row); */
 				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				row-gap: 0.5rem;
-				flex: 1;
-				/* align-items: center; */
-				/* column-gap: 2rem; */
-			}
-			.input-grow {
-				/* flex: 1; */
-				/* width: 100%; */
-				resize: none;
-				::placeholder {
-					/* Chrome, Firefox, Opera, Safari 10.1+ */
-					${'' /* color: red; */}
-					color: ${({ theme }) => theme.engravedBrown};
-					font-size: 1.6rem;
-					font-family: 'NewTegomin';
-					padding: 0.5rem 1rem;
-					opacity: 1; /* Firefox */
-				}
-
-				:-ms-input-placeholder {
-					/* Internet Explorer 10-11 */
-					color: ${({ theme }) => theme.engravedBrown};
-				}
-
-				::-ms-input-placeholder {
-					/* Microsoft Edge */
-					color: ${({ theme }) => theme.engravedBrown};
-				}
-			}
-			select {
-				font-size: 1.6rem;
-				padding: 0.2rem;
-				option {
-					font-size: 1.6rem;
-					font-style: italic;
-					/* color: $engraved-brown; */
-					color: ${({ theme }) => theme.engravedBrown};
-					background-color: rgba(36, 14, 0, 0.08);
-					// box-shadow: inset -2px -2px 2px rgba(150, 150, 150, 0.1),
-					// 	inset 3px 3px 3px #1d0b0120;
-					padding: 0.2rem;
-					border: 1px solid ${({ theme }) => theme.darkBrown};
-					// border-radius: 0.7rem 0 0 0.7rem;
-					border-radius: 1rem 0 0 1rem;
-					width: 25rem;
-					margin-left: 2rem;
-					&:focus {
-						border: 1px solid ${({ theme }) => theme.darkBrown};
-						outline: none;
-					}
-				}
-			}
-		}
-		.form-item-row {
-			display: flex;
-			width: unset;
-			align-items: center;
-			column-gap: 2rem;
-			/* flex: 1; */
-			.date-item {
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				column-gap: 1rem;
-				/* flex: 1; */
-				label.input-date {
-					/* width: 100%; */
-				}
-				.input-date {
-					font-size: 1.6rem;
-					text-transform: uppercase;
-					/* margin: 10px 0 2px; */
-					/* width: unset; */
-				}
-			}
-			label {
-				font-size: 1.6rem;
-				text-transform: uppercase;
-				/* margin: 10px 0 2px; */
-			}
-			input[type='checkbox'] {
-				width: unset;
-			}
-			input[type='number'].form-number {
-				width: 60px;
-			}
-			.choice-wrapper {
-				/* @include flex(space-between, center, row); */
-				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				column-gap: 2rem;
 			}
-			/* .input-grow {
+			.input-grow {
 				flex: 1;
 				width: 100%;
-			} */
+			}
 			select {
 				font-size: 1.6rem;
 				padding: 0.2rem;
@@ -1154,10 +620,15 @@ const StyledSongForm = styled.form`
 			}
 		}
 	}
+	.input-date {
+		font-size: 1.6rem;
+		text-transform: uppercase;
+		margin: 10px 0 2px;
+	}
 
 	.file-input {
-		/* width: 97%; */
-		/* margin: 10px 0; */
+		width: 97%;
+		margin: 10px 0;
 	}
 	.button-submit {
 		margin-bottom: 10px;

@@ -121,7 +121,7 @@ const StyledSongModal = styled.dialog`
 		transition: all 200ms linear;
 		margin: 0 auto;
 		flex: 1;
-		overflow-y: scroll;
+		overflow-y: auto;
 		background-image: url('/images/dark wood texture.webp');
 		h2 {
 			/* color: ${({ theme }) => theme.primaryColor}; */

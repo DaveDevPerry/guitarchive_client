@@ -19,7 +19,9 @@ export const songsReducer = (state, action) => {
 		case 'CREATE_SONG':
 			return {
 				...state,
-				songs: [action.payload, ...state.songs],
+				// songs: ...state.songs, action.payload,
+				songs: [...state.songs, action.payload],
+				// songs: [action.payload, ...state.songs],
 			};
 		case 'UPDATE_SONG':
 			log(action.payload, 'payload - update songs');

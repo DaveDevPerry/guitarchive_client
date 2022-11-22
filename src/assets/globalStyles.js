@@ -96,7 +96,7 @@ ${
     padding: 10px;
     ${'' /* margin-top: 10px; */}
     ${'' /* margin-bottom: 20px; */}
-    width: 100%;
+    ${'' /* width: 100%; */}
     border: none;
     ${'' /* border: 2px solid ${({ theme }) => theme.borderGrey}; */}
     border-radius: 4px;

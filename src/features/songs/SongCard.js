@@ -12,6 +12,8 @@ import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
+import { IoMusicalNotes } from 'react-icons/io5';
+import { TbNumbers } from 'react-icons/tb';
 import { format, parseISO } from 'date-fns';
 import { log } from '../../utils/helper';
 import { useNavigate } from 'react-router-dom';
@@ -88,6 +90,11 @@ const SongCard = ({ song, slug, url }) => {
 							<a href={song.selectedFile} download>
 								<FaCloudDownloadAlt className='file-download-icon card-icon' />
 							</a>
+						)}
+						{song.isTab ? (
+							<TbNumbers className='music-type-icon' />
+						) : (
+							<IoMusicalNotes className='music-type-icon' />
 						)}
 						{/* {song.sheetMusic && (
 						<a
@@ -207,12 +214,22 @@ const StyledSongCard = styled.div`
 			text-transform: uppercase;
 		}
 		.fav-wrapper,
-		.file-wrapper,
-		.deadline-wrapper,
+		/* .file-wrapper, */
+		/* .deadline-wrapper, */
 		.status-wrapper {
 			display: grid;
 			place-content: center;
-			width: 85px;
+			width: 50px;
+		}
+		.file-wrapper {
+			display: flex;
+			align-items: center;
+			column-gap: 0.5rem;
+		}
+		.deadline-wrapper {
+			width: 100px;
+			display: grid;
+			place-content: center;
 		}
 		/* .artist-wrapper {
 			flex: 1 1 40%;
@@ -261,6 +278,10 @@ const StyledSongCard = styled.div`
 		}
 		.file-download-icon {
 			cursor: pointer;
+			font-size: 3rem;
+		}
+		.music-type-icon {
+			/* cursor: pointer; */
 			font-size: 3rem;
 		}
 	}
