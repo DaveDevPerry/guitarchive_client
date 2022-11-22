@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import AnimatedRoutes from './AnimatedRoutes';
 import { useDarkMode } from './assets/useDarkMode';
 import Header from './components/Header';
+import MobileHeader from './components/MobileHeader';
 import Footer from './components/Footer';
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
 				<div className='App'>
 					<BrowserRouter>
 						<Toaster />
-						<Header />
+						{width < breakpoint ? <MobileHeader /> : <Header />}
 						<AnimatedRoutes
 							currentDate={currentDate}
 							user={user}

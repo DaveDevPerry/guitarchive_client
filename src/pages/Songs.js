@@ -4,18 +4,26 @@ import styled from 'styled-components';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-import SongsList from '../features/songs/SongsList';
+// import SongsList from '../features/songs/SongsList';
 import SongModal from '../features/song/SongModal';
 import AddSongButton from '../features/song/AddSongButton';
+import SearchBar from '../components/SearchBar';
+import SongsFilter from '../features/songs/SongsFilter';
+import SongsWidget from '../features/songs/SongsWidget';
+import { useSongsContext } from '../hooks/useSongContext';
+import { useViewport } from '../hooks/useViewport';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 const Songs = () => {
 	const { dataLoaded, isFormOpen } = useStateContext();
 	const [currentId, setCurrentId] = useState(null);
+	const { songs } = useSongsContext();
 	// const { users, user } = useAuthContext();
 
-	const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
+	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -45,7 +53,7 @@ const Songs = () => {
 					setCurrentId={setCurrentId}
 				/>
 			)}
-			<StyledDayHeaderWidget>
+			{/* <StyledDayHeaderWidget>
 				<p className='header-time'>
 					<strong>
 						{new Date(currentDay).toLocaleDateString('en-us', {
@@ -56,10 +64,16 @@ const Songs = () => {
 						})}
 					</strong>
 				</p>
-			</StyledDayHeaderWidget>
-			<h1>songs</h1>
-			<AddSongButton />
-			<SongsList />
+			</StyledDayHeaderWidget> */}
+			{/* <h1>songs</h1> */}
+			<div className='user-actions-container'>
+				<AddSongButton />
+				{width > breakpoint && <SearchBar />}
+			</div>
+			{width > breakpoint && <SongsFilter />}
+
+			{/* <SongsList /> */}
+			<SongsWidget songs={songs} />
 		</StyledSongs>
 	);
 };
@@ -68,8 +82,10 @@ const StyledSongs = styled(motion.div)`
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 1rem;
-	max-width: 80rem;
-	padding: 0.5rem 1rem;
+	max-width: 100rem;
+	/* max-width: 80rem; */
+	padding: 0.5rem 0;
+	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
@@ -82,22 +98,32 @@ const StyledSongs = styled(motion.div)`
 		border-radius: 4px;
 		display: none;
 	}
-`;
-
-const StyledDayHeaderWidget = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	.header-time {
+	.user-actions-container {
+		/* @include flex(flex-start, center, row); */
 		display: flex;
-		flex-direction: column;
+		justify-content: flex-start;
 		align-items: center;
-		justify-content: center;
-		font-size: 1.6rem;
-		font-size: 2rem;
-		color: ${({ theme }) => theme.txtGrey};
+		padding: 0 1rem;
+
+		// background-color: green;
+		/* margin: 1rem 2rem; */
 	}
 `;
+
+// const StyledDayHeaderWidget = styled.div`
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+// 	justify-content: center;
+// 	.header-time {
+// 		display: flex;
+// 		flex-direction: column;
+// 		align-items: center;
+// 		justify-content: center;
+// 		font-size: 1.6rem;
+// 		font-size: 2rem;
+// 		color: ${({ theme }) => theme.txtGrey};
+// 	}
+// `;
 
 export default Songs;

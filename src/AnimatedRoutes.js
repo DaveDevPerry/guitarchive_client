@@ -6,6 +6,7 @@ import Loader from './pages/Loader';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Songs from './pages/Songs';
+import Song from './pages/Song';
 
 const AnimatedRoutes = ({ user, themeToggler, theme, currentDate }) => {
 	const location = useLocation();
@@ -37,6 +38,16 @@ const AnimatedRoutes = ({ user, themeToggler, theme, currentDate }) => {
 					element={
 						user ? (
 							<Songs theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/song'
+					element={
+						user ? (
+							<Song theme={theme} currentDate={currentDate} />
 						) : (
 							<Navigate to='/login' />
 						)

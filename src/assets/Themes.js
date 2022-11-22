@@ -3,6 +3,23 @@ export const lightTheme = {
 	secondaryColor: '#1f1c1e',
 	engravedBrown: '#1d0b01',
 	darkBrown: 'rgba(105, 54, 25, 1)',
+	brown: 'rgb(199, 88, 29)',
+	lightBrown: 'rgb(199, 88, 29)',
+	veryLightBrown: 'rgb(253, 225, 209)',
+	grey: 'rgba(124, 124, 124, 1)',
+
+	// font size
+	text: '1.6rem',
+
+	title: '3rem',
+
+	//engrave
+	// engraveText:
+	// 	'0px 1px 0px rgba(226, 186, 186, 0.5)' /* 50% white from bottom */,
+	// // darkEngrave: '"0px 1px 0px rgba(255, 255, 255, 0.3)",
+	// // 	"0px -1px 0px rgba(0, 0, 0, 0.7)"',
+	// // titleDarkEngrave: 0px 4px 0px rgba(255, 255, 255, 0.3),
+	// 	0px -4px 0px rgba(0, 0, 0, 0.7),
 	error: '#e7195a',
 	borderGrey: '#ddd',
 	bgGrey: '#efefef',

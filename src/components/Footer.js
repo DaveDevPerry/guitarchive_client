@@ -22,11 +22,11 @@ const Footer = () => {
 							<p>home</p>
 						</NavLink>
 						<NavLink
-							to='/posts'
+							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<FaListAlt className='nav-icon' />
-							<p>posts</p>
+							<p>songs</p>
 						</NavLink>
 						<NavLink
 							to='/settings'
@@ -57,9 +57,11 @@ const Footer = () => {
 	);
 };
 const StyledFooter = styled.footer`
-	background: ${({ theme }) => theme.primaryColor};
+	/* background: ${({ theme }) => theme.primaryColor}; */
+	background-color: rgba(0, 0, 0, 0.1);
 	position: relative;
 	transition: all 200ms linear;
+	border-top: 1px solid ${({ theme }) => theme.darkBrown};
 	nav {
 		max-width: 60rem;
 		margin: 0 auto;
@@ -69,7 +71,7 @@ const StyledFooter = styled.footer`
 			align-items: center;
 			justify-content: space-evenly;
 			a {
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.darkBrown};
 				text-decoration: none;
 				flex: 1;
 				text-align: center;
@@ -82,25 +84,25 @@ const StyledFooter = styled.footer`
 				align-items: center;
 				.nav-icon {
 					font-size: 2.4rem;
-					color: ${({ theme }) => theme.secondaryColor};
+					color: ${({ theme }) => theme.darkBrown};
 					position: relative;
 				}
 				&:hover {
-					color: ${({ theme }) => theme.secondaryColor};
+					color: ${({ theme }) => theme.darkBrown};
 					-webkit-transition: all 0.5s ease;
 					transition: all 0.5s ease;
 					.nav-icon {
-						color: ${({ theme }) => theme.secondaryColor};
+						color: ${({ theme }) => theme.darkBrown};
 						-webkit-transition: all 0.5s ease;
 						transition: all 0.5s ease;
 					}
 				}
 				&.active {
-					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
 					-webkit-transition: all 0.5s ease;
 					transition: all 0.5s ease;
 					.nav-icon {
-						color: ${({ theme }) => theme.green};
+						color: ${({ theme }) => theme.lightBrown};
 						-webkit-transition: all 0.5s ease;
 						transition: all 0.5s ease;
 					}
@@ -129,7 +131,7 @@ const StyledFooter = styled.footer`
 				height: 3px;
 				width: 0%;
 				content: '';
-				background-color: ${({ theme }) => theme.green};
+				background-color: ${({ theme }) => theme.lightBrown};
 			}
 			a:after {
 				left: 0;

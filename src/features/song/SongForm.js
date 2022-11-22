@@ -6,6 +6,7 @@ import { useSongsContext } from '../../hooks/useSongContext';
 import { useStateContext } from '../../lib/context';
 import { log } from '../../utils/helper';
 import toast from 'react-hot-toast';
+// import { NavLink } from 'react-router-dom';
 // import SongMetrics from './SongMetrics';
 // import Filter from './Filter';
 
@@ -100,6 +101,10 @@ const SongForm = ({
 			isFavourite: false,
 			selectedFile: '',
 		});
+	};
+	const back = () => {
+		clear();
+		setIsFormOpen(false);
 	};
 
 	// create a toast
@@ -202,7 +207,8 @@ const SongForm = ({
 
 	return (
 		<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
-			<h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2>
+			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
+			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
 			<div className='form-row'>
 				<div className='form-item'>
 					<label>Title</label>
@@ -509,6 +515,15 @@ const SongForm = ({
 			>
 				Clear
 			</button>
+			<button
+				// variant='contained'
+				// color='secondary'
+				// size='small'
+				onClick={back}
+			>
+				back
+			</button>
+			{/* <NavLink to='/songs'>back</NavLink> */}
 			{/* <div className='form-group'>
 				<input
 					value={inputText}
@@ -559,6 +574,7 @@ const SongForm = ({
 	);
 };
 const StyledSongForm = styled.form`
+	/* background-image: url('/images/dark wood texture.webp'); */
 	.form-row {
 		// border: 1px solid white;
 		// background-color: white;

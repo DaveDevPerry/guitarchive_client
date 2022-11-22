@@ -1,6 +1,22 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+
+@font-face {
+  font-family: 'NewTegomin';
+  src: url("/fonts/NewTegomin-Regular.woff2") format("woff2"), url("/fonts/NewTegomin-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+${
+	'' /* @mixin flex($justify, $align, $direction) {
+	display: flex;
+	justify-content: $justify;
+	align-items: $align;
+	flex-direction: $direction;
+} */
+}
   *,
   *::before,
   *::after {
@@ -16,7 +32,8 @@ export const GlobalStyles = createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: 'Oswald', serif;
+    ${'' /* font-family: 'Oswald', serif; */}
+    font-family: 'NewTegomin';
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
@@ -28,6 +45,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     font-weight: 400;
     color: ${({ theme }) => theme.txtGrey};
+    color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
   }
 	.App {
@@ -39,6 +57,14 @@ export const GlobalStyles = createGlobalStyle`
     justify-content: space-between;
     row-gap: 1rem;
     background-color: ${({ theme }) => theme.borderGrey};
+    background-image: url("/images/light wood texture.webp");
+  }
+  h3{
+    font-size: 1.6rem;
+
+  }
+  h4{
+    font-size: 1.4rem;
   }
   button {
 		background-color: #ffffff;
@@ -56,21 +82,64 @@ export const GlobalStyles = createGlobalStyle`
   
   header a {
     color: ${({ theme }) => theme.txtDarkGrey};
+    color: ${({ theme }) => theme.darkBrown};
     text-decoration: none;
   }
   label, input {
     display: block;
-    color: ${({ theme }) => theme.txtGrey};
+    ${'' /* color: ${({ theme }) => theme.engravedBrown}; */}
+    font-weight: bolder;
+   
+    ${'' /* color: ${({ theme }) => theme.txtGrey}; */}
   }
   input {
     padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    ${'' /* margin-top: 10px; */}
+    ${'' /* margin-bottom: 20px; */}
     width: 100%;
-    border: 2px solid ${({ theme }) => theme.borderGrey};
+    border: none;
+    ${'' /* border: 2px solid ${({ theme }) => theme.borderGrey}; */}
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: rgba(168, 105, 69, 0.57);
+    box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ${'' /* color: red; */}
+  color: ${({ theme }) => theme.engravedBrown};
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: ${({ theme }) => theme.engravedBrown};
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+color: ${({ theme }) => theme.engravedBrown};
+}
   }
+  input[type='range'] {
+      overflow: hidden;
+      ${'' /* width: 80px; */}
+      -webkit-appearance: none;
+      background-color: ${({ theme }) => theme.lightBrown};
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color:${({ theme }) => theme.lightBrown};
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: ew-resize;
+      ${'' /* background: ${({ theme }) => theme.lightBrown}; */}
+      ${'' /* background: ${({ theme }) => theme.lightBrown}; */}
+      ${'' /* box-shadow: -80px 0 0 80px #43e5f7; */}
+    }
   input:focus {
     outline: none;
     border: none;
@@ -112,7 +181,7 @@ export const GlobalStyles = createGlobalStyle`
   .br{
     border-radius: 4px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    background-color: ${({ theme }) => theme.bgApp};
+    ${'' /* background-color: ${({ theme }) => theme.bgApp}; */}
   }
   .br-inset{
     background-color: ${({ theme }) => theme.bgLightGrey};

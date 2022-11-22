@@ -1,20 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSongsContext } from '../../hooks/useSongContext';
-import { FaListAlt } from 'react-icons/fa';
-import SongDetails from './SongDetails';
+// import { FaListAlt } from 'react-icons/fa';
+// import SongDetails from './SongDetails';
+import SongCard from './SongCard';
 
 const SongsList = () => {
 	const { songs } = useSongsContext();
 	return (
 		<StyledSongsList>
-			<div className='song-history-list-header'>
+			{/* <div className='song-history-list-header'>
 				<p>Song history</p>
 				<div>
 					<FaListAlt className='nav-icon' />
 					{songs && songs.length}
 				</div>
-			</div>
+			</div> */}
 			<div className='songs-list-container'>
 				<div className='songs-list'>
 					{songs &&
@@ -22,8 +23,16 @@ const SongsList = () => {
 							.sort((a, b) => {
 								return new Date(b.createdAt) - new Date(a.createdAt);
 							})
-							.map((song, index) => <SongDetails key={song._id} song={song} />)}
+							.map((song, index) => <SongCard key={song._id} song={song} />)}
 				</div>
+				{/* <div className='songs-list'>
+					{songs &&
+						songs
+							.sort((a, b) => {
+								return new Date(b.createdAt) - new Date(a.createdAt);
+							})
+							.map((song, index) => <SongDetails key={song._id} song={song} />)}
+				</div> */}
 			</div>
 		</StyledSongsList>
 	);

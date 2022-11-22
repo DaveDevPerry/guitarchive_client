@@ -98,6 +98,7 @@ const StyledSongModal = styled.dialog`
 	/* border: 1px solid green; */
 	/* ::backdrop {
 	} */
+	/* overflow-y: hidden; */
 	.posts-box {
 		padding: 2rem;
 		/* height: 300px; */
@@ -120,6 +121,8 @@ const StyledSongModal = styled.dialog`
 		transition: all 200ms linear;
 		margin: 0 auto;
 		flex: 1;
+		overflow-y: scroll;
+		background-image: url('/images/dark wood texture.webp');
 		h2 {
 			/* color: ${({ theme }) => theme.primaryColor}; */
 			text-transform: capitalize;

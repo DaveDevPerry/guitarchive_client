@@ -7,6 +7,7 @@ const AppContext = createContext();
 export const StateContext = ({ children }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [songToView, setSongToView] = useState(null);
 
 	return (
 		<AppContext.Provider
@@ -15,6 +16,8 @@ export const StateContext = ({ children }) => {
 				setDataLoaded,
 				isFormOpen,
 				setIsFormOpen,
+				songToView,
+				setSongToView,
 			}}
 		>
 			{children}

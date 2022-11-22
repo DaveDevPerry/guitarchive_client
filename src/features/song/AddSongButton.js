@@ -31,10 +31,11 @@ const StyledAddSongButton = styled.div`
 	justify-content: flex-start;
 	column-gap: 0.5rem;
 	border-radius: 0.5rem;
-	background-color: #9a9a9a;
+	background-color: ${({ theme }) => theme.lightBrown};
+	/* background-color: #9a9a9a; */
 	height: 100%;
 	width: 9em;
-	height: 2em;
+	/* height: 2em; */
 	cursor: pointer;
 	.add-song-btn {
 		font-size: 2.5rem;

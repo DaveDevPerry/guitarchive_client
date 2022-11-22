@@ -43,6 +43,11 @@ const Home = () => {
 						})}
 					</strong>
 				</p>
+
+				<h2>
+					the home page will be to show youtube api and also certain songs
+					(perhaps, upcoming deadlines or ready to rec?)
+				</h2>
 			</StyledDayHeaderWidget>
 			{songs &&
 				songs.map((song, index) => (

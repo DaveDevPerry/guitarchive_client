@@ -89,7 +89,7 @@ const Header = () => {
 	);
 };
 const StyledHeader = styled.header`
-	background: ${({ theme }) => theme.primaryColor};
+	/* background: ${({ theme }) => theme.primaryColor}; */
 	transition: all 200ms linear;
 	.container {
 		max-width: 100rem;
@@ -99,42 +99,48 @@ const StyledHeader = styled.header`
 		align-items: center;
 		justify-content: space-between;
 		z-index: 500;
+
 		h1 {
-			font-size: 2.2rem;
-			color: ${({ theme }) => theme.secondaryColor};
-			font-family: 'Signika', sans-serif;
+			/* font-size: 2.2rem; */
+			color: ${({ theme }) => theme.lightBrown};
+			font-family: 'NewTegomin';
 			font-weight: lighter;
+			font-size: 4rem;
 			span {
-				color: ${({ theme }) => theme.green};
+				color: ${({ theme }) => theme.darkBrown};
 				font-weight: bolder;
-				font-size: 2.4rem;
+				/* font-size: 2.4rem; */
 			}
 		}
 		a {
 			display: grid;
 			place-content: center;
+			color: ${({ theme }) => theme.darkBrown};
 			.search-icon {
-				color: ${({ theme }) => theme.txtDarkGrey};
+				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3.2rem;
 			}
 			.settings-icon {
-				color: ${({ theme }) => theme.txtDarkGrey};
+				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3rem;
 			}
 			.nav-icon {
-				color: ${({ theme }) => theme.txtDarkGrey};
+				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3rem;
 			}
 		}
 		a.active {
 			.search-icon {
 				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.lightBrown};
 			}
 			.settings-icon {
 				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.lightBrown};
 			}
 			.nav-icon {
 				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.lightBrown};
 			}
 		}
 		/* .add-icon {
@@ -150,37 +156,54 @@ const StyledHeader = styled.header`
 				place-content: center;
 				p {
 					color: ${({ theme }) => theme.txtDarkGrey};
+					color: ${({ theme }) => theme.darkBrown};
+
 					font-size: 1.6rem;
+					font-size: 3.5rem;
 					text-transform: uppercase;
 				}
 				.home-icon {
 					color: ${({ theme }) => theme.txtDarkGrey};
+					color: ${({ theme }) => theme.darkBrown};
+
 					font-size: 2.5rem;
 				}
 				.weights-icon {
 					color: ${({ theme }) => theme.txtDarkGrey};
+					color: ${({ theme }) => theme.darkBrown};
+
 					font-size: 2.5rem;
 				}
 				.settings-icon {
 					color: ${({ theme }) => theme.txtDarkGrey};
+					color: ${({ theme }) => theme.darkBrown};
+
 					font-size: 2.5rem;
 				}
 			}
 			a.active {
 				p {
 					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
+
 					font-weight: bolder;
 				}
 				.home-icon {
 					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
+
 					font-size: 2.5rem;
 				}
 				.weights-icon {
 					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
+
 					font-size: 2.5rem;
 				}
 				.settings-icon {
 					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
+
 					font-size: 2.5rem;
 				}
 			}
@@ -194,8 +217,11 @@ const StyledHeader = styled.header`
 				place-content: center;
 				p {
 					color: ${({ theme }) => theme.txtDarkGrey};
+					color: ${({ theme }) => theme.darkBrown};
+
 					font-size: 1.6rem;
 					text-transform: uppercase;
+					font-size: 2rem;
 				}
 				/* .home-icon {
 					color: ${({ theme }) => theme.txtDarkGrey};
@@ -205,6 +231,8 @@ const StyledHeader = styled.header`
 			a.active {
 				p {
 					color: ${({ theme }) => theme.green};
+					color: ${({ theme }) => theme.lightBrown};
+
 					font-weight: bolder;
 				}
 				/* .home-icon {
