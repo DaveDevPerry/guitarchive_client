@@ -49,7 +49,7 @@ const SongModal = ({
 	return (
 		<StyledSongModal open>
 			<div className='posts-box br'>
-				<h2>add post</h2>
+				<h2>add song</h2>
 
 				<SongForm
 					// setInputText={setInputText}
@@ -106,7 +106,7 @@ const StyledSongModal = styled.dialog`
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		row-gap: 1rem;
+		/* row-gap: 1rem; */
 		/* padding: 0.5rem; */
 		max-width: 80rem;
 		/* max-width: 42rem; */
