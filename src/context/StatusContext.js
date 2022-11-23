@@ -31,6 +31,11 @@ export const statusReducer = (state, action) => {
 					(status) => status._id !== action.payload._id
 				),
 			};
+		case 'LOGOUT':
+			return {
+				status: null,
+				statuses: null,
+			};
 		default:
 			return state;
 	}

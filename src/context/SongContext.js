@@ -41,6 +41,11 @@ export const songsReducer = (state, action) => {
 				...state,
 				songs: state.songs.filter((song) => song._id !== action.payload._id),
 			};
+		case 'LOGOUT':
+			return {
+				song: null,
+				songs: null,
+			};
 		default:
 			return state;
 	}

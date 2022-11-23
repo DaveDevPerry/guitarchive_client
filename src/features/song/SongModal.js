@@ -100,7 +100,7 @@ const StyledSongModal = styled.dialog`
 	} */
 	/* overflow-y: hidden; */
 	.posts-box {
-		padding: 2rem;
+		/* padding: 2rem; */
 		/* height: 300px; */
 		width: calc(100vw - 2rem);
 		display: flex;
@@ -111,7 +111,7 @@ const StyledSongModal = styled.dialog`
 		max-width: 80rem;
 		/* max-width: 42rem; */
 		/* border: 2px solid blue; */
-		padding: 2rem 1rem;
+		padding: 1rem 1rem 2rem 1rem;
 		/* padding: 0.5rem 1rem; */
 		overflow-y: hidden;
 		/* overflow-y: scroll; */

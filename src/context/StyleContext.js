@@ -31,6 +31,11 @@ export const stylesReducer = (state, action) => {
 					(style) => style._id !== action.payload._id
 				),
 			};
+		case 'LOGOUT':
+			return {
+				style: null,
+				styles: null,
+			};
 		default:
 			return state;
 	}

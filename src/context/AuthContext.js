@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
 	});
 
 	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('brendas-blog'));
+		const user = JSON.parse(localStorage.getItem('guitarchive'));
 		if (user) {
 			dispatch({ type: 'LOGIN', payload: user });
 			// localStorage.removeItem('user-my-planner');

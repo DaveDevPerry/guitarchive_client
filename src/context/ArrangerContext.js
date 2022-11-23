@@ -31,6 +31,11 @@ export const arrangersReducer = (state, action) => {
 					(arranger) => arranger._id !== action.payload._id
 				),
 			};
+		case 'LOGOUT':
+			return {
+				arranger: null,
+				arrangers: null,
+			};
 		default:
 			return state;
 	}

@@ -31,6 +31,11 @@ export const artistsReducer = (state, action) => {
 					(artist) => artist._id !== action.payload._id
 				),
 			};
+		case 'LOGOUT':
+			return {
+				artist: null,
+				artists: null,
+			};
 		default:
 			return state;
 	}

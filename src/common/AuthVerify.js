@@ -18,7 +18,7 @@ const AuthVerify = () => {
 	let location = useLocation();
 
 	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('brendas-blog'));
+		const user = JSON.parse(localStorage.getItem('guitarchive'));
 		// log(user, ' auth verify 1');
 		if (user) {
 			const decodedJwt = parseJwt(user.token);

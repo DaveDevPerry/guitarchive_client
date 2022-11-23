@@ -41,7 +41,7 @@ export const useLogin = () => {
 		if (response.ok) {
 			// save the user to local storage
 			localStorage.setItem(
-				'brendas-blog',
+				'guitarchive',
 				JSON.stringify(json)
 				// JSON.stringify(userForLocalStorage)
 			);
