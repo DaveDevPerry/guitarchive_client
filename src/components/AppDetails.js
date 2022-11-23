@@ -33,15 +33,21 @@ const StyledAppDetails = styled.div`
 	justify-content: space-between;
 	padding: 2rem 1rem;
 	padding-bottom: 3rem;
-	background-color: ${({ theme }) => theme.white};
+	/* background-color: ${({ theme }) => theme.white}; */
+	background-image: url('/images/dark wood texture.webp');
 	transition: all 200ms linear;
+	/* margin: 0 1rem; */
 	.dev-link-container {
 		display: flex;
 		flex-direction: column;
 		p {
 			align-self: center;
 			font-size: 1.2rem;
-			color: ${({ theme }) => theme.txtGrey};
+			color: ${({ theme }) => theme.engravedBrown};
+			font-weight: bolder;
+			color: ${({ theme }) => theme.engravedBrown};
+			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+				0px -1px 0px rgba(0, 0, 0, 0.7);
 		}
 	}
 	a.developer-link {
@@ -82,9 +88,14 @@ const Brand = styled.div`
 	font-weight: lighter;
 	text-align: center;
 	line-height: 1;
-	color: ${({ theme }) => theme.secondaryColor};
+	/* color: ${({ theme }) => theme.engravedBrown}; */
+	/* font-weight: bolder; */
+	color: ${({ theme }) => theme.engravedBrown};
+	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+		0px -1px 0px rgba(0, 0, 0, 0.7);
 	span {
 		font-weight: bolder;
+		/* text-transform: uppercase; */
 	}
 	span:last-child {
 		color: ${({ theme }) => theme.red};

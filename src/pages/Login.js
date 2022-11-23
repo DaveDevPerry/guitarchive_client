@@ -29,7 +29,7 @@ const Login = ({ theme }) => {
 			<div className='form-page-container'>
 				<form onSubmit={handleSubmit} className='login br'>
 					<h3>Log in</h3>
-					<div>
+					<div className='login-input-wrapper'>
 						<label>Email:</label>
 						<input
 							type='email'
@@ -38,7 +38,7 @@ const Login = ({ theme }) => {
 							autoComplete='current-email'
 						/>
 					</div>
-					<div>
+					<div className='login-input-wrapper'>
 						<label>Password:</label>
 						<input
 							type='password'
@@ -101,7 +101,8 @@ const StyledLogin = styled(motion.div)`
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
-		background-color: ${({ theme }) => theme.white};
+		/* background-color: ${({ theme }) => theme.white}; */
+		background-image: url('/images/dark wood texture.webp');
 		/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
 		/* border-radius: 1rem; */
 		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
@@ -110,38 +111,68 @@ const StyledLogin = styled(motion.div)`
 		h3 {
 			text-align: center;
 			margin: 0;
-			color: ${({ theme }) => theme.txtGrey};
+			/* color: ${({ theme }) => theme.txtGrey}; */
+			font-weight: bolder;
+			color: ${({ theme }) => theme.engravedBrown};
+			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+				0px -1px 0px rgba(0, 0, 0, 0.7);
+			font-size: 2.5rem;
+			line-height: 2.5rem;
 		}
-		input {
-			padding: 0.8rem 1rem;
-			margin: 0;
-			font-size: 1.8rem;
-			color: ${({ theme }) => theme.secondaryColor};
-			flex: 1;
-			&:focus {
-				outline: none;
-				border: none;
-				border: 2px solid ${({ theme }) => theme.primaryColor};
+		.login-input-wrapper {
+			label {
+				font-size: 1.6rem;
+				text-transform: uppercase;
+				margin: 10px 0 2px;
+				color: ${({ theme }) => theme.engravedBrown};
+			}
+
+			input[type='email'],
+			input[type='password'] {
+				padding: 0.8rem 1rem;
+				margin: 0;
+				font-size: 1.8rem;
+				flex: 1;
+				border-radius: 4px;
+				box-sizing: border-box;
+
+				background-color: rgba(168, 105, 69, 0.57);
+				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+				width: 100%;
+			}
+			input:-webkit-autofill {
+				-webkit-text-fill-color: ${({ theme }) => theme.engravedBrown};
+
+				/* -webkit-text-fill-color: #ffffff; */
+				-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.57) inset;
+				/* -webkit-box-shadow: 0 0 0px 1000px #151718 inset; */
+				transition: background-color 5000s ease-in-out 0s;
+				padding: 0.8rem 1rem;
+				margin: 0;
+				font-size: 1.8rem;
+				flex: 1;
 				border-radius: 4px;
 				box-sizing: border-box;
 			}
 		}
+
 		.action-btn {
 			color: ${({ theme }) => theme.white};
-			background-color: ${({ theme }) => theme.green};
+			background-color: ${({ theme }) => theme.lightBrown};
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;
+			margin-top: 2rem;
 		}
 	}
-	p {
+	/* p {
 		text-align: center;
 		color: ${({ theme }) => theme.txtGrey};
 		a {
 			color: ${({ theme }) => theme.green};
 			text-decoration: none;
 		}
-	}
+	} */
 	.app-details-container {
 		display: flex;
 		flex-direction: column;

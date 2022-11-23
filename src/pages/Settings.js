@@ -8,6 +8,7 @@ import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 import Toggle from '../components/Toggler';
+import AppDetails from '../components/AppDetails';
 // import TVAppLinks from '../components/TVAppLinks';
 
 const Settings = ({ themeToggler, theme }) => {
@@ -43,12 +44,10 @@ const Settings = ({ themeToggler, theme }) => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='wrapper'>
-				<div className='settings-header'>
-					<h2>Settings</h2>
-					<div className='logout-btn-container'>
-						<button onClick={handleClick}>Log out</button>
-					</div>
-				</div>
+				{/* <div className='settings-header'> */}
+				<h2>Settings</h2>
+
+				{/* </div> */}
 				<div className='account-details'>
 					<h5 className='sub-heading'>account</h5>
 					<ul className='user-details-list'>
@@ -71,7 +70,12 @@ const Settings = ({ themeToggler, theme }) => {
 					<Toggle toggleTheme={themeToggler} theme={theme} />
 				</div>
 				{/* <TVAppLinks /> */}
+				<div className='logout-btn-container'>
+					<button onClick={handleClick}>Log out</button>
+				</div>
 			</div>
+
+			<AppDetails theme={theme} />
 		</StyledSettings>
 	);
 };
@@ -81,7 +85,7 @@ const StyledSettings = styled(motion.div)`
 	row-gap: 1rem;
 	flex: 1;
 	max-width: 80rem;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 1rem 2rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
@@ -92,32 +96,35 @@ const StyledSettings = styled(motion.div)`
 		flex-direction: column;
 		justify-content: space-between;
 		row-gap: 2rem;
-		padding: 1rem 2rem;
-		background: ${({ theme }) => theme.white};
+		padding: 0rem 2rem;
+		/* background: ${({ theme }) => theme.white}; */
 		flex: 1;
 		transition: all 200ms linear;
-		.settings-header {
+		/* .settings-header {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: center;
-			h2 {
-				flex: 1;
-			}
-			.logout-btn-container {
-				button {
-					align-self: flex-end;
-					background: ${({ theme }) => theme.white};
-					color: ${({ theme }) => theme.secondaryColor};
-					border: none;
-					outline: none;
-					font-family: 'Signika', sans-serif;
-					cursor: pointer;
-					font-size: 1.6rem;
-					text-decoration: underline;
-				}
+			align-items: center; */
+		h2 {
+			/* flex: 1; */
+			text-align: center;
+		}
+		.logout-btn-container {
+			text-align: right;
+			flex: 1;
+			button {
+				/* align-self: flex-end; */
+				background: ${({ theme }) => theme.lightBrown};
+				color: ${({ theme }) => theme.white};
+				border: none;
+				outline: none;
+				/* font-family: 'Signika', sans-serif; */
+				cursor: pointer;
+				font-size: 1.6rem;
+				/* text-decoration: underline; */
 			}
 		}
+		/* } */
 		.account-details {
 			display: flex;
 			flex-direction: column;
@@ -162,7 +169,7 @@ const StyledSettings = styled(motion.div)`
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: flex-start;
-			flex: 1;
+			/* flex: 1; */
 			/* display: none; */
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};

@@ -151,7 +151,7 @@ color: ${({ theme }) => theme.engravedBrown};
   input:focus {
     outline: none;
     border: none;
-    border: 2px solid ${({ theme }) => theme.primaryColor};
+    ${'' /* border: 2px solid ${({ theme }) => theme.primaryColor}; */}
     border-radius: 4px;
     box-sizing: border-box;
   }
