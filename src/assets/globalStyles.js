@@ -18,10 +18,12 @@ ${
 } */
 }
 
-:root {
+${
+	'' /* :root {
   --select-border: #777;
   --select-focus: blue;
   --select-arrow: var(--select-border);
+} */
 }
   *,
   *::before,

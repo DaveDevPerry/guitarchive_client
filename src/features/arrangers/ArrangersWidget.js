@@ -3,8 +3,8 @@ import React from 'react';
 // import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import { useSongsContext } from '../../hooks/useSongContext';
-// import { getSongs } from '../services';
+// import { useArrangersContext } from '../../hooks/useArrangerContext';
+// import { getArrangers } from '../services';
 // import { gsap } from 'gsap';
 
 // import {
@@ -13,61 +13,50 @@ import { useViewport } from '../../hooks/useViewport';
 // 	SectionTitle,
 // 	SectionDivider,
 // } from '../styles/GlobalComponents';
-import SongCard from './SongCard';
-// import { songsTextWrapper, InfoText } from './songsStyles';
+import ArrangerCard from './ArrangerCard';
+// import { arrangersTextWrapper, InfoText } from './arrangersStyles';
 
-const SongsWidget = ({ songs, url, filteredSongs }) => {
-	// const { dispatch } = useSongsContext();
-	// console.log(songs, 'SONGS widget');
+const ArrangersWidget = ({ arrangers, url }) => {
+	// const { dispatch } = useArrangersContext();
+	// console.log(arrangers, 'SONGS widget');
 	const { width } = useViewport();
 	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>
 			{width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
-					{filteredSongs &&
-						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+				<StyledArrangersContainer className='arrangers-container'>
+					{arrangers &&
+						arrangers.map((arranger, index) => (
+							// <ArrangerCard key={index} arranger={arranger} slug={arranger.slug} />
+							<ArrangerCard
+								key={index}
+								url={url}
+								arranger={arranger}
+								slug={arranger.slug}
+								// onClick={dispatch({ type: 'SET_SONG', payload: arranger })}
+							/>
 						))}
-				</StyledSongsContainer>
+				</StyledArrangersContainer>
 			) : (
-				<StyledMobileSongsContainer>
-					{filteredSongs &&
-						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+				<StyledMobileArrangersContainer>
+					{arrangers &&
+						arrangers.map((arranger, index) => (
+							// <ArrangerCard key={index} arranger={arranger} slug={arranger.slug} />
+							<ArrangerCard
+								key={index}
+								url={url}
+								arranger={arranger}
+								slug={arranger.slug}
+								// onClick={dispatch({ type: 'SET_SONG', payload: arranger })}
+							/>
 						))}
-				</StyledMobileSongsContainer>
+				</StyledMobileArrangersContainer>
 			)}
-			{/* {width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledSongsContainer>
-			) : (
-				<StyledMobileSongsContainer>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledMobileSongsContainer>
-			)} */}
 		</>
 	);
 };
-const StyledSongsContainer = styled.div`
+const StyledArrangersContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -106,7 +95,7 @@ const StyledSongsContainer = styled.div`
 		background: rgb(75, 74, 74);
 	}
 `;
-const StyledMobileSongsContainer = styled.div`
+const StyledMobileArrangersContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -115,9 +104,9 @@ const StyledMobileSongsContainer = styled.div`
 	overflow-y: scroll;
 	/* width: 1000px; */
 	border: none;
-	/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
+	border-top: 1px solid ${({ theme }) => theme.darkBrown};
 	box-shadow: none;
-	/* background-color: rgba(0, 0, 0, 0.1); */
+	background-color: rgba(0, 0, 0, 0.1);
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;
@@ -148,15 +137,15 @@ const StyledMobileSongsContainer = styled.div`
 	}
 `;
 
-export default SongsWidget;
+export default ArrangersWidget;
 
 // export async function getStaticProps() {
 // const composers = (await getComposers()) || [];
-// 	const songs = (await getSongs()) || [];
+// 	const arrangers = (await getArrangers()) || [];
 // 	return {
 // 		props: {
 // 			// composers,
-// 			songs,
+// 			arrangers,
 // 		},
 // 		revalidate: 10,
 // 	};

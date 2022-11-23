@@ -7,7 +7,11 @@ const AppContext = createContext();
 export const StateContext = ({ children }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [isArtistFormOpen, setIsArtistFormOpen] = useState(false);
+	const [isArrangerFormOpen, setIsArrangerFormOpen] = useState(false);
 	const [songToView, setSongToView] = useState(null);
+
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -18,6 +22,12 @@ export const StateContext = ({ children }) => {
 				setIsFormOpen,
 				songToView,
 				setSongToView,
+				isArtistFormOpen,
+				setIsArtistFormOpen,
+				isArrangerFormOpen,
+				setIsArrangerFormOpen,
+				isMenuOpen,
+				setIsMenuOpen,
 			}}
 		>
 			{children}

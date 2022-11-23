@@ -3,8 +3,8 @@ import React from 'react';
 // import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import { useSongsContext } from '../../hooks/useSongContext';
-// import { getSongs } from '../services';
+// import { useArtistsContext } from '../../hooks/useArtistContext';
+// import { getArtists } from '../services';
 // import { gsap } from 'gsap';
 
 // import {
@@ -13,61 +13,50 @@ import { useViewport } from '../../hooks/useViewport';
 // 	SectionTitle,
 // 	SectionDivider,
 // } from '../styles/GlobalComponents';
-import SongCard from './SongCard';
-// import { songsTextWrapper, InfoText } from './songsStyles';
+import ArtistCard from './ArtistCard';
+// import { artistsTextWrapper, InfoText } from './artistsStyles';
 
-const SongsWidget = ({ songs, url, filteredSongs }) => {
-	// const { dispatch } = useSongsContext();
-	// console.log(songs, 'SONGS widget');
+const ArtistsWidget = ({ artists, url }) => {
+	// const { dispatch } = useArtistsContext();
+	// console.log(artists, 'SONGS widget');
 	const { width } = useViewport();
 	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>
 			{width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
-					{filteredSongs &&
-						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+				<StyledArtistsContainer className='artists-container'>
+					{artists &&
+						artists.map((artist, index) => (
+							// <ArtistCard key={index} artist={artist} slug={artist.slug} />
+							<ArtistCard
+								key={index}
+								url={url}
+								artist={artist}
+								slug={artist.slug}
+								// onClick={dispatch({ type: 'SET_SONG', payload: artist })}
+							/>
 						))}
-				</StyledSongsContainer>
+				</StyledArtistsContainer>
 			) : (
-				<StyledMobileSongsContainer>
-					{filteredSongs &&
-						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+				<StyledMobileArtistsContainer>
+					{artists &&
+						artists.map((artist, index) => (
+							// <ArtistCard key={index} artist={artist} slug={artist.slug} />
+							<ArtistCard
+								key={index}
+								url={url}
+								artist={artist}
+								slug={artist.slug}
+								// onClick={dispatch({ type: 'SET_SONG', payload: artist })}
+							/>
 						))}
-				</StyledMobileSongsContainer>
+				</StyledMobileArtistsContainer>
 			)}
-			{/* {width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledSongsContainer>
-			) : (
-				<StyledMobileSongsContainer>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledMobileSongsContainer>
-			)} */}
 		</>
 	);
 };
-const StyledSongsContainer = styled.div`
+const StyledArtistsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -106,7 +95,7 @@ const StyledSongsContainer = styled.div`
 		background: rgb(75, 74, 74);
 	}
 `;
-const StyledMobileSongsContainer = styled.div`
+const StyledMobileArtistsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -115,9 +104,9 @@ const StyledMobileSongsContainer = styled.div`
 	overflow-y: scroll;
 	/* width: 1000px; */
 	border: none;
-	/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
+	border-top: 1px solid ${({ theme }) => theme.darkBrown};
 	box-shadow: none;
-	/* background-color: rgba(0, 0, 0, 0.1); */
+	background-color: rgba(0, 0, 0, 0.1);
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;
@@ -148,15 +137,15 @@ const StyledMobileSongsContainer = styled.div`
 	}
 `;
 
-export default SongsWidget;
+export default ArtistsWidget;
 
 // export async function getStaticProps() {
 // const composers = (await getComposers()) || [];
-// 	const songs = (await getSongs()) || [];
+// 	const artists = (await getArtists()) || [];
 // 	return {
 // 		props: {
 // 			// composers,
-// 			songs,
+// 			artists,
 // 		},
 // 		revalidate: 10,
 // 	};

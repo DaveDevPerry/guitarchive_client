@@ -7,8 +7,22 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Songs from './pages/Songs';
 import Song from './pages/Song';
+import Artists from './pages/Artists';
+import Arrangers from './pages/Arrangers';
+import MobileMenu from './pages/MobileMenu';
+import YouTube from './pages/YouTube';
 
-const AnimatedRoutes = ({ user, themeToggler, theme, currentDate }) => {
+const AnimatedRoutes = ({
+	user,
+	themeToggler,
+	theme,
+	currentDate,
+	filteredSongs,
+	setFilteredSongs,
+	songStatusHandler,
+	setSongDetails,
+	youtubeData,
+}) => {
 	const location = useLocation();
 
 	return (
@@ -34,10 +48,44 @@ const AnimatedRoutes = ({ user, themeToggler, theme, currentDate }) => {
 					}
 				/>
 				<Route
+					path='/youtube'
+					element={
+						user ? (
+							<YouTube
+								theme={theme}
+								currentDate={currentDate}
+								youtubeData={youtubeData}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/menu'
+					element={
+						user ? (
+							<MobileMenu theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
 					path='/songs'
 					element={
 						user ? (
-							<Songs theme={theme} currentDate={currentDate} />
+							<Songs
+								theme={theme}
+								currentDate={currentDate}
+								// 	songStatus={songStatus}
+								// setSongStatus={setSongStatus}
+								filteredSongs={filteredSongs}
+								setFilteredSongs={setFilteredSongs}
+								songStatusHandler={songStatusHandler}
+								// songDetails={songDetails}
+								setSongDetails={setSongDetails}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)
@@ -48,6 +96,26 @@ const AnimatedRoutes = ({ user, themeToggler, theme, currentDate }) => {
 					element={
 						user ? (
 							<Song theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/artists'
+					element={
+						user ? (
+							<Artists theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/arrangers'
+					element={
+						user ? (
+							<Arrangers theme={theme} currentDate={currentDate} />
 						) : (
 							<Navigate to='/login' />
 						)

@@ -4,26 +4,21 @@ import styled from 'styled-components';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-// import SongsList from '../features/songs/SongsList';
-import SongModal from '../features/song/SongModal';
-import AddSongButton from '../features/song/AddSongButton';
+// import ArtistsList from '../features/artists/ArtistsList';
+import ArtistModal from '../features/artists/ArtistModal';
+import AddArtistButton from '../features/artists/AddArtistButton';
 // import SearchBar from '../components/SearchBar';
-import SongsFilter from '../features/songs/SongsFilter';
-import SongsWidget from '../features/songs/SongsWidget';
-import { useSongsContext } from '../hooks/useSongContext';
+// import ArtistsFilter from '../features/artists/ArtistsFilter';
+import ArtistsWidget from '../features/artists/ArtistsWidget';
+import { useArtistsContext } from '../hooks/useArtistContext';
 // import { useViewport } from '../hooks/useViewport';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
-const Songs = ({
-	filteredSongs,
-	setFilteredSongs,
-	songStatusHandler,
-	setSongDetails,
-}) => {
-	const { dataLoaded, isFormOpen } = useStateContext();
+const Artists = () => {
+	const { dataLoaded, isArtistFormOpen } = useStateContext();
 	const [currentId, setCurrentId] = useState(null);
-	const { songs } = useSongsContext();
+	const { artists } = useArtistsContext();
 	// const { users, user } = useAuthContext();
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
@@ -38,18 +33,18 @@ const Songs = ({
 	}, [navigate, dataLoaded]);
 
 	return (
-		<StyledSongs
+		<StyledArtists
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{isFormOpen === true && (
-				<SongModal
+			{isArtistFormOpen === true && (
+				<ArtistModal
 					// setInputText={setInputText}
 					// inputText={inputText}
 					// posts={posts}
-					// setSongs={setSongs}
-					// setSongStatus={setSongStatus}
+					// setArtists={setArtists}
+					// setArtistStatus={setArtistStatus}
 					// inputDate={inputDate}
 					// setInputDate={setInputDate}
 					// inputDescription={inputDescription}
@@ -70,32 +65,26 @@ const Songs = ({
 					</strong>
 				</p>
 			</StyledDayHeaderWidget> */}
-			{/* <h1>songs</h1> */}
+			{/* <h1>artists</h1> */}
 			<div className='user-actions-container'>
-				<AddSongButton />
-				<SongsFilter songStatusHandler={songStatusHandler} />
+				<AddArtistButton />
+				{/* {width > breakpoint && <SearchBar />} */}
 			</div>
-			{/* <div className='user-actions-container'>
-				<AddSongButton />
-				{width > breakpoint && <SearchBar />}
-			</div> */}
-			{/* {width > breakpoint && (
-				<SongsFilter songStatusHandler={songStatusHandler} />
-			)} */}
+			{/* {width > breakpoint && <ArtistsFilter />} */}
 
-			{/* <SongsList /> */}
-			<SongsWidget songs={songs} filteredSongs={filteredSongs} />
-		</StyledSongs>
+			{/* <ArtistsList /> */}
+			<ArtistsWidget artists={artists} />
+		</StyledArtists>
 	);
 };
-const StyledSongs = styled(motion.div)`
+const StyledArtists = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	/* row-gap: 1rem; */
+	row-gap: 1rem;
 	max-width: 100rem;
 	/* max-width: 80rem; */
-	/* padding: 0.5rem 0; */
+	padding: 0.5rem 0;
 	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
 	z-index: 1;
@@ -112,15 +101,9 @@ const StyledSongs = styled(motion.div)`
 	.user-actions-container {
 		/* @include flex(flex-start, center, row); */
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
-		padding: 1rem;
-		column-gap: 2rem;
-		background-color: rgba(0, 0, 0, 0.1);
-		/* position: relative; */
-		transition: all 200ms linear;
-		border-bottom: 1px solid ${({ theme }) => theme.darkBrown};
-		border-top: 1px solid ${({ theme }) => theme.darkBrown};
+		padding: 0 1rem;
 
 		// background-color: green;
 		/* margin: 1rem 2rem; */
@@ -143,4 +126,4 @@ const StyledSongs = styled(motion.div)`
 // 	}
 // `;
 
-export default Songs;
+export default Artists;

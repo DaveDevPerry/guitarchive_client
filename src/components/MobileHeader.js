@@ -1,7 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 // import { useViewport } from '../hooks/useViewport';
-import { ImYoutube2 } from 'react-icons/im';
+// import { ImYoutube2 } from 'react-icons/im';
+import { FiMenu } from 'react-icons/fi';
+// import { useStateContext } from '../lib/context';
+// import MobileMenu from './MobileMenu';
 
 // import { AiFillHome } from 'react-icons/ai';
 // import { RiSettings2Fill } from 'react-icons/ri';
@@ -10,12 +13,13 @@ import { ImYoutube2 } from 'react-icons/im';
 const MobileHeader = () => {
 	// const { width } = useViewport();
 	// const breakpoint = 620;
+	// const { isMenuOpen, setIsMenuOpen } = useStateContext();
 	return (
 		<StyledMobileHeader>
 			<div className='container'>
-				<div className='filter-icon-wrapper'>
+				{/* <div className='filter-icon-wrapper'>
 					<ImYoutube2 className='card-icon status-icon yt-icon' />
-				</div>
+				</div> */}
 				<Link to='/'>
 					<h1>
 						guit
@@ -24,9 +28,16 @@ const MobileHeader = () => {
 						</span>
 					</h1>
 				</Link>
-				<div className='filter-menu-icon-wrapper'>
-					<ImYoutube2 className='card-icon status-icon yt-icon' />
-				</div>
+				<NavLink
+					to='/menu'
+					className='filter-menu-icon-wrapper'
+					// onClick={() => {
+					// 	setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+					// }}
+				>
+					{/* <ImYoutube2 className='card-icon status-icon yt-icon' /> */}
+					<FiMenu className='mobile-menu-icon' />
+				</NavLink>
 				{/* {width > breakpoint && (
 					<nav className='top-nav desktop'>
 						<NavLink
@@ -50,20 +61,23 @@ const MobileHeader = () => {
 					</nav>
 				)} */}
 			</div>
+			{/* {isMenuOpen === true && <MobileMenu />} */}
 		</StyledMobileHeader>
 	);
 };
 const StyledMobileHeader = styled.header`
 	/* background: ${({ theme }) => theme.primaryColor}; */
 	/* transition: all 200ms linear; */
-	background-color: rgba(0, 0, 0, 0.1);
+	/* background-color: rgba(0, 0, 0, 0.1); */
 	/* position: relative; */
 	transition: all 200ms linear;
-	border-bottom: 1px solid ${({ theme }) => theme.darkBrown};
+	/* border-bottom: 1px solid ${({ theme }) => theme.darkBrown}; */
+	position: relative;
 	.container {
 		max-width: 100rem;
 		margin: 0 auto;
 		padding: 1rem;
+		/* padding: 1rem 1rem 0 1rem; */
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
@@ -88,6 +102,10 @@ const StyledMobileHeader = styled.header`
 			display: flex;
 			align-items: flex-end;
 			.yt-icon {
+				font-size: 3.5rem;
+				color: rgb(199, 88, 29);
+			}
+			.mobile-menu-icon {
 				font-size: 3.5rem;
 				color: rgb(199, 88, 29);
 			}

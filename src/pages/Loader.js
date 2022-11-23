@@ -53,7 +53,7 @@ const Loader = () => {
 		setTimeout(() => {
 			setDataLoaded(true);
 			setTimeout(() => {
-				navigate('/home');
+				navigate('/songs');
 			}, 1000);
 		}, 1000);
 	}, []);

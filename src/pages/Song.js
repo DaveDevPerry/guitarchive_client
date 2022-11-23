@@ -18,6 +18,9 @@ import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
 import { log } from '../utils/helper';
+import { IoMusicalNotes } from 'react-icons/io5';
+import { TbNumbers } from 'react-icons/tb';
+import { TiArrowBack } from 'react-icons/ti';
 
 const Song = () => {
 	// const { dataLoaded } = useStateContext();
@@ -148,6 +151,11 @@ const Song = () => {
 								<FaCloudDownloadAlt className='file-download-icon card-icon' />
 							</a>
 						)}
+						{song.isTab ? (
+							<TbNumbers className='music-type-icon' />
+						) : (
+							<IoMusicalNotes className='music-type-icon' />
+						)}
 						{/* <p>{song.sheetMusic && song.sheetMusic.fileName}</p> */}
 					</div>
 					<div className='status-wrapper'>
@@ -170,6 +178,12 @@ const Song = () => {
 					</div>
 				</StyledSongDetails>
 			)}
+			<TiArrowBack
+				className='back-icon'
+				onClick={() => {
+					navigate('/songs');
+				}}
+			/>
 		</StyledSongs>
 	);
 };
@@ -187,20 +201,8 @@ const StyledSongs = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	overflow: auto;
-	.sober-widget {
-		background-color: white;
-		padding: 2rem;
-		border-radius: 4px;
-		display: none;
-	}
-	.user-actions-container {
-		/* @include flex(flex-start, center, row); */
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-
-		// background-color: green;
-		/* margin: 1rem 2rem; */
+	.back-icon {
+		font-size: 6rem;
 	}
 `;
 
@@ -209,14 +211,46 @@ const StyledSongDetails = styled.div`
 	transition: all 200ms linear;
 
 	text-align: center;
-	padding: 3rem 1rem;
+	/* padding: 3rem 1rem; */
 	.song-wrapper,
 	.artist-wrapper {
 		padding: 1rem;
 	}
 	.song-wrapper {
+		.primary-text {
+			color: rgba(105, 54, 25, 1);
+			font-size: 4rem;
+			text-align: center;
+			line-height: 4rem;
+			margin: 0;
+			text-transform: capitalize;
+			&.smaller {
+				font-size: 3rem;
+			}
+		}
 		h4 {
 			margin-top: 1rem;
+		}
+
+		.secondary-text {
+			color: rgb(199, 88, 29);
+			text-transform: uppercase;
+			font-size: 2.2rem;
+			margin: 0;
+		}
+	}
+	.artist-wrapper {
+		padding: 1rem;
+		.primary-text {
+			/* color: rgba(105, 54, 25, 1);
+			font-size: 4rem;
+			text-align: center;
+			line-height: 4rem;
+			margin: 0; */
+			text-transform: capitalize;
+			&.smaller {
+				font-size: 3rem;
+			}
 		}
 	}
 	.favourite-wrapper {
@@ -252,19 +286,31 @@ const StyledSongDetails = styled.div`
 	.file-wrapper {
 		flex: 1;
 		padding: 1rem;
-		display: grid;
-		place-content: center;
+		/* display: grid;
+		place-content: center; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 0.5rem;
 		a {
 			text-decoration: none;
 			.file-download-icon {
 				cursor: pointer;
-				font-size: 8rem;
+				font-size: 4rem;
 				color: rgb(199, 88, 29);
 			}
+		}
+		.music-type-icon {
+			/* cursor: pointer; */
+			font-size: 3rem;
 		}
 	}
 	.status-wrapper {
 		padding: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 1rem;
 		h5 {
 			color: rgba(105, 54, 25, 1);
 			font-size: 2.6rem;
@@ -279,9 +325,36 @@ const StyledSongDetails = styled.div`
 			color: rgb(199, 88, 29);
 		}
 	}
-	.primary-text {
+	.deadline-wrapper {
+		flex: 1;
+		padding: 1rem;
+		/* display: grid;
+		place-content: center; */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		/* column-gap: 0.5rem; */
+		.primary-text {
+			color: rgba(105, 54, 25, 1);
+			font-size: 2.4rem;
+			text-align: center;
+			line-height: 4rem;
+			margin: 0;
+			&.smaller {
+				font-size: 3rem;
+			}
+		}
+		.secondary-text {
+			color: rgb(199, 88, 29);
+			text-transform: uppercase;
+			font-size: 2.2rem;
+			margin: 0;
+		}
+	}
+	/* .primary-text {
 		color: rgba(105, 54, 25, 1);
-		font-size: 4rem;
+		font-size: 2.4rem;
 		text-align: center;
 		line-height: 4rem;
 		margin: 0;
@@ -294,7 +367,7 @@ const StyledSongDetails = styled.div`
 		text-transform: uppercase;
 		font-size: 2.2rem;
 		margin: 0;
-	}
+	} */
 	.star-on {
 		color: rgb(199, 88, 29);
 		font-size: 3rem;

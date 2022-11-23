@@ -11,6 +11,9 @@ import { useArrangersContext } from '../../hooks/useArrangerContext';
 import { useStylesContext } from '../../hooks/useStyleContext';
 import { useStatusContext } from '../../hooks/useStatusContext';
 import { useNavigate } from 'react-router-dom';
+import ArtistModal from '../artists/ArtistModal';
+import ArrangerModal from '../arrangers/ArrangerModal';
+import { GrAdd } from 'react-icons/gr';
 // import { NavLink } from 'react-router-dom';
 // import SongMetrics from './SongMetrics';
 // import Filter from './Filter';
@@ -29,6 +32,12 @@ const SongForm = ({
 	setCurrentId,
 }) => {
 	let navigate = useNavigate();
+	const {
+		isArtistFormOpen,
+		setIsArtistFormOpen,
+		isArrangerFormOpen,
+		setIsArrangerFormOpen,
+	} = useStateContext();
 	const { setIsFormOpen } = useStateContext();
 	const { dispatch: songDispatch } = useSongsContext();
 	const { artists } = useArtistsContext();
@@ -131,64 +140,95 @@ const SongForm = ({
 	};
 
 	return (
-		<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
-			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
-			{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<input
-							type='text'
-							name='title'
-							variant='outlined'
-							label='Title'
-							value={songData.title}
-							onChange={(e) =>
-								setSongData({ ...songData, title: e.target.value })
-							}
-							placeholder='Song Title'
-							className='form-input'
-						/>
-					</div>
-					<div className='form-item'>
-						<div className='form-item-row'>
-							<label className='song-label' htmlFor='favourite'>
-								{' '}
-								Is Favourite?
-							</label>
+		<>
+			{isArtistFormOpen === true && (
+				<ArtistModal
+					// setInputText={setInputText}
+					// inputText={inputText}
+					// posts={posts}
+					// setArtists={setArtists}
+					// setArtistStatus={setArtistStatus}
+					// inputDate={inputDate}
+					// setInputDate={setInputDate}
+					// inputDescription={inputDescription}
+					// setInputDescription={setInputDescription}
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
+			)}
+			{isArrangerFormOpen === true && (
+				<ArrangerModal
+					// setInputText={setInputText}
+					// inputText={inputText}
+					// posts={posts}
+					// setArrangers={setArrangers}
+					// setArrangerStatus={setArrangerStatus}
+					// inputDate={inputDate}
+					// setInputDate={setInputDate}
+					// inputDescription={inputDescription}
+					// setInputDescription={setInputDescription}
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
+			)}
+			<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
+				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
+				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
+				<div className='form-section'>
+					<div className='form-row'>
+						<div className='form-item'>
 							<input
-								checked={songData.isFavourite}
-								// onChange={onInputChange}
+								type='text'
+								name='title'
+								variant='outlined'
+								label='Title'
+								value={songData.title}
 								onChange={(e) =>
-									setSongData({ ...songData, isFavourite: e.target.checked })
+									setSongData({ ...songData, title: e.target.value })
 								}
-								type='checkbox'
-								// id='storeData'
-								name='favourite'
-								// value={songData.isFavourite}
-								// value='true'
+								placeholder='Song Title'
+								className='form-input'
 							/>
 						</div>
-						<div className='form-item-row'>
-							<label className='song-label' htmlFor='difficulty'>
-								{' '}
-								difficulty
-							</label>
-							<input
-								type='number'
-								value={songData.difficulty}
-								onChange={(e) =>
-									setSongData({ ...songData, difficulty: e.target.value })
-								}
-								className='form-number'
-								name='difficulty'
-							/>
+						<div className='form-item'>
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='favourite'>
+									{' '}
+									Is Favourite?
+								</label>
+								<input
+									checked={songData.isFavourite}
+									// onChange={onInputChange}
+									onChange={(e) =>
+										setSongData({ ...songData, isFavourite: e.target.checked })
+									}
+									type='checkbox'
+									// id='storeData'
+									name='favourite'
+									// value={songData.isFavourite}
+									// value='true'
+								/>
+							</div>
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='difficulty'>
+									{' '}
+									difficulty
+								</label>
+								<input
+									type='number'
+									value={songData.difficulty}
+									onChange={(e) =>
+										setSongData({ ...songData, difficulty: e.target.value })
+									}
+									className='form-number'
+									name='difficulty'
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* <div className='form-section'>
+				{/* <div className='form-section'>
 				<div className='form-row'>
 					<div className='form-item'>
 						<div className='choice-wrapper'>
@@ -266,86 +306,126 @@ const SongForm = ({
 					</div>
 				</div>
 			</div> */}
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='artist'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-								value={songData.artist}
-								// label={songData.artist}
-							>
-								<option
-								// label=
-								// value={artist.name}
+				<div className='form-section'>
+					<div className='form-row'>
+						<div className='form-item'>
+							<div className='choice-wrapper'>
+								<select
+									name='artist'
+									onChange={(e) =>
+										setSongData({ ...songData, artist: e.target.value })
+									}
+									value={songData.artist}
+									// label={songData.artist}
 								>
-									-- select artist --
-								</option>
-								{artists.map((artist) => (
 									<option
-										key={artist._id}
-										// selected
-										label={artist.name}
-										value={artist._id}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='artist'
-								value={songData.artist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-							/>
+									// label=
+									// value={artist.name}
+									>
+										-- select artist --
+									</option>
+									{artists.map((artist) => (
+										<option
+											key={artist._id}
+											// selected
+											label={artist.name}
+											value={artist._id}
+										></option>
+									))}
+								</select>
+								{/* <input
+									type='text'
+									name='artist'
+									value={songData.artist}
+									placeholder='add an artist here, if not listed above'
+									className='input-create'
+									onChange={(e) =>
+										setSongData({ ...songData, artist: e.target.value })
+									}
+								/> */}
+								<div
+									className='add-artist-btn-form'
+									onClick={() => {
+										isArtistFormOpen === true
+											? setIsArtistFormOpen(false)
+											: setIsArtistFormOpen(true);
+									}}
+								>
+									<GrAdd className='add-new-record-icon' />
+								</div>
+								{/* <div
+									className='add-artist-btn-form'
+									onClick={() => {
+										isArtistFormOpen === true
+											? setIsArtistFormOpen(false)
+											: setIsArtistFormOpen(true);
+									}}
+								>
+									add new artist
+								</div> */}
+							</div>
 						</div>
-					</div>
 
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='arranger'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-								value={songData.arranger}
-							>
-								<option
-								// label=
-								// value={artist.name}
+						<div className='form-item'>
+							<div className='choice-wrapper'>
+								<select
+									name='arranger'
+									onChange={(e) =>
+										setSongData({ ...songData, arranger: e.target.value })
+									}
+									value={songData.arranger}
 								>
-									-- select arranger --
-								</option>
-								{arrangers.map((arranger) => (
 									<option
-										key={arranger._id}
-										// selected
-										label={arranger.name}
-										value={arranger._id}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='arranger'
-								value={songData.arranger}
-								placeholder='add an arranger here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-							/>
+									// label=
+									// value={artist.name}
+									>
+										-- select arranger --
+									</option>
+									{arrangers.map((arranger) => (
+										<option
+											key={arranger._id}
+											// selected
+											label={arranger.name}
+											value={arranger._id}
+										></option>
+									))}
+								</select>
+								{/* <input
+									type='text'
+									name='arranger'
+									value={songData.arranger}
+									placeholder='add an arranger here, if not listed above'
+									className='input-create'
+									onChange={(e) =>
+										setSongData({ ...songData, arranger: e.target.value })
+									}
+								/> */}
+								<div
+									className='add-artist-btn-form'
+									onClick={() => {
+										isArrangerFormOpen === true
+											? setIsArrangerFormOpen(false)
+											: setIsArrangerFormOpen(true);
+									}}
+								>
+									<GrAdd className='add-new-record-icon' />
+								</div>
+								{/* <div
+									className='add-artist-btn-form'
+									onClick={() => {
+										isArrangerFormOpen === true
+											? setIsArrangerFormOpen(false)
+											: setIsArrangerFormOpen(true);
+									}}
+								>
+									add new arranger
+								</div> */}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* <div className='form-row'>
+				{/* <div className='form-row'>
 				<div className='form-item'>
 					<label>difficulty</label>
 					<input
@@ -360,7 +440,7 @@ const SongForm = ({
 					/>
 				</div>
 			</div> */}
-			{/* <div className='form-row'>
+				{/* <div className='form-row'>
 				<div className='form-item'>
 					<label>favourite</label>
 					<input
@@ -373,7 +453,7 @@ const SongForm = ({
 					/>
 				</div>
 			</div> */}
-			{/* <div className='form-row'>
+				{/* <div className='form-row'>
 				<div className='form-item'>
 					<label>pages</label>
 					<input
@@ -400,149 +480,150 @@ const SongForm = ({
 				</div>
 			</div> */}
 
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item-row'>
-						<div className='date-item'>
-							<label className='input-date'>Deadline Date</label>
-							<input
-								type='date'
-								name='deadlineDate'
-								// value={
-								// 	songData.deadlineDate == null ? '' : songData.deadlineDate
-								// 	// : songData.deadlineDate.toISOString().split('T')[0]
-								// }
-								className='date-input'
-								onChange={(e) =>
-									setSongData({ ...songData, deadlineDate: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-				</div>
-
-				<div className='form-row'>
-					<div className='form-item'>
-						<textarea
-							name='reason'
-							className='input-grow'
-							placeholder='Reason for deadline'
-							value={songData.reason}
-							rows='3'
-							onChange={(e) =>
-								setSongData({ ...songData, reason: e.target.value })
-							}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='style'
-								onChange={(e) =>
-									setSongData({ ...songData, style: e.target.value })
-								}
-								value={songData.style}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select style --
-								</option>
-								{styles.map((style) => (
-									<option
-										key={style._id}
-										// selected
-										label={style.name}
-										value={style._id}
-									></option>
-								))}
-							</select>
-						</div>
-					</div>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='status'
-								onChange={(e) =>
-									setSongData({ ...songData, status: e.target.value })
-								}
-								value={songData.status}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select status --
-								</option>
-								{statuses.map((status) => (
-									<option
-										key={status._id}
-										// selected
-										label={status.name}
-										value={status._id}
-									></option>
-								))}
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='file-input'>
-							<FileBase
-								type='false'
-								multiple={false}
-								onDone={({ base64 }) =>
-									setSongData({ ...songData, selectedFile: base64 })
-								}
-							/>
-						</div>
-					</div>
-					<div className='form-item'>
+				<div className='form-section'>
+					<div className='form-row'>
 						<div className='form-item-row'>
-							<label className='song-label' htmlFor='tab'>
-								Is tab?
-							</label>
-							<input
-								checked={songData.isTab}
-								// onChange={onInputChange}
+							<div className='date-item'>
+								<label className='input-date'>Deadline Date</label>
+								<input
+									type='date'
+									name='deadlineDate'
+									// value={
+									// 	songData.deadlineDate == null ? '' : songData.deadlineDate
+									// 	// : songData.deadlineDate.toISOString().split('T')[0]
+									// }
+									className='date-input'
+									onChange={(e) =>
+										setSongData({ ...songData, deadlineDate: e.target.value })
+									}
+								/>
+							</div>
+						</div>
+					</div>
+
+					<div className='form-row'>
+						<div className='form-item'>
+							<textarea
+								name='reason'
+								className='input-grow'
+								placeholder='Reason for deadline'
+								value={songData.reason}
+								rows='3'
 								onChange={(e) =>
-									setSongData({ ...songData, isTab: e.target.checked })
+									setSongData({ ...songData, reason: e.target.value })
 								}
-								type='checkbox'
-								// id='storeData'
-								name='tab'
-								// value={songData.isFavourite}
-								// value='true'
 							/>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div className='form-section'>
-				<div className='form-row'>
-					<button className='form-action-btn' onClick={back}>
-						cancel
-					</button>
-					<button className='form-action-btn' onClick={clear}>
-						Clear
-					</button>
-					<button className='form-action-btn' type='submit'>
-						Submit
-					</button>
+				<div className='form-section'>
+					<div className='form-row'>
+						<div className='form-item'>
+							<div className='choice-wrapper'>
+								<select
+									name='style'
+									onChange={(e) =>
+										setSongData({ ...songData, style: e.target.value })
+									}
+									value={songData.style}
+								>
+									<option
+									// label=
+									// value={artist.name}
+									>
+										-- select style --
+									</option>
+									{styles.map((style) => (
+										<option
+											key={style._id}
+											// selected
+											label={style.name}
+											value={style._id}
+										></option>
+									))}
+								</select>
+							</div>
+						</div>
+						<div className='form-item'>
+							<div className='choice-wrapper'>
+								<select
+									name='status'
+									onChange={(e) =>
+										setSongData({ ...songData, status: e.target.value })
+									}
+									value={songData.status}
+								>
+									<option
+									// label=
+									// value={artist.name}
+									>
+										-- select status --
+									</option>
+									{statuses.map((status) => (
+										<option
+											key={status._id}
+											// selected
+											label={status.name}
+											value={status._id}
+										></option>
+									))}
+								</select>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-		</StyledSongForm>
+
+				<div className='form-section'>
+					<div className='form-row'>
+						<div className='form-item'>
+							<div className='file-input'>
+								<FileBase
+									type='false'
+									multiple={false}
+									onDone={({ base64 }) =>
+										setSongData({ ...songData, selectedFile: base64 })
+									}
+								/>
+							</div>
+						</div>
+						<div className='form-item'>
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='tab'>
+									Is tab?
+								</label>
+								<input
+									checked={songData.isTab}
+									// onChange={onInputChange}
+									onChange={(e) =>
+										setSongData({ ...songData, isTab: e.target.checked })
+									}
+									type='checkbox'
+									// id='storeData'
+									name='tab'
+									// value={songData.isFavourite}
+									// value='true'
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className='form-section'>
+					<div className='form-row'>
+						<button className='form-action-btn' onClick={back}>
+							cancel
+						</button>
+						<button className='form-action-btn' onClick={clear}>
+							Clear
+						</button>
+						<button className='form-action-btn' type='submit'>
+							Submit
+						</button>
+					</div>
+				</div>
+			</StyledSongForm>
+		</>
 	);
 };
 const StyledSongForm = styled.form`
@@ -552,7 +633,7 @@ const StyledSongForm = styled.form`
 	/* row-gap: 1rem; */
 	.form-section {
 		border-bottom: 2px solid ${({ theme }) => theme.engravedBrown};
-		padding: 2rem 0;
+		padding: 1rem 0;
 		&:last-child {
 			border-bottom: none;
 			padding-bottom: 0;
@@ -593,15 +674,42 @@ const StyledSongForm = styled.form`
 				margin: 10px 0 2px;
 			}
 			.choice-wrapper {
-				/* @include flex(space-between, center, row); */
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				column-gap: 0.5rem;
+				flex: 1;
+				.add-artist-btn-form {
+					background-color: ${({ theme }) => theme.lightBrown};
+					display: grid;
+					place-content: center;
+					padding: 1rem;
+					cursor: pointer;
+					.add-new-record-icon {
+						color: ${({ theme }) => theme.white};
+						font-size: 1.6rem;
+						pointer-events: none;
+					}
+					/* flex: 1; */
+					/* font-family: 'NewTegomin'; */
+					/* padding: 0.5rem 1rem; */
+				}
+			}
+			/* .choice-wrapper {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				row-gap: 0.5rem;
 				flex: 1;
-				/* align-items: center; */
-				/* column-gap: 2rem; */
-			}
+				.add-artist-btn-form {
+					background-color: ${({ theme }) => theme.lightBrown};
+					color: ${({ theme }) => theme.white};
+					flex: 1;
+					font-family: 'NewTegomin';
+					padding: 0.5rem 1rem;
+					font-size: 1.6rem;
+				}
+			} */
 			.input-grow {
 				/* flex: 1; */
 				/* width: 100%; */

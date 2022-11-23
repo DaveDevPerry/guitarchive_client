@@ -1,205 +1,175 @@
 import React from 'react';
 // import Link from 'next/link';
 import styled from 'styled-components';
-import {
-	FaCloudDownloadAlt,
-	FaRegStar,
-	FaStar,
-	FaRegHeart,
-	FaHeart,
-} from 'react-icons/fa';
-import { ImYoutube2 } from 'react-icons/im';
-import { GiMetronome } from 'react-icons/gi';
-import { CgCamera } from 'react-icons/cg';
-import { BiArchiveOut, BiArchive } from 'react-icons/bi';
-import { IoMusicalNotes } from 'react-icons/io5';
-import { TbNumbers } from 'react-icons/tb';
-import { format, parseISO } from 'date-fns';
+// import {
+// 	FaCloudDownloadAlt,
+// 	FaRegStar,
+// 	FaStar,
+// 	FaRegHeart,
+// 	FaHeart,
+// } from 'react-icons/fa';
+// import { ImYoutube2 } from 'react-icons/im';
+// import { GiMetronome } from 'react-icons/gi';
+// import { CgCamera } from 'react-icons/cg';
+// import { BiArchiveOut, BiArchive } from 'react-icons/bi';
+// import { IoMusicalNotes } from 'react-icons/io5';
+// import { TbNumbers } from 'react-icons/tb';
+// import { format, parseISO } from 'date-fns';
 import { log } from '../../utils/helper';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
 // import moment from 'moment';
 
-const SongCard = ({ song, slug, url }) => {
-	const { setSongToView } = useStateContext();
+const ArtistCard = ({ artist, slug, url }) => {
+	const { setArtistToView } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	let navigate = useNavigate();
 	return (
 		// <Link href={url + slug}>
 
-		<StyledSongCard
-			className='song-card-wrapper'
+		<StyledArtistCard
+			className='artist-card-wrapper'
 			onClick={(e) => {
 				e.preventDefault();
-				log(song._id, 'song id on click');
-				setSongToView(song._id);
-				navigate('/song');
+				log(artist._id, 'artist id on click');
+				setArtistToView(artist._id);
+				navigate('/artist');
 			}}
 		>
 			{width > breakpoint ? (
 				<>
-					<div className='fav-wrapper'>
-						{song.isFavourite === true ? (
+					{/* <div className='fav-wrapper'>
+						{artist.isFavourite === true ? (
 							<FaHeart className='card-icon heart-on' />
 						) : (
 							<FaRegHeart className='card-icon heart-off' />
 						)}
-					</div>
-					<div className='song-wrapper'>
-						<h3 className='primary-text'>{song.title}</h3>
-						<h4 className='secondary-text'>{song.artist.name}</h4>
+					</div> */}
+					<div className='artist-wrapper'>
+						<h3 className='primary-text'>{artist.name}</h3>
+						{/* <h4 className='secondary-text'>{artist.artist.name}</h4> */}
 					</div>
 
-					<div className='artist-wrapper'>
-						<h3 className='primary-text'>{song.arranger.name}</h3>
-						{/* <div className='rating-wrapper'>
-					<FaStar className='star-on' />
-					<FaStar className='star-on' />
-					<FaRegStar className='star-off' />
-					<FaRegStar className='star-off' />
-					<FaRegStar className='star-off' />
-				</div> */}
+					{/* <div className='artist-wrapper'>
+						<h3 className='primary-text'>{artist.arranger.name}</h3>
+
 						<div className='rating-wrapper'>
-							{[...Array(song.difficulty)].map((elementInArray, index) => (
+							{[...Array(artist.difficulty)].map((elementInArray, index) => (
 								<FaStar key={index} className='star-on' />
 							))}
-							{[...Array(5 - song.difficulty)].map((elementInArray, index) => (
+							{[...Array(5 - artist.difficulty)].map((elementInArray, index) => (
 								<FaRegStar key={index} className='star-off' />
 							))}
 						</div>
 					</div>
-					{/* <div className='genre-wrapper'>
-					<h3 className='primary-text'>{song.genre[0]}</h3>
-					<h4 className='secondary-text'>{song.genre[1]}</h4>
-				</div> */}
+
 
 					<div className='deadline-wrapper'>
-						{song.deadlineDate && (
+						{artist.deadlineDate && (
 							<h3 className='primary-text'>
-								{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+								{format(parseISO(artist.deadlineDate), 'dd/MM/yyyy')}
 							</h3>
 						)}
-						{/* {song.deadlineReason && (
-						<h4 className='secondary-text'>{song.deadlineReason}</h4>
-					)} */}
+
 					</div>
 					<div className='file-wrapper'>
-						{song.selectedFile && (
-							<a href={song.selectedFile} download>
+						{artist.selectedFile && (
+							<a href={artist.selectedFile} download>
 								<FaCloudDownloadAlt className='file-download-icon card-icon' />
 							</a>
 						)}
-						{song.isTab ? (
+						{artist.isTab ? (
 							<TbNumbers className='music-type-icon' />
 						) : (
 							<IoMusicalNotes className='music-type-icon' />
 						)}
-						{/* {song.sheetMusic && (
-						<a
-							href={song.sheetMusic.url}
-							rel='noopener noreferrer'
-							target='_blank'
-						>
-							<FaCloudDownloadAlt className='file-download-icon card-icon' />
-						</a>
-					)} */}
+
 					</div>
-					{/* <div className='status-wrapper'>
-						<ImYoutube2 className='card-icon status-icon yt-icon' />
-				</div> */}
+
 					<div className='status-wrapper'>
-						{song.status.name === 'Recorded' && (
+						{artist.status.name === 'Recorded' && (
 							<ImYoutube2 className='card-icon status-icon yt-icon' />
 						)}
-						{song.status.name === 'Practicing' && (
+						{artist.status.name === 'Practicing' && (
 							<GiMetronome className='card-icon status-icon' />
 						)}
-						{song.status.name === 'Ready' && (
+						{artist.status.name === 'Ready' && (
 							<CgCamera className='card-icon status-icon' />
 						)}
-						{song.status.name === 'Backlog' && (
+						{artist.status.name === 'Backlog' && (
 							<BiArchiveOut className='card-icon status-icon' />
 						)}
-						{song.status.name === 'Archived' && (
+						{artist.status.name === 'Archived' && (
 							<BiArchive className='card-icon status-icon' />
 						)}
-					</div>
+					</div> */}
 				</>
 			) : (
 				<>
-					{/* <div className='fav-wrapper'>
-				{song.isFavourite === true ? (
-					<FaHeart className='card-icon heart-on' />
-				) : (
-					<FaRegHeart className='card-icon heart-off' />
-				)}
-			</div> */}
-					<div className='song-wrapper'>
-						<h3 className='primary-text'>{song.title}</h3>
-						<h4 className='secondary-text'>{song.artist.name}</h4>
+					<div className='artist-wrapper'>
+						<h3 className='primary-text'>{artist.name}</h3>
+						{/* <h4 className='secondary-text'>{artist.artist.name}</h4> */}
 					</div>
 
 					{/* <div className='artist-wrapper'>
-				<h3 className='primary-text'>{song.arranger.name}</h3>
+				<h3 className='primary-text'>{artist.arranger.name}</h3>
 				<div className='rating-wrapper'>
-					{[...Array(song.difficulty)].map((elementInArray, index) => (
+					{[...Array(artist.difficulty)].map((elementInArray, index) => (
 						<FaStar key={index} className='star-on' />
 					))}
-					{[...Array(5 - song.difficulty)].map((elementInArray, index) => (
+					{[...Array(5 - artist.difficulty)].map((elementInArray, index) => (
 						<FaRegStar key={index} className='star-off' />
 					))}
 				</div>
 			</div> */}
 					{/* <div className='genre-wrapper'>
-					<h3 className='primary-text'>{song.genre[0]}</h3>
-					<h4 className='secondary-text'>{song.genre[1]}</h4>
+					<h3 className='primary-text'>{artist.genre[0]}</h3>
+					<h4 className='secondary-text'>{artist.genre[1]}</h4>
 				</div> */}
 
-					<div className='mobile-deadline-wrapper'>
-						{song.deadlineDate && (
+					{/* <div className='deadline-wrapper'>
+						{artist.deadlineDate && (
 							<h3 className='primary-text'>
-								{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+								{format(parseISO(artist.deadlineDate), 'dd/MM/yyyy')}
 							</h3>
 						)}
-						{/* {song.deadlineReason && (
-						<h4 className='secondary-text'>{song.deadlineReason}</h4>
-					)} */}
-					</div>
+				
+					</div> */}
 					{/* <div className='file-wrapper'>
-				{song.selectedFile && (
-					<a href={song.selectedFile} download>
+				{artist.selectedFile && (
+					<a href={artist.selectedFile} download>
 						<FaCloudDownloadAlt className='file-download-icon card-icon' />
 					</a>
 				)}
 			</div> */}
 					{/* <div className='status-wrapper'>
-				{song.status.name === 'Recorded' && (
+				{artist.status.name === 'Recorded' && (
 					<ImYoutube2 className='card-icon status-icon yt-icon' />
 				)}
-				{song.status.name === 'Practicing' && (
+				{artist.status.name === 'Practicing' && (
 					<GiMetronome className='card-icon status-icon' />
 				)}
-				{song.status.name === 'Ready' && (
+				{artist.status.name === 'Ready' && (
 					<CgCamera className='card-icon status-icon' />
 				)}
-				{song.status.name === 'Backlog' && (
+				{artist.status.name === 'Backlog' && (
 					<BiArchiveOut className='card-icon status-icon' />
 				)}
-				{song.status.name === 'Archived' && (
+				{artist.status.name === 'Archived' && (
 					<BiArchive className='card-icon status-icon' />
 				)}
 			</div> */}
 				</>
 			)}
-		</StyledSongCard>
+		</StyledArtistCard>
 		// </Link>
 	);
 };
-const StyledSongCard = styled.div`
+const StyledArtistCard = styled.div`
 	cursor: pointer;
-	&.song-card-wrapper {
+	&.artist-card-wrapper {
 		border-bottom: 1px solid ${({ theme }) => theme.darkBrown};
 		display: flex;
 		flex-direction: row;
@@ -208,7 +178,6 @@ const StyledSongCard = styled.div`
 		padding: 0.5rem 1rem;
 		.primary-text {
 			color: ${({ theme }) => theme.darkBrown};
-			text-transform: capitalize;
 		}
 		.secondary-text {
 			color: ${({ theme }) => theme.lightBrown};
@@ -232,21 +201,13 @@ const StyledSongCard = styled.div`
 			display: grid;
 			place-content: center;
 		}
-		.mobile-deadline-wrapper {
-			/* width: 100px; */
-			display: grid;
-			place-content: center;
-			.primary-text {
-				font-size: 1.4rem;
-			}
-		}
 		/* .artist-wrapper {
 			flex: 1 1 40%;
 		}
-		.song-wrapper {
+		.artist-wrapper {
 			flex: 1 1 60%;
 		} */
-		.song-wrapper,
+		.artist-wrapper,
 		.artist-wrapper {
 			flex: 1;
 		}
@@ -296,7 +257,7 @@ const StyledSongCard = styled.div`
 	}
 	/* @media screen and (max-width: 400px) {
 
-		&.song-card-wrapper {
+		&.artist-card-wrapper {
 
 			.fav-wrapper,
 			.file-wrapper,
@@ -320,4 +281,4 @@ const StyledSongCard = styled.div`
 	} */
 `;
 
-export default SongCard;
+export default ArtistCard;
