@@ -32,6 +32,7 @@ const StyledAddSongButton = styled.div`
 	column-gap: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: ${({ theme }) => theme.lightBrown};
+	box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 	/* background-color: #9a9a9a; */
 	height: 100%;
 	width: 9em;

@@ -73,15 +73,17 @@ const StyledSongsContainer = styled.div`
 	justify-content: flex-start;
 	flex: 1;
 	margin-bottom: 2rem;
-	overflow-y: scroll;
+	overflow-y: auto;
 	/* width: 1000px; */
 	border: 1px solid ${({ theme }) => theme.darkBrown};
+	border-radius: 0.4rem;
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
 	background-color: rgba(0, 0, 0, 0.1);
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;
 	scrollbar-color: ${({ theme }) => theme.lightBrown};
+	/* padding: 1rem; */
 	::-webkit-scrollbar {
 		height: 18px !important;
 		width: 18px;
@@ -115,9 +117,9 @@ const StyledMobileSongsContainer = styled.div`
 	overflow-y: scroll;
 	/* width: 1000px; */
 	border: none;
-	/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
+	border-top: 1px solid ${({ theme }) => theme.darkBrown};
 	box-shadow: none;
-	/* background-color: rgba(0, 0, 0, 0.1); */
+	background-color: rgba(0, 0, 0, 0.1);
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;

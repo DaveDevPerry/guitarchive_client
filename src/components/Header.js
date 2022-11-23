@@ -21,12 +21,12 @@ const Header = () => {
 				</Link>
 				{width > breakpoint && (
 					<nav className='top-nav desktop'>
-						<NavLink
+						{/* <NavLink
 							to='/home'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>home</p>
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -38,6 +38,12 @@ const Header = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>artists</p>
+						</NavLink>
+						<NavLink
+							to='/arrangers'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<p>arrangers</p>
 						</NavLink>
 						<NavLink
 							to='/settings'

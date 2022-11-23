@@ -14,9 +14,9 @@ const SearchBar = () => {
 const StyledSearchBar = styled.div`
 	/* @include flex(flex-start, center, row); */
 	display: flex;
-	justify-content: flex-start;
+	justify-content: flex-end;
 	align-items: center;
-
+	flex: 1;
 	// pointer-events: none;
 	#search-btn {
 		margin: 0 1rem;
@@ -24,13 +24,14 @@ const StyledSearchBar = styled.div`
 	input[type='text'] {
 		font-size: 1.4rem;
 		font-style: italic;
-		color: ${({ theme }) => theme.engravedBrown};
+		color: ${({ theme }) => theme.darkBrown};
 		background-color: rgba(36, 14, 0, 0.08);
 		padding: 1rem;
 		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 1rem 0 0 1rem;
+		border-radius: 0.4rem 0 0 0.4rem;
 		width: 25rem;
 		margin-left: 2rem;
+		font-weight: lighter;
 		&:focus {
 			border: 1px solid ${({ theme }) => theme.darkBrown};
 			outline: none;
@@ -42,10 +43,11 @@ const StyledSearchBar = styled.div`
 		color: ${({ theme }) => theme.brown};
 		// border: none;
 		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0 1rem 1rem 0;
+		border-radius: 0 0.4rem 0.4rem 0;
 		// border-radius: 0 0.7rem 0.7rem 0;
 		padding: 1rem;
 		cursor: pointer;
+		font-weight: lighter;
 		color: ${({ theme }) => theme.white};
 		&#fetch-data-btn {
 			color: ${({ theme }) => theme.white};

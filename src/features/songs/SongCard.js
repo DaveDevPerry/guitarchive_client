@@ -86,16 +86,17 @@ const SongCard = ({ song, slug, url }) => {
 					)} */}
 					</div>
 					<div className='file-wrapper'>
-						{song.selectedFile && (
-							<a href={song.selectedFile} download>
-								<FaCloudDownloadAlt className='file-download-icon card-icon' />
-							</a>
-						)}
 						{song.isTab ? (
 							<TbNumbers className='music-type-icon' />
 						) : (
 							<IoMusicalNotes className='music-type-icon' />
 						)}
+						{song.selectedFile && (
+							<a href={song.selectedFile} download>
+								<FaCloudDownloadAlt className='file-download-icon card-icon' />
+							</a>
+						)}
+
 						{/* {song.sheetMusic && (
 						<a
 							href={song.sheetMusic.url}
@@ -204,8 +205,10 @@ const StyledSongCard = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		column-gap: 1rem;
-		padding: 0.5rem 1rem;
+		column-gap: 0.5rem;
+		/* column-gap: 1rem; */
+		padding: 0.5rem;
+		/* padding: 0.5rem 1rem; */
 		.primary-text {
 			color: ${({ theme }) => theme.darkBrown};
 			text-transform: capitalize;
@@ -231,6 +234,17 @@ const StyledSongCard = styled.div`
 			width: 100px;
 			display: grid;
 			place-content: center;
+
+			.primary-text {
+				color: ${({ theme }) => theme.white};
+				text-transform: capitalize;
+				/* font-weight: bolder; */
+				font-weight: lighter;
+				background-color: ${({ theme }) => theme.red};
+				padding: 0.5rem 1rem;
+				border-radius: 0.6rem;
+				line-height: 1.4rem;
+			}
 		}
 		.mobile-deadline-wrapper {
 			/* width: 100px; */
@@ -246,9 +260,11 @@ const StyledSongCard = styled.div`
 		.song-wrapper {
 			flex: 1 1 60%;
 		} */
-		.song-wrapper,
-		.artist-wrapper {
+		.song-wrapper {
 			flex: 1;
+		}
+		.artist-wrapper {
+			width: 17rem;
 		}
 		.fav-wrapper {
 			width: auto;

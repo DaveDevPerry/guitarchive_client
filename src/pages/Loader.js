@@ -55,7 +55,7 @@ const Loader = () => {
 			setTimeout(() => {
 				navigate('/songs');
 			}, 1000);
-		}, 3000);
+		}, 2000);
 	}, []);
 
 	useEffect(() => {
