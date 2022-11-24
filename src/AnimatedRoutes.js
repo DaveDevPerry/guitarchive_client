@@ -12,6 +12,7 @@ import Arrangers from './pages/Arrangers';
 import MobileMenu from './pages/MobileMenu';
 import YouTube from './pages/YouTube';
 import Artist from './pages/Artist';
+import Arranger from './pages/Arranger';
 
 const AnimatedRoutes = ({
 	user,
@@ -30,6 +31,13 @@ const AnimatedRoutes = ({
 	artistSongStatusHandler,
 	artistSongDetails,
 	setArtistSongDetails,
+	arrangerSongStatus,
+	setArrangerSongStatus,
+	arrangerFilteredSongs,
+	setArrangerFilteredSongs,
+	arrangerSongStatusHandler,
+	arrangerSongDetails,
+	setArrangerSongDetails,
 }) => {
 	const location = useLocation();
 
@@ -144,6 +152,23 @@ const AnimatedRoutes = ({
 					element={
 						user ? (
 							<Arrangers theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/arranger'
+					element={
+						user ? (
+							<Arranger
+								theme={theme}
+								currentDate={currentDate}
+								arrangerFilteredSongs={arrangerFilteredSongs}
+								setArrangerFilteredSongs={setArrangerFilteredSongs}
+								arrangerSongStatusHandler={arrangerSongStatusHandler}
+								setArrangerSongDetails={setArrangerSongDetails}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)

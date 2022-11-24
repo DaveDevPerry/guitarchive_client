@@ -40,7 +40,8 @@ const Song = () => {
 
 	const { song, dispatch } = useSongsContext();
 	// const { gig,gigCounterData, dispatch } = useGigsContext();
-	const { songToView, setArtistToView, dataLoaded } = useStateContext();
+	const { songToView, setArtistToView, setArrangerToView, dataLoaded } =
+		useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -143,7 +144,17 @@ const Song = () => {
 								)}
 							</div>
 							{/* <Link href={'../arrangers/' + song.arranger.slug}> */}
-							<p className='primary-text smaller'>{song.arranger.name}</p>
+							<p
+								className='primary-text smaller'
+								onClick={(e) => {
+									e.preventDefault();
+									log(song.arranger._id, 'song arranger id on click');
+									setArrangerToView(song.arranger._id);
+									navigate('/arranger');
+								}}
+							>
+								{song.arranger.name}
+							</p>
 							{/* </Link> */}
 						</div>
 						<div className='favourite-wrapper'>

@@ -3,8 +3,8 @@ import React from 'react';
 // import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import { useArrangersContext } from '../../hooks/useArrangerContext';
-// import { getArrangers } from '../services';
+// import { useSongsContext } from '../../hooks/useSongContext';
+// import { getSongs } from '../services';
 // import { gsap } from 'gsap';
 
 // import {
@@ -13,65 +13,63 @@ import { useViewport } from '../../hooks/useViewport';
 // 	SectionTitle,
 // 	SectionDivider,
 // } from '../styles/GlobalComponents';
-import ArrangerCard from './ArrangerCard';
-// import { arrangersTextWrapper, InfoText } from './arrangersStyles';
+import SongCard from './SongCard';
+// import { songsTextWrapper, InfoText } from './songsStyles';
 
-const ArrangersWidget = ({ arrangers, url }) => {
-	// const { dispatch } = useArrangersContext();
-	// console.log(arrangers, 'SONGS widget');
+const SongsWidget = ({ songs, filteredSongs }) => {
+	// const { dispatch } = useSongsContext();
+	// console.log(songs, 'SONGS widget');
 	const { width } = useViewport();
 	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>
-			{width > breakpoint ? (
-				<StyledArrangersContainer className='arrangers-container'>
-					{arrangers &&
-						arrangers.map((arranger, index) => (
-							// <ArrangerCard key={index} arranger={arranger} slug={arranger.slug} />
-							<ArrangerCard
-								key={index}
-								url={url}
-								arranger={arranger}
-								slug={arranger.slug}
-								// onClick={dispatch({ type: 'SET_SONG', payload: arranger })}
-							/>
-						))}
-				</StyledArrangersContainer>
+			{/* {width > breakpoint ? (
+				<StyledSongsContainer className='songs-container'>
+					{songs &&
+						songs.map((song, index) => <SongCard key={index} song={song} />)}
+				</StyledSongsContainer>
 			) : (
-				<StyledMobileArrangersContainer>
-					{arrangers &&
-						arrangers.map((arranger, index) => (
-							// <ArrangerCard key={index} arranger={arranger} slug={arranger.slug} />
-							<ArrangerCard
-								key={index}
-								url={url}
-								arranger={arranger}
-								slug={arranger.slug}
-								// onClick={dispatch({ type: 'SET_SONG', payload: arranger })}
-							/>
+				<StyledMobileSongsContainer>
+					{songs &&
+						songs.map((song, index) => <SongCard key={index} song={song} />)}
+				</StyledMobileSongsContainer>
+			)} */}
+			{width > breakpoint ? (
+				<StyledSongsContainer className='songs-container'>
+					{filteredSongs &&
+						filteredSongs.map((song, index) => (
+							<SongCard key={index} song={song} />
 						))}
-				</StyledMobileArrangersContainer>
+				</StyledSongsContainer>
+			) : (
+				<StyledMobileSongsContainer>
+					{filteredSongs &&
+						filteredSongs.map((song, index) => (
+							<SongCard key={index} song={song} />
+						))}
+				</StyledMobileSongsContainer>
 			)}
 		</>
 	);
 };
-const StyledArrangersContainer = styled.div`
+const StyledSongsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	flex: 1;
 	margin-bottom: 2rem;
 	overflow-y: auto;
-	border-radius: 0.4rem;
 	/* width: 1000px; */
 	border: 1px solid ${({ theme }) => theme.darkBrown};
+	border-radius: 0.4rem;
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
 	background-color: rgba(0, 0, 0, 0.1);
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;
 	scrollbar-color: ${({ theme }) => theme.lightBrown};
+	/* padding: 1rem; */
 	::-webkit-scrollbar {
 		height: 18px !important;
 		width: 18px;
@@ -96,7 +94,7 @@ const StyledArrangersContainer = styled.div`
 		background: rgb(75, 74, 74);
 	}
 `;
-const StyledMobileArrangersContainer = styled.div`
+const StyledMobileSongsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -138,15 +136,15 @@ const StyledMobileArrangersContainer = styled.div`
 	}
 `;
 
-export default ArrangersWidget;
+export default SongsWidget;
 
 // export async function getStaticProps() {
 // const composers = (await getComposers()) || [];
-// 	const arrangers = (await getArrangers()) || [];
+// 	const songs = (await getSongs()) || [];
 // 	return {
 // 		props: {
 // 			// composers,
-// 			arrangers,
+// 			songs,
 // 		},
 // 		revalidate: 10,
 // 	};

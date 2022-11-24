@@ -42,6 +42,7 @@ export const songsReducer = (state, action) => {
 				...state,
 				songs: action.payload,
 				artistSongs: action.payload,
+				arrangerSongs: action.payload,
 			};
 		case 'SET_SONG':
 			return {
@@ -90,10 +91,29 @@ export const songsReducer = (state, action) => {
 					...state.songs.filter((song) => song.artist._id === action.payload),
 				],
 			};
+		case 'SET_ARRANGER':
+			log(action.payload, 'payload - sng context - set arranger');
+			// const getStats = getArtistStats([
+			// 	...state.songs.filter((song) => song.artist._id === action.payload),
+			// ]);
+			return {
+				...state,
+				// artist:
+				// arrangerStats: getArtistStats([
+				// 	...state.songs.filter((song) => song.arranger._id === action.payload),
+				// ]),
+				// arrangerStats: getStats,
+				arrangerSongs: [
+					...state.songs.filter((song) => song.arranger._id === action.payload),
+				],
+			};
 		case 'LOGOUT':
 			return {
 				song: null,
 				songs: null,
+				artistSongs: null,
+				artistStats: null,
+				arrangerSongs: null,
 			};
 		default:
 			return state;
@@ -106,6 +126,7 @@ export const SongsContextProvider = ({ children }) => {
 		songs: null,
 		artistSongs: null,
 		artistStats: null,
+		arrangerSongs: null,
 		// currentUser: null,
 	});
 

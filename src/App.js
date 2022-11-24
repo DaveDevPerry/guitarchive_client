@@ -23,7 +23,7 @@ function App() {
 		log('getting from ls');
 	}, []);
 	const { user } = useAuthContext();
-	const { songs, artistSongs } = useSongsContext();
+	const { songs, artistSongs, arrangerSongs } = useSongsContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
@@ -211,6 +211,54 @@ function App() {
 		setArtistSongStatus(e.target.value);
 	};
 
+	// artist songs
+
+	const [arrangerSongStatus, setArrangerSongStatus] = useState('all');
+	const [arrangerFilteredSongs, setArrangerFilteredSongs] = useState([]);
+	const [arrangerSongDetails, setArrangerSongDetails] = useState({});
+
+	useEffect(() => {
+		arrangerSongFilterHandler();
+	}, [arrangerSongs, arrangerSongStatus]);
+
+	// const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
+
+	// function sand events
+	const arrangerSongFilterHandler = () => {
+		switch (arrangerSongStatus) {
+			case 'tabs':
+				setArrangerFilteredSongs(
+					arrangerSongs &&
+						arrangerSongs.filter((arrangerSong) => arrangerSong.isTab)
+				);
+				break;
+			case 'scores':
+				setArrangerFilteredSongs(
+					arrangerSongs &&
+						arrangerSongs.filter((arrangerSong) => arrangerSong.isTab === false)
+				);
+				break;
+			case 'favourite':
+				setArrangerFilteredSongs(
+					arrangerSongs &&
+						arrangerSongs.filter((arrangerSong) => arrangerSong.isFavourite)
+				);
+				break;
+			case 'all':
+				setArrangerFilteredSongs(arrangerSongs && arrangerSongs);
+				break;
+			default:
+				setArrangerFilteredSongs(arrangerSongs && arrangerSongs);
+				break;
+		}
+	};
+
+	const arrangerSongStatusHandler = (e) => {
+		log(e.target.textContent);
+		log(e.target.value);
+		setArrangerSongStatus(e.target.value);
+	};
+
 	// const { isMenuOpen } = useStateContext();
 
 	if (!mountedComponent) return <div id='unmounted'>Can i see this</div>;
@@ -242,6 +290,13 @@ function App() {
 							artistSongStatusHandler={artistSongStatusHandler}
 							artistSongDetails={artistSongDetails}
 							setArtistSongDetails={setArtistSongDetails}
+							arrangerSongStatus={arrangerSongStatus}
+							setArrangerSongStatus={setArrangerSongStatus}
+							arrangerFilteredSongs={arrangerFilteredSongs}
+							setArrangerFilteredSongs={setArrangerFilteredSongs}
+							arrangerSongStatusHandler={arrangerSongStatusHandler}
+							arrangerSongDetails={arrangerSongDetails}
+							setArrangerSongDetails={setArrangerSongDetails}
 							youtubeData={youtubeData}
 						/>
 						{/* {width < breakpoint && <Footer />} */}

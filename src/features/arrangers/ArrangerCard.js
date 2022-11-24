@@ -178,6 +178,7 @@ const StyledArrangerCard = styled.div`
 		padding: 0.5rem 1rem;
 		.primary-text {
 			color: ${({ theme }) => theme.darkBrown};
+			text-transform: capitalize;
 		}
 		.secondary-text {
 			color: ${({ theme }) => theme.lightBrown};

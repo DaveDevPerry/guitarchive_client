@@ -43,11 +43,11 @@ const Artists = () => {
 					{isArtistFormOpen === true && (
 						<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
 					)}
-					<StyledArtistDetails className='artists-details-container'>
+					{/* <StyledArtistDetails className='artists-details-container'>
 						<div className='artist-wrapper'>
 							<p className='primary-text'>artists</p>
 						</div>
-					</StyledArtistDetails>
+					</StyledArtistDetails> */}
 					<div className='user-actions-container'>
 						<AddArtistButton />
 						<SearchBar />
