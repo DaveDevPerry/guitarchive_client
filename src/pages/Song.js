@@ -12,6 +12,7 @@ import {
 	FaStar,
 	FaRegHeart,
 	FaHeart,
+	FaEdit,
 } from 'react-icons/fa';
 import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
@@ -39,7 +40,7 @@ const Song = () => {
 
 	const { song, dispatch } = useSongsContext();
 	// const { gig,gigCounterData, dispatch } = useGigsContext();
-	const { songToView, dataLoaded } = useStateContext();
+	const { songToView, setArtistToView, dataLoaded } = useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -92,38 +93,67 @@ const Song = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			{song && (
-				<StyledSongDetails className='songs-details-container'>
-					<div className='song-wrapper'>
-						<p className='primary-text'>{song.title}</p>
-						{/* <Link href={'../composers/' + song.composer.slug}> */}
-						<h4 className='secondary-text'>{song.artist.name}</h4>
-						{/* </Link> */}
-						{/* <Link href={'../composers/' + song.composer.slug}>
-					<h4 className='secondary-text'>{song.composer.name}</h4>
-				</Link> */}
+				<>
+					<div className='nav-btns-container'>
+						<TiArrowBack
+							className='back-icon'
+							onClick={() => {
+								navigate('/songs');
+							}}
+						/>
+						<FaEdit
+							className='edit-icon'
+							onClick={() => {
+								// navigate('/songs');
+								log(song, 'edit song');
+							}}
+						/>
 					</div>
 
-					<div className='artist-wrapper'>
-						<div className='rating-wrapper'>
-							{[...Array(song.difficulty)].map((elementInArray, index) => (
-								<FaStar key={index} className='star-on' />
-							))}
-							{[...Array(5 - song.difficulty)].map((elementInArray, index) => (
-								<FaRegStar key={index} className='star-off' />
-							))}
+					<StyledSongDetails className='songs-details-container'>
+						<div className='song-wrapper'>
+							<p className='primary-text'>{song.title}</p>
+							{/* <Link href={'../composers/' + song.composer.slug}> */}
+							<h4
+								className='secondary-text'
+								onClick={(e) => {
+									e.preventDefault();
+									log(song.artist._id, 'song artist id on click');
+									setArtistToView(song.artist._id);
+									navigate('/artist');
+								}}
+							>
+								{song.artist.name}
+							</h4>
+							{/* </Link> */}
+							{/* <Link href={'../composers/' + song.composer.slug}>
+					<h4 className='secondary-text'>{song.composer.name}</h4>
+				</Link> */}
 						</div>
-						{/* <Link href={'../arrangers/' + song.arranger.slug}> */}
-						<p className='primary-text smaller'>{song.arranger.name}</p>
-						{/* </Link> */}
-					</div>
-					<div className='favourite-wrapper'>
-						{song.isFavourite === true ? (
-							<FaHeart className='card-icon heart-on' />
-						) : (
-							<FaRegHeart className='card-icon heart-off' />
-						)}
-					</div>
-					{/* <div className='lists-wrapper'>
+
+						<div className='artist-wrapper'>
+							<div className='rating-wrapper'>
+								{[...Array(song.difficulty)].map((elementInArray, index) => (
+									<FaStar key={index} className='star-on' />
+								))}
+								{[...Array(5 - song.difficulty)].map(
+									(elementInArray, index) => (
+										<FaRegStar key={index} className='star-off' />
+									)
+								)}
+							</div>
+							{/* <Link href={'../arrangers/' + song.arranger.slug}> */}
+							<p className='primary-text smaller'>{song.arranger.name}</p>
+							{/* </Link> */}
+						</div>
+						<div className='favourite-wrapper'>
+							{song.isFavourite === true ? (
+								<FaHeart className='card-icon heart-on' />
+							) : (
+								<FaRegHeart className='card-icon heart-off' />
+							)}
+						</div>
+						{/* <div className='lists-wrapper'>
 						<h5 className='category-type'>{song.category}</h5>
 
 						<div className='genre-wrapper'>
@@ -133,57 +163,65 @@ const Song = () => {
 						</div>
 						<h5 className='category-type'>{song.genre}</h5>
 					</div> */}
-					<div className='deadline-wrapper'>
-						{song.deadlineDate && (
-							<p className='primary-text'>
-								{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
-							</p>
-						)}
-						{song.reason && <h4 className='secondary-text'>{song.reason}</h4>}
-					</div>
-					{/* <p>{song.songStatus}</p> */}
-					{/* <p>{song.deadline}</p> */}
-					{/* <p>{song.deadlineReason}</p> */}
-					{/* <p>{song.sheetMusic.url}</p> */}
-					<div className='file-wrapper'>
-						{song.selectedFile && (
-							<a href={song.selectedFile} download>
-								<FaCloudDownloadAlt className='file-download-icon card-icon' />
-							</a>
-						)}
-						{song.isTab ? (
-							<TbNumbers className='music-type-icon' />
-						) : (
-							<IoMusicalNotes className='music-type-icon' />
-						)}
-						{/* <p>{song.sheetMusic && song.sheetMusic.fileName}</p> */}
-					</div>
-					<div className='status-wrapper'>
-						{song.status.name === 'Recorded' && (
-							<ImYoutube2 className='card-icon status-icon yt-icon' />
-						)}
-						{song.status.name === 'Practicing' && (
-							<GiMetronome className='card-icon status-icon' />
-						)}
-						{song.status.name === 'Ready' && (
-							<CgCamera className='card-icon status-icon' />
-						)}
-						{song.status.name === 'Backlog' && (
-							<BiArchiveOut className='card-icon status-icon' />
-						)}
-						{song.status.name === 'Archived' && (
-							<BiArchive className='card-icon status-icon' />
-						)}
-						<h5>{song.status.name}</h5>
-					</div>
-				</StyledSongDetails>
+						<div className='deadline-wrapper'>
+							{song.deadlineDate && (
+								<p className='primary-text'>
+									{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+								</p>
+							)}
+							{song.reason && <h4 className='secondary-text'>{song.reason}</h4>}
+						</div>
+						{/* <p>{song.songStatus}</p> */}
+						{/* <p>{song.deadline}</p> */}
+						{/* <p>{song.deadlineReason}</p> */}
+						{/* <p>{song.sheetMusic.url}</p> */}
+						<div className='file-wrapper'>
+							{song.selectedFile && (
+								<a href={song.selectedFile} download>
+									<FaCloudDownloadAlt className='file-download-icon card-icon' />
+								</a>
+							)}
+							{song.isTab ? (
+								<TbNumbers className='music-type-icon' />
+							) : (
+								<IoMusicalNotes className='music-type-icon' />
+							)}
+							{/* <p>{song.sheetMusic && song.sheetMusic.fileName}</p> */}
+						</div>
+						<div className='status-wrapper'>
+							{song.status.name === 'Recorded' && (
+								<ImYoutube2 className='card-icon status-icon yt-icon' />
+							)}
+							{song.status.name === 'Practicing' && (
+								<GiMetronome className='card-icon status-icon' />
+							)}
+							{song.status.name === 'Ready' && (
+								<CgCamera className='card-icon status-icon' />
+							)}
+							{song.status.name === 'Backlog' && (
+								<BiArchiveOut className='card-icon status-icon' />
+							)}
+							{song.status.name === 'Archived' && (
+								<BiArchive className='card-icon status-icon' />
+							)}
+							<h5>{song.status.name}</h5>
+						</div>
+					</StyledSongDetails>
+				</>
 			)}
-			<TiArrowBack
+			{/* <TiArrowBack
 				className='back-icon'
 				onClick={() => {
 					navigate('/songs');
 				}}
 			/>
+			<FaEdit
+				className='edit-icon'
+				onClick={() => {
+					// navigate('/songs');
+					log(song, 'edit song');
+				}}
+			/> */}
 		</StyledSongs>
 	);
 };
@@ -191,7 +229,7 @@ const StyledSongs = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	/* row-gap: 1rem; */
 	max-width: 100rem;
 	/* max-width: 80rem; */
 	padding: 0.5rem 1rem;
@@ -201,8 +239,18 @@ const StyledSongs = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	overflow: auto;
-	.back-icon {
-		font-size: 6rem;
+	.nav-btns-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.back-icon {
+			font-size: 4rem;
+			cursor: pointer;
+		}
+		.edit-icon {
+			font-size: 2.5rem;
+			cursor: pointer;
+		}
 	}
 `;
 
@@ -237,6 +285,7 @@ const StyledSongDetails = styled.div`
 			text-transform: uppercase;
 			font-size: 2.2rem;
 			margin: 0;
+			cursor: pointer;
 		}
 	}
 	.artist-wrapper {
@@ -248,6 +297,7 @@ const StyledSongDetails = styled.div`
 			line-height: 4rem;
 			margin: 0; */
 			text-transform: capitalize;
+			cursor: pointer;
 			&.smaller {
 				font-size: 3rem;
 			}
@@ -257,12 +307,12 @@ const StyledSongDetails = styled.div`
 		.heart-on {
 			color: ${({ theme }) => theme.red};
 			font-size: 4rem;
-			cursor: pointer;
+			/* cursor: pointer; */
 		}
 		.heart-off {
 			color: ${({ theme }) => theme.darkBrown};
 			font-size: 4rem;
-			cursor: pointer;
+			/* cursor: pointer; */
 		}
 	}
 	.lists-wrapper {

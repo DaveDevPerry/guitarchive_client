@@ -11,6 +11,7 @@ import Artists from './pages/Artists';
 import Arrangers from './pages/Arrangers';
 import MobileMenu from './pages/MobileMenu';
 import YouTube from './pages/YouTube';
+import Artist from './pages/Artist';
 
 const AnimatedRoutes = ({
 	user,
@@ -22,6 +23,13 @@ const AnimatedRoutes = ({
 	songStatusHandler,
 	setSongDetails,
 	youtubeData,
+	artistSongStatus,
+	setArtistSongStatus,
+	artistFilteredSongs,
+	setArtistFilteredSongs,
+	artistSongStatusHandler,
+	artistSongDetails,
+	setArtistSongDetails,
 }) => {
 	const location = useLocation();
 
@@ -106,6 +114,26 @@ const AnimatedRoutes = ({
 					element={
 						user ? (
 							<Artists theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/artist'
+					element={
+						user ? (
+							<Artist
+								theme={theme}
+								currentDate={currentDate}
+								// artistSongStatus={artistSongStatus}
+								// setArtistSongStatus={setArtistSongStatus}
+								artistFilteredSongs={artistFilteredSongs}
+								setArtistFilteredSongs={setArtistFilteredSongs}
+								artistSongStatusHandler={artistSongStatusHandler}
+								// artistSongDetails={artistSongDetails}
+								setArtistSongDetails={setArtistSongDetails}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)

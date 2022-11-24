@@ -13,15 +13,9 @@ const SongsFilter = ({ songStatusHandler }) => {
 				>
 					<option>-- Filter Songs --</option>
 					<option value='all'>All Songs</option>
-					<option value='favourite'>Favourites</option>
 					<option value='tabs'>Tabs</option>
 					<option value='scores'>Scores</option>
-					<option value='deadline'>Deadlines</option>
-					<option value='practicing'>Practicing</option>
-					<option value='ready'>Ready</option>
-					<option value='recorded'>Recorded</option>
-					<option value='backlog'>Backlog</option>
-					<option value='archived'>Archived</option>
+					<option value='favourite'>Favourites</option>
 				</select>
 			</StyledSongsFilter>
 			{/* <StyledSongsFilter className='filter-select'>

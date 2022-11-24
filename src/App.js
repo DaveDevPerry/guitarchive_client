@@ -23,7 +23,7 @@ function App() {
 		log('getting from ls');
 	}, []);
 	const { user } = useAuthContext();
-	const { songs } = useSongsContext();
+	const { songs, artistSongs } = useSongsContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
@@ -68,6 +68,40 @@ function App() {
 			case 'favourite':
 				setFilteredSongs(songs && songs.filter((song) => song.isFavourite));
 				break;
+			case 'deadline':
+				setFilteredSongs(
+					songs &&
+						songs.filter(
+							(song) =>
+								song.deadlineDate !== null && song.status.name !== 'Recorded'
+						)
+				);
+				break;
+			case 'practicing':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.status.name === 'Practicing')
+				);
+				break;
+			case 'ready':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.status.name === 'Ready')
+				);
+				break;
+			case 'recorded':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.status.name === 'Recorded')
+				);
+				break;
+			case 'backlog':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.status.name === 'Backlog')
+				);
+				break;
+			case 'archived':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.status.name === 'Archived')
+				);
+				break;
 			case 'all':
 				setFilteredSongs(songs && songs);
 				break;
@@ -81,6 +115,100 @@ function App() {
 		log(e.target.textContent);
 		log(e.target.value);
 		setSongStatus(e.target.value);
+	};
+
+	// artists
+
+	// const [artistStatus, setArtistStatus] = useState('all');
+	// const [filteredArtists, setFilteredArtists] = useState([]);
+	// const [artistDetails, setArtistDetails] = useState({});
+
+	// useEffect(() => {
+	// 	artistFilterHandler();
+	// }, [artists, artistStatus]);
+
+	// // const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
+
+	// // function sand events
+	// const artistFilterHandler = () => {
+	// 	switch (artistStatus) {
+	// 		case 'tabs':
+	// 			setFilteredArtists(
+	// 				artists && artists.filter((artist) => artist.isTab)
+	// 			);
+	// 			break;
+	// 		case 'scores':
+	// 			setFilteredArtists(
+	// 				artists &&
+	// 					artists.filter((artist) => artist.isTab === false)
+	// 			);
+	// 			break;
+	// 		case 'favourite':
+	// 			setFilteredArtists(
+	// 				artists &&
+	// 					artists.filter((artist) => artist.isFavourite)
+	// 			);
+	// 			break;
+	// 		case 'all':
+	// 			setFilteredArtists(artists && artists);
+	// 			break;
+	// 		default:
+	// 			setFilteredArtists(artists && artists);
+	// 			break;
+	// 	}
+	// };
+
+	// const artistStatusHandler = (e) => {
+	// 	log(e.target.textContent);
+	// 	log(e.target.value);
+	// 	setArtistStatus(e.target.value);
+	// };
+
+	// artist songs
+
+	const [artistSongStatus, setArtistSongStatus] = useState('all');
+	const [artistFilteredSongs, setArtistFilteredSongs] = useState([]);
+	const [artistSongDetails, setArtistSongDetails] = useState({});
+
+	useEffect(() => {
+		artistSongFilterHandler();
+	}, [artistSongs, artistSongStatus]);
+
+	// const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
+
+	// function sand events
+	const artistSongFilterHandler = () => {
+		switch (artistSongStatus) {
+			case 'tabs':
+				setArtistFilteredSongs(
+					artistSongs && artistSongs.filter((artistSong) => artistSong.isTab)
+				);
+				break;
+			case 'scores':
+				setArtistFilteredSongs(
+					artistSongs &&
+						artistSongs.filter((artistSong) => artistSong.isTab === false)
+				);
+				break;
+			case 'favourite':
+				setArtistFilteredSongs(
+					artistSongs &&
+						artistSongs.filter((artistSong) => artistSong.isFavourite)
+				);
+				break;
+			case 'all':
+				setArtistFilteredSongs(artistSongs && artistSongs);
+				break;
+			default:
+				setArtistFilteredSongs(artistSongs && artistSongs);
+				break;
+		}
+	};
+
+	const artistSongStatusHandler = (e) => {
+		log(e.target.textContent);
+		log(e.target.value);
+		setArtistSongStatus(e.target.value);
 	};
 
 	// const { isMenuOpen } = useStateContext();
@@ -107,6 +235,13 @@ function App() {
 							songStatusHandler={songStatusHandler}
 							songDetails={songDetails}
 							setSongDetails={setSongDetails}
+							artistSongStatus={artistSongStatus}
+							setArtistSongStatus={setArtistSongStatus}
+							artistFilteredSongs={artistFilteredSongs}
+							setArtistFilteredSongs={setArtistFilteredSongs}
+							artistSongStatusHandler={artistSongStatusHandler}
+							artistSongDetails={artistSongDetails}
+							setArtistSongDetails={setArtistSongDetails}
 							youtubeData={youtubeData}
 						/>
 						{/* {width < breakpoint && <Footer />} */}

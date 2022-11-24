@@ -81,10 +81,10 @@ const StyledArrangers = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	/* row-gap: 1rem; */
 	max-width: 100rem;
 	/* max-width: 80rem; */
-	padding: 0.5rem 0;
+	padding: 0.5rem 1rem;
 	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
 	z-index: 1;

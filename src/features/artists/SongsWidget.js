@@ -3,8 +3,8 @@ import React from 'react';
 // import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import { useArtistsContext } from '../../hooks/useArtistContext';
-// import { getArtists } from '../services';
+// import { useSongsContext } from '../../hooks/useSongContext';
+// import { getSongs } from '../services';
 // import { gsap } from 'gsap';
 
 // import {
@@ -13,50 +13,47 @@ import { useViewport } from '../../hooks/useViewport';
 // 	SectionTitle,
 // 	SectionDivider,
 // } from '../styles/GlobalComponents';
-import ArtistCard from './ArtistCard';
-// import { artistsTextWrapper, InfoText } from './artistsStyles';
+import SongCard from './SongCard';
+// import { songsTextWrapper, InfoText } from './songsStyles';
 
-const ArtistsWidget = ({ artists, url }) => {
-	// const { dispatch } = useArtistsContext();
-	// console.log(artists, 'SONGS widget');
+const SongsWidget = ({ songs, filteredSongs }) => {
+	// const { dispatch } = useSongsContext();
+	// console.log(songs, 'SONGS widget');
 	const { width } = useViewport();
 	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>
-			{width > breakpoint ? (
-				<StyledArtistsContainer className='artists-container'>
-					{artists &&
-						artists.map((artist, index) => (
-							// <ArtistCard key={index} artist={artist} slug={artist.slug} />
-							<ArtistCard
-								key={index}
-								url={url}
-								artist={artist}
-								slug={artist.slug}
-								// onClick={dispatch({ type: 'SET_SONG', payload: artist })}
-							/>
-						))}
-				</StyledArtistsContainer>
+			{/* {width > breakpoint ? (
+				<StyledSongsContainer className='songs-container'>
+					{songs &&
+						songs.map((song, index) => <SongCard key={index} song={song} />)}
+				</StyledSongsContainer>
 			) : (
-				<StyledMobileArtistsContainer>
-					{artists &&
-						artists.map((artist, index) => (
-							// <ArtistCard key={index} artist={artist} slug={artist.slug} />
-							<ArtistCard
-								key={index}
-								url={url}
-								artist={artist}
-								slug={artist.slug}
-								// onClick={dispatch({ type: 'SET_SONG', payload: artist })}
-							/>
+				<StyledMobileSongsContainer>
+					{songs &&
+						songs.map((song, index) => <SongCard key={index} song={song} />)}
+				</StyledMobileSongsContainer>
+			)} */}
+			{width > breakpoint ? (
+				<StyledSongsContainer className='songs-container'>
+					{filteredSongs &&
+						filteredSongs.map((song, index) => (
+							<SongCard key={index} song={song} />
 						))}
-				</StyledMobileArtistsContainer>
+				</StyledSongsContainer>
+			) : (
+				<StyledMobileSongsContainer>
+					{filteredSongs &&
+						filteredSongs.map((song, index) => (
+							<SongCard key={index} song={song} />
+						))}
+				</StyledMobileSongsContainer>
 			)}
 		</>
 	);
 };
-const StyledArtistsContainer = styled.div`
+const StyledSongsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -97,7 +94,7 @@ const StyledArtistsContainer = styled.div`
 		background: rgb(75, 74, 74);
 	}
 `;
-const StyledMobileArtistsContainer = styled.div`
+const StyledMobileSongsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -139,15 +136,15 @@ const StyledMobileArtistsContainer = styled.div`
 	}
 `;
 
-export default ArtistsWidget;
+export default SongsWidget;
 
 // export async function getStaticProps() {
 // const composers = (await getComposers()) || [];
-// 	const artists = (await getArtists()) || [];
+// 	const songs = (await getSongs()) || [];
 // 	return {
 // 		props: {
 // 			// composers,
-// 			artists,
+// 			songs,
 // 		},
 // 		revalidate: 10,
 // 	};

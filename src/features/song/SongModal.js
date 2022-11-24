@@ -123,6 +123,7 @@ const StyledSongModal = styled.dialog`
 		flex: 1;
 		overflow-y: auto;
 		background-image: url('/images/dark wood texture.webp');
+		border-radius: 1rem;
 		h2 {
 			/* color: ${({ theme }) => theme.primaryColor}; */
 			text-transform: capitalize;
