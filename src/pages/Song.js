@@ -12,7 +12,7 @@ import {
 	FaStar,
 	FaRegHeart,
 	FaHeart,
-	FaEdit,
+	// FaEdit,
 } from 'react-icons/fa';
 import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
@@ -22,6 +22,8 @@ import { log } from '../utils/helper';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
 import { TiArrowBack } from 'react-icons/ti';
+import EditSongButton from '../features/song/EditSongButton';
+import EditSongModal from '../features/song/EditSongModal';
 
 const Song = () => {
 	// const { dataLoaded } = useStateContext();
@@ -40,8 +42,14 @@ const Song = () => {
 
 	const { song, dispatch } = useSongsContext();
 	// const { gig,gigCounterData, dispatch } = useGigsContext();
-	const { songToView, setArtistToView, setArrangerToView, dataLoaded } =
-		useStateContext();
+	const {
+		songToView,
+		setArtistToView,
+		setArrangerToView,
+		isEditFormOpen,
+		// setIsEditFormOpen,
+		dataLoaded,
+	} = useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -93,6 +101,7 @@ const Song = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{isEditFormOpen === true && <EditSongModal />}
 			{song && (
 				<>
 					<div className='nav-btns-container'>
@@ -102,13 +111,17 @@ const Song = () => {
 								navigate('/songs');
 							}}
 						/>
-						<FaEdit
+						<EditSongButton />
+						{/* <FaEdit
 							className='edit-icon'
 							onClick={() => {
 								// navigate('/songs');
 								log(song, 'edit song');
+								isEditFormOpen === true
+									? setIsEditFormOpen(false)
+									: setIsEditFormOpen(true);
 							}}
-						/>
+						/> */}
 					</div>
 
 					<StyledSongDetails className='songs-details-container'>

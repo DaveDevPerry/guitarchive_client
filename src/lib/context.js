@@ -12,6 +12,7 @@ export const StateContext = ({ children }) => {
 	const [songToView, setSongToView] = useState(null);
 	const [artistToView, setArtistToView] = useState(null);
 	const [arrangerToView, setArrangerToView] = useState(null);
+	const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -34,6 +35,8 @@ export const StateContext = ({ children }) => {
 				setArtistToView,
 				arrangerToView,
 				setArrangerToView,
+				isEditFormOpen,
+				setIsEditFormOpen,
 			}}
 		>
 			{children}
