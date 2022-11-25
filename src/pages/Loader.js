@@ -28,7 +28,12 @@ const Loader = () => {
 	useEffect(() => {
 		const fetchSongs = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/songs`
+				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
 			);
 			const json = await response.json();
 			// log(user, 'user');
