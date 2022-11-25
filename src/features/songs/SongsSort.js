@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SongsFilter = ({ songStatusHandler }) => {
+const SongsSort = ({ songStatusHandler }) => {
 	return (
 		<>
-			<StyledSongsFilter>
+			<StyledSongsSort>
 				<select
 					name='songs'
 					className='filter-song'
 					id='select'
 					onChange={songStatusHandler}
 				>
-					<option>-- Filter Songs --</option>
-					<option value='all'>All Songs</option>
-					<option value='favourite'>Favourites</option>
+					<option>-- Sort Songs --</option>
+					<option value='difficulty-lth'>Difficulty (low to high)</option>
+					<option value='difficulty-htl'>Difficulty (high to low)</option>
+					<option value='remove-sort'>Reset Sort</option>
+					{/* <option value='favourite'>Favourites</option>
 					<option value='tabs'>Tabs</option>
 					<option value='scores'>Scores</option>
 					<option value='deadline'>Deadlines</option>
@@ -23,22 +25,22 @@ const SongsFilter = ({ songStatusHandler }) => {
 					<option value='backlog'>Backlog</option>
 					<option value='archived'>Archived</option>
 					<option value='pdf'>File Type .pdf</option>
-					<option value='gp'>File Type .gp</option>
+					<option value='gp'>File Type .gp</option> */}
 					{/* <option value='gp'>File Type .gp</option> */}
 				</select>
-			</StyledSongsFilter>
-			{/* <StyledSongsFilter className='filter-select'>
+			</StyledSongsSort>
+			{/* <StyledSongsSort className='filter-select'>
 			<select name='songs' className='filter-song' onChange={songStatusHandler}>
 				<option value='all'>All Songs</option>
 				<option value='tabs'>Tabs</option>
 				<option value='scores'>Scores</option>
 				<option value='favourite'>Favourites</option>
 			</select>
-		</StyledSongsFilter> */}
+		</StyledSongsSort> */}
 		</>
 	);
 };
-const StyledSongsFilter = styled.div`
+const StyledSongsSort = styled.div`
 	/* text-align: right; */
 	/* border: 2px solid blue; */
 	height: 100%;
@@ -87,4 +89,4 @@ const StyledSongsFilter = styled.div`
 	}
 `;
 
-export default SongsFilter;
+export default SongsSort;

@@ -102,7 +102,7 @@ const SongForm = ({
 		navigate('/');
 	};
 	const clear = () => {
-		setCurrentId(null);
+		// setCurrentId(null);
 		setSongData({
 			artist: '',
 			title: '',

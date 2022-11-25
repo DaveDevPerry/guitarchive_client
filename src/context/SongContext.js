@@ -40,7 +40,10 @@ export const songsReducer = (state, action) => {
 		case 'SET_SONGS':
 			return {
 				...state,
-				songs: action.payload,
+				// songs: action.payload,
+				songs: action.payload.sort(function (a, b) {
+					return (a.deadlineDate === null) - (b.deadlineDate === null);
+				}),
 				artistSongs: action.payload,
 				arrangerSongs: action.payload,
 			};

@@ -102,6 +102,44 @@ function App() {
 					songs && songs.filter((song) => song.status.name === 'Archived')
 				);
 				break;
+			case 'pdf':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.fileType === 'pdf')
+				);
+				break;
+			case 'gp':
+				setFilteredSongs(
+					songs && songs.filter((song) => song.fileType !== 'pdf')
+				);
+				break;
+			case 'difficulty-lth':
+				setFilteredSongs(
+					songs &&
+						songs.sort((a, b) => {
+							return b.difficulty - a.difficulty;
+						})
+				);
+				break;
+			case 'difficulty-htl':
+				setFilteredSongs(
+					songs &&
+						songs.sort((a, b) => {
+							return a.difficulty - b.difficulty;
+						})
+				);
+				break;
+			case 'remove-sort':
+				setFilteredSongs(
+					songs &&
+						songs
+							.sort((a, b) => {
+								return new Date(b.deadlineDate) > new Date(a.deadlineDate);
+							})
+							.sort(function (a, b) {
+								return (a.deadlineDate === null) - (b.deadlineDate === null);
+							})
+				);
+				break;
 			case 'all':
 				setFilteredSongs(songs && songs);
 				break;

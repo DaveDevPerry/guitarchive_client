@@ -74,7 +74,7 @@ const ArrangerForm = ({
 		// navigate('/');
 	};
 	const clear = () => {
-		setCurrentId(null);
+		// setCurrentId(null);
 		setArrangerData({
 			name: '',
 		});

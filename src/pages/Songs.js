@@ -12,6 +12,7 @@ import SongsFilter from '../features/songs/SongsFilter';
 import SongsWidget from '../features/songs/SongsWidget';
 import { useSongsContext } from '../hooks/useSongContext';
 import { useViewport } from '../hooks/useViewport';
+import SongsSort from '../features/songs/SongsSort';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
@@ -52,6 +53,7 @@ const Songs = ({
 					<div className='user-actions-container'>
 						<AddSongButton />
 						<SongsFilter songStatusHandler={songStatusHandler} />
+						<SongsSort songStatusHandler={songStatusHandler} />
 						<SearchBar />
 					</div>
 					{/* ) : (

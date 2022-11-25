@@ -147,12 +147,8 @@ const EditSongForm = ({
 
 	return (
 		<>
-			{isArtistFormOpen === true && (
-				<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
-			)}
-			{isArrangerFormOpen === true && (
-				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
-			)}
+			{isArtistFormOpen === true && <ArtistModal currentId={currentId} />}
+			{isArrangerFormOpen === true && <ArrangerModal currentId={currentId} />}
 			<StyledEditSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
 				<div className='form-section'>
 					<div className='form-row'>
@@ -217,9 +213,13 @@ const EditSongForm = ({
 								<input
 									type='number'
 									value={songData.difficulty}
-									onChange={(e) =>
-										setSongData({ ...songData, difficulty: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, difficulty: e.target.value });
+										setNewSongData({
+											...newSongData,
+											difficulty: e.target.value,
+										});
+									}}
 									className='form-number'
 									name='difficulty'
 								/>
@@ -234,9 +234,10 @@ const EditSongForm = ({
 							<div className='choice-wrapper'>
 								<select
 									name='artist'
-									onChange={(e) =>
-										setSongData({ ...songData, artist: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, artist: e.target.value });
+										setNewSongData({ ...newSongData, artist: e.target.value });
+									}}
 									value={songData.artist}
 									// label={songData.artist}
 								>
@@ -271,9 +272,13 @@ const EditSongForm = ({
 							<div className='choice-wrapper'>
 								<select
 									name='arranger'
-									onChange={(e) =>
-										setSongData({ ...songData, arranger: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, arranger: e.target.value });
+										setNewSongData({
+											...newSongData,
+											arranger: e.target.value,
+										});
+									}}
 									value={songData.arranger}
 								>
 									<option
@@ -345,9 +350,13 @@ const EditSongForm = ({
 									// 	// : songData.deadlineDate.toISOString().split('T')[0]
 									// }
 									className='date-input'
-									onChange={(e) =>
-										setSongData({ ...songData, deadlineDate: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, deadlineDate: e.target.value });
+										setNewSongData({
+											...newSongData,
+											deadlineDate: e.target.value,
+										});
+									}}
 								/>
 							</div>
 						</div>
@@ -361,9 +370,10 @@ const EditSongForm = ({
 								placeholder='Reason for deadline'
 								value={songData.reason}
 								rows='3'
-								onChange={(e) =>
-									setSongData({ ...songData, reason: e.target.value })
-								}
+								onChange={(e) => {
+									setSongData({ ...songData, reason: e.target.value });
+									setNewSongData({ ...newSongData, reason: e.target.value });
+								}}
 							/>
 						</div>
 					</div>
@@ -375,9 +385,10 @@ const EditSongForm = ({
 							<div className='choice-wrapper'>
 								<select
 									name='style'
-									onChange={(e) =>
-										setSongData({ ...songData, style: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, style: e.target.value });
+										setNewSongData({ ...newSongData, style: e.target.value });
+									}}
 									value={songData.style}
 								>
 									<option
@@ -399,9 +410,10 @@ const EditSongForm = ({
 							<div className='choice-wrapper'>
 								<select
 									name='status'
-									onChange={(e) =>
-										setSongData({ ...songData, status: e.target.value })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, status: e.target.value });
+										setNewSongData({ ...newSongData, status: e.target.value });
+									}}
 									value={songData.status}
 								>
 									<option
@@ -443,9 +455,10 @@ const EditSongForm = ({
 								<input
 									checked={songData.isTab}
 									// onChange={onInputChange}
-									onChange={(e) =>
-										setSongData({ ...songData, isTab: e.target.checked })
-									}
+									onChange={(e) => {
+										setSongData({ ...songData, isTab: e.target.checked });
+										setNewSongData({ ...newSongData, isTab: e.target.checked });
+									}}
 									type='checkbox'
 									// id='storeData'
 									name='tab'

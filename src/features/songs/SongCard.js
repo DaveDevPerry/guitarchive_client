@@ -2,7 +2,7 @@ import React from 'react';
 // import Link from 'next/link';
 import styled from 'styled-components';
 import {
-	FaCloudDownloadAlt,
+	// FaCloudDownloadAlt,
 	FaRegStar,
 	FaStar,
 	FaRegHeart,
@@ -91,10 +91,15 @@ const SongCard = ({ song, slug, url }) => {
 						) : (
 							<IoMusicalNotes className='music-type-icon' />
 						)}
-						{song.selectedFile && (
+						{/* {song.selectedFile && (
 							<a href={song.selectedFile} download>
 								<FaCloudDownloadAlt className='file-download-icon card-icon' />
 							</a>
+						)} */}
+						{song.fileType === 'pdf' ? (
+							<img src='/images/pdf_icon.png' alt='pdf' />
+						) : (
+							<img src='/images/gp_icon.png' alt='guitar pro' />
 						)}
 
 						{/* {song.sheetMusic && (
