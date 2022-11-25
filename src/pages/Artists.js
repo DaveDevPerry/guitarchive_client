@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import ArtistsList from '../features/artists/ArtistsList';
 import ArtistModal from '../features/artists/ArtistModal';
 import AddArtistButton from '../features/artists/AddArtistButton';
-import SearchBar from '../components/SearchBar';
+// import SearchBar from '../components/SearchBar';
 // import ArtistsFilter from '../features/artists/ArtistsFilter';
 import ArtistsWidget from '../features/artists/ArtistsWidget';
 import { useArtistsContext } from '../hooks/useArtistContext';
@@ -50,7 +50,7 @@ const Artists = () => {
 					</StyledArtistDetails> */}
 					<div className='user-actions-container'>
 						<AddArtistButton />
-						<SearchBar />
+						{/* <SearchBar /> */}
 						{/* {width > breakpoint && <SearchBar />} */}
 					</div>
 					<ArtistsWidget artists={artists} />

@@ -59,6 +59,8 @@ const YouTube = ({ youtubeData }) => {
 								className='circle'
 								layout='fill'
 							/>
+
+							{/* https://yt3.ggpht.com/80iDb0gtP6eJf7NPmxeQuR68oJwngPERZSQwSV6MQimx7eQUFkGPY6490sYA2OAHII6tNf_Gmw=s88-c-k-c0x00ffffff-no-rj-mo */}
 							{/* <Image
 						src='https://yt3.ggpht.com/80iDb0gtP6eJf7NPmxeQuR68oJwngPERZSQwSV6MQimx7eQUFkGPY6490sYA2OAHII6tNf_Gmw=s88-c-k-c0x00ffffff-no-rj'
 						alt='youtube channel logo'

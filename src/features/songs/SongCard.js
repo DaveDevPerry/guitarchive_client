@@ -19,6 +19,7 @@ import { log } from '../../utils/helper';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
+import Tooltip from '../../components/Tooltip';
 // import moment from 'moment';
 
 const SongCard = ({ song, slug, url }) => {
@@ -31,12 +32,12 @@ const SongCard = ({ song, slug, url }) => {
 
 		<StyledSongCard
 			className='song-card-wrapper'
-			onClick={(e) => {
-				e.preventDefault();
-				log(song._id, 'song id on click');
-				setSongToView(song._id);
-				navigate('/song');
-			}}
+			// onClick={(e) => {
+			// 	e.preventDefault();
+			// 	log(song._id, 'song id on click');
+			// 	setSongToView(song._id);
+			// 	navigate('/song');
+			// }}
 		>
 			{width > breakpoint ? (
 				<>
@@ -47,7 +48,15 @@ const SongCard = ({ song, slug, url }) => {
 							<FaRegHeart className='card-icon heart-off' />
 						)}
 					</div>
-					<div className='song-wrapper'>
+					<div
+						className='song-wrapper'
+						onClick={(e) => {
+							e.preventDefault();
+							log(song._id, 'song id on click');
+							setSongToView(song._id);
+							navigate('/song');
+						}}
+					>
 						<h3 className='primary-text'>{song.title}</h3>
 						<h4 className='secondary-text'>{song.artist.name}</h4>
 					</div>
@@ -87,9 +96,13 @@ const SongCard = ({ song, slug, url }) => {
 					</div>
 					<div className='file-wrapper'>
 						{song.isTab ? (
-							<TbNumbers className='music-type-icon' />
+							<Tooltip content='tablature' direction='left'>
+								<TbNumbers className='music-type-icon' />
+							</Tooltip>
 						) : (
-							<IoMusicalNotes className='music-type-icon' />
+							<Tooltip content='music score' direction='left'>
+								<IoMusicalNotes className='music-type-icon' />
+							</Tooltip>
 						)}
 						{/* {song.selectedFile && (
 							<a href={song.selectedFile} download>
@@ -97,9 +110,13 @@ const SongCard = ({ song, slug, url }) => {
 							</a>
 						)} */}
 						{song.fileType === 'pdf' ? (
-							<img src='/images/pdf_icon.png' alt='pdf' />
+							<Tooltip content='pdf file' direction='left'>
+								<img src='/images/pdf_icon.png' alt='pdf' />
+							</Tooltip>
 						) : (
-							<img src='/images/gp_icon.png' alt='guitar pro' />
+							<Tooltip content='guitar pro file' direction='left'>
+								<img src='/images/gp_icon.png' alt='guitar pro' />
+							</Tooltip>
 						)}
 
 						{/* {song.sheetMusic && (
@@ -115,21 +132,36 @@ const SongCard = ({ song, slug, url }) => {
 					{/* <div className='status-wrapper'>
 						<ImYoutube2 className='card-icon status-icon yt-icon' />
 				</div> */}
+					{/* <Tooltip content="Yee-haw!" direction="right">
+          <span className="example-emoji" role="img" aria-label="cowboy emoji">
+            🤠
+          </span>
+        </Tooltip> */}
 					<div className='status-wrapper'>
 						{song.status.name === 'Recorded' && (
-							<ImYoutube2 className='card-icon status-icon yt-icon' />
+							<Tooltip content='Recorded' direction='left'>
+								<ImYoutube2 className='card-icon status-icon yt-icon' />
+							</Tooltip>
 						)}
 						{song.status.name === 'Practicing' && (
-							<GiMetronome className='card-icon status-icon' />
+							<Tooltip content='Practicing' direction='left'>
+								<GiMetronome className='card-icon status-icon' />
+							</Tooltip>
 						)}
 						{song.status.name === 'Ready' && (
-							<CgCamera className='card-icon status-icon' />
+							<Tooltip content='Ready' direction='left'>
+								<CgCamera className='card-icon status-icon' />
+							</Tooltip>
 						)}
 						{song.status.name === 'Backlog' && (
-							<BiArchiveOut className='card-icon status-icon' />
+							<Tooltip content='Backlog' direction='left'>
+								<BiArchiveOut className='card-icon status-icon' />
+							</Tooltip>
 						)}
 						{song.status.name === 'Archived' && (
-							<BiArchive className='card-icon status-icon' />
+							<Tooltip content='Archived' direction='left'>
+								<BiArchive className='card-icon status-icon' />
+							</Tooltip>
 						)}
 					</div>
 				</>
@@ -142,7 +174,15 @@ const SongCard = ({ song, slug, url }) => {
 					<FaRegHeart className='card-icon heart-off' />
 				)}
 			</div> */}
-					<div className='song-wrapper'>
+					<div
+						className='song-wrapper'
+						onClick={(e) => {
+							e.preventDefault();
+							log(song._id, 'song id on click');
+							setSongToView(song._id);
+							navigate('/song');
+						}}
+					>
 						<h3 className='primary-text'>{song.title}</h3>
 						<h4 className='secondary-text'>{song.artist.name}</h4>
 					</div>

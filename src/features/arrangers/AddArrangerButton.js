@@ -19,8 +19,6 @@ const AddArrangerButton = () => {
 	);
 };
 const StyledAddArrangerButton = styled.div`
-	/* border: 1px solid #1aac83; */
-	/* padding: 0 1em; */
 	padding: 0 1rem;
 	/* flex: 1; */
 	display: flex;
@@ -29,19 +27,21 @@ const StyledAddArrangerButton = styled.div`
 	column-gap: 0.5rem;
 	border-radius: 0.5rem;
 	background-color: ${({ theme }) => theme.lightBrown};
+	box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 	/* background-color: #9a9a9a; */
 	height: 100%;
-	width: 9em;
+	height: 3.8rem;
+	/* width: 9em; */
 	/* height: 2em; */
 	cursor: pointer;
 	.add-arranger-btn {
 		font-size: 2.5rem;
 	}
 	p {
-		font-family: 'Roboto';
+		font-family: 'NewTegomin';
 		color: white;
-		text-transform: capitalize;
-		font-size: 1.2rem;
+		text-transform: uppercase;
+		font-size: 1.6rem;
 	}
 `;
 

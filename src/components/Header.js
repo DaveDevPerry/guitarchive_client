@@ -46,11 +46,17 @@ const Header = () => {
 							<p>arrangers</p>
 						</NavLink>
 						<NavLink
+							to='/youtube'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<p>youtube</p>
+						</NavLink>
+						{/* <NavLink
 							to='/settings'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>settings</p>
-						</NavLink>
+						</NavLink> */}
 					</nav>
 				)}
 				{/* {width < breakpoint ? (

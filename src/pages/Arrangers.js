@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import ArrangersList from '../features/arrangers/ArrangersList';
 import ArrangerModal from '../features/arrangers/ArrangerModal';
 import AddArrangerButton from '../features/arrangers/AddArrangerButton';
-import SearchBar from '../components/SearchBar';
+// import SearchBar from '../components/SearchBar';
 // import ArrangersFilter from '../features/arrangers/ArrangersFilter';
 import ArrangersWidget from '../features/arrangers/ArrangersWidget';
 import { useArrangersContext } from '../hooks/useArrangerContext';
@@ -45,7 +45,7 @@ const Arrangers = () => {
 					)}
 					<div className='user-actions-container'>
 						<AddArrangerButton />
-						<SearchBar />
+						{/* <SearchBar /> */}
 					</div>
 					<ArrangersWidget arrangers={arrangers} />
 				</StyledArrangers>

@@ -24,6 +24,7 @@ import { TbNumbers } from 'react-icons/tb';
 import { TiArrowBack } from 'react-icons/ti';
 import EditSongButton from '../features/song/EditSongButton';
 import EditSongModal from '../features/song/EditSongModal';
+import Tooltip from '../components/Tooltip';
 
 const Song = () => {
 	// const { dataLoaded } = useStateContext();
@@ -200,15 +201,28 @@ const Song = () => {
 						{/* <p>{song.deadlineReason}</p> */}
 						{/* <p>{song.sheetMusic.url}</p> */}
 						<div className='file-wrapper'>
+							{song.fileType === 'pdf' ? (
+								<Tooltip content='pdf file' direction='left'>
+									<img src='/images/pdf_icon.png' alt='pdf' />
+								</Tooltip>
+							) : (
+								<Tooltip content='guitar pro file' direction='left'>
+									<img src='/images/gp_icon.png' alt='guitar pro' />
+								</Tooltip>
+							)}
 							{song.selectedFile && (
 								<a href={song.selectedFile} download>
 									<FaCloudDownloadAlt className='file-download-icon card-icon' />
 								</a>
 							)}
 							{song.isTab ? (
-								<TbNumbers className='music-type-icon' />
+								<Tooltip content='tablature' direction='right'>
+									<TbNumbers className='music-type-icon' />
+								</Tooltip>
 							) : (
-								<IoMusicalNotes className='music-type-icon' />
+								<Tooltip content='music score' direction='right'>
+									<IoMusicalNotes className='music-type-icon' />
+								</Tooltip>
 							)}
 							{/* <p>{song.sheetMusic && song.sheetMusic.fileName}</p> */}
 						</div>
@@ -365,7 +379,8 @@ const StyledSongDetails = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		column-gap: 0.5rem;
+		column-gap: 2rem;
+		cursor: pointer;
 		a {
 			text-decoration: none;
 			.file-download-icon {
@@ -375,7 +390,7 @@ const StyledSongDetails = styled.div`
 			}
 		}
 		.music-type-icon {
-			/* cursor: pointer; */
+			cursor: pointer;
 			font-size: 3rem;
 		}
 	}

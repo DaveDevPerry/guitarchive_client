@@ -11,7 +11,7 @@ const SongsSort = ({ songStatusHandler }) => {
 					id='select'
 					onChange={songStatusHandler}
 				>
-					<option>-- Sort Songs --</option>
+					<option className='default-filter'>-- Sort Songs --</option>
 					<option value='difficulty-lth'>Difficulty (low to high)</option>
 					<option value='difficulty-htl'>Difficulty (high to low)</option>
 					<option value='remove-sort'>Reset Sort</option>
@@ -61,14 +61,20 @@ const StyledSongsSort = styled.div`
 		/* font-size: inherit; */
 		cursor: inherit;
 		line-height: inherit;
-		padding: 10px;
+		padding: 0 10px;
 		box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 		outline: none;
 		border-radius: 0.4rem;
 		color: ${({ theme }) => theme.white};
+		height: 3.8rem;
 		/* &:focus{
 
 				} */
+		&.filter-song {
+			font-family: 'NewTegomin';
+			text-transform: uppercase;
+			font-size: 1.6rem;
+		}
 		option {
 			font-size: 1.6rem;
 			/* font-style: italic; */
@@ -85,6 +91,10 @@ const StyledSongsSort = styled.div`
 				border: 1px solid ${({ theme }) => theme.darkBrown};
 				outline: none;
 			}
+		}
+		&.default-filter {
+			font-family: 'NewTegomin';
+			text-transform: uppercase;
 		}
 	}
 `;

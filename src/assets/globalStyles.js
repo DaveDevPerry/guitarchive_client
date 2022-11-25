@@ -76,7 +76,8 @@ ${
   }
   button {
 		background-color: #ffffff;
-    font-family: 'Oswald', serif;
+    ${'' /* font-family: 'Oswald', serif; */}
+    font-family: 'NewTegomin';
 		padding: 1rem 3rem;
 		text-transform: uppercase;
 		border: none;

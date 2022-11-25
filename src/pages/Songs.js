@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import SongsList from '../features/songs/SongsList';
 import SongModal from '../features/song/SongModal';
 import AddSongButton from '../features/song/AddSongButton';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../features/songs/SearchBar';
 import SongsFilter from '../features/songs/SongsFilter';
 import SongsWidget from '../features/songs/SongsWidget';
 import { useSongsContext } from '../hooks/useSongContext';
@@ -54,7 +54,7 @@ const Songs = ({
 						<AddSongButton />
 						<SongsFilter songStatusHandler={songStatusHandler} />
 						<SongsSort songStatusHandler={songStatusHandler} />
-						<SearchBar />
+						<SearchBar songStatusHandler={songStatusHandler} />
 					</div>
 					{/* ) : (
 				<div className='mobile-user-actions-container'>

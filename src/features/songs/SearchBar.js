@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchSongs from './SearchSongs';
 
-const SearchBar = () => {
+const SearchBar = ({ songStatusHandler }) => {
 	const [display, setDisplay] = useState(false);
 	const [songTitleToSearch, setSongTitleToSearch] = useState('');
 	return (
@@ -18,7 +18,18 @@ const SearchBar = () => {
 				// emptyFields={emptyFields}
 				// setCreateNewBand={setCreateNewBand}
 			/>
-			<input type='button' name='search' value='search' />
+			{/* <input
+				type='button'
+				name='search'
+				value={songTitleToSearch}
+				onClick={songStatusHandler}
+			/> */}
+			<input
+				type='button'
+				name='search'
+				value='search'
+				// onClick={songStatusHandler}
+			/>
 
 			{/* <!-- <a href="#"><img src="./svg/search.svg" alt="search" className="icon"  id="search-btn"></a> --> */}
 		</StyledSearchBar>
@@ -52,13 +63,16 @@ const StyledSearchBar = styled.div`
 	}
 	input[type='button'] {
 		background-color: ${({ theme }) => theme.darkBrown};
-		font-size: 1.4rem;
+		font-size: 1.6rem;
 		color: ${({ theme }) => theme.brown};
 		// border: none;
 		border: 1px solid ${({ theme }) => theme.darkBrown};
 		border-radius: 0 0.4rem 0.4rem 0;
 		// border-radius: 0 0.7rem 0.7rem 0;
-		padding: 1rem;
+		padding: 0 1rem;
+		font-family: 'NewTegomin';
+		text-transform: uppercase;
+		height: 3.8rem;
 		cursor: pointer;
 		font-weight: lighter;
 		color: ${({ theme }) => theme.white};

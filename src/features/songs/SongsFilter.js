@@ -11,7 +11,7 @@ const SongsFilter = ({ songStatusHandler }) => {
 					id='select'
 					onChange={songStatusHandler}
 				>
-					<option>-- Filter Songs --</option>
+					<option className='default-filter'>-- Filter Songs --</option>
 					<option value='all'>All Songs</option>
 					<option value='favourite'>Favourites</option>
 					<option value='tabs'>Tabs</option>
@@ -59,14 +59,20 @@ const StyledSongsFilter = styled.div`
 		/* font-size: inherit; */
 		cursor: inherit;
 		line-height: inherit;
-		padding: 10px;
+		padding: 0 10px;
 		box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 		outline: none;
 		border-radius: 0.4rem;
 		color: ${({ theme }) => theme.white};
+		height: 3.8rem;
 		/* &:focus{
 
 				} */
+		&.filter-song {
+			font-family: 'NewTegomin';
+			text-transform: uppercase;
+			font-size: 1.6rem;
+		}
 		option {
 			font-size: 1.6rem;
 			/* font-style: italic; */
@@ -82,6 +88,10 @@ const StyledSongsFilter = styled.div`
 			&:focus {
 				border: 1px solid ${({ theme }) => theme.darkBrown};
 				outline: none;
+			}
+			&.default-filter {
+				font-family: 'NewTegomin';
+				text-transform: uppercase;
 			}
 		}
 	}
