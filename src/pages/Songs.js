@@ -43,7 +43,7 @@ const Songs = ({
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
-			className='songs-page'
+			className='songs-page page'
 		>
 			{isFormOpen === true && (
 				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
@@ -67,22 +67,23 @@ const Songs = ({
 };
 
 const StyledSongs = styled(motion.div)`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	max-width: 100rem;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0rem;
 	overflow-y: hidden;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
-	flex: 1;
-	/* overflow-y: hidden; */
+	flex: 1; */
+	padding: 0 0.5rem;
 	.user-actions-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 0 1rem 0;
+		padding: 0 0.5rem 1rem 0.5rem;
+		/* padding: 0 0 1rem 0; */
 		column-gap: 2rem;
 	}
 	.mobile-user-actions-container {

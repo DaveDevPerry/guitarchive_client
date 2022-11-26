@@ -1,17 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-
-${
-	'' /* @font-face {
-  font-family: 'NewTegomin';
-  src: url("/fonts/NewTegomin-Regular.woff2") format("woff2"), url("/fonts/NewTegomin-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-}
-
   *,
   *::before,
   *::after {
@@ -27,7 +16,6 @@ ${
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    ${'' /* font-family: 'Oswald', serif; */}
     font-family: 'NewTegomin';
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
@@ -39,20 +27,24 @@ ${
     background-color: ${({ theme }) => theme.black};
     font-size: 1.6rem;
     font-weight: 400;
-    ${'' /* color: ${({ theme }) => theme.txtGrey}; */}
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
   }
-	.App {
+	${
+		'' /* .App {
     width: 100vw;
     height: 100vh;
-    ${'' /* width: clamp(32rem, 100vw, 100vw); */}
+    width: clamp(32rem, 100vw, 100vw);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     row-gap: 1rem;
     background-color: ${({ theme }) => theme.borderGrey};
     background-image: url("/images/light wood texture.webp");
+  } */
+	}
+  .App{
+    background-color: ${({ theme }) => theme.borderGrey};
   }
   h3{
     font-size: 1.6rem;
@@ -63,7 +55,6 @@ ${
   }
   button {
 		background-color: #ffffff;
-    ${'' /* font-family: 'Oswald', serif; */}
     font-family: 'NewTegomin';
 		padding: 1rem 3rem;
 		text-transform: uppercase;

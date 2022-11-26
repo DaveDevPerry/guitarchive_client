@@ -14,7 +14,7 @@ export const ViewportContextProvider = ({ children }) => {
 	useEffect(() => {
 		window.addEventListener('resize', handleWindowResize);
 		return () => window.removeEventListener('resize', handleWindowResize);
-	}, []);
+	}, [width, height]);
 
 	return (
 		<ViewportContext.Provider value={{ width, height }}>

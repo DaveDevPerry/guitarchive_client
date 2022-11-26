@@ -226,7 +226,7 @@ const Loader = () => {
 
 	return (
 		<StyledLoader
-			className='loader'
+			// className='loader'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -411,6 +411,7 @@ const StyledLoader = styled(motion.section)`
 const StyledPageLoader = styled.div`
 	/* .loader-container { */
 	/* @media screen and (max-width: 420px) { */
+	/* border: 2px solid red; */
 	position: absolute;
 	top: 0;
 	left: 0;

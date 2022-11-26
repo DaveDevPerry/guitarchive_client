@@ -17,7 +17,7 @@ const Login = ({ theme }) => {
 
 	return (
 		<StyledLogin
-			className='login-page'
+			className='login-page page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -70,25 +70,18 @@ const Login = ({ theme }) => {
 	);
 };
 const StyledLogin = styled(motion.div)`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 2rem;
-	/* padding: 0.5rem; */
 	max-width: 100rem;
-	/* max-width: 42rem; */
-	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
-	/* overflow-y: scroll; */
-	/* overflow: hidden; */
 	z-index: 1;
-	/* overflow-y: auto; */
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	z-index: 600;
-
+	z-index: 600; */
 	.form-page-container {
 		display: flex;
 		flex-direction: column;

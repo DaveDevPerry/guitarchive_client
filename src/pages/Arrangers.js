@@ -33,78 +33,41 @@ const Arrangers = () => {
 	}, [navigate, dataLoaded]);
 
 	return (
-		<>
-			{width > breakpoint ? (
-				<StyledArrangers
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{isArrangerFormOpen === true && (
-						<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
-					)}
-					<div className='user-actions-container'>
-						<AddArrangerButton />
-						{/* <SearchBar /> */}
-					</div>
-					<ArrangersWidget arrangers={arrangers} />
-				</StyledArrangers>
-			) : (
-				<StyledMobileArrangers
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{isArrangerFormOpen === true && (
-						<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
-					)}
-					<div className='mobile-user-actions-container'>
-						<AddArrangerButton />
-					</div>
-					<ArrangersWidget arrangers={arrangers} />
-				</StyledMobileArrangers>
+		<StyledArrangers
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+			className='arrangers-page page'
+		>
+			{isArrangerFormOpen === true && (
+				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
-		</>
+			{width < breakpoint ? (
+				<div className='mobile-user-actions-container'>
+					<AddArrangerButton />
+				</div>
+			) : (
+				<div className='user-actions-container'>
+					<AddArrangerButton />
+					{/* <SearchBar /> */}
+				</div>
+			)}
+			<ArrangersWidget arrangers={arrangers} />
+		</StyledArrangers>
 	);
 };
 const StyledArrangers = styled(motion.div)`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 100rem; */
 	padding: 0.5rem 1rem;
-	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow-y: hidden;
-	.user-actions-container {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		padding: 0 0 1rem 0;
-	}
-`;
-const StyledMobileArrangers = styled(motion.div)`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	/* row-gap: 1rem; */
-	max-width: 100rem;
-	/* max-width: 100rem; */
-	/* padding: 0.5rem 0; */
-	/* padding: 0.5rem 1rem; */
-	overflow-y: auto;
-	z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	overflow-y: hidden;
-
+	overflow-y: hidden; */
 	.mobile-user-actions-container {
 		display: flex;
 		justify-content: space-between;
@@ -113,6 +76,37 @@ const StyledMobileArrangers = styled(motion.div)`
 		column-gap: 2rem;
 		transition: all 200ms linear;
 	}
+	.user-actions-container {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0 0 1rem 0;
+	}
 `;
+// const StyledMobileArrangers = styled(motion.div)`
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	/* row-gap: 1rem; */
+// 	max-width: 100rem;
+// 	/* max-width: 100rem; */
+// 	/* padding: 0.5rem 0; */
+// 	/* padding: 0.5rem 1rem; */
+// 	overflow-y: auto;
+// 	z-index: 1;
+// 	transition: all 200ms linear;
+// 	margin: 0 auto;
+// 	flex: 1;
+// 	overflow-y: hidden;
+
+// 	.mobile-user-actions-container {
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
+// 		padding: 0 1rem 1rem 1rem;
+// 		column-gap: 2rem;
+// 		transition: all 200ms linear;
+// 	}
+// `;
 
 export default Arrangers;

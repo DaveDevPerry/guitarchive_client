@@ -100,11 +100,19 @@ const SongCard = ({ song }) => {
 						)}
 						{song.fileType === 'pdf' ? (
 							<Tooltip content='pdf file' direction='left'>
-								<img src='/images/pdf_icon.png' alt='pdf' />
+								<img
+									src='/images/pdf_icon.png'
+									alt='pdf'
+									className='img-icon'
+								/>
 							</Tooltip>
 						) : (
 							<Tooltip content='guitar pro file' direction='left'>
-								<img src='/images/gp_icon.png' alt='guitar pro' />
+								<img
+									src='/images/gp_icon.png'
+									alt='guitar pro'
+									className='img-icon'
+								/>
 							</Tooltip>
 						)}
 					</div>
@@ -167,6 +175,10 @@ const StyledSongCard = styled.div`
 			display: flex;
 			align-items: center;
 			column-gap: 0.5rem;
+			.img-icon {
+				height: 30px;
+				width: 30px;
+			}
 		}
 		.deadline-wrapper {
 			width: 100px;

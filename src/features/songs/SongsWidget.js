@@ -43,6 +43,17 @@ const SongsWidget = ({ filteredSongs }) => {
 	);
 };
 const StyledSongsWidget = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	max-width: 100rem;
+	/* padding: 0.5rem 1rem; */
+	overflow-y: hidden;
+	z-index: 1;
+	/* transition: all 200ms linear; */
+	/* margin: 0 auto; */
+	flex: 1;
+	padding: 0 0.5rem;
 	.mobile-songs-container {
 		display: flex;
 		flex-direction: column;

@@ -99,7 +99,7 @@ const StyledHeader = styled.header`
 				font-weight: bolder;
 			}
 		}
-		a {
+		/* a {
 			display: grid;
 			place-content: center;
 			color: ${({ theme }) => theme.darkBrown};
@@ -126,7 +126,7 @@ const StyledHeader = styled.header`
 				color: ${({ theme }) => theme.secondaryColor};
 				color: ${({ theme }) => theme.lightBrown};
 			}
-		}
+		} */
 		nav.top-nav {
 			display: flex;
 			align-items: center;

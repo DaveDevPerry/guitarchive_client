@@ -8,7 +8,7 @@ const SongsSort = ({ songStatusHandler }) => {
 				<select
 					name='songs'
 					className='filter-song'
-					id='select'
+					id='select-sort'
 					onChange={songStatusHandler}
 				>
 					<option className='default-filter'>-- Sort Songs --</option>
