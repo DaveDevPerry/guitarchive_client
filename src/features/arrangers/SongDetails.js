@@ -80,17 +80,7 @@ const StyledSongDetails = styled.div`
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
 	}
-	span {
-		display: none;
-		position: absolute;
-		top: 1.2rem;
-		right: 2rem;
-		cursor: pointer;
-		background: ${({ theme }) => theme.bgGrey};
-		padding: 0.6rem;
-		border-radius: 50%;
-		color: ${({ theme }) => theme.txtDarkGrey};
-	}
+
 	.wrapper-icon {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;

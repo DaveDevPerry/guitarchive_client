@@ -109,7 +109,7 @@ const StyledEditSongModal = styled.dialog`
 		justify-content: flex-start;
 		/* row-gap: 1rem; */
 		/* padding: 0.5rem; */
-		max-width: 80rem;
+		max-width: 100rem;
 		/* max-width: 42rem; */
 		/* border: 2px solid blue; */
 		padding: 1rem 1rem 2rem 1rem;

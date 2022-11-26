@@ -43,7 +43,7 @@ const Artist = ({
 	const { artistSongs, dispatch: songDispatch } = useSongsContext();
 
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 
@@ -180,14 +180,14 @@ const StyledArtists = styled(motion.div)`
 	justify-content: flex-start;
 	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
+	/* max-width: 100rem; */
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	overflow-y: hidden;
 	.user-actions-container {
 		display: flex;
 		justify-content: space-between;
@@ -211,7 +211,7 @@ const StyledArtistDetails = styled.div`
 
 	text-align: center;
 	/* padding: 3rem 1rem; */
-	display: none;
+	/* display: none; */
 	.artist-wrapper,
 	.artist-wrapper {
 		padding: 0 1rem;
@@ -247,7 +247,7 @@ const StyledNoArtistDetails = styled.div`
 
 	text-align: center;
 	/* padding: 3rem 1rem; */
-	display: none;
+	/* display: none; */
 	.artist-wrapper,
 	.artist-wrapper {
 		padding: 0 1rem;
@@ -283,14 +283,14 @@ const StyledMobileArtists = styled(motion.div)`
 	justify-content: flex-start;
 	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
+	/* max-width: 100rem; */
 	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	overflow-y: hidden;
 	.mobile-user-actions-container {
 		display: flex;
 		justify-content: space-between;

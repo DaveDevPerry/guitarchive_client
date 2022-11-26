@@ -12,7 +12,7 @@ import { FiMenu } from 'react-icons/fi';
 
 const MobileHeader = () => {
 	// const { width } = useViewport();
-	// const breakpoint = 620;
+	// const breakpoint = 460;
 	// const { isMenuOpen, setIsMenuOpen } = useStateContext();
 	return (
 		<StyledMobileHeader>

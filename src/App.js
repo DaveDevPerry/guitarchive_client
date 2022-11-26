@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from './assets/globalStyles';
 import { lightTheme, darkTheme } from './assets/Themes';
 import { ThemeProvider } from 'styled-components';
-import { useViewport } from './hooks/useViewport';
+// import { useViewport } from './hooks/useViewport';
 import { useAuthContext } from './hooks/useAuthContext';
 import { StateContext } from './lib/context';
 import { log } from './utils/helper';
@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import AnimatedRoutes from './AnimatedRoutes';
 import { useDarkMode } from './assets/useDarkMode';
 import Header from './components/Header';
-import MobileHeader from './components/MobileHeader';
+// import MobileHeader from './components/MobileHeader';
 // import Footer from './components/Footer';
 import { useSongsContext } from './hooks/useSongContext';
 // import MobileMenu from './components/MobileMenu';
@@ -27,8 +27,8 @@ function App() {
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
-	const { width } = useViewport();
-	const breakpoint = 620;
+	// const { width } = useViewport();
+	// const breakpoint = 460;
 
 	const [currentDate] = useState(new Date().toLocaleDateString());
 
@@ -307,8 +307,7 @@ function App() {
 				<div className='App'>
 					<BrowserRouter>
 						<Toaster />
-						{width < breakpoint ? <MobileHeader /> : <Header />}
-						{/* {isMenuOpen === true && <MobileMenu />} */}
+						<Header />
 						<AnimatedRoutes
 							currentDate={currentDate}
 							user={user}

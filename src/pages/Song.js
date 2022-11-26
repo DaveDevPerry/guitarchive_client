@@ -18,6 +18,7 @@ import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
+import { MdDeleteForever } from 'react-icons/md';
 import { log } from '../utils/helper';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
@@ -25,6 +26,8 @@ import { TiArrowBack } from 'react-icons/ti';
 import EditSongButton from '../features/song/EditSongButton';
 import EditSongModal from '../features/song/EditSongModal';
 import Tooltip from '../components/Tooltip';
+import toast from 'react-hot-toast';
+import DeleteSongModal from '../features/song/DeleteSongModal';
 
 const Song = () => {
 	// const { dataLoaded } = useStateContext();
@@ -48,6 +51,8 @@ const Song = () => {
 		setArtistToView,
 		setArrangerToView,
 		isEditFormOpen,
+		isDeleteFormOpen,
+		setIsDeleteFormOpen,
 		// setIsEditFormOpen,
 		dataLoaded,
 	} = useStateContext();
@@ -96,6 +101,45 @@ const Song = () => {
 		}
 	}, [songToView, dispatch, user]);
 
+	const handleDelete = async () => {
+		if (!user) {
+			// setError('You must be logged in');
+			return;
+		}
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/songs/${songToView}`,
+			{
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${user.token}`,
+				},
+			}
+		);
+		const json = await response.json();
+		log(json, 'delete json');
+		if (response.ok) {
+			dispatch({ type: 'DELETE_SONG', payload: songToView });
+			setIsDeleteFormOpen(false);
+			notify();
+			navigate('/');
+		}
+	};
+	const handleCancel = async () => {
+		setIsDeleteFormOpen(false);
+	};
+
+	// create a toast
+	const notify = () => {
+		toast.success(`song successfully deleted.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
+	};
+
 	return (
 		<StyledSongs
 			initial={{ width: 0 }}
@@ -103,6 +147,12 @@ const Song = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			{isEditFormOpen === true && <EditSongModal />}
+			{isDeleteFormOpen === true && (
+				<DeleteSongModal
+					handleDelete={handleDelete}
+					handleCancel={handleCancel}
+				/>
+			)}
 			{song && (
 				<>
 					<div className='nav-btns-container'>
@@ -112,6 +162,16 @@ const Song = () => {
 								navigate('/songs');
 							}}
 						/>
+						<MdDeleteForever
+							className='delete-icon'
+							onClick={() => {
+								isDeleteFormOpen === true
+									? setIsDeleteFormOpen(false)
+									: setIsDeleteFormOpen(true);
+							}}
+						/>
+						{/* <MdDeleteForever className='delete-icon'  onClick={handleDelete} /> */}
+						{/* <span onClick={handleDelete}>delete</span> */}
 						<EditSongButton />
 						{/* <FaEdit
 							className='edit-icon'
@@ -269,14 +329,14 @@ const StyledSongs = styled(motion.div)`
 	justify-content: flex-start;
 	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
+	/* max-width: 100rem; */
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	overflow-y: hidden;
 	.nav-btns-container {
 		display: flex;
 		justify-content: space-between;
@@ -287,6 +347,10 @@ const StyledSongs = styled(motion.div)`
 		}
 		.edit-icon {
 			font-size: 2.5rem;
+			cursor: pointer;
+		}
+		.delete-icon {
+			font-size: 3rem;
 			cursor: pointer;
 		}
 	}

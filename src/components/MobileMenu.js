@@ -1,10 +1,15 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MobileMenu = () => {
 	return (
-		<StyledMobileMenu>
+		<StyledMobileMenu
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<nav>
 				<NavLink
 					to='/home'
@@ -35,7 +40,7 @@ const MobileMenu = () => {
 		</StyledMobileMenu>
 	);
 };
-const StyledMobileMenu = styled.div`
+const StyledMobileMenu = styled(motion.div)`
 	border: 2px solid red;
 	background-color: limegreen;
 	width: 100%;

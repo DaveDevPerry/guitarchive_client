@@ -76,14 +76,14 @@ const StyledMobileMenu = styled(motion.div)`
 	justify-content: center;
 	align-items: center;
 	row-gap: 1rem;
-	max-width: 80rem;
+	max-width: 100rem;
 	padding: 0.5rem 1rem;
-	overflow-y: auto;
+	overflow-y: hidden;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	/* overflow-y: hidden; */
 	nav {
 		display: flex;
 		flex-direction: column;

@@ -35,7 +35,7 @@ export const lightTheme = {
 	black: '#ffffff',
 	gold: '#eab209',
 	orange: '#ea9809',
-	red: '#980303',
+	red: '#7f0101',
 	green: '#156d01',
 	trEven: '#ededed',
 	trOdd: '#ffffff',

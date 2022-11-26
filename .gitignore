@@ -26,5 +26,10 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/features/song/SongForm copy.js
+/src/features/song/SongForm copy 2.js
 /src/features/songs/SongsFilter copy.js
+/src/features/songs/SongCard copy.js
+/src/features/songs/SongsWidget copy.js
+/src/pages/Loader copy.js
+/src/pages/Songs copy.js
 

@@ -24,7 +24,7 @@ import { useViewport } from '../../hooks/useViewport';
 const ArrangerCard = ({ arranger, slug, url }) => {
 	const { setArrangerToView } = useStateContext();
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	let navigate = useNavigate();
 	return (
 		// <Link href={url + slug}>

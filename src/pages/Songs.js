@@ -29,7 +29,7 @@ const Songs = ({
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -39,78 +39,30 @@ const Songs = ({
 	}, [navigate, dataLoaded]);
 
 	return (
-		<>
-			{width > breakpoint ? (
-				<StyledSongs
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{isFormOpen === true && (
-						<SongModal currentId={currentId} setCurrentId={setCurrentId} />
-					)}
-					{/* {width > breakpoint ? ( */}
-					<div className='user-actions-container'>
-						<AddSongButton />
-						<SongsFilter songStatusHandler={songStatusHandler} />
-						<SongsSort songStatusHandler={songStatusHandler} />
-						<SearchBar songStatusHandler={songStatusHandler} />
-					</div>
-					{/* ) : (
-				<div className='mobile-user-actions-container'>
-					<AddSongButton />
-					<SongsFilter songStatusHandler={songStatusHandler} />
-				</div>
-			)} */}
-					<SongsWidget songs={songs} filteredSongs={filteredSongs} />
-				</StyledSongs>
-			) : (
-				<StyledMobileSongs
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{isFormOpen === true && (
-						<SongModal currentId={currentId} setCurrentId={setCurrentId} />
-					)}
-					{/* {width > breakpoint ? (
-				<div className='user-actions-container'>
-					<AddSongButton />
-					<SongsFilter songStatusHandler={songStatusHandler} />
-					{width > breakpoint && <SearchBar />}
-				</div>
-			) : ( */}
-					<div className='mobile-user-actions-container'>
-						<AddSongButton />
-						<SongsFilter songStatusHandler={songStatusHandler} />
-					</div>
-					{/* )} */}
-					<SongsWidget songs={songs} filteredSongs={filteredSongs} />
-				</StyledMobileSongs>
-			)}
-			{/* <StyledSongs
+		<StyledSongs
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			className='songs-page'
 		>
 			{isFormOpen === true && (
 				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
-			{width > breakpoint ? (
-				<div className='user-actions-container'>
-					<AddSongButton />
-					<SongsFilter songStatusHandler={songStatusHandler} />
-					{width > breakpoint && <SearchBar />}
-				</div>
-			) : (
+			{width < breakpoint ? (
 				<div className='mobile-user-actions-container'>
 					<AddSongButton />
 					<SongsFilter songStatusHandler={songStatusHandler} />
 				</div>
+			) : (
+				<div className='user-actions-container'>
+					<AddSongButton />
+					<SongsFilter songStatusHandler={songStatusHandler} />
+					<SongsSort songStatusHandler={songStatusHandler} />
+					<SearchBar songStatusHandler={songStatusHandler} />
+				</div>
 			)}
 			<SongsWidget songs={songs} filteredSongs={filteredSongs} />
-		</StyledSongs> */}
-		</>
+		</StyledSongs>
 	);
 };
 
@@ -118,64 +70,58 @@ const StyledSongs = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
-	/* padding: 0.5rem 0; */
 	padding: 0.5rem 1rem;
-	overflow-y: auto;
+	overflow-y: hidden;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
-	.sober-widget {
-		background-color: white;
-		padding: 2rem;
-		border-radius: 4px;
-		display: none;
-	}
+	/* overflow-y: hidden; */
 	.user-actions-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 0 1rem 0;
 		column-gap: 2rem;
-		/* background-color: rgba(0, 0, 0, 0.1); */
-		transition: all 200ms linear;
-		/* border-bottom: 1px solid ${({ theme }) => theme.darkBrown}; */
-		/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
 	}
-`;
-const StyledMobileSongs = styled(motion.div)`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	/* row-gap: 1rem; */
-	max-width: 100rem;
-	/* max-width: 80rem; */
-	/* padding: 0.5rem 0; */
-	/* padding: 0.5rem 1rem; */
-	overflow-y: auto;
-	z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	overflow: auto;
-
 	.mobile-user-actions-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 1rem 1rem 1rem;
-		/* padding: 1rem; */
 		column-gap: 2rem;
-		/* background-color: rgba(0, 0, 0, 0.1); */
-		transition: all 200ms linear;
-		/* border-bottom: 1px solid ${({ theme }) => theme.darkBrown}; */
-		/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
 	}
 `;
+// const StyledMobileSongs = styled(motion.div)`
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	/* row-gap: 1rem; */
+// 	max-width: 100rem;
+// 	/* max-width: 100rem; */
+// 	/* padding: 0.5rem 0; */
+// 	/* padding: 0.5rem 1rem; */
+// 	overflow-y: auto;
+// 	z-index: 1;
+// 	transition: all 200ms linear;
+// 	margin: 0 auto;
+// 	flex: 1;
+// 	overflow-y: hidden;
+
+// 	.mobile-user-actions-container {
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
+// 		padding: 0 1rem 1rem 1rem;
+// 		/* padding: 1rem; */
+// 		column-gap: 2rem;
+// 		/* background-color: rgba(0, 0, 0, 0.1); */
+// 		transition: all 200ms linear;
+// 		/* border-bottom: 1px solid ${({ theme }) => theme.darkBrown}; */
+// 		/* border-top: 1px solid ${({ theme }) => theme.darkBrown}; */
+// 	}
+// `;
 
 // const StyledDayHeaderWidget = styled.div`
 // 	display: flex;

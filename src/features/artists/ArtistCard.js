@@ -24,7 +24,7 @@ import { useViewport } from '../../hooks/useViewport';
 const ArtistCard = ({ artist, slug, url }) => {
 	const { setArtistToView } = useStateContext();
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	let navigate = useNavigate();
 	return (
 		// <Link href={url + slug}>

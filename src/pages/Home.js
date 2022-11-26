@@ -61,20 +61,14 @@ const StyledHome = styled(motion.div)`
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 1rem;
-	max-width: 80rem;
+	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
-	.sober-widget {
-		background-color: white;
-		padding: 2rem;
-		border-radius: 4px;
-		display: none;
-	}
+	overflow-y: hidden;
 `;
 
 const StyledDayHeaderWidget = styled.div`

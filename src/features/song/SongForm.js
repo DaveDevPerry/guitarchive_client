@@ -102,6 +102,7 @@ const SongForm = ({
 		navigate('/');
 	};
 	const clear = () => {
+		// e.preventDefault();
 		// setCurrentId(null);
 		setSongData({
 			artist: '',
@@ -123,8 +124,28 @@ const SongForm = ({
 			selectedFile: '',
 		});
 	};
-	const back = () => {
-		clear();
+	const back = (e) => {
+		e.preventDefault();
+		setSongData({
+			artist: '',
+			title: '',
+			arranger: '',
+			// newArtist: false,
+			// newArranger: false,
+			// newArtist: '',
+			// newArranger: '',
+			style: '',
+			status: '',
+			difficulty: 3,
+			pages: 0,
+			format: '',
+			deadlineDate: '',
+			reason: '',
+			isFavourite: false,
+			isTab: true,
+			selectedFile: '',
+		});
+		// clear();
 		setIsFormOpen(false);
 	};
 

@@ -76,7 +76,7 @@ export const songsReducer = (state, action) => {
 		case 'DELETE_SONG':
 			return {
 				...state,
-				songs: state.songs.filter((song) => song._id !== action.payload._id),
+				songs: state.songs.filter((song) => song._id !== action.payload),
 			};
 		case 'SET_ARTIST':
 			log(action.payload, 'payload - sng context - set artist');

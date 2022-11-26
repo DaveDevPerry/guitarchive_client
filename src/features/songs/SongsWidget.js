@@ -16,106 +16,153 @@ import { useViewport } from '../../hooks/useViewport';
 import SongCard from './SongCard';
 // import { songsTextWrapper, InfoText } from './songsStyles';
 
-const SongsWidget = ({ songs, url, filteredSongs }) => {
+const SongsWidget = ({ filteredSongs }) => {
 	// const { dispatch } = useSongsContext();
 	// console.log(songs, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	// let navigate = useNavigate();
 	return (
-		<>
-			{width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
+		<StyledSongsWidget>
+			{width < breakpoint ? (
+				<div className='mobile-songs-container'>
 					{filteredSongs &&
 						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+							<SongCard key={index} song={song} />
 						))}
-				</StyledSongsContainer>
+				</div>
 			) : (
-				<StyledMobileSongsContainer>
+				<div className='songs-container'>
 					{filteredSongs &&
 						filteredSongs.map((song, index) => (
-							<SongCard key={index} url={url} song={song} slug={song.slug} />
+							<SongCard key={index} song={song} />
 						))}
-				</StyledMobileSongsContainer>
+				</div>
 			)}
-			{/* {width > breakpoint ? (
-				<StyledSongsContainer className='songs-container'>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledSongsContainer>
-			) : (
-				<StyledMobileSongsContainer>
-					{songs &&
-						songs.map((song, index) => (
-							<SongCard
-								key={index}
-								url={url}
-								song={song}
-								slug={song.slug}
-							/>
-						))}
-				</StyledMobileSongsContainer>
-			)} */}
-		</>
+		</StyledSongsWidget>
 	);
 };
-const StyledSongsContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	flex: 1;
-	margin-bottom: 2rem;
-	overflow-y: auto;
-	/* width: 1000px; */
-	border: 1px solid ${({ theme }) => theme.darkBrown};
-	border-radius: 0.4rem;
-	box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
-	background-color: rgba(0, 0, 0, 0.1);
-	scroll-behavior: smooth;
-	scroll-behavior: smooth;
-	scrollbar-width: normal;
-	scrollbar-color: ${({ theme }) => theme.lightBrown};
-	/* padding: 1rem; */
-	::-webkit-scrollbar {
-		height: 18px !important;
-		width: 18px;
-		background: ${({ theme }) => theme.lightBrown};
-		/* background: rgb(75, 74, 74); */
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
-	}
+const StyledSongsWidget = styled.div`
+	.mobile-songs-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		flex: 1;
+		margin-bottom: 0rem;
+		overflow-y: scroll;
+		/* width: 1000px; */
+		border: none;
+		border-top: 1px solid ${({ theme }) => theme.darkBrown};
+		box-shadow: none;
+		background-color: rgba(0, 0, 0, 0.1);
+		scroll-behavior: smooth;
+		scroll-behavior: smooth;
+		scrollbar-width: normal;
+		scrollbar-color: ${({ theme }) => theme.lightBrown};
+		::-webkit-scrollbar {
+			height: 18px !important;
+			width: 18px;
+			background: ${({ theme }) => theme.lightBrown};
+			user-select: none; /* supported by Chrome and Opera */
+			-webkit-user-select: none; /* Safari */
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+			display: none;
+		}
 
-	::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.darkBrown};
-		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-		/* width: 18px; */
-		/* max-height: 25px; */
+		::-webkit-scrollbar-thumb {
+			background-color: ${({ theme }) => theme.darkBrown};
+			-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+		}
+		::-webkit-scrollbar-corner {
+			background: rgb(75, 74, 74);
+		}
 	}
-
-	::-webkit-scrollbar-corner {
-		background: rgb(75, 74, 74);
+	.songs-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		flex: 1;
+		margin-bottom: 2rem;
+		overflow-y: auto;
+		border: 1px solid ${({ theme }) => theme.darkBrown};
+		border-radius: 0.4rem;
+		box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
+		background-color: rgba(0, 0, 0, 0.1);
+		scroll-behavior: smooth;
+		scroll-behavior: smooth;
+		scrollbar-width: normal;
+		scrollbar-color: ${({ theme }) => theme.lightBrown};
+		::-webkit-scrollbar {
+			height: 18px !important;
+			width: 18px;
+			background: ${({ theme }) => theme.lightBrown};
+			user-select: none; /* supported by Chrome and Opera */
+			-webkit-user-select: none; /* Safari */
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+		}
+		::-webkit-scrollbar-thumb {
+			background-color: ${({ theme }) => theme.darkBrown};
+			-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+		}
+		::-webkit-scrollbar-corner {
+			background: rgb(75, 74, 74);
+		}
 	}
 `;
-const StyledMobileSongsContainer = styled.div`
+// const StyledSongsContainer = styled.div`
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	flex: 1;
+// 	margin-bottom: 2rem;
+// 	overflow-y: auto;
+// 	/* width: 1000px; */
+// 	border: 1px solid ${({ theme }) => theme.darkBrown};
+// 	border-radius: 0.4rem;
+// 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
+// 	background-color: rgba(0, 0, 0, 0.1);
+// 	scroll-behavior: smooth;
+// 	scroll-behavior: smooth;
+// 	scrollbar-width: normal;
+// 	scrollbar-color: ${({ theme }) => theme.lightBrown};
+// 	/* padding: 1rem; */
+// 	::-webkit-scrollbar {
+// 		height: 18px !important;
+// 		width: 18px;
+// 		background: ${({ theme }) => theme.lightBrown};
+// 		/* background: rgb(75, 74, 74); */
+// 		user-select: none; /* supported by Chrome and Opera */
+// 		-webkit-user-select: none; /* Safari */
+// 		-khtml-user-select: none; /* Konqueror HTML */
+// 		-moz-user-select: none; /* Firefox */
+// 		-ms-user-select: none; /* Internet Explorer/Edge */
+// 	}
+
+// 	::-webkit-scrollbar-thumb {
+// 		background-color: ${({ theme }) => theme.darkBrown};
+// 		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+// 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+// 		/* width: 18px; */
+// 		/* max-height: 25px; */
+// 	}
+
+// 	::-webkit-scrollbar-corner {
+// 		background: rgb(75, 74, 74);
+// 	}
+// `;
+/* const StyledMobileSongsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	flex: 1;
 	margin-bottom: 0rem;
 	overflow-y: scroll;
-	/* width: 1000px; */
 	border: none;
 	border-top: 1px solid ${({ theme }) => theme.darkBrown};
 	box-shadow: none;
@@ -128,12 +175,11 @@ const StyledMobileSongsContainer = styled.div`
 		height: 18px !important;
 		width: 18px;
 		background: ${({ theme }) => theme.lightBrown};
-		/* background: rgb(75, 74, 74); */
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; 
+		-webkit-user-select: none; 
+		-khtml-user-select: none; 
+		-moz-user-select: none; 
+		-ms-user-select: none; 
 		display: none;
 	}
 
@@ -141,14 +187,13 @@ const StyledMobileSongsContainer = styled.div`
 		background-color: ${({ theme }) => theme.darkBrown};
 		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-		/* width: 18px; */
-		/* max-height: 25px; */
+
 	}
 
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
 	}
-`;
+`; */
 
 export default SongsWidget;
 

@@ -1,13 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../hooks/useViewport';
+import { FiMenu } from 'react-icons/fi';
+
 // import { AiFillHome } from 'react-icons/ai';
 // import { RiSettings2Fill } from 'react-icons/ri';
 // import { FaListAlt } from 'react-icons/fa';
 
 const Header = () => {
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	return (
 		<StyledHeader>
 			<div className='container'>
@@ -19,7 +21,20 @@ const Header = () => {
 						</span>
 					</h1>
 				</Link>
-				{width > breakpoint && (
+				{width < breakpoint ? (
+					<nav className='top-nav'>
+						<NavLink
+							to='/menu'
+							className='filter-menu-icon-wrapper'
+							// onClick={() => {
+							// 	setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+							// }}
+						>
+							{/* <ImYoutube2 className='card-icon status-icon yt-icon' /> */}
+							<FiMenu className='mobile-menu-icon' />
+						</NavLink>
+					</nav>
+				) : (
 					<nav className='top-nav desktop'>
 						{/* <NavLink
 							to='/home'
@@ -59,56 +74,13 @@ const Header = () => {
 						</NavLink> */}
 					</nav>
 				)}
-				{/* {width < breakpoint ? (
-					<nav className='top-nav'>
-						<NavLink
-							to='/home'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<AiFillHome className='home-icon' />
-						</NavLink>
-						<NavLink
-							to='/posts'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<FaListAlt className='weights-icon' />
-						</NavLink>
-						<NavLink
-							to='/settings'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<RiSettings2Fill className='settings-icon' />
-						</NavLink>
-					</nav>
-				) : (
-					<nav className='top-nav desktop'>
-						<NavLink
-							to='/home'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>home</p>
-						</NavLink>
-						<NavLink
-							to='/posts'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>posts</p>
-						</NavLink>
-						<NavLink
-							to='/settings'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>settings</p>
-						</NavLink>
-					</nav>
-				)} */}
 			</div>
 		</StyledHeader>
 	);
 };
 const StyledHeader = styled.header`
-	/* background: ${({ theme }) => theme.primaryColor}; */
 	transition: all 200ms linear;
+	position: relative;
 	.container {
 		max-width: 100rem;
 		margin: 0 auto;
@@ -117,9 +89,7 @@ const StyledHeader = styled.header`
 		align-items: center;
 		justify-content: space-between;
 		z-index: 500;
-
 		h1 {
-			/* font-size: 2.2rem; */
 			color: ${({ theme }) => theme.lightBrown};
 			font-family: 'NewTegomin';
 			font-weight: lighter;
@@ -127,7 +97,6 @@ const StyledHeader = styled.header`
 			span {
 				color: ${({ theme }) => theme.darkBrown};
 				font-weight: bolder;
-				/* font-size: 2.4rem; */
 			}
 		}
 		a {
@@ -135,15 +104,12 @@ const StyledHeader = styled.header`
 			place-content: center;
 			color: ${({ theme }) => theme.darkBrown};
 			.search-icon {
-				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3.2rem;
 			}
 			.settings-icon {
-				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3rem;
 			}
 			.nav-icon {
-				/* color: ${({ theme }) => theme.txtDarkGrey}; */
 				font-size: 3rem;
 			}
 		}
@@ -161,69 +127,22 @@ const StyledHeader = styled.header`
 				color: ${({ theme }) => theme.lightBrown};
 			}
 		}
-		/* .add-icon {
-			color: ${({ theme }) => theme.primaryColor};
-			font-size: 2.6rem;
-		} */
 		nav.top-nav {
 			display: flex;
 			align-items: center;
+			justify-content: space-between;
 			column-gap: 1rem;
+			.filter-menu-icon-wrapper {
+				display: flex;
+				align-items: flex-end;
+				.mobile-menu-icon {
+					font-size: 3.5rem;
+					color: rgb(199, 88, 29);
+				}
+			}
 			a {
 				display: grid;
 				place-content: center;
-				p {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 1.6rem;
-					font-size: 3.5rem;
-					text-transform: uppercase;
-				}
-				.home-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				}
-				.weights-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				}
-				.settings-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				}
-			}
-			a.active {
-				p {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-weight: bolder;
-				}
-				.home-icon {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
-				}
-				.weights-icon {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
-				}
-				.settings-icon {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
-				}
 			}
 		}
 		nav.top-nav.desktop {

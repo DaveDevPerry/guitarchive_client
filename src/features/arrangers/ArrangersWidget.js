@@ -20,7 +20,7 @@ const ArrangersWidget = ({ arrangers, url }) => {
 	// const { dispatch } = useArrangersContext();
 	// console.log(arrangers, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	// let navigate = useNavigate();
 	return (
 		<>
@@ -122,7 +122,7 @@ const StyledMobileArrangersContainer = styled.div`
 		-khtml-user-select: none; /* Konqueror HTML */
 		-moz-user-select: none; /* Firefox */
 		-ms-user-select: none; /* Internet Explorer/Edge */
-		display: none;
+		/* display: none; */
 	}
 
 	::-webkit-scrollbar-thumb {

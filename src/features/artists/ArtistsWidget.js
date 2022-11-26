@@ -20,7 +20,7 @@ const ArtistsWidget = ({ artists, url }) => {
 	// const { dispatch } = useArtistsContext();
 	// console.log(artists, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 	// let navigate = useNavigate();
 	return (
 		<>
@@ -123,7 +123,7 @@ const StyledMobileArtistsContainer = styled.div`
 		-khtml-user-select: none; /* Konqueror HTML */
 		-moz-user-select: none; /* Firefox */
 		-ms-user-select: none; /* Internet Explorer/Edge */
-		display: none;
+		/* display: none; */
 	}
 
 	::-webkit-scrollbar-thumb {

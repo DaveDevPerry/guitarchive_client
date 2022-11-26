@@ -2,29 +2,16 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
-@font-face {
+${
+	'' /* @font-face {
   font-family: 'NewTegomin';
   src: url("/fonts/NewTegomin-Regular.woff2") format("woff2"), url("/fonts/NewTegomin-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-${
-	'' /* @mixin flex($justify, $align, $direction) {
-	display: flex;
-	justify-content: $justify;
-	align-items: $align;
-	flex-direction: $direction;
 } */
 }
 
-${
-	'' /* :root {
-  --select-border: #777;
-  --select-focus: blue;
-  --select-arrow: var(--select-border);
-} */
-}
   *,
   *::before,
   *::after {
@@ -52,14 +39,14 @@ ${
     background-color: ${({ theme }) => theme.black};
     font-size: 1.6rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.txtGrey};
+    ${'' /* color: ${({ theme }) => theme.txtGrey}; */}
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
   }
 	.App {
     width: 100vw;
     height: 100vh;
-    width: clamp(32rem, 100vw, 100vw);
+    ${'' /* width: clamp(32rem, 100vw, 100vw); */}
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -89,11 +76,16 @@ ${
     color: ${({ theme }) => theme.txtGrey};
 	}
   
-  header a {
+ a {
+    text-decoration: none;
+  }
+  ${
+		'' /* header a {
     color: ${({ theme }) => theme.txtDarkGrey};
     color: ${({ theme }) => theme.darkBrown};
     text-decoration: none;
-  }
+  } */
+	}
   label, input {
     display: block;
     ${'' /* color: ${({ theme }) => theme.engravedBrown}; */}

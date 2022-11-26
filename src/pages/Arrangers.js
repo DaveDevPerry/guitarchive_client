@@ -23,7 +23,7 @@ const Arrangers = () => {
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 	const { width } = useViewport();
-	const breakpoint = 620;
+	const breakpoint = 460;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -73,7 +73,7 @@ const StyledArrangers = styled(motion.div)`
 	justify-content: flex-start;
 	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
+	/* max-width: 100rem; */
 	padding: 0.5rem 1rem;
 	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
@@ -81,7 +81,7 @@ const StyledArrangers = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	overflow-y: hidden;
 	.user-actions-container {
 		display: flex;
 		justify-content: flex-start;
@@ -95,7 +95,7 @@ const StyledMobileArrangers = styled(motion.div)`
 	justify-content: flex-start;
 	/* row-gap: 1rem; */
 	max-width: 100rem;
-	/* max-width: 80rem; */
+	/* max-width: 100rem; */
 	/* padding: 0.5rem 0; */
 	/* padding: 0.5rem 1rem; */
 	overflow-y: auto;
@@ -103,7 +103,7 @@ const StyledMobileArrangers = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: auto;
+	overflow-y: hidden;
 
 	.mobile-user-actions-container {
 		display: flex;
