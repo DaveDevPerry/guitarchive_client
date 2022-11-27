@@ -16,9 +16,13 @@ function ListProducts() {
 	// 	fetcher
 	// );
 	const { data, error } = useSWR(
-		`http://localhost:4000/api/products?page=${page}`,
+		`${process.env.REACT_APP_BACKEND_URL}/api/products?page=${page}`,
 		fetcher
 	);
+	// const { data, error } = useSWR(
+	// 	`http://localhost:4000/api/products?page=${page}`,
+	// 	fetcher
+	// );
 
 	useEffect(() => {
 		if (data) {
