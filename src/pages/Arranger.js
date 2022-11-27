@@ -43,7 +43,7 @@ const Arranger = ({
 	const { arrangerSongs, dispatch: songDispatch } = useSongsContext();
 
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 

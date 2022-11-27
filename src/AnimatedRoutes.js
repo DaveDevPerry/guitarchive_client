@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Login from './pages/Login';
 // import Signup from './pages/Signup';
 import Loader from './pages/Loader';
-// import Home from './pages/Home';
+import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Songs from './pages/Songs';
 import Song from './pages/Song';
@@ -53,7 +53,7 @@ const AnimatedRoutes = ({
 					path='/signup'
 					element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
 				/> */}
-				{/* <Route
+				<Route
 					path='/home'
 					element={
 						user ? (
@@ -62,7 +62,7 @@ const AnimatedRoutes = ({
 							<Navigate to='/login' />
 						)
 					}
-				/> */}
+				/>
 				<Route
 					path='/youtube'
 					element={

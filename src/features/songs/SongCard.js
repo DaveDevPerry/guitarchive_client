@@ -23,7 +23,7 @@ import Tooltip from '../../components/Tooltip';
 const SongCard = ({ song }) => {
 	const { setSongToView } = useStateContext();
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	let navigate = useNavigate();
 	return (
 		<StyledSongCard className='song-card-wrapper'>

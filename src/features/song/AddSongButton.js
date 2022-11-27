@@ -7,7 +7,7 @@ import { useViewport } from '../../hooks/useViewport';
 const AddSongButton = () => {
 	const { isFormOpen, setIsFormOpen } = useStateContext();
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	return (
 		<StyledAddSongButton
 			onClick={() => {

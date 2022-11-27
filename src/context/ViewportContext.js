@@ -3,6 +3,10 @@ import { createContext, useEffect, useState } from 'react';
 export const ViewportContext = createContext();
 
 export const ViewportContextProvider = ({ children }) => {
+	// const [windowDimension, detectHW] = useState({
+	// 	winWidth: window.innerWidth,
+	// 	winHeight: window.innerHeight,
+	// })
 	const [width, setWidth] = useState(window.innerWidth);
 	const [height, setHeight] = useState(window.innerHeight);
 
@@ -14,7 +18,7 @@ export const ViewportContextProvider = ({ children }) => {
 	useEffect(() => {
 		window.addEventListener('resize', handleWindowResize);
 		return () => window.removeEventListener('resize', handleWindowResize);
-	}, [width, height]);
+	}, []);
 
 	return (
 		<ViewportContext.Provider value={{ width, height }}>

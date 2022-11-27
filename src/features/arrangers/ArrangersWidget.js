@@ -20,7 +20,7 @@ const ArrangersWidget = ({ arrangers, url }) => {
 	// const { dispatch } = useArrangersContext();
 	// console.log(arrangers, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>

@@ -20,7 +20,7 @@ const ArtistsWidget = ({ artists, url }) => {
 	// const { dispatch } = useArtistsContext();
 	// console.log(artists, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>

@@ -23,7 +23,7 @@ const Artists = () => {
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {

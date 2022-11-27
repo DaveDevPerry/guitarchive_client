@@ -30,8 +30,8 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
   }
-	${
-		'' /* .App {
+	
+	.App {
     width: 100vw;
     height: 100vh;
     width: clamp(32rem, 100vw, 100vw);
@@ -41,8 +41,8 @@ export const GlobalStyles = createGlobalStyle`
     row-gap: 1rem;
     background-color: ${({ theme }) => theme.borderGrey};
     background-image: url("/images/light wood texture.webp");
-  } */
-	}
+  }
+	
   .App{
     background-color: ${({ theme }) => theme.borderGrey};
   }

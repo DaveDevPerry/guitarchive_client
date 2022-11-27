@@ -20,7 +20,7 @@ const SongsWidget = ({ songs, filteredSongs }) => {
 	// const { dispatch } = useSongsContext();
 	// console.log(songs, 'SONGS widget');
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
 		<>

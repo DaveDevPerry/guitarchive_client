@@ -28,7 +28,7 @@ function App() {
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
 	// const { width } = useViewport();
-	// const breakpoint = 460;
+	// const breakpoint = 620;
 
 	const [currentDate] = useState(new Date().toLocaleDateString());
 

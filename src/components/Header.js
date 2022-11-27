@@ -9,7 +9,7 @@ import { FiMenu } from 'react-icons/fi';
 
 const Header = () => {
 	const { width } = useViewport();
-	const breakpoint = 460;
+	const breakpoint = 620;
 	return (
 		<StyledHeader>
 			<div className='container'>
@@ -36,12 +36,12 @@ const Header = () => {
 					</nav>
 				) : (
 					<nav className='top-nav desktop'>
-						{/* <NavLink
+						<NavLink
 							to='/home'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>home</p>
-						</NavLink> */}
+						</NavLink>
 						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}

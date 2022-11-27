@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
 import { FaListAlt, FaUserEdit } from 'react-icons/fa';
-// import { AiFillHome } from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
 import { GiMusicalScore } from 'react-icons/gi';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
@@ -24,13 +24,13 @@ const MobileMenu = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			<nav>
-				{/* <NavLink
+				<NavLink
 					to='/home'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
 					<AiFillHome className='nav-icon' />
 					<p>home</p>
-				</NavLink> */}
+				</NavLink>
 				<NavLink
 					to='/youtube'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}

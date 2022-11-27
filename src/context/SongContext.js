@@ -46,6 +46,92 @@ export const songsReducer = (state, action) => {
 				}),
 				artistSongs: action.payload,
 				arrangerSongs: action.payload,
+				songStats: [
+					{
+						statName: 'all songs',
+						statCount: action.payload.length,
+						statSongs: action.payload.sort(function (a, b) {
+							return (a.deadlineDate === null) - (b.deadlineDate === null);
+						}),
+					},
+					{
+						statName: 'Recorded',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Recorded'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Recorded'
+							),
+						],
+					},
+					{
+						statName: 'Ready',
+						statCount: [
+							...action.payload.filter((song) => song.status.name === 'Ready'),
+						].length,
+						statSongs: [
+							...action.payload.filter((song) => song.status.name === 'Ready'),
+						],
+					},
+					{
+						statName: 'Practicing',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Practicing'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Practicing'
+							),
+						],
+					},
+
+					{
+						statName: 'Backlog',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Backlog'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Backlog'
+							),
+						],
+					},
+					{
+						statName: 'Archived',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Archived'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.status.name === 'Archived'
+							),
+						],
+					},
+				],
+				readySongs: [
+					...action.payload.filter((song) => song.status.name === 'Ready'),
+				],
+				practicingSongs: [
+					...action.payload.filter((song) => song.status.name === 'Practicing'),
+				],
+				recordedSongs: [
+					...action.payload.filter((song) => song.status.name === 'Recorded'),
+				],
+				backlogSongs: [
+					...action.payload.filter((song) => song.status.name === 'Backlog'),
+				],
+				archivedSongs: [
+					...action.payload.filter((song) => song.status.name === 'Archived'),
+				],
 			};
 		case 'SET_SONG':
 			return {
@@ -117,6 +203,12 @@ export const songsReducer = (state, action) => {
 				artistSongs: null,
 				artistStats: null,
 				arrangerSongs: null,
+				readySongs: null,
+				practicingSongs: null,
+				recordedSongs: null,
+				backlogSongs: null,
+				archivedSongs: null,
+				songStats: null,
 			};
 		default:
 			return state;
@@ -130,6 +222,12 @@ export const SongsContextProvider = ({ children }) => {
 		artistSongs: null,
 		artistStats: null,
 		arrangerSongs: null,
+		readySongs: null,
+		practicingSongs: null,
+		recordedSongs: null,
+		backlogSongs: null,
+		archivedSongs: null,
+		songStats: null,
 		// currentUser: null,
 	});
 

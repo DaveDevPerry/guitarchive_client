@@ -1,23 +1,24 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 // import { songsReducer } from '../context/SongContext';
-import Song from '../features/songs/Song';
-import { useSongsContext } from '../hooks/useSongContext';
+// import Song from '../features/songs/Song';
+// import { useSongsContext } from '../hooks/useSongContext';
+import SongStatusStats from '../components/SongStatusStats';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 const Home = () => {
 	const { dataLoaded } = useStateContext();
 	// const { users, user } = useAuthContext();
-	const [currentId, setCurrentId] = useState(null);
-	const { songs } = useSongsContext();
+	// const [currentId, setCurrentId] = useState(null);
+	// const { songStats } = useSongsContext();
 
 	const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
-	console.log(currentId);
+	// console.log(currentId);
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -31,6 +32,7 @@ const Home = () => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			className='page'
 		>
 			<StyledDayHeaderWidget>
 				<p className='header-time'>
@@ -49,10 +51,8 @@ const Home = () => {
 					(perhaps, upcoming deadlines or ready to rec?)
 				</h2>
 			</StyledDayHeaderWidget>
-			{songs &&
-				songs.map((song, index) => (
-					<Song key={index} song={song} setCurrentId={setCurrentId} />
-				))}
+
+			<SongStatusStats />
 		</StyledHome>
 	);
 };
@@ -84,6 +84,9 @@ const StyledDayHeaderWidget = styled.div`
 		font-size: 1.6rem;
 		font-size: 2rem;
 		color: ${({ theme }) => theme.txtGrey};
+	}
+	h2 {
+		font-size: 1.2rem;
 	}
 `;
 
