@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // import Song from '../features/songs/Song';
 // import { useSongsContext } from '../hooks/useSongContext';
 import SongStatusStats from '../components/SongStatusStats';
+import NextDeadlineSong from '../components/NextDeadlineSong';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
@@ -17,8 +18,7 @@ const Home = () => {
 	// const [currentId, setCurrentId] = useState(null);
 	// const { songStats } = useSongsContext();
 
-	const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
-	// console.log(currentId);
+	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
 			exit={{ x: window.innerWidth }}
 			className='page'
 		>
-			<StyledDayHeaderWidget>
+			{/* <StyledDayHeaderWidget>
 				<p className='header-time'>
 					<strong>
 						{new Date(currentDay).toLocaleDateString('en-us', {
@@ -50,8 +50,8 @@ const Home = () => {
 					the home page will be to show youtube api and also certain songs
 					(perhaps, upcoming deadlines or ready to rec?)
 				</h2>
-			</StyledDayHeaderWidget>
-
+			</StyledDayHeaderWidget> */}
+			<NextDeadlineSong />
 			<SongStatusStats />
 		</StyledHome>
 	);
@@ -60,7 +60,7 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	row-gap: 2rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
@@ -71,23 +71,23 @@ const StyledHome = styled(motion.div)`
 	overflow-y: hidden;
 `;
 
-const StyledDayHeaderWidget = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	.header-time {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.6rem;
-		font-size: 2rem;
-		color: ${({ theme }) => theme.txtGrey};
-	}
-	h2 {
-		font-size: 1.2rem;
-	}
-`;
+// const StyledDayHeaderWidget = styled.div`
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+// 	justify-content: center;
+// 	.header-time {
+// 		display: flex;
+// 		flex-direction: column;
+// 		align-items: center;
+// 		justify-content: center;
+// 		font-size: 1.6rem;
+// 		font-size: 2rem;
+// 		color: ${({ theme }) => theme.txtGrey};
+// 	}
+// 	h2 {
+// 		font-size: 1.2rem;
+// 	}
+// `;
 
 export default Home;

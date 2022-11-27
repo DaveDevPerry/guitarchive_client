@@ -39,7 +39,7 @@ const StyledSongStatusStats = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 1rem;
-
+	box-shadow: 3px 3px 4px rgb(0 0 0);
 	.stats-header {
 		font-size: 2.5rem;
 		text-transform: capitalize;

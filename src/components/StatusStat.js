@@ -68,6 +68,7 @@ const StyledStatusStat = styled.div`
 	/* background-color: #170901c8; */
 	/* background-color: ${({ theme }) => theme.engravedBrown}; */
 	/* background-color: rgba(168, 105, 69, 0.57); */
+	box-shadow: 3px 3px 4px rgb(0 0 0);
 	.stat-header {
 		display: flex;
 		flex-direction: row;

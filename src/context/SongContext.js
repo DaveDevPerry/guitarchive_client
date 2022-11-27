@@ -46,6 +46,7 @@ export const songsReducer = (state, action) => {
 				}),
 				artistSongs: action.payload,
 				arrangerSongs: action.payload,
+				nextDeadlineSong: action.payload[0],
 				songStats: [
 					{
 						statName: 'all songs',
@@ -209,6 +210,7 @@ export const songsReducer = (state, action) => {
 				backlogSongs: null,
 				archivedSongs: null,
 				songStats: null,
+				nextDeadlineSong: null,
 			};
 		default:
 			return state;
@@ -228,6 +230,8 @@ export const SongsContextProvider = ({ children }) => {
 		backlogSongs: null,
 		archivedSongs: null,
 		songStats: null,
+		nextDeadlineSong: null,
+
 		// currentUser: null,
 	});
 
