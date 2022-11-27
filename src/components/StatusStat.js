@@ -87,6 +87,9 @@ const StyledStatusStat = styled.div`
 			.status-icon {
 				font-size: 2.5rem;
 				/* color: ${({ theme }) => theme.lightBrown}; */
+				&.yt-icon {
+					font-size: 3rem;
+				}
 			}
 		}
 	}

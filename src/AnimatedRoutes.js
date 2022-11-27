@@ -13,6 +13,7 @@ import MobileMenu from './pages/MobileMenu';
 import YouTube from './pages/YouTube';
 import Artist from './pages/Artist';
 import Arranger from './pages/Arranger';
+import Products from './pages/Products';
 
 const AnimatedRoutes = ({
 	user,
@@ -101,6 +102,26 @@ const AnimatedRoutes = ({
 								songStatusHandler={songStatusHandler}
 								// songDetails={songDetails}
 								setSongDetails={setSongDetails}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/products'
+					element={
+						user ? (
+							<Products
+								theme={theme}
+								// currentDate={currentDate}
+								// // 	songStatus={songStatus}
+								// // setSongStatus={setSongStatus}
+								// filteredSongs={filteredSongs}
+								// setFilteredSongs={setFilteredSongs}
+								// songStatusHandler={songStatusHandler}
+								// // songDetails={songDetails}
+								// setSongDetails={setSongDetails}
 							/>
 						) : (
 							<Navigate to='/login' />
