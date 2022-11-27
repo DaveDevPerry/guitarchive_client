@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 import SongCard from './SongCard';
 import SongsPaginationFooter from './SongsPaginationFooter';
+// import Pagination from 'react-js-pagination';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function ListProducts() {
 	const [page, setPage] = useState(1);
 	const [pageCount, setPageCount] = useState(0);
+	// const [activePage, setActivePage] = useState(1);
 	// const { data, error } = useSWR(
 	// 	`http://localhost:4000/api/songs?page=${page}`,
 	// 	fetcher
@@ -45,6 +47,12 @@ function ListProducts() {
 	if (!data) {
 		return <p>Loading...</p>;
 	}
+
+	// const handlePageChange = (page) => {
+	// 	console.log(`active page is ${page}`);
+	// 	// this.setState({activePage: page});
+	// 	setActivePage(page);
+	// };
 
 	return (
 		<StyledSongsWidget>
@@ -98,6 +106,15 @@ function ListProducts() {
 					</select>
 				</footer> */}
 			</div>
+			{/* <Pagination
+				activePage={activePage}
+				itemsCountPerPage={5}
+				totalItemsCount={10}
+				pageRangeDisplayed={2}
+				onChange={() => {
+					handlePageChange(page);
+				}}
+			/> */}
 			<SongsPaginationFooter
 				page={page}
 				setPage={setPage}

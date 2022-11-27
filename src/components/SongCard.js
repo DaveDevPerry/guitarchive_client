@@ -220,7 +220,7 @@ const StyledSongCard = styled.div`
 			color: ${({ theme }) => theme.darkBrown};
 		}
 		.yt-icon {
-			font-size: 4.5rem;
+			font-size: 4rem;
 		}
 		.star-on {
 			color: ${({ theme }) => theme.lightBrown};

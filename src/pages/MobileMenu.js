@@ -32,6 +32,13 @@ const MobileMenu = () => {
 					<p>home</p>
 				</NavLink>
 				<NavLink
+					to='/products'
+					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+				>
+					<FaListAlt className='nav-icon' />
+					<p>products</p>
+				</NavLink>
+				<NavLink
 					to='/youtube'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
