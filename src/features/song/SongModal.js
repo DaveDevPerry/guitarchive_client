@@ -13,6 +13,7 @@ import SongForm from './SongForm';
 // import ResultsRanking from './ResultsRanking';
 // import { motion } from 'framer-motion';
 // import { ImCross, ImCheckmark, ImArrowRight } from 'react-icons/im';
+// import '../../assets/images/dark wood texture.webp';
 
 const SongModal = ({
 	inputText,
@@ -122,6 +123,7 @@ const StyledSongModal = styled.dialog`
 		margin: 0 auto;
 		flex: 1;
 		overflow-y: auto;
+		/* background-image: url('../../src/assets/images/dark wood texture.webp'); */
 		background-image: url('/images/dark wood texture.webp');
 		border-radius: 1rem;
 		h2 {
