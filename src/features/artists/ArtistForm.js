@@ -79,8 +79,12 @@ const ArtistForm = ({
 			name: '',
 		});
 	};
-	const back = () => {
-		clear();
+	const back = (e) => {
+		e.preventDefault();
+		setCurrentId(null);
+		setArtistData({
+			name: '',
+		});
 		setIsArtistFormOpen(false);
 	};
 

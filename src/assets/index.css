@@ -16,7 +16,7 @@
   font-style: normal;
   font-display: swap;
 } */
-.App {
+/* .App {
   width: 100vw;
   height: 100vh;
   width: clamp(32rem, 100vw, 100vw);
@@ -24,9 +24,8 @@
   flex-direction: column;
   justify-content: space-between;
   row-gap: 1rem;
-  /* background-color: ${({ theme }) => theme.borderGrey}; */
   background-image: url("/public/images/light wood texture.webp");
-}
+} */
 .page{
   display: flex;
 	flex-direction: column;

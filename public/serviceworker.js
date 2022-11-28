@@ -1,5 +1,10 @@
 const CACHE_NAME = 'guitarchive-version-1';
-const urlsToCache = ['index.html', 'offline.html', 'darkwoodtexture.webp'];
+const urlsToCache = [
+	'index.html',
+	'offline.html',
+	'darkwoodtexture.webp',
+	// 'NewTegomin-Regular.woff2',
+];
 // const cacheUrls = [
 // 	"static/css/main.c16ed571.chunk.css",
 // 	"./images/dark wood texture.webp",

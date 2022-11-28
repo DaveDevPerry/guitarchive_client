@@ -41,6 +41,8 @@ export const GlobalStyles = createGlobalStyle`
     row-gap: 1rem;
     background-color: ${({ theme }) => theme.borderGrey};
     background-image: url("/images/light wood texture.webp");
+    margin: auto;
+	overflow: hidden;
   }
 	
   .App{

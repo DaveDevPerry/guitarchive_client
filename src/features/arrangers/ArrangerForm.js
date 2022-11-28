@@ -79,8 +79,11 @@ const ArrangerForm = ({
 			name: '',
 		});
 	};
-	const back = () => {
-		clear();
+	const back = (e) => {
+		e.preventDefault();
+		setArrangerData({
+			name: '',
+		});
 		setIsArrangerFormOpen(false);
 	};
 

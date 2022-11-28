@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import SongCard from './SongCard';
-import SongsPaginationFooter from './SongsPaginationFooter';
+// import SongsPaginationFooter from './SongsPaginationFooter';
+import SongsPaginationNav from './SongsPaginationNav';
 // import Pagination from 'react-js-pagination';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -10,13 +11,23 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 function ListProducts() {
 	const [page, setPage] = useState(1);
 	const [pageCount, setPageCount] = useState(0);
+	// const [filterIsFavourite, setFilterIsFavourite] = useState(true);
 	// const [activePage, setActivePage] = useState(1);
 	// const { data, error } = useSWR(
 	// 	`http://localhost:4000/api/songs?page=${page}`,
 	// 	fetcher
 	// );
+	// ?filter=Table/Field eq 'value'
+	// p = {'lat':41.225, 'lon'=-73.1 }
+	// const queryObj = {
+	// 	page: page,
+	// 	filter: filterIsFavourite,
+	// };
+	// r = requests.get( 'http://localhost:5000/pulse/', params=p )
 	const { data, error } = useSWR(
 		`${process.env.REACT_APP_BACKEND_URL}/api/products?page=${page}`,
+		// `${process.env.REACT_APP_BACKEND_URL}/api/products?${queryObj}`,
+		// `${process.env.REACT_APP_BACKEND_URL}/api/products?page=${page}&?filter=isFavourite`,
 		fetcher
 	);
 	// const { data, error } = useSWR(
@@ -62,6 +73,13 @@ function ListProducts() {
 		<StyledSongsWidget>
 			<div className='pagination-header'>
 				<p>Page: {page}</p>
+				<SongsPaginationNav
+					page={page}
+					setPage={setPage}
+					pageCount={pageCount}
+					handlePrevious={handlePrevious}
+					handleNext={handleNext}
+				/>
 				<p>Page count: {pageCount}</p>
 			</div>
 			{/* <p>Page: {page}
@@ -119,13 +137,13 @@ function ListProducts() {
 					handlePageChange(page);
 				}}
 			/> */}
-			<SongsPaginationFooter
+			{/* <SongsPaginationFooter
 				page={page}
 				setPage={setPage}
 				pageCount={pageCount}
 				handlePrevious={handlePrevious}
 				handleNext={handleNext}
-			/>
+			/> */}
 			{/* <footer>
 				Page: {page}
 				<br />
@@ -164,7 +182,7 @@ const StyledSongsWidget = styled.div`
 	/* transition: all 200ms linear; */
 	/* margin: 0 auto; */
 	flex: 1;
-	padding: 0 0.5rem;
+	padding: 0 0.5rem 2rem 0.5rem;
 	row-gap: 1rem;
 	.pagination-header {
 		display: flex;
