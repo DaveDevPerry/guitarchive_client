@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 // import { songsReducer } from '../context/SongContext';
 // import Song from '../features/songs/Song';
 // import { useSongsContext } from '../hooks/useSongContext';
-import SongStatusStats from '../components/SongStatusStats';
+// import SongStatusStats from '../components/SongStatusStats';
 import NextDeadlineSong from '../components/NextDeadlineSong';
-import YoutubeStats from '../components/YoutubeStats';
+// import YoutubeStats from '../components/YoutubeStats';
 import { useViewport } from '../hooks/useViewport';
 import SongsList from '../features/home/SongsList';
 import SongsFilter from '../features/home/SongsFilter';
@@ -157,9 +157,9 @@ const Home = ({ youtubeData }) => {
 					(perhaps, upcoming deadlines or ready to rec?)
 				</h2>
 			</StyledDayHeaderWidget> */}
-			<YoutubeStats youtubeData={youtubeData} />
+			{/* <YoutubeStats youtubeData={youtubeData} /> */}
 			<NextDeadlineSong />
-			<SongStatusStats />
+			{/* <SongStatusStats /> */}
 			<SongsFilter
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}

@@ -14,6 +14,7 @@ import YouTube from './pages/YouTube';
 import Artist from './pages/Artist';
 import Arranger from './pages/Arranger';
 import Products from './pages/Products';
+import Stats from './pages/Stats';
 
 const AnimatedRoutes = ({
 	user,
@@ -45,7 +46,10 @@ const AnimatedRoutes = ({
 	return (
 		<AnimatePresence mode='wait'>
 			<Routes location={location} key={location.pathname}>
-				<Route path='/' element={<Loader theme={theme} />} />
+				<Route
+					path='/'
+					element={<Loader theme={theme} youtubeData={youtubeData} />}
+				/>
 				<Route
 					path='/login'
 					element={!user ? <Login theme={theme} /> : <Navigate to='/' />}
@@ -59,6 +63,20 @@ const AnimatedRoutes = ({
 					element={
 						user ? (
 							<Home
+								theme={theme}
+								currentDate={currentDate}
+								youtubeData={youtubeData}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/stats'
+					element={
+						user ? (
+							<Stats
 								theme={theme}
 								currentDate={currentDate}
 								youtubeData={youtubeData}

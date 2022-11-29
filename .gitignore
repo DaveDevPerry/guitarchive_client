@@ -36,4 +36,5 @@ yarn-error.log*
 /src/pages/Loader copy.js
 /src/pages/Songs copy.js
 /src/components/ListProducts copy.js
+/src/components/AppLogo.js
 

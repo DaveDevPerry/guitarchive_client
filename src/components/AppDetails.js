@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const AppDetails = ({ theme }) => {
 	useEffect(() => {}, [theme]);
 	return (
-		<StyledAppDetails className='br'>
+		<StyledAppDetails>
 			<div
 				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
 			></div>
@@ -35,8 +35,12 @@ const StyledAppDetails = styled.div`
 	padding-bottom: 3rem;
 	/* background-color: ${({ theme }) => theme.white}; */
 	background-image: url('/images/dark wood texture.webp');
+	background-repeat: no-repeat;
+	background-size: cover;
 	transition: all 200ms linear;
 	/* margin: 0 1rem; */
+	border-radius: 1rem;
+	box-shadow: 3px 3px 4px rgb(0 0 0);
 	.dev-link-container {
 		display: flex;
 		flex-direction: column;

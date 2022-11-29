@@ -15,6 +15,7 @@ import Header from './components/Header';
 // import MobileHeader from './components/MobileHeader';
 // import Footer from './components/Footer';
 import { useSongsContext } from './hooks/useSongContext';
+import { useViewport } from './hooks/useViewport';
 // import MobileMenu from './components/MobileMenu';
 
 function App() {
@@ -298,13 +299,16 @@ function App() {
 	};
 
 	// const { isMenuOpen } = useStateContext();
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	if (!mountedComponent) return <div id='unmounted'>Can i see this</div>;
+
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
 			<StateContext>
-				<div className='App'>
+				<div className={`App ${width < breakpoint ? 'mobile' : ''}`}>
 					<BrowserRouter>
 						<Toaster />
 						<Header />

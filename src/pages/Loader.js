@@ -12,8 +12,10 @@ import { useArtistsContext } from '../hooks/useArtistContext';
 import { useArrangersContext } from '../hooks/useArrangerContext';
 import { useStatusContext } from '../hooks/useStatusContext';
 import { useStylesContext } from '../hooks/useStyleContext';
+import YoutubeStats from '../components/YoutubeStats';
+import AppDetails from '../components/AppDetails';
 
-const Loader = () => {
+const Loader = ({ youtubeData, theme }) => {
 	const { user } = useAuthContext();
 	const { setDataLoaded } = useStateContext();
 	const { dispatch } = useSongsContext();
@@ -58,7 +60,7 @@ const Loader = () => {
 		setTimeout(() => {
 			setDataLoaded(true);
 			setTimeout(() => {
-				navigate('/songs');
+				navigate('/home');
 			}, 1000);
 		}, 2000);
 	}, []);
@@ -231,6 +233,7 @@ const Loader = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			<YoutubeStats youtubeData={youtubeData} />
 			<StyledPageLoader className='loader-container'>
 				<div className='loader'>
 					<div className='top'>
@@ -387,6 +390,14 @@ const Loader = () => {
 					</div>
 				</div>
 			</StyledPageLoader>
+			<h1 className='app-name'>
+				guit
+				<span>
+					<strong>ARCHIVE</strong>
+				</span>
+			</h1>
+			<AppDetails theme={theme} />
+			{/* <YoutubeStats youtubeData={youtubeData} /> */}
 			<AuthVerify />
 		</StyledLoader>
 	);
@@ -399,34 +410,47 @@ const StyledLoader = styled(motion.section)`
 	height: 100vh;
 	width: 100%;
 	height: 100%;
-	background-color: ${({ theme }) => theme.bgApp};
+	/* background-color: ${({ theme }) => theme.bgApp}; */
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: center;
-	row-gap: 4rem;
+	row-gap: 2rem;
+	/* row-gap: 4rem; */
 	z-index: 500;
 	overflow: hidden;
+	max-width: 100rem;
+	padding: 0.5rem 1rem;
+	overflow-y: hidden;
+	z-index: 1;
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
+	background-image: url('/images/light wood texture.webp');
+	h1.app-name {
+		color: ${({ theme }) => theme.lightBrown};
+		font-family: 'NewTegomin';
+		font-weight: lighter;
+		font-size: 4rem;
+		text-align: center;
+		span {
+			color: ${({ theme }) => theme.darkBrown};
+			font-weight: bolder;
+		}
+	}
 `;
 const StyledPageLoader = styled.div`
-	/* .loader-container { */
-	/* @media screen and (max-width: 420px) { */
-	/* border: 2px solid red; */
-	position: absolute;
+	/* position: absolute;
 	top: 0;
 	left: 0;
 	height: 100vh;
-	width: 100vw;
+	width: 100vw; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* background: radial-gradient(#181818, #121213); */
 	background-color: transparent;
-	background-image: url('/images/light wood texture.webp');
-	/* background-color: rgb(31, 30, 30); */
+	/* background-image: url('/images/light wood texture.webp'); */
 	z-index: 50;
-	/* } */
-
 	.loader {
 		position: relative;
 		background-color: transparent;

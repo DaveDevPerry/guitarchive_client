@@ -43,6 +43,10 @@ export const GlobalStyles = createGlobalStyle`
     background-image: url("/images/light wood texture.webp");
     margin: auto;
 	overflow: hidden;
+  &.mobile{
+    row-gap:0;
+    padding-bottom: 1rem;
+  }
   }
 	
   .App{

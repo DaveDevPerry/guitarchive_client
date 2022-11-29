@@ -47,6 +47,108 @@ export const songsReducer = (state, action) => {
 				artistSongs: action.payload,
 				arrangerSongs: action.payload,
 				nextDeadlineSong: action.payload[0],
+				myArrangementStats: [
+					{
+						statName: 'terrorvision',
+						statCount: [
+							...action.payload.filter(
+								(song) =>
+									song.arranger.name === 'dave perry' &&
+									song.artist.name === 'terrorvision'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) =>
+									song.arranger.name === 'dave perry' &&
+									song.artist.name === 'terrorvision'
+							),
+						],
+					},
+					{
+						statName: 'other',
+						statCount: [
+							...action.payload.filter(
+								(song) =>
+									song.arranger.name === 'dave perry' &&
+									song.artist.name !== 'terrorvision'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) =>
+									song.arranger.name === 'dave perry' &&
+									song.artist.name !== 'terrorvision'
+							),
+						],
+					},
+				],
+				styleStats: [
+					{
+						statName: 'fingerstyle',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.style.name === 'fingerstyle'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.style.name === 'fingerstyle'
+							),
+						],
+					},
+					{
+						statName: 'classical',
+						statCount: [
+							...action.payload.filter(
+								(song) => song.style.name === 'classical'
+							),
+						].length,
+						statSongs: [
+							...action.payload.filter(
+								(song) => song.style.name === 'classical'
+							),
+						],
+					},
+				],
+				sheetMusicTypeStats: [
+					{
+						statName: 'tablature',
+						statCount: [...action.payload.filter((song) => song.isTab === true)]
+							.length,
+						statSongs: [
+							...action.payload.filter((song) => song.isTab === true),
+						],
+					},
+					{
+						statName: 'music',
+						statCount: [
+							...action.payload.filter((song) => song.isTab === false),
+						].length,
+						statSongs: [
+							...action.payload.filter((song) => song.isTab === false),
+						],
+					},
+				],
+				musicianStats: [
+					{
+						statName: 'artists',
+						statCount: [...action.payload.filter((song) => song.isTab === true)]
+							.length,
+						statSongs: [
+							...action.payload.filter((song) => song.isTab === true),
+						],
+					},
+					{
+						statName: 'arrangers',
+						statCount: [
+							...action.payload.filter((song) => song.isTab === false),
+						].length,
+						statSongs: [
+							...action.payload.filter((song) => song.isTab === false),
+						],
+					},
+				],
 				songStats: [
 					{
 						statName: 'all songs',
@@ -210,7 +312,11 @@ export const songsReducer = (state, action) => {
 				backlogSongs: null,
 				archivedSongs: null,
 				songStats: null,
+				myArrangementStats: null,
 				nextDeadlineSong: null,
+				sheetMusicTypeStats: null,
+				musicianStats: null,
+				styleStats: null,
 			};
 		default:
 			return state;
@@ -230,8 +336,11 @@ export const SongsContextProvider = ({ children }) => {
 		backlogSongs: null,
 		archivedSongs: null,
 		songStats: null,
+		myArrangementStats: null,
 		nextDeadlineSong: null,
-
+		sheetMusicTypeStats: null,
+		musicianStats: null,
+		styleStats: null,
 		// currentUser: null,
 	});
 

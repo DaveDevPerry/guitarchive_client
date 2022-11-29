@@ -32,6 +32,13 @@ const MobileMenu = () => {
 					<p>home</p>
 				</NavLink>
 				<NavLink
+					to='/stats'
+					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+				>
+					<AiFillHome className='nav-icon' />
+					<p>stats</p>
+				</NavLink>
+				<NavLink
 					to='/products'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
