@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
@@ -11,6 +11,8 @@ import SongStatusStats from '../components/SongStatusStats';
 import NextDeadlineSong from '../components/NextDeadlineSong';
 import YoutubeStats from '../components/YoutubeStats';
 import { useViewport } from '../hooks/useViewport';
+import SongsList from '../features/home/SongsList';
+import SongsFilter from '../features/home/SongsFilter';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
@@ -18,6 +20,103 @@ const Home = ({ youtubeData }) => {
 	const { dataLoaded } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
+
+	const [filterValue, setFilterValue] = useState('favourites');
+
+	// function sand events
+	const homeSongFilterHandler = (e) => {
+		console.log(e, 'e');
+		switch (e.target.value) {
+			case 'tabs':
+				setFilterValue('tabs');
+				break;
+			case 'scores':
+				setFilterValue('scores');
+				break;
+			case 'favourites':
+				setFilterValue('favourites');
+				break;
+			// case 'deadline':
+			// 	setFilterValue(
+			// 		songs &&
+			// 			songs.filter(
+			// 				(song) =>
+			// 					song.deadlineDate !== null && song.status.name !== 'Recorded'
+			// 			)
+			// 	);
+			// 	break;
+			// case 'practicing':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.status.name === 'Practicing')
+			// 	);
+			// 	break;
+			// case 'ready':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.status.name === 'Ready')
+			// 	);
+			// 	break;
+			// case 'recorded':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.status.name === 'Recorded')
+			// 	);
+			// 	break;
+			// case 'backlog':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.status.name === 'Backlog')
+			// 	);
+			// 	break;
+			// case 'archived':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.status.name === 'Archived')
+			// 	);
+			// 	break;
+			// case 'pdf':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.fileType === 'pdf')
+			// 	);
+			// 	break;
+			// case 'gp':
+			// 	setFilterValue(
+			// 		songs && songs.filter((song) => song.fileType !== 'pdf')
+			// 	);
+			// 	break;
+			// case 'difficulty-lth':
+			// 	setFilterValue(
+			// 		songs &&
+			// 			songs.sort((a, b) => {
+			// 				return b.difficulty - a.difficulty;
+			// 			})
+			// 	);
+			// 	break;
+			// case 'difficulty-htl':
+			// 	setFilterValue(
+			// 		songs &&
+			// 			songs.sort((a, b) => {
+			// 				return a.difficulty - b.difficulty;
+			// 			})
+			// 	);
+			// 	break;
+			// case 'remove-sort':
+			// 	setFilterValue(
+			// 		songs &&
+			// 			songs
+			// 				.sort((a, b) => {
+			// 					return new Date(b.deadlineDate) > new Date(a.deadlineDate);
+			// 				})
+			// 				.sort(function (a, b) {
+			// 					return (a.deadlineDate === null) - (b.deadlineDate === null);
+			// 				})
+			// 	);
+			// 	break;
+			// case 'all':
+			// 	setFilterValue(songs && songs);
+			// 	break;
+			default:
+				setFilterValue('favourites');
+				break;
+		}
+	};
+
 	// const { users, user } = useAuthContext();
 	// const [currentId, setCurrentId] = useState(null);
 	// const { songStats } = useSongsContext();
@@ -61,6 +160,15 @@ const Home = ({ youtubeData }) => {
 			<YoutubeStats youtubeData={youtubeData} />
 			<NextDeadlineSong />
 			<SongStatusStats />
+			<SongsFilter
+				filterValue={filterValue}
+				homeSongFilterHandler={homeSongFilterHandler}
+				setFilterValue={setFilterValue}
+			/>
+			<SongsList
+				filterValue={filterValue}
+				homeSongFilterHandler={homeSongFilterHandler}
+			/>
 		</StyledHome>
 	);
 };
@@ -76,7 +184,7 @@ const StyledHome = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow-y: hidden;
+	/* overflow-y: hidden; */
 	&.mobile {
 		row-gap: 1rem;
 	}
