@@ -340,29 +340,34 @@ const SongForm = ({
 					<div className='form-row'>
 						<div className='form-item'>
 							<div className='choice-wrapper'>
-								<select
-									name='artist'
-									onChange={(e) =>
-										setSongData({ ...songData, artist: e.target.value })
-									}
-									value={songData.artist}
-									// label={songData.artist}
-								>
-									<option
-									// label=
-									// value={artist.name}
+								<div className='form-dropdown'>
+									<select
+										name='artist'
+										onChange={(e) =>
+											setSongData({ ...songData, artist: e.target.value })
+										}
+										value={songData.artist}
+										// label={songData.artist}
+										className='form-select'
 									>
-										-- select artist --
-									</option>
-									{artists.map((artist) => (
 										<option
-											key={artist._id}
-											// selected
-											label={artist.name}
-											value={artist._id}
-										></option>
-									))}
-								</select>
+											className='form-option'
+											// label=
+											// value={artist.name}
+										>
+											-- select artist --
+										</option>
+										{artists.map((artist) => (
+											<option
+												key={artist._id}
+												// selected
+												label={artist.name}
+												value={artist._id}
+												className='form-option'
+											></option>
+										))}
+									</select>
+								</div>
 								{/* <input
 									type='text'
 									name='artist'
@@ -398,28 +403,33 @@ const SongForm = ({
 
 						<div className='form-item'>
 							<div className='choice-wrapper'>
-								<select
-									name='arranger'
-									onChange={(e) =>
-										setSongData({ ...songData, arranger: e.target.value })
-									}
-									value={songData.arranger}
-								>
-									<option
-									// label=
-									// value={artist.name}
+								<div className='form-dropdown'>
+									<select
+										name='arranger'
+										onChange={(e) =>
+											setSongData({ ...songData, arranger: e.target.value })
+										}
+										value={songData.arranger}
+										className='form-select'
 									>
-										-- select arranger --
-									</option>
-									{arrangers.map((arranger) => (
 										<option
-											key={arranger._id}
-											// selected
-											label={arranger.name}
-											value={arranger._id}
-										></option>
-									))}
-								</select>
+											className='form-option'
+											// label=
+											// value={artist.name}
+										>
+											-- select arranger --
+										</option>
+										{arrangers.map((arranger) => (
+											<option
+												key={arranger._id}
+												// selected
+												label={arranger.name}
+												value={arranger._id}
+												className='form-option'
+											></option>
+										))}
+									</select>
+								</div>
 								{/* <input
 									type='text'
 									name='arranger'
@@ -550,17 +560,19 @@ const SongForm = ({
 				<div className='form-section'>
 					<div className='form-row-no-wrap'>
 						<div className='form-item'>
-							<div className='choice-wrapper'>
+							<div className='choice-wrapper form-dropdown'>
 								<select
 									name='style'
 									onChange={(e) =>
 										setSongData({ ...songData, style: e.target.value })
 									}
 									value={songData.style}
+									className='form-select'
 								>
 									<option
-									// label=
-									// value={artist.name}
+										className='form-option'
+										// label=
+										// value={artist.name}
 									>
 										-- select style --
 									</option>
@@ -570,32 +582,30 @@ const SongForm = ({
 											// selected
 											label={style.name}
 											value={style._id}
+											className='form-option'
 										></option>
 									))}
 								</select>
 							</div>
 						</div>
 						<div className='form-item'>
-							<div className='choice-wrapper'>
+							<div className='choice-wrapper form-dropdown'>
 								<select
 									name='status'
 									onChange={(e) =>
 										setSongData({ ...songData, status: e.target.value })
 									}
 									value={songData.status}
+									className='form-select'
 								>
-									<option
-									// label=
-									// value={artist.name}
-									>
-										-- select status --
-									</option>
+									<option className='form-option'>-- select status --</option>
 									{statuses.map((status) => (
 										<option
 											key={status._id}
 											// selected
 											label={status.name}
 											value={status._id}
+											className='form-option'
 										></option>
 									))}
 								</select>
@@ -680,15 +690,15 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			.form-input {
+			/* .form-input {
 				width: 100%;
-			}
-			.file-input {
+			} */
+			/* .file-input {
 				width: 100%;
 				position: relative;
 				height: 3.9rem;
 				font: inherit;
-			}
+			} */
 			.button {
 				display: inline-block;
 				/* padding: 12px 18px; */
@@ -713,6 +723,7 @@ const StyledSongForm = styled.form`
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				align-items: center;
 				column-gap: 0.5rem;
 				flex: 1;
 				.add-artist-btn-form {
@@ -721,79 +732,41 @@ const StyledSongForm = styled.form`
 					place-content: center;
 					height: 3.9rem;
 					width: 3.9rem;
-					/* padding: 1rem;
-					cursor: pointer;
-					padding: 1rem; */
 					cursor: pointer;
 					border-radius: 0.4rem;
 					box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
 						rgb(0 0 0 / 40%) -2px -2px 2px;
 					.add-new-record-icon {
-						/* color: ${({ theme }) => theme.white}; */
 						font-size: 2.2rem;
 						pointer-events: none;
 					}
 				}
 			}
 
-			.input-grow {
+			/* .input-grow {
 				resize: none;
 				width: --webkit-fill-available;
 				width: 100%;
 				margin-top: 1rem;
-				/* background-color: rgba(168, 105, 69, 0.57);
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				border: none;
-				outline: none;
-				font-weight: bolder; */
 				::placeholder {
-					/* padding: 0.5rem 1rem; */
 					font-size: 1.4rem;
 				}
-			}
-			select {
-				/* font-size: 1.6rem; */
-				/* padding: 0.2rem; */
-				/* appearance: none; */
-				// Additional resets for further consistency
-				background-color: transparent;
-				background-color: rgba(168, 105, 69, 0.57);
-				border: none;
-				margin: 0;
-				width: 100%;
-				/* font-family: inherit; */
-				/* font-size: inherit; */
-				cursor: inherit;
-				line-height: inherit;
-				padding: 10px;
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				outline: none;
-				/* &:focus{
-
-				} */
-				option {
+			} */
+			/* select.form-select {
+				option.form-option {
 					font-size: 1.6rem;
-					/* font-style: italic; */
 					color: ${({ theme }) => theme.engravedBrown};
 					background-color: rgba(36, 14, 0, 0.08);
-					/* padding: 0.2rem; */
 					border: 1px solid ${({ theme }) => theme.darkBrown};
 					border-radius: 1rem 0 0 1rem;
-					/* width: 25rem; */
-					/* margin-left: 2rem; */
-					&:focus {
-						border: 1px solid ${({ theme }) => theme.darkBrown};
-						outline: none;
-					}
 				}
-			}
+			} */
 		}
 		.form-item-row {
 			display: flex;
 			width: unset;
 			align-items: center;
 			column-gap: 1rem;
-			/* flex: 1; */
 			label.song-label {
 				margin: 0;
 			}
@@ -802,7 +775,6 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				justify-content: flex-start;
 				column-gap: 1rem;
-				/* flex: 1; */
 				.input-date {
 					font-size: 1.6rem;
 					text-transform: uppercase;
@@ -812,9 +784,6 @@ const StyledSongForm = styled.form`
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			/* input[type='checkbox'] {
-				width: unset;
-			} */
 			input[type='number'].form-number {
 				width: 60px;
 			}
@@ -857,19 +826,19 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			.form-input {
+			/* .form-input {
 				width: 100%;
 				&:focus {
 					border: unset;
 					border: 2px solid black;
 				}
-			}
-			.file-input {
+			} */
+			/* .file-input {
 				width: 100%;
 				input[type='file'] {
 					width: 100%;
 				}
-			}
+			} */
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
@@ -897,53 +866,32 @@ const StyledSongForm = styled.form`
 					}
 				}
 			}
-			.input-grow {
+			/* .input-grow {
 				resize: none;
 				width: --webkit-fill-available;
 				width: 100%;
 				margin-top: 1rem;
-				/* background-color: rgba(168, 105, 69, 0.57);
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				border: none;
-				outline: none;
-				font-weight: bolder; */
 				::placeholder {
-					/* Chrome, Firefox, Opera, Safari 10.1+ */
 					color: ${({ theme }) => theme.engravedBrown};
 					padding: 0.5rem 1rem;
-					opacity: 1; /* Firefox */
+					opacity: 1;
 				}
 				:-ms-input-placeholder {
-					/* Internet Explorer 10-11 */
 					color: ${({ theme }) => theme.engravedBrown};
 				}
 				::-ms-input-placeholder {
-					/* Microsoft Edge */
 					color: ${({ theme }) => theme.engravedBrown};
 				}
-			}
-			select {
-				/* font-size: 1.6rem; */
-				/* padding: 0.2rem; */
-				/* appearance: none; */
-				// Additional resets for further consistency
-				background-color: transparent;
-				background-color: rgba(168, 105, 69, 0.57);
-				border: none;
+			} */
+			/* select.form-select {
 				margin: 0;
-				width: 100%;
-				/* font-family: inherit; */
-				/* font-size: inherit; */
 				cursor: inherit;
 				line-height: inherit;
 				padding: 10px;
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				outline: none;
-				option {
+				option.form-option {
 					font-size: 1.6rem;
 					color: ${({ theme }) => theme.engravedBrown};
 					background-color: rgba(36, 14, 0, 0.08);
-					/* padding: 0.2rem; */
 					border: 1px solid ${({ theme }) => theme.darkBrown};
 					border-radius: 1rem 0 0 1rem;
 					&:focus {
@@ -951,7 +899,7 @@ const StyledSongForm = styled.form`
 						outline: none;
 					}
 				}
-			}
+			} */
 		}
 		.form-item-row {
 			display: flex;

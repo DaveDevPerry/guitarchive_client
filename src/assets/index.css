@@ -2,11 +2,18 @@
 
 @font-face {
   font-family: 'NewTegomin';
-  src: url("./fonts/NewTegomin-Regular.woff2") format("woff2"), url("./fonts/NewTegomin-Regular.woff") format("woff");
+  src:  url("./fonts/NewTegomin-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
+/* @font-face {
+  font-family: 'NewTegomin';
+  src: url("./fonts/NewTegomin-Regular.woff2") format("woff2"), url("./fonts/NewTegomin-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
 
 
 /* @font-face {
@@ -39,6 +46,7 @@
 	margin: 0 auto;
 	flex: 1;
 	z-index: 600;
+  overflow: hidden;
 }
 /* .songs-page{
   display: flex;

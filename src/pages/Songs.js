@@ -80,6 +80,7 @@ const StyledSongs = styled(motion.div)`
 	padding: 0 0.5rem;
 	&.mobile {
 		padding: 0;
+		row-gap: 0rem;
 	}
 	.user-actions-container {
 		display: flex;

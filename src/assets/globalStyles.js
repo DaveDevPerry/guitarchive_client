@@ -118,6 +118,27 @@ color: ${({ theme }) => theme.engravedBrown};
   input:focus, textarea:focus {
   border: 2px solid ${({ theme }) => theme.borderDark};
 }
+.form-input {
+				width: 100%;
+			}
+      .input-grow {
+				resize: none;
+				width: --webkit-fill-available;
+				width: 100%;
+				margin-top: 1rem;
+        ::placeholder {
+					color: ${({ theme }) => theme.engravedBrown};
+					${'' /* padding: 0.5rem 1rem; */}
+					font-size: 1.4rem;
+					opacity: 1;
+				}
+				:-ms-input-placeholder {
+					color: ${({ theme }) => theme.engravedBrown};
+				}
+				::-ms-input-placeholder {
+					color: ${({ theme }) => theme.engravedBrown};
+				}
+			}
   input[type='range'] {
       overflow: hidden;
       -webkit-appearance: none;
@@ -293,4 +314,86 @@ input[type="file"] {
         width: 100%;
         height: 3.9rem;
       }
+      .file-input {
+				width: 100%;
+				position: relative;
+				height: 3.9rem;
+				font: inherit;
+			}
+
+
+      // select
+      select.form-select {
+        cursor: inherit;
+				line-height: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  ${'' /* border: solid 1px #ccc; */}
+  -moz-border-radius: 0.4rem;
+  border-radius: 0.4rem;
+  outline: none;
+  padding: 10px 20px 10px 5px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+    ${'' /* padding: 1rem; */}
+    border: 2px solid ${({ theme }) => theme.borderLight};
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  ${'' /* outline: none; */}
+    ${'' /* border-radius: 0.4rem; */}
+    background-color: rgba(168, 105, 69, 0.57);
+    box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+}
+select.form-select:focus {
+  border: 2px solid ${({ theme }) => theme.borderDark};
+}
+option.form-option {
+					font-size: 1.6rem;
+					color: ${({ theme }) => theme.engravedBrown};
+					background-color: rgba(36, 14, 0, 0.08);
+					border: 1px solid ${({ theme }) => theme.darkBrown};
+					border-radius: 1rem 0 0 1rem;
+          text-transform: capitalize;
+					&:focus {
+						border: 1px solid ${({ theme }) => theme.darkBrown};
+						outline: none;
+					}
+				}
+.form-dropdown {
+  ${'' /* margin: 100px auto; */}
+  position: relative;
+  ${'' /* width: 100%; */}
+  flex: 1;
+  ${'' /* width: 300px; */}
+}
+${
+	'' /* .form-dropdown:before {
+  content: 'Custom Dropdown Demo';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  font-size: 20px;
+} */
+}
+.form-dropdown:after {
+  background-color: ${({ theme }) => theme.lightBrown};
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  color: ${({ theme }) => theme.engravedBrown};
+  content: '▼';
+  display: block;
+  font-size: 1.4rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  ${'' /* width: 25px; */}
+  padding: 7px 0;
+  position: absolute;
+  pointer-events: none;
+  top: 2px;
+  bottom: 0;
+  text-align: center;
+  right: 2px;
+}
 `;
