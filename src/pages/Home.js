@@ -9,11 +9,15 @@ import { useNavigate } from 'react-router-dom';
 // import { useSongsContext } from '../hooks/useSongContext';
 import SongStatusStats from '../components/SongStatusStats';
 import NextDeadlineSong from '../components/NextDeadlineSong';
+import YoutubeStats from '../components/YoutubeStats';
+import { useViewport } from '../hooks/useViewport';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
-const Home = () => {
+const Home = ({ youtubeData }) => {
 	const { dataLoaded } = useStateContext();
+	const { width } = useViewport();
+	const breakpoint = 620;
 	// const { users, user } = useAuthContext();
 	// const [currentId, setCurrentId] = useState(null);
 	// const { songStats } = useSongsContext();
@@ -32,7 +36,10 @@ const Home = () => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
-			className='page'
+			// className={{width < breakpoint ? {'mobile page'}: {'page'}}}}
+			className={`page ${width < breakpoint ? 'mobile' : ''}`}
+
+			// className='page'
 		>
 			{/* <StyledDayHeaderWidget>
 				<p className='header-time'>
@@ -51,6 +58,7 @@ const Home = () => {
 					(perhaps, upcoming deadlines or ready to rec?)
 				</h2>
 			</StyledDayHeaderWidget> */}
+			<YoutubeStats youtubeData={youtubeData} />
 			<NextDeadlineSong />
 			<SongStatusStats />
 		</StyledHome>
@@ -69,6 +77,9 @@ const StyledHome = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	overflow-y: hidden;
+	&.mobile {
+		row-gap: 1rem;
+	}
 `;
 
 // const StyledDayHeaderWidget = styled.div`

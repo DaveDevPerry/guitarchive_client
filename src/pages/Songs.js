@@ -43,7 +43,7 @@ const Songs = ({
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
-			className='songs-page page'
+			className={`page songs-page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			{isFormOpen === true && (
 				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
@@ -78,6 +78,9 @@ const StyledSongs = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1; */
 	padding: 0 0.5rem;
+	&.mobile {
+		padding: 0;
+	}
 	.user-actions-container {
 		display: flex;
 		justify-content: space-between;

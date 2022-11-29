@@ -42,12 +42,12 @@ const Header = () => {
 						>
 							<p>home</p>
 						</NavLink>
-						<NavLink
+						{/* <NavLink
 							to='/products'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>products</p>
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -66,12 +66,12 @@ const Header = () => {
 						>
 							<p>arrangers</p>
 						</NavLink>
-						<NavLink
+						{/* <NavLink
 							to='/youtube'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>youtube</p>
-						</NavLink>
+						</NavLink> */}
 						{/* <NavLink
 							to='/settings'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -165,6 +165,7 @@ const StyledHeader = styled.header`
 					font-size: 1.6rem;
 					text-transform: uppercase;
 					font-size: 2rem;
+					font-weight: bolder;
 				}
 				/* .home-icon {
 					color: ${({ theme }) => theme.txtDarkGrey};
@@ -173,10 +174,10 @@ const StyledHeader = styled.header`
 			}
 			a.active {
 				p {
-					color: ${({ theme }) => theme.green};
+					/* color: ${({ theme }) => theme.green}; */
 					color: ${({ theme }) => theme.lightBrown};
 
-					font-weight: bolder;
+					/* font-weight: bolder; */
 				}
 				/* .home-icon {
 					color: ${({ theme }) => theme.green};

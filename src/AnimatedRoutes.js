@@ -58,7 +58,11 @@ const AnimatedRoutes = ({
 					path='/home'
 					element={
 						user ? (
-							<Home theme={theme} currentDate={currentDate} />
+							<Home
+								theme={theme}
+								currentDate={currentDate}
+								youtubeData={youtubeData}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)

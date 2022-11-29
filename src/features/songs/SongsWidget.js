@@ -23,7 +23,7 @@ const SongsWidget = ({ filteredSongs }) => {
 	const breakpoint = 620;
 	// let navigate = useNavigate();
 	return (
-		<StyledSongsWidget>
+		<StyledSongsWidget className={`${width < breakpoint ? 'mobile' : ''}`}>
 			{width < breakpoint ? (
 				<div className='mobile-songs-container'>
 					{filteredSongs &&
@@ -54,6 +54,9 @@ const StyledSongsWidget = styled.div`
 	/* margin: 0 auto; */
 	flex: 1;
 	padding: 0 0.5rem;
+	&.mobile {
+		padding: 0;
+	}
 	.mobile-songs-container {
 		display: flex;
 		flex-direction: column;

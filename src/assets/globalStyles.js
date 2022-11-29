@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
   }
-	
+	${'' /* className={`page ${width < breakpoint ? 'mobile' : ''}`} */}
 	.App {
     width: 100vw;
     height: 100vh;
@@ -73,32 +73,36 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   ${
-		'' /* header a {
-    color: ${({ theme }) => theme.txtDarkGrey};
-    color: ${({ theme }) => theme.darkBrown};
-    text-decoration: none;
-  } */
+		'' /* input[type=text] {
+  box-sizing: border-box;
+  border: 2px solid ${({ theme }) => theme.borderLight};
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+} */
 	}
+
+${
+	'' /* input[type=text]:focus {
+  border: 2px solid ${({ theme }) => theme.borderDark};
+} */
+}
   label, input {
-    display: block;
-    ${'' /* color: ${({ theme }) => theme.engravedBrown}; */}
+    ${'' /* display: block; */}
     font-weight: bolder;
-   
-    ${'' /* color: ${({ theme }) => theme.txtGrey}; */}
   }
-  input {
-    padding: 10px;
-    ${'' /* margin-top: 10px; */}
-    ${'' /* margin-bottom: 20px; */}
-    ${'' /* width: 100%; */}
-    border: none;
-    ${'' /* border: 2px solid ${({ theme }) => theme.borderGrey}; */}
-    border-radius: 4px;
+  input, textarea {
+    font-weight: bolder;
     box-sizing: border-box;
+    padding: 1rem;
+    border: 2px solid ${({ theme }) => theme.borderLight};
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+    border-radius: 0.4rem;
     background-color: rgba(168, 105, 69, 0.57);
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  ${'' /* color: red; */}
   color: ${({ theme }) => theme.engravedBrown};
   opacity: 1; /* Firefox */
 }
@@ -111,9 +115,11 @@ color: ${({ theme }) => theme.engravedBrown};
 color: ${({ theme }) => theme.engravedBrown};
 }
   }
+  input:focus, textarea:focus {
+  border: 2px solid ${({ theme }) => theme.borderDark};
+}
   input[type='range'] {
       overflow: hidden;
-      ${'' /* width: 80px; */}
       -webkit-appearance: none;
       background-color: ${({ theme }) => theme.lightBrown};
     }
@@ -130,27 +136,27 @@ color: ${({ theme }) => theme.engravedBrown};
       -webkit-appearance: none;
       height: 10px;
       cursor: ew-resize;
-      ${'' /* background: ${({ theme }) => theme.lightBrown}; */}
-      ${'' /* background: ${({ theme }) => theme.lightBrown}; */}
-      ${'' /* box-shadow: -80px 0 0 80px #43e5f7; */}
     }
-  input:focus {
-    outline: none;
-    border: none;
-    ${'' /* border: 2px solid ${({ theme }) => theme.primaryColor}; */}
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
   ${
-		'' /* form button {
-    background: ${({ theme }) => theme.primaryColor};
-    border: 0;
-    color: #fff;
-    padding: 1rem;
+		'' /* input:focus {
+    outline: none;
     border-radius: 4px;
-    cursor: pointer;
+		border: 1px solid black;
   } */
 	}
+  ${
+		'' /* input[type=text] {
+  box-sizing: border-box;
+  border: 2px solid ${({ theme }) => theme.borderLight};
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+input[type=text]:focus {
+  border: 2px solid ${({ theme }) => theme.borderDark};
+} */
+	}
+
   div.error {
     padding: 1rem;
     background: ${({ theme }) => theme.bgError};
@@ -159,7 +165,7 @@ color: ${({ theme }) => theme.engravedBrown};
     border-radius: 4px;
   }
   input.error {
-    border: 1px solid ${({ theme }) => theme.error};
+    border: 2px solid ${({ theme }) => theme.error};
   }
   .stroke{
     -webkit-text-stroke: 1px ${({ theme }) => theme.secondaryColor};
@@ -175,7 +181,6 @@ color: ${({ theme }) => theme.engravedBrown};
   .br{
     border-radius: 4px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    ${'' /* background-color: ${({ theme }) => theme.bgApp}; */}
   }
   .br-inset{
     background-color: ${({ theme }) => theme.bgLightGrey};
@@ -186,4 +191,106 @@ color: ${({ theme }) => theme.engravedBrown};
     border-radius: 5px;
     box-shadow: inset -1px -1px 2px rgba(0,0,0,0.3), inset 1px 1px 1px rgba(0,0,0,0.1);
   }
+
+
+  // reset checkbox
+  input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  padding: unset;
+  /* For iOS < 15 to remove gradient background */
+  background-color: rgba(168, 105, 69, 0.57);
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+width: 3.9rem;
+  height: 3.9rem;
+  border-radius: 0.4rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+input[type="checkbox"]::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em ${({ theme }) => theme.engravedBrown};
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+input[type="checkbox"]:disabled {
+  --form-control-color:  ${({ theme }) => theme.error};
+
+  color: ${({ theme }) => theme.error};
+  cursor: not-allowed;
+}
+
+// custom date
+input[type="date"]{
+  font: inherit;
+${'' /* width: 3.9rem; */}
+  height: 3.9rem;
+    ${'' /* background-color: #0080ff; */}
+    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
+    ${'' /* padding: 15px; */}
+    ${'' /* position: absolute; */}
+    ${'' /* transform: translate(-50%,-50%); */}
+    ${'' /* top: 50%; */}
+    ${'' /* left: 50%; */}
+    ${'' /* font-family: "Roboto Mono",monospace; */}
+    ${'' /* color: #ffffff; */}
+    font-size: 1.6rem;
+    ${'' /* border: none; */}
+    ${'' /* outline: none; */}
+    ${'' /* border-radius: 5px; */}
+    padding: 0 0 0 1rem;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: ${({ theme }) => theme.lightBrown};
+   padding: 5px; 
+   margin-right: 0.5rem;
+    ${
+			'' /* height: 3.9rem;
+    width: 3.9rem; */
+		}
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+// file
+${
+	'' /* .file-input label {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+} */
+}
+input[type="file"] {
+        position: absolute;
+        z-index: -1;
+        ${'' /* top: 10px; */}
+        left: 0px;
+        ${'' /* font-size: 17px; */}
+        ${'' /* color: #b8b8b8; */}
+        width: 100%;
+        height: 3.9rem;
+      }
 `;

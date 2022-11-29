@@ -27,7 +27,7 @@ const DeleteSongModal = ({ handleDelete, handleCancel }) => {
 
 	return (
 		<StyledDeleteSongModal open>
-			<div className='posts-box br'>
+			<div className='posts-box'>
 				<h2>confirm delete</h2>
 				<p>this action can not be undone</p>
 
@@ -80,9 +80,14 @@ const StyledDeleteSongModal = styled.dialog`
 		background-image: url('/images/dark wood texture.webp');
 		border-radius: 1rem;
 		row-gap: 2rem;
+		box-shadow: 3px 3px 4px rgb(0 0 0);
 		h2 {
+			font-size: 2.5rem;
 			text-transform: capitalize;
 			text-align: center;
+			font-weight: bolder;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 			color: ${({ theme }) => theme.engravedBrown};
 		}
 		p {
@@ -114,6 +119,7 @@ const StyledDeleteSongModal = styled.dialog`
 				height: 100%;
 				/* width: 9em; */
 				/* height: 2em; */
+
 				cursor: pointer;
 				flex: 1;
 				text-align: center;
