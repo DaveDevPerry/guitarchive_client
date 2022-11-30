@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useViewport } from '../hooks/useViewport';
 
 const AppDetails = ({ theme }) => {
 	useEffect(() => {}, [theme]);
+	const { width } = useViewport();
+	const breakpoint = 620;
 	return (
-		<StyledAppDetails>
+		<StyledAppDetails className={`${width < breakpoint ? 'mobile' : ''}`}>
 			<div
 				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
 			></div>
@@ -41,6 +44,9 @@ const StyledAppDetails = styled.div`
 	/* margin: 0 1rem; */
 	border-radius: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
+	&.mobile {
+		border-radius: 0.4rem;
+	}
 	.dev-link-container {
 		display: flex;
 		flex-direction: column;

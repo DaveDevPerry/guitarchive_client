@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
+import { useViewport } from '../../hooks/useViewport';
 import SongCard from './SongCard';
 // import SongsPaginationFooter from './SongsPaginationFooter';
 import SongsPaginationNav from './SongsPaginationNav';
@@ -12,6 +13,9 @@ function SongsList({ filterValue }) {
 	const [page, setPage] = useState(1);
 	const [pageCount, setPageCount] = useState(0);
 	const [songCount, setSongCount] = useState(0);
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	const { data, error } = useSWR(
 		`${process.env.REACT_APP_BACKEND_URL}/api/products/${filterValue}?page=${page}`,
@@ -62,8 +66,29 @@ function SongsList({ filterValue }) {
 	// };
 
 	return (
-		<StyledSongsWidget>
-			<div className='pagination-header'>
+		<StyledSongsList className={`${width < breakpoint ? 'mobile' : ''}`}>
+			{/* <div className='pagination-header'>
+				<p>
+					Page: {page} / {pageCount}
+				</p>
+				<SongsPaginationNav
+					page={page}
+					setPage={setPage}
+					pageCount={pageCount}
+					handlePrevious={handlePrevious}
+					handleNext={handleNext}
+				/>
+				<p>Songs: {songCount}</p>
+			</div> */}
+
+			<div className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}>
+				{data.items.map((product) => {
+					return <SongCard key={product._id} song={product} />;
+				})}
+			</div>
+			<div
+				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
+			>
 				<p>
 					Page: {page} / {pageCount}
 				</p>
@@ -76,113 +101,44 @@ function SongsList({ filterValue }) {
 				/>
 				<p>Songs: {songCount}</p>
 			</div>
-			{/* <p>Page: {page}
-				Page count: {pageCount}</p> */}
-			<div className='songs-container'>
-				{data.items.map((product) => {
-					return <SongCard key={product._id} song={product} />;
-				})}
-				{/* <div className='product-item' key={product._id}>
-						<div className='product-inner'>
-							<span className='product-price'>${product.price}</span>
-							<h3 className='product-name'>{product.productName}</h3>
-						</div>
-					</div> */}
-				{/* return (
-					<div className='product-item' key={product._id}>
-						<div className='product-inner'>
-							<span className='product-price'>${product.price}</span>
-							<h3 className='product-name'>{product.productName}</h3>
-						</div>
-					</div>
-				); */}
-
-				{/* <footer>
-					Page: {page}
-					<br />
-					Page count: {pageCount}
-					<br />
-					<button disabled={page === 1} onClick={handlePrevious}>
-						Previous
-					</button>
-					<button disabled={page === pageCount} onClick={handleNext}>
-						Next
-					</button>
-					<select
-						value={page}
-						onChange={(event) => {
-							setPage(event.target.value);
-						}}
-					>
-						{Array(pageCount)
-							.fill(null)
-							.map((_, index) => {
-								return <option key={index}>{index + 1}</option>;
-							})}
-					</select>
-				</footer> */}
-			</div>
-			{/* <Pagination
-				activePage={activePage}
-				itemsCountPerPage={5}
-				totalItemsCount={10}
-				pageRangeDisplayed={2}
-				onChange={() => {
-					handlePageChange(page);
-				}}
-			/> */}
-			{/* <SongsPaginationFooter
-				page={page}
-				setPage={setPage}
-				pageCount={pageCount}
-				handlePrevious={handlePrevious}
-				handleNext={handleNext}
-			/> */}
-			{/* <footer>
-				Page: {page}
-				<br />
-				Page count: {pageCount}
-				<br />
-				<button disabled={page === 1} onClick={handlePrevious}>
-					Previous
-				</button>
-				<button disabled={page === pageCount} onClick={handleNext}>
-					Next
-				</button>
-				<select
-					value={page}
-					onChange={(event) => {
-						setPage(event.target.value);
-					}}
-				>
-					{Array(pageCount)
-						.fill(null)
-						.map((_, index) => {
-							return <option key={index}>{index + 1}</option>;
-						})}
-				</select>
-			</footer> */}
-		</StyledSongsWidget>
+		</StyledSongsList>
 	);
 }
-const StyledSongsWidget = styled.div`
+const StyledSongsList = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	max-width: 100rem;
-	/* padding: 0.5rem 1rem; */
 	overflow-y: hidden;
 	z-index: 1;
 	/* transition: all 200ms linear; */
 	/* margin: 0 auto; */
 	flex: 1;
-	padding: 0 0.5rem 2rem 0.5rem;
+	/* padding: 0 0.5rem 2rem 0.5rem; */
 	row-gap: 1rem;
+	padding-bottom: 0.5rem;
+	&.mobile {
+		row-gap: 0.5rem;
+		padding-bottom: 0rem;
+	}
 	.pagination-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* margin-bottom: 1rem; */
+		border-radius: 1rem;
+		padding: 1rem 2rem;
+
+		/* flex: 1; */
+		/* flex: 1 1 48%; */
+		background-color: #120700e9;
+		/* background-color: #170901c8; */
+		/* background-color: ${({ theme }) => theme.engravedBrown}; */
+		/* background-color: rgba(168, 105, 69, 0.57); */
+		box-shadow: 3px 3px 4px rgb(0 0 0);
+		&.mobile {
+			border-radius: 0.4rem;
+			box-shadow: none;
+		}
 		p {
 			font-weight: bolder;
 			/* display: inline-block; */
@@ -192,18 +148,25 @@ const StyledSongsWidget = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		/* flex: 1; */
-		/* margin-bottom: 2rem; */
 		overflow-y: auto;
 		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem;
-		box-shadow: 3px 3px 4px rgba(0, 0, 0, 08);
+		border-radius: 0.4rem 0.4rem 1rem 1rem;
+		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
+			inset -2px -2px 2px rgba(0, 0, 0, 08);
+		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
 		background-color: rgba(0, 0, 0, 0.1);
+		padding: 0.5rem;
+		padding-right: 0;
 		scroll-behavior: smooth;
 		scroll-behavior: smooth;
 		scrollbar-width: normal;
 		scrollbar-color: ${({ theme }) => theme.lightBrown};
+		flex: 1;
+		&.mobile {
+			border-radius: 0.4rem;
+		}
 		::-webkit-scrollbar {
+			display: none;
 			height: 18px !important;
 			width: 18px;
 			background: ${({ theme }) => theme.lightBrown};

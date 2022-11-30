@@ -11,8 +11,10 @@ import { useNavigate } from 'react-router-dom';
 import NextDeadlineSong from '../components/NextDeadlineSong';
 // import YoutubeStats from '../components/YoutubeStats';
 import { useViewport } from '../hooks/useViewport';
-import SongsList from '../features/home/SongsList';
-import SongsFilter from '../features/home/SongsFilter';
+// import SongsList from '../features/home/SongsList';
+// import SongsFilter from '../features/home/SongsFilter';
+import { CgPlayListAdd } from 'react-icons/cg';
+import SongsListContainer from '../features/home/SongsListContainer';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
@@ -140,6 +142,22 @@ const Home = ({ youtubeData }) => {
 
 			// className='page'
 		>
+			<div className='add-btns-container'>
+				<QuickAddButton
+				// 	onClick={() => {
+				// 	isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
+				// }}
+				>
+					<CgPlayListAdd
+						className='quick-add-icon'
+						// onClick={() => {
+						// 	isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
+						// }}
+					/>
+					<p>add song</p>
+					{/* {width > breakpoint && <p>add song</p>} */}
+				</QuickAddButton>
+			</div>
 			{/* <StyledDayHeaderWidget>
 				<p className='header-time'>
 					<strong>
@@ -160,7 +178,13 @@ const Home = ({ youtubeData }) => {
 			{/* <YoutubeStats youtubeData={youtubeData} /> */}
 			<NextDeadlineSong />
 			{/* <SongStatusStats /> */}
-			<SongsFilter
+			<SongsListContainer
+				filterValue={filterValue}
+				homeSongFilterHandler={homeSongFilterHandler}
+				setFilterValue={setFilterValue}
+			/>
+
+			{/* <SongsFilter
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}
 				setFilterValue={setFilterValue}
@@ -168,7 +192,7 @@ const Home = ({ youtubeData }) => {
 			<SongsList
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}
-			/>
+			/> */}
 		</StyledHome>
 	);
 };
@@ -179,14 +203,71 @@ const StyledHome = styled(motion.div)`
 	row-gap: 2rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	/* overflow-y: hidden; */
+	overflow-y: hidden;
 	&.mobile {
 		row-gap: 1rem;
+	}
+	.add-btns-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		border: 1px solid black;
+		display: none;
+	}
+`;
+
+// const SongsListContainer = styled.div`
+// 	padding: 1rem 2rem 2rem;
+// 	border-radius: 1rem;
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	background-image: url('/images/dark wood texture.webp');
+// 	background-repeat: no-repeat;
+// 	background-size: cover;
+// 	row-gap: 1rem;
+// 	box-shadow: 3px 3px 4px rgb(0 0 0);
+// 	flex: 1;
+// 	overflow-y: hidden;
+// 	&.mobile {
+// 		border-radius: 0.4rem;
+// 	}
+// `;
+
+const QuickAddButton = styled.div`
+	background-image: url('/images/dark wood texture.webp');
+	padding: 0 1rem;
+	/* flex: 1; */
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 0.5rem;
+	border-radius: 0.5rem;
+	/* background-color: ${({ theme }) => theme.lightBrown}; */
+	box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+	/* background-color: #9a9a9a; */
+	height: 100%;
+	/* width: 9em; */
+	/* height: 2em; */
+	cursor: pointer;
+
+	.quick-add-icon {
+		font-size: 2.5rem;
+		color: white;
+	}
+	p {
+		/* font-family: 'Roboto'; */
+		font-family: 'NewTegomin';
+		color: white;
+		text-transform: uppercase;
+		font-size: 1.6rem;
+		/* font-size: 1.2rem; */
 	}
 `;
 
