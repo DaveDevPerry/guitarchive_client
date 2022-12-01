@@ -18,7 +18,7 @@ import SongsListContainer from '../features/home/SongsListContainer';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
-const Home = ({ youtubeData }) => {
+const Home = ({ youtubeData, theme }) => {
 	const { dataLoaded } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -176,12 +176,13 @@ const Home = ({ youtubeData }) => {
 				</h2>
 			</StyledDayHeaderWidget> */}
 			{/* <YoutubeStats youtubeData={youtubeData} /> */}
-			<NextDeadlineSong />
+			<NextDeadlineSong theme={theme} />
 			{/* <SongStatusStats /> */}
 			<SongsListContainer
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}
 				setFilterValue={setFilterValue}
+				theme={theme}
 			/>
 
 			{/* <SongsFilter

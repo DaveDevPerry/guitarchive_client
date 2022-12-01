@@ -104,7 +104,7 @@ const StyledSongDetails = styled.div`
 			font-size: 2rem;
 		}
 		.arrow-icon.green {
-			color: ${({ theme }) => theme.primaryColor};
+			color: ${({ theme }) => theme.green};
 		}
 		.arrow-icon.red {
 			color: ${({ theme }) => theme.error};

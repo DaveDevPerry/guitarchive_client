@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
-import { FaListAlt, FaUserEdit } from 'react-icons/fa';
+import { FaListAlt } from 'react-icons/fa';
+// import { FaListAlt, FaUserEdit } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
-import { GiMusicalScore } from 'react-icons/gi';
+// import { GiMusicalScore } from 'react-icons/gi';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
 
-const MobileMenu = () => {
+const MobileMenu = ({ theme }) => {
 	const { dataLoaded } = useStateContext();
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -23,64 +24,71 @@ const MobileMenu = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<nav>
-				<NavLink
-					to='/home'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<AiFillHome className='nav-icon' />
-					<p>home</p>
-				</NavLink>
-				<NavLink
-					to='/stats'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<AiFillHome className='nav-icon' />
-					<p>stats</p>
-				</NavLink>
-				<NavLink
+			<div
+				className='menu-container'
+				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+			>
+				<nav>
+					<NavLink
+						to='/home'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<AiFillHome className='nav-icon' />
+						<p>home</p>
+					</NavLink>
+
+					{/* <NavLink
 					to='/products'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
 					<FaListAlt className='nav-icon' />
 					<p>products</p>
-				</NavLink>
-				<NavLink
-					to='/youtube'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<TfiYoutube className='nav-icon' />
-					<p>youtube</p>
-				</NavLink>
-				<NavLink
-					to='/songs'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<FaListAlt className='nav-icon' />
-					<p>songs</p>
-				</NavLink>
-				<NavLink
+				</NavLink> */}
+
+					<NavLink
+						to='/songs'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<FaListAlt className='nav-icon' />
+						<p>songs</p>
+					</NavLink>
+					<NavLink
+						to='/stats'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<AiFillHome className='nav-icon' />
+						<p>stats</p>
+					</NavLink>
+					<NavLink
+						to='/youtube'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<TfiYoutube className='nav-icon' />
+						<p>youtube</p>
+					</NavLink>
+					{/* <NavLink
 					to='/artists'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
 					<GiMusicalScore className='nav-icon' />
 					<p>artists</p>
-				</NavLink>
-				<NavLink
+				</NavLink> */}
+					{/* <NavLink
 					to='/arrangers'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
 					<FaUserEdit className='nav-icon' />
 					<p>arrangers</p>
-				</NavLink>
-				<NavLink
-					to='/settings'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<RiSettings2Fill className='nav-icon' />
-					<p>settings</p>
-				</NavLink>
-			</nav>
+				</NavLink> */}
+					<NavLink
+						to='/settings'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<RiSettings2Fill className='nav-icon' />
+						<p>settings</p>
+					</NavLink>
+				</nav>
+			</div>
 		</StyledMobileMenu>
 	);
 };
@@ -88,7 +96,7 @@ const StyledMobileMenu = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 	row-gap: 1rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
@@ -98,13 +106,38 @@ const StyledMobileMenu = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	/* overflow-y: hidden; */
+	.menu-container {
+		padding: 1rem 2rem 2rem;
+		border-radius: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		/* background-image: url('/images/light wood texture.webp'); */
+		/* background-image: url('/images/medium wood texture.png'); */
+
+		/* background-image: url('/images/white wood.jpg'); */
+		background-repeat: no-repeat;
+		background-size: cover;
+		row-gap: 0.5rem;
+		box-shadow: 3px 3px 4px rgb(0 0 0);
+		flex: 1;
+		overflow-y: hidden;
+		&#dark {
+			background-image: url('/images/dark wood texture.webp');
+		}
+		&#light {
+			background-image: url('/images/white wood.jpg');
+		}
+	}
 	nav {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		/* align-items: center; */
 		row-gap: 2rem;
-		transform: translateY(-35px);
+		/* transform: translateY(-35px); */
+
 		a {
 			display: flex;
 			justify-content: flex-start;
@@ -113,12 +146,16 @@ const StyledMobileMenu = styled(motion.div)`
 			text-decoration: none;
 			.nav-icon {
 				font-size: 3rem;
-				color: ${({ theme }) => theme.lightBrown};
+				color: ${({ theme }) => theme.secondaryColor};
 				position: relative;
 			}
 			p {
-				color: ${({ theme }) => theme.txtDarkGrey};
-				color: ${({ theme }) => theme.darkBrown};
+				/* color: ${({ theme }) => theme.txtDarkGrey};
+				color: ${({ theme }) => theme.darkBrown}; */
+				color: ${({ theme }) => theme.primaryColor};
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+					0px -1px 0px rgb(0 0 0 / 70%);
+				font-weight: bolder;
 
 				font-size: 3rem;
 				/* font-size: 3.5rem; */

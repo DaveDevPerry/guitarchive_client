@@ -130,17 +130,26 @@ const StyledSongsList = styled.div`
 
 		/* flex: 1; */
 		/* flex: 1 1 48%; */
-		background-color: #120700e9;
+		/* background-color: #120700e9; */
+		/* background-color: ${({ theme }) => theme.bgBrown}; */
 		/* background-color: #170901c8; */
 		/* background-color: ${({ theme }) => theme.engravedBrown}; */
 		/* background-color: rgba(168, 105, 69, 0.57); */
-		box-shadow: 3px 3px 4px rgb(0 0 0);
+		/* box-shadow: 3px 3px 4px rgb(0 0 0); */
+		/* border: 1px solid rgba(0, 0, 0, 0.8); */
+		border-radius: 0.4rem 0.4rem 1rem 1rem;
+		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
+			inset -2px -2px 2px rgba(0, 0, 0, 08);
+		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
+		background-color: rgba(0, 0, 0, 0.1);
 		&.mobile {
 			border-radius: 0.4rem;
-			box-shadow: none;
+			/* box-shadow: none; */
+			padding: 1rem;
 		}
 		p {
 			font-weight: bolder;
+			color: ${({ theme }) => theme.secondaryColor};
 			/* display: inline-block; */
 		}
 	}
@@ -150,7 +159,7 @@ const StyledSongsList = styled.div`
 		justify-content: flex-start;
 		overflow-y: auto;
 		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem 0.4rem 1rem 1rem;
+		border-radius: 0.4rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);
 		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */

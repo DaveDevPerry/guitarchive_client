@@ -41,21 +41,22 @@ const SongsPaginationNav = ({
 							);
 						})}
 				</div> */}
-
-				<select
-					id='pagination-select'
-					value={page}
-					onChange={(event) => {
-						setPage(event.target.value);
-					}}
-				>
-					{pageCount &&
-						Array(pageCount)
-							.fill(null)
-							.map((_, index) => {
-								return <option key={index}>page {index + 1}</option>;
-							})}
-				</select>
+				<div className='filter-page-dropdown'>
+					<select
+						id='pagination-select'
+						value={page}
+						onChange={(event) => {
+							setPage(event.target.value);
+						}}
+					>
+						{pageCount &&
+							Array(pageCount)
+								.fill(null)
+								.map((_, index) => {
+									return <option key={index}>page {index + 1}</option>;
+								})}
+					</select>
+				</div>
 				<button
 					className='page-btn'
 					disabled={page === pageCount}
@@ -92,24 +93,36 @@ const StyledSongsPaginationNav = styled.nav`
 				color: ${({ theme }) => theme.lightBrown};
 			}
 		}
+		/* .filter-page-dropdown{ */
+
 		#pagination-select {
-			background-color: ${({ theme }) => theme.lightBrown};
-			border: none;
-			margin: 0;
-			/* width: 100%; */
-			/* width: unset; */
 			cursor: inherit;
 			line-height: inherit;
-			padding: 0 10px;
-			box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-			outline: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			-moz-border-radius: 0.4rem;
 			border-radius: 0.4rem;
-			color: ${({ theme }) => theme.white};
-			/* height: 3.8rem; */
-			cursor: pointer;
+			outline: none;
+			padding: 5px 45px 5px 10px;
+			position: relative;
+			width: 100%;
+			box-sizing: border-box;
+			border: none;
+			-webkit-transition: 0.5s;
+			transition: 0.5s;
+			/* box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px; */
+			/* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(0, 0, 0, 0.5); */
+			/* border: 1px solid rgba(0, 0, 0, 0.8); */
 			font-family: 'NewTegomin';
 			text-transform: uppercase;
 			font-size: 1.6rem;
+			font-weight: bolder;
+			cursor: pointer;
+			background-color: ${({ theme }) => theme.filterBg};
+			/* background-color: ${({ theme }) => theme.bgBrown}; */
+			border: 1px solid ${({ theme }) => theme.filterBorder};
+			color: ${({ theme }) => theme.filterColor};
 			option {
 				font-size: 1.6rem;
 				color: ${({ theme }) => theme.white};
@@ -136,6 +149,26 @@ const StyledSongsPaginationNav = styled.nav`
 					}
 				}
 			}
+		}
+		.filter-page-dropdown {
+			position: relative;
+		}
+		.filter-page-dropdown:after {
+			-moz-border-radius: 0 3px 3px 0;
+			border-radius: 0 3px 3px 0;
+			color: ${({ theme }) => theme.filterIcon};
+			content: '▼';
+			display: block;
+			font-size: 1.6rem;
+			width: 3.5rem;
+			height: 3.5rem;
+			padding: 7px 0;
+			position: absolute;
+			pointer-events: none;
+			top: -3px;
+			bottom: 0;
+			text-align: center;
+			right: 2px;
 		}
 		.page-links-wrapper {
 			display: flex;

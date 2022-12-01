@@ -43,47 +43,48 @@ const Header = () => {
 							<p>home</p>
 						</NavLink>
 						<NavLink
-							to='/stats'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>stats</p>
-						</NavLink>
-						<NavLink
-							to='/products'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>products</p>
-						</NavLink>
-						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>songs</p>
 						</NavLink>
 						<NavLink
+							to='/stats'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<p>stats</p>
+						</NavLink>
+						{/* <NavLink
+							to='/products'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<p>products</p>
+						</NavLink> */}
+
+						{/* <NavLink
 							to='/artists'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>artists</p>
-						</NavLink>
-						<NavLink
+						</NavLink> */}
+						{/* <NavLink
 							to='/arrangers'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>arrangers</p>
-						</NavLink>
+						</NavLink> */}
 						{/* <NavLink
 							to='/youtube'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>youtube</p>
 						</NavLink> */}
-						{/* <NavLink
+						<NavLink
 							to='/settings'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>settings</p>
-						</NavLink> */}
+						</NavLink>
 					</nav>
 				)}
 			</div>
@@ -102,12 +103,16 @@ const StyledHeader = styled.header`
 		justify-content: space-between;
 		z-index: 500;
 		h1 {
-			color: ${({ theme }) => theme.lightBrown};
+			color: ${({ theme }) => theme.secondaryColor};
+			/* color: ${({ theme }) => theme.lightBrown}; */
 			font-family: 'NewTegomin';
 			font-weight: lighter;
 			font-size: 4rem;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 			span {
-				color: ${({ theme }) => theme.darkBrown};
+				color: ${({ theme }) => theme.primaryColor};
+				/* color: ${({ theme }) => theme.darkBrown}; */
 				font-weight: bolder;
 			}
 		}
@@ -149,7 +154,8 @@ const StyledHeader = styled.header`
 				align-items: flex-end;
 				.mobile-menu-icon {
 					font-size: 3.5rem;
-					color: rgb(199, 88, 29);
+					/* color: rgb(199, 88, 29); */
+					color: ${({ theme }) => theme.secondaryColor};
 				}
 			}
 			a {
@@ -165,8 +171,9 @@ const StyledHeader = styled.header`
 				display: grid;
 				place-content: center;
 				p {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
+					/* color: ${({ theme }) => theme.txtDarkGrey}; */
+					color: ${({ theme }) => theme.primaryColor};
+					/* color: ${({ theme }) => theme.darkBrown}; */
 
 					font-size: 1.6rem;
 					text-transform: uppercase;
@@ -181,7 +188,8 @@ const StyledHeader = styled.header`
 			a.active {
 				p {
 					/* color: ${({ theme }) => theme.green}; */
-					color: ${({ theme }) => theme.lightBrown};
+					color: ${({ theme }) => theme.secondaryColor};
+					/* color: ${({ theme }) => theme.lightBrown}; */
 
 					/* font-weight: bolder; */
 				}

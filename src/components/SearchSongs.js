@@ -117,7 +117,7 @@ const StyledSearchSongs = styled.div`
 		width: 100%;
 		padding: 0 1rem;
 		left: 0;
-		border: 1px solid ${({ theme }) => theme.primaryColor};
+		/* border: 1px solid ${({ theme }) => theme.primaryColor}; */
 		.option {
 			padding: 0.3rem 0;
 		}

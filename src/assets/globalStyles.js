@@ -24,13 +24,25 @@ export const GlobalStyles = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: ${({ theme }) => theme.black};
+    ${'' /* background-color: ${({ theme }) => theme.black}; */}
+    background-color: ${({ theme }) => theme.bodyBg};
     font-size: 1.6rem;
     font-weight: 400;
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
+    ${'' /* background-image: url("/images/dark wood texture.webp"); */}
+    ${'' /* background-image: url("/images/light wood texture.webp"); */}
+    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark}); */}
+    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark}); */}
+    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark};); */}
   }
 	${'' /* className={`page ${width < breakpoint ? 'mobile' : ''}`} */}
+  ${
+		'' /* color: ${({ theme }) => theme.primaryColor};
+			font-weight: bolder;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%); */
+	}
 	.App {
     width: 100vw;
     height: 100vh;
@@ -39,11 +51,14 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     justify-content: space-between;
     row-gap: 1rem;
-    background-color: ${({ theme }) => theme.borderGrey};
-    background-image: url("/images/light wood texture.webp");
+    ${'' /* background-color: ${({ theme }) => theme.borderGrey}; */}
+    ${'' /* background-image: url('/images/medium wood texture.png'); */}
+    ${'' /* background-image: url("/images/light wood texture.webp"); */}
+    ${'' /* background-image: url("/images/dark wood texture.webp"); */}
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
+  background-color: ${({ theme }) => theme.bodyBg};
   &.mobile{
     row-gap:0;
     padding-bottom: 1rem;
@@ -51,7 +66,34 @@ export const GlobalStyles = createGlobalStyle`
   }
 	
   .App{
-    background-color: ${({ theme }) => theme.borderGrey};
+    ${'' /* background-color: ${({ theme }) => theme.borderGrey};  */}
+    ${'' /* background-color: ${({ theme }) => theme.bgBrown}; */}
+    ${'' /* background-color: #12070084; */}
+
+  }
+  .widget-container{
+    padding: 1rem 2rem 2rem;
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	row-gap: 0.5rem;
+	box-shadow: 3px 3px 4px rgb(0 0 0);
+	${'' /* flex: 1; */}
+	overflow-y: hidden;
+	&#dark {
+		background-image: url('/images/dark wood texture.webp');
+	}
+	&#light {
+		background-image: url('/images/white wood.jpg');
+	}
+  &.mobile {
+		border-radius: 0.4rem;
+		padding: 1rem;
+	}
   }
   h3{
     font-size: 1.6rem;

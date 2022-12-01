@@ -28,15 +28,12 @@ import EditSongModal from '../features/song/EditSongModal';
 import Tooltip from '../components/Tooltip';
 import toast from 'react-hot-toast';
 import DeleteSongModal from '../features/song/DeleteSongModal';
-import { useViewport } from '../hooks/useViewport';
 
-const Song = ({ theme }) => {
+const Song = () => {
 	// const { dataLoaded } = useStateContext();
 	// const [currentId, setCurrentId] = useState(null);
 	// const { song } = useSongsContext();
 	const { user } = useAuthContext();
-	const { width } = useViewport();
-	const breakpoint = 620;
 
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 
@@ -156,19 +153,8 @@ const Song = ({ theme }) => {
 					handleCancel={handleCancel}
 				/>
 			)}
-
-			<StyledSongContainer
-				id={`${theme === 'dark' ? 'dark' : 'light'}`}
-				className={`${width < breakpoint ? 'mobile' : ''}`}
-			>
-				<div className='songs-list-header'>
-					{/* <p
-						className={`list-filter-value ${
-							width < breakpoint ? 'mobile' : ''
-						}`}
-					>
-						{song.title}
-					</p> */}
+			{song && (
+				<>
 					<div className='nav-btns-container'>
 						<TiArrowBack
 							className='back-icon'
@@ -186,13 +172,7 @@ const Song = ({ theme }) => {
 						/>
 						<EditSongButton />
 					</div>
-					{/* <SongsFilter
-					filterValue={filterValue}
-					homeSongFilterHandler={homeSongFilterHandler}
-					setFilterValue={setFilterValue}
-				/> */}
-				</div>
-				{song && (
+
 					<StyledSongDetails className='songs-details-container'>
 						<div className='song-wrapper'>
 							<p className='primary-text'>{song.title}</p>
@@ -251,15 +231,11 @@ const Song = ({ theme }) => {
 						<div className='file-wrapper'>
 							{song.fileType === 'pdf' ? (
 								<Tooltip content='pdf file' direction='left'>
-									<div className='img-container'>
-										<img src='/images/pdf_icon.png' alt='pdf' />
-									</div>
+									<img src='/images/pdf_icon.png' alt='pdf' />
 								</Tooltip>
 							) : (
 								<Tooltip content='guitar pro file' direction='left'>
-									<div className='img-container'>
-										<img src='/images/gp_icon.png' alt='guitar pro' />
-									</div>
+									<img src='/images/gp_icon.png' alt='guitar pro' />
 								</Tooltip>
 							)}
 							{song.selectedFile && (
@@ -296,12 +272,8 @@ const Song = ({ theme }) => {
 							<h5>{song.status.name}</h5>
 						</div>
 					</StyledSongDetails>
-				)}
-				{/* <SongsList
-				filterValue={filterValue}
-				homeSongFilterHandler={homeSongFilterHandler}
-			/> */}
-			</StyledSongContainer>
+				</>
+			)}
 		</StyledSong>
 	);
 };
@@ -317,54 +289,41 @@ const StyledSong = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	overflow-y: hidden;
+	.nav-btns-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.back-icon {
+			font-size: 4rem;
+			cursor: pointer;
+		}
+		.edit-icon {
+			font-size: 2.5rem;
+			cursor: pointer;
+		}
+		.delete-icon {
+			font-size: 3rem;
+			cursor: pointer;
+		}
+	}
 `;
 
 const StyledSongDetails = styled.div`
 	row-gap: 1rem;
 	transition: all 200ms linear;
 	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	overflow-y: auto;
-	/* border: 1px solid ${({ theme }) => theme.darkBrown};
-	border-radius: 0.4rem;
-	box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-		inset -2px -2px 2px rgba(0, 0, 0, 08);
-	background-color: rgba(0, 0, 0, 0.1); */
-	padding: 0.5rem;
-	padding-right: 0;
-	scroll-behavior: smooth;
-	scroll-behavior: smooth;
-	scrollbar-width: normal;
-	scrollbar-color: ${({ theme }) => theme.lightBrown};
-	flex: 1;
-	&.mobile {
-		border-radius: 0.4rem;
-	}
 	.song-wrapper,
 	.artist-wrapper {
 		padding: 1rem;
 	}
 	.song-wrapper {
 		.primary-text {
-			/* color: rgba(105, 54, 25, 1); */
+			color: rgba(105, 54, 25, 1);
 			font-size: 4rem;
 			text-align: center;
 			line-height: 4rem;
 			margin: 0;
-			/* text-transform: capitalize; */
-			color: ${({ theme }) => theme.primaryColor};
-			/* color: ${({ theme }) => theme.engravedBrown}; */
-			/* color: black; */
 			text-transform: capitalize;
-			font-weight: bolder;
-			/* font-weight: lighter; */
-			/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-					0px -1px 0px rgb(0 0 0 / 70%); */
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-				0px -1px 0px rgb(0 0 0 / 70%);
 			&.smaller {
 				font-size: 3rem;
 			}
@@ -374,14 +333,11 @@ const StyledSongDetails = styled.div`
 		}
 
 		.secondary-text {
-			/* color: rgb(199, 88, 29); */
+			color: rgb(199, 88, 29);
 			text-transform: uppercase;
 			font-size: 2.2rem;
 			margin: 0;
 			cursor: pointer;
-			color: ${({ theme }) => theme.secondaryColor};
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 	}
 	.artist-wrapper {
@@ -389,16 +345,6 @@ const StyledSongDetails = styled.div`
 		.primary-text {
 			text-transform: capitalize;
 			cursor: pointer;
-			color: ${({ theme }) => theme.primaryColor};
-			/* color: ${({ theme }) => theme.engravedBrown}; */
-			/* color: black; */
-			text-transform: capitalize;
-			font-weight: bolder;
-			/* font-weight: lighter; */
-			/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-					0px -1px 0px rgb(0 0 0 / 70%); */
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-				0px -1px 0px rgb(0 0 0 / 70%);
 			&.smaller {
 				font-size: 3rem;
 			}
@@ -410,8 +356,7 @@ const StyledSongDetails = styled.div`
 			font-size: 4rem;
 		}
 		.heart-off {
-			/* color: ${({ theme }) => theme.darkBrown}; */
-			color: ${({ theme }) => theme.primaryColor};
+			color: ${({ theme }) => theme.darkBrown};
 			font-size: 4rem;
 		}
 	}
@@ -434,42 +379,24 @@ const StyledSongDetails = styled.div`
 	}
 
 	.file-wrapper {
-		/* flex: 1; */
+		flex: 1;
 		padding: 1rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		column-gap: 2rem;
-
 		cursor: pointer;
-		/* border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem;
-		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		background-color: rgba(0, 0, 0, 0.1);
-		padding: 1rem; */
 		a {
 			text-decoration: none;
 			.file-download-icon {
 				cursor: pointer;
-				font-size: 5rem;
-				/* color: rgb(199, 88, 29); */
-				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 4rem;
+				color: rgb(199, 88, 29);
 			}
 		}
 		.music-type-icon {
 			cursor: pointer;
-			font-size: 4rem;
-			color: ${({ theme }) => theme.primaryColor};
-		}
-		.img-container {
-			/* background-color: rgba(0, 0, 0, 0.5); */
-			background-color: ${({ theme }) => theme.primaryColor};
-			padding: 0.5rem;
-			border-radius: 1rem;
-			img {
-				height: 4rem;
-			}
+			font-size: 3rem;
 		}
 	}
 	.status-wrapper {
@@ -479,147 +406,50 @@ const StyledSongDetails = styled.div`
 		align-items: center;
 		column-gap: 1rem;
 		h5 {
-			/* color: rgba(105, 54, 25, 1); */
-			color: ${({ theme }) => theme.primaryColor};
+			color: rgba(105, 54, 25, 1);
 			font-size: 2.6rem;
 			margin: 0;
 		}
 		.status-icon {
 			font-size: 3rem;
-			/* color: ${({ theme }) => theme.darkBrown}; */
-			color: ${({ theme }) => theme.secondaryColor};
+			color: ${({ theme }) => theme.darkBrown};
 		}
 		.yt-icon {
 			font-size: 4.5rem;
-			/* color: rgb(199, 88, 29); */
-			color: ${({ theme }) => theme.secondaryColor};
+			color: rgb(199, 88, 29);
 		}
 	}
 	.deadline-wrapper {
-		/* flex: 1; */
+		flex: 1;
 		padding: 1rem;
 		display: flex;
-		width: 100%;
-		/* margin: 0 6rem; */
 		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
-		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem;
-		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
-		background-color: rgba(0, 0, 0, 0.1);
 		.primary-text {
-			/* color: rgba(105, 54, 25, 1); */
-			color: ${({ theme }) => theme.primaryColor};
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-				0px -1px 0px rgb(0 0 0 / 70%);
+			color: rgba(105, 54, 25, 1);
 			font-size: 2.4rem;
 			text-align: center;
 			line-height: 4rem;
 			margin: 0;
-			font-weight: bolder;
 			&.smaller {
 				font-size: 3rem;
 			}
 		}
 		.secondary-text {
-			/* color: rgb(199, 88, 29); */
+			color: rgb(199, 88, 29);
 			text-transform: uppercase;
 			font-size: 2.2rem;
 			margin: 0;
-			color: ${({ theme }) => theme.secondaryColor};
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 	}
 	.star-on {
-		/* color: rgb(199, 88, 29); */
-		color: ${({ theme }) => theme.secondaryColor};
+		color: rgb(199, 88, 29);
 		font-size: 3rem;
 	}
 	.star-off {
-		/* color: rgba(105, 54, 25, 1); */
-		color: ${({ theme }) => theme.primaryColor};
+		color: rgba(105, 54, 25, 1);
 		font-size: 3rem;
-	}
-`;
-
-const StyledSongContainer = styled.div`
-	padding: 2rem;
-	/* padding: 1rem 2rem 2rem; */
-	border-radius: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	/* background-image: url('/images/light wood texture.webp'); */
-	/* background-image: url('/images/medium wood texture.png'); */
-
-	/* background-image: url('/images/white wood.jpg'); */
-	background-repeat: no-repeat;
-	background-size: cover;
-	row-gap: 0.5rem;
-	box-shadow: 3px 3px 4px rgb(0 0 0);
-	/* flex: 1; */
-	overflow-y: hidden;
-
-	&#dark {
-		background-image: url('/images/dark wood texture.webp');
-	}
-	&#light {
-		background-image: url('/images/white wood.jpg');
-	}
-	&.mobile {
-		border-radius: 0.4rem;
-		padding: 1rem;
-	}
-	.songs-list-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		/* padding: 0 0.5rem; */
-		border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem;
-		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
-		background-color: rgba(0, 0, 0, 0.1);
-		padding: 1rem 2rem;
-		.list-filter-value {
-			font-size: 2.5rem;
-			text-transform: capitalize;
-			color: ${({ theme }) => theme.engravedBrown};
-			color: black;
-			font-weight: bolder;
-			line-height: 1;
-			padding-left: 0.5rem;
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-				0px -1px 0px rgb(0 0 0 / 70%);
-			/* padding-left: 0.5rem; */
-			&.mobile {
-				font-size: 2.2rem;
-			}
-		}
-		.nav-btns-container {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex: 1;
-			color: ${({ theme }) => theme.secondaryColor};
-			.back-icon {
-				font-size: 4rem;
-				cursor: pointer;
-			}
-			.edit-icon {
-				font-size: 2.5rem;
-				cursor: pointer;
-			}
-			.delete-icon {
-				font-size: 3rem;
-				cursor: pointer;
-			}
-		}
 	}
 `;
 

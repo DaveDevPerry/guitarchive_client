@@ -120,18 +120,19 @@ const SongCard = ({ song }) => {
 };
 const StyledSongCard = styled.div`
 	cursor: pointer;
-	color: ${({ theme }) => theme.engravedBrown};
+	/* color: ${({ theme }) => theme.engravedBrown}; */
 
 	font-weight: bolder;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.05);
 	&.song-card-wrapper {
-		border-bottom: 1px solid ${({ theme }) => theme.engravedBrown};
+		border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+		/* border-bottom: 1px solid ${({ theme }) => theme.engravedBrown}; */
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		column-gap: 0.5rem;
 		padding: 0.5rem;
-		color: white;
+		color: ${({ theme }) => theme.white};
 
 		.fav-wrapper {
 			display: grid;
@@ -142,6 +143,7 @@ const StyledSongCard = styled.div`
 				display: none;
 			}
 			.heart-on {
+				/* color: ${({ theme }) => theme.red}; */
 				color: ${({ theme }) => theme.engravedBrown};
 				font-size: 2rem;
 			}
@@ -153,23 +155,31 @@ const StyledSongCard = styled.div`
 		.song-wrapper {
 			flex: 1;
 			.primary-text {
-				color: ${({ theme }) => theme.engravedBrown};
-				color: black;
+				color: ${({ theme }) => theme.primaryColor};
+				/* color: ${({ theme }) => theme.engravedBrown}; */
+				/* color: black; */
 				text-transform: capitalize;
 				font-weight: bolder;
+				/* font-weight: lighter; */
+				/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+					0px -1px 0px rgb(0 0 0 / 70%); */
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			.secondary-text {
-				color: ${({ theme }) => theme.lightBrown};
+				color: ${({ theme }) => theme.secondaryColor};
+				/* color: ${({ theme }) => theme.engravedBrown}; */
+				/* color: ${({ theme }) => theme.lightBrown}; */
 				text-transform: uppercase;
+				/* font-weight: bolder; */
 			}
 		}
 		.artist-wrapper {
 			width: 17rem;
 			.primary-text {
-				color: ${({ theme }) => theme.engravedBrown};
-				color: black;
+				color: ${({ theme }) => theme.primaryColor};
+				/* color: ${({ theme }) => theme.engravedBrown}; */
+				/* color: black; */
 				/* color: white; */
 				text-transform: capitalize;
 				font-weight: bolder;
@@ -177,10 +187,10 @@ const StyledSongCard = styled.div`
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			.star-on {
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 			.star-off {
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 			&.hide {
 				display: none;

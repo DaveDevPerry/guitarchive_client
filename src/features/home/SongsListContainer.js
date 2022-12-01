@@ -3,16 +3,20 @@ import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
 import SongsFilter from './SongsFilter';
 import SongsList from './SongsList';
+import Light from '../../assets/images/white wood.jpg';
+import Dark from '../../assets/images/dark wood texture.webp';
 
 const SongsListContainer = ({
 	filterValue,
 	homeSongFilterHandler,
 	setFilterValue,
+	theme,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
 		<StyledSongsListContainer
+			id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			className={`${width < breakpoint ? 'mobile' : ''}`}
 		>
 			<div className='songs-list-header'>
@@ -40,13 +44,24 @@ const StyledSongsListContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	background-image: url('/images/dark wood texture.webp');
+	/* background-image: url('/images/light wood texture.webp'); */
+	/* background-image: url('/images/medium wood texture.png'); */
+
+	/* background-image: url('/images/white wood.jpg'); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 0.5rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	flex: 1;
 	overflow-y: hidden;
+	/* background-image: ${(theme) =>
+		theme === 'light' ? `url(${Light})` : `url(${Dark})`}; */
+	&#dark {
+		background-image: url('/images/dark wood texture.webp');
+	}
+	&#light {
+		background-image: url('/images/white wood.jpg');
+	}
 	&.mobile {
 		border-radius: 0.4rem;
 		padding: 1rem;
@@ -55,6 +70,7 @@ const StyledSongsListContainer = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		/* padding: 0 0.5rem; */
 		.list-filter-value {
 			/* font-size: 1.8rem; */
 			font-size: 2.5rem;

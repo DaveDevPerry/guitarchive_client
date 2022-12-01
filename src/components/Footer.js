@@ -155,10 +155,10 @@ const StyledFooter = styled.footer`
 			a:hover:after {
 				max-width: 100%;
 			}
-			.add-icon {
+			/* .add-icon {
 				color: ${({ theme }) => theme.primaryColor};
 				font-size: 3.5rem;
-			}
+			} */
 		}
 	}
 `;

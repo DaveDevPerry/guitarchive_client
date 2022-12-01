@@ -14,6 +14,7 @@ import { useStatusContext } from '../hooks/useStatusContext';
 import { useStylesContext } from '../hooks/useStyleContext';
 import YoutubeStats from '../components/YoutubeStats';
 import AppDetails from '../components/AppDetails';
+import { useViewport } from '../hooks/useViewport';
 
 const Loader = ({ youtubeData, theme }) => {
 	const { user } = useAuthContext();
@@ -23,6 +24,9 @@ const Loader = ({ youtubeData, theme }) => {
 	const { dispatch: arrangerDispatch } = useArrangersContext();
 	const { dispatch: statusDispatch } = useStatusContext();
 	const { dispatch: stylesDispatch } = useStylesContext();
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	const navigate = useNavigate();
 	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
@@ -228,7 +232,7 @@ const Loader = ({ youtubeData, theme }) => {
 
 	return (
 		<StyledLoader
-			// className='loader'
+			className={`page loader-page ${width < breakpoint ? 'mobile' : ''}`}
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -402,21 +406,19 @@ const Loader = ({ youtubeData, theme }) => {
 		</StyledLoader>
 	);
 };
-const StyledLoader = styled(motion.section)`
+const StyledLoader = styled(motion.div)`
 	position: absolute;
 	top: 0;
 	left: 0;
+	right: 0;
 	width: 100vw;
 	height: 100vh;
 	width: 100%;
 	height: 100%;
-	/* background-color: ${({ theme }) => theme.bgApp}; */
 	display: flex;
 	flex-direction: column;
-	/* align-items: center; */
 	justify-content: center;
 	row-gap: 2rem;
-	/* row-gap: 4rem; */
 	z-index: 500;
 	overflow: hidden;
 	max-width: 100rem;
@@ -427,6 +429,7 @@ const StyledLoader = styled(motion.section)`
 	margin: 0 auto;
 	flex: 1;
 	background-image: url('/images/light wood texture.webp');
+	/* border: 2px solid red; */
 	h1.app-name {
 		color: ${({ theme }) => theme.lightBrown};
 		font-family: 'NewTegomin';
