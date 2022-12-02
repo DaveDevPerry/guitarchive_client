@@ -24,25 +24,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    ${'' /* background-color: ${({ theme }) => theme.black}; */}
     background-color: ${({ theme }) => theme.bodyBg};
     font-size: 1.6rem;
     font-weight: 400;
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
-    ${'' /* background-image: url("/images/dark wood texture.webp"); */}
-    ${'' /* background-image: url("/images/light wood texture.webp"); */}
-    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark}); */}
-    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark}); */}
-    ${'' /* background-image: url(${({ theme }) => theme.bgWoodDark};); */}
   }
-	${'' /* className={`page ${width < breakpoint ? 'mobile' : ''}`} */}
-  ${
-		'' /* color: ${({ theme }) => theme.primaryColor};
-			font-weight: bolder;
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-				0px -1px 0px rgb(0 0 0 / 70%); */
-	}
 	.App {
     width: 100vw;
     height: 100vh;
@@ -51,10 +38,6 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     justify-content: space-between;
     row-gap: 1rem;
-    ${'' /* background-color: ${({ theme }) => theme.borderGrey}; */}
-    ${'' /* background-image: url('/images/medium wood texture.png'); */}
-    ${'' /* background-image: url("/images/light wood texture.webp"); */}
-    ${'' /* background-image: url("/images/dark wood texture.webp"); */}
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
@@ -63,13 +46,6 @@ export const GlobalStyles = createGlobalStyle`
     row-gap:0;
     padding-bottom: 1rem;
   }
-  }
-	
-  .App{
-    ${'' /* background-color: ${({ theme }) => theme.borderGrey};  */}
-    ${'' /* background-color: ${({ theme }) => theme.bgBrown}; */}
-    ${'' /* background-color: #12070084; */}
-
   }
   .widget-container{
     padding: 1rem 2rem 2rem;
@@ -82,7 +58,6 @@ export const GlobalStyles = createGlobalStyle`
 	background-size: cover;
 	row-gap: 0.5rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
-	${'' /* flex: 1; */}
 	overflow-y: hidden;
 	&#dark {
 		background-image: url('/images/dark wood texture.webp');
@@ -103,7 +78,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1.4rem;
   }
   button {
-		background-color: #ffffff;
+		background-color: ${({ theme }) => theme.btnBg};
     font-family: 'NewTegomin';
 		padding: 1rem 3rem;
 		text-transform: uppercase;
@@ -113,29 +88,13 @@ export const GlobalStyles = createGlobalStyle`
 		align-items: center;
 		font-size: 2.5rem;
 		cursor: pointer;
-    color: ${({ theme }) => theme.txtGrey};
+    color: ${({ theme }) => theme.btnColor};
 	}
   
  a {
     text-decoration: none;
   }
-  ${
-		'' /* input[type=text] {
-  box-sizing: border-box;
-  border: 2px solid ${({ theme }) => theme.borderLight};
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
-} */
-	}
-
-${
-	'' /* input[type=text]:focus {
-  border: 2px solid ${({ theme }) => theme.borderDark};
-} */
-}
   label, input {
-    ${'' /* display: block; */}
     font-weight: bolder;
   }
   input, textarea {
@@ -149,17 +108,17 @@ ${
     border-radius: 0.4rem;
     background-color: rgba(168, 105, 69, 0.57);
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: ${({ theme }) => theme.engravedBrown};
-  opacity: 1; /* Firefox */
+    ::placeholder {
+  color: ${({ theme }) => theme.primaryColor};
+  opacity: 1; 
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-color: ${({ theme }) => theme.engravedBrown};
+:-ms-input-placeholder { 
+color: ${({ theme }) => theme.primaryColor};
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-color: ${({ theme }) => theme.engravedBrown};
+::-ms-input-placeholder { 
+color: ${({ theme }) => theme.primaryColor};
 }
   }
   input:focus, textarea:focus {
@@ -174,28 +133,27 @@ color: ${({ theme }) => theme.engravedBrown};
 				width: 100%;
 				margin-top: 1rem;
         ::placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
-					${'' /* padding: 0.5rem 1rem; */}
+					color: ${({ theme }) => theme.primaryColor};
 					font-size: 1.4rem;
 					opacity: 1;
 				}
 				:-ms-input-placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
+					color: ${({ theme }) => theme.primaryColor};
 				}
 				::-ms-input-placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
+					color: ${({ theme }) => theme.primaryColor};
 				}
 			}
   input[type='range'] {
       overflow: hidden;
       -webkit-appearance: none;
-      background-color: ${({ theme }) => theme.lightBrown};
+      background-color: ${({ theme }) => theme.secondaryColor};
     }
     
     input[type='range']::-webkit-slider-runnable-track {
       height: 10px;
       -webkit-appearance: none;
-      color:${({ theme }) => theme.lightBrown};
+      color:${({ theme }) => theme.secondaryColor};
       margin-top: -1px;
     }
     
@@ -205,26 +163,7 @@ color: ${({ theme }) => theme.engravedBrown};
       height: 10px;
       cursor: ew-resize;
     }
-  ${
-		'' /* input:focus {
-    outline: none;
-    border-radius: 4px;
-		border: 1px solid black;
-  } */
-	}
-  ${
-		'' /* input[type=text] {
-  box-sizing: border-box;
-  border: 2px solid ${({ theme }) => theme.borderLight};
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
-}
-input[type=text]:focus {
-  border: 2px solid ${({ theme }) => theme.borderDark};
-} */
-	}
-
+ 
   div.error {
     padding: 1rem;
     background: ${({ theme }) => theme.bgError};
@@ -261,15 +200,11 @@ input[type=text]:focus {
   }
 
 
-  // reset checkbox
   input[type="checkbox"] {
-  /* Add if not using autoprefixer */
   -webkit-appearance: none;
   appearance: none;
   padding: unset;
-  /* For iOS < 15 to remove gradient background */
-  background-color: rgba(168, 105, 69, 0.57);
-  /* Not removed via appearance */
+  ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
   margin: 0;
   font: inherit;
 width: 3.9rem;
@@ -285,7 +220,7 @@ input[type="checkbox"]::before {
   height: 1em;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em ${({ theme }) => theme.engravedBrown};
+  box-shadow: inset 1em 1em ${({ theme }) => theme.secondaryColor};
   transform-origin: bottom left;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
@@ -298,85 +233,26 @@ input[type="checkbox"]:disabled {
   color: ${({ theme }) => theme.error};
   cursor: not-allowed;
 }
-
-// custom date
 input[type="date"]{
   font: inherit;
-${'' /* width: 3.9rem; */}
   height: 3.9rem;
-    ${'' /* background-color: #0080ff; */}
-    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
-    ${'' /* padding: 15px; */}
-    ${'' /* position: absolute; */}
-    ${'' /* transform: translate(-50%,-50%); */}
-    ${'' /* top: 50%; */}
-    ${'' /* left: 50%; */}
-    ${'' /* font-family: "Roboto Mono",monospace; */}
-    ${'' /* color: #ffffff; */}
     font-size: 1.6rem;
-    ${'' /* border: none; */}
-    ${'' /* outline: none; */}
-    ${'' /* border-radius: 5px; */}
     padding: 0 0 0 1rem;
 }
 ::-webkit-calendar-picker-indicator{
-    background-color: ${({ theme }) => theme.lightBrown};
+    background-color: ${({ theme }) => theme.btnBg};
    padding: 5px; 
    margin-right: 0.5rem;
-    ${
-			'' /* height: 3.9rem;
-    width: 3.9rem; */
-		}
     cursor: pointer;
     border-radius: 3px;
 }
 
-
-// file
-${
-	'' /* .file-input label {
-  display: block;
-  position: relative;
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #ff6ec4, #7873f5);
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform .2s ease-out;
-} */
-}
-input[type="file"] {
-        position: absolute;
-        z-index: -1;
-        ${'' /* top: 10px; */}
-        left: 0px;
-        ${'' /* font-size: 17px; */}
-        ${'' /* color: #b8b8b8; */}
-        width: 100%;
-        height: 3.9rem;
-      }
-      .file-input {
-				width: 100%;
-				position: relative;
-				height: 3.9rem;
-				font: inherit;
-			}
-
-
-      // select
       select.form-select {
         cursor: inherit;
 				line-height: inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  ${'' /* border: solid 1px #ccc; */}
   -moz-border-radius: 0.4rem;
   border-radius: 0.4rem;
   outline: none;
@@ -384,12 +260,9 @@ input[type="file"] {
   position: relative;
   width: 100%;
   box-sizing: border-box;
-    ${'' /* padding: 1rem; */}
     border: 2px solid ${({ theme }) => theme.borderLight};
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  ${'' /* outline: none; */}
-    ${'' /* border-radius: 0.4rem; */}
     background-color: rgba(168, 105, 69, 0.57);
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 }
@@ -398,7 +271,7 @@ select.form-select:focus {
 }
 option.form-option {
 					font-size: 1.6rem;
-					color: ${({ theme }) => theme.engravedBrown};
+					color: ${({ theme }) => theme.primaryColor};
 					background-color: rgba(36, 14, 0, 0.08);
 					border: 1px solid ${({ theme }) => theme.darkBrown};
 					border-radius: 1rem 0 0 1rem;
@@ -409,32 +282,19 @@ option.form-option {
 					}
 				}
 .form-dropdown {
-  ${'' /* margin: 100px auto; */}
   position: relative;
-  ${'' /* width: 100%; */}
   flex: 1;
-  ${'' /* width: 300px; */}
-}
-${
-	'' /* .form-dropdown:before {
-  content: 'Custom Dropdown Demo';
-  position: absolute;
-  top: -25px;
-  left: 0;
-  font-size: 20px;
-} */
 }
 .form-dropdown:after {
-  background-color: ${({ theme }) => theme.lightBrown};
+  background-color: ${({ theme }) => theme.btnBg};
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
-  color: ${({ theme }) => theme.engravedBrown};
+  color: ${({ theme }) => theme.secondaryColor};
   content: '▼';
   display: block;
   font-size: 1.4rem;
   width: 3.5rem;
   height: 3.5rem;
-  ${'' /* width: 25px; */}
   padding: 7px 0;
   position: absolute;
   pointer-events: none;
@@ -445,56 +305,20 @@ ${
 }
 
 
-input[type='email'],input[type='password'] {
-    font-weight: bolder;
-    box-sizing: border-box;
-    padding: 1rem;
-    border: 2px solid ${({ theme }) => theme.loginBorderLight};
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
-    border-radius: 0.4rem;
-    background-color: rgba(159, 157, 155, 0.57);
-    box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: ${({ theme }) => theme.primaryColor};
-  opacity: 1; /* Firefox */
-}
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-color: ${({ theme }) => theme.primaryColor};
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-color: ${({ theme }) => theme.primaryColor};
-}
-  
-		&:focus {
-  border: 2px solid ${({ theme }) => theme.loginBorderDark};
-} 
-  }
-  ${
-		'' /* input[type='email']:focus,input[type='password']:focus{
-    border: 2px solid ${({ theme }) => theme.borderDark};
-  } */
-	}
-  input[type='email']:-webkit-autofill,input[type='password']:-webkit-autofill {
-					-webkit-text-fill-color: ${({ theme }) => theme.primaryColor};
-          ${'' /* box-shadow: 0 0 0 9999px rgba(159, 157, 155, 0.57) inset; */}
-          ${'' /* box-shadow: 0 0 0 9999px rgba(0,0,0,0.001) inset; */}
-          ${'' /* background-color: yellow; */}
-					-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.0057) inset;
-					${'' /* transition: background-color 5000s ease-in-out 0s; */}
-					padding: 0.8rem 1rem;
-					margin: 0;
-					font-size: 1.8rem;
-					flex: 1;
-					border-radius: 4px;
-					box-sizing: border-box;
+        ${
+					'' /* input[type="file"] {
+        position: absolute;
+        z-index: -1;
+        left: 0px;
+        width: 100%;
+        height: 3.9rem;
+      }
+      .file-input {
+				width: 100%;
+				position: relative;
+				height: 3.9rem;
+				font: inherit;
+			} */
 				}
-  ${
-		'' /* input[type='email']:-webkit-autofill-selected,input[type='password']#input-password:-webkit-autofill-selected {
-					background-color:black !important;
-				} */
-	}
 `;

@@ -14,9 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import ArtistModal from '../artists/ArtistModal';
 import ArrangerModal from '../arrangers/ArrangerModal';
 import { GrAdd } from 'react-icons/gr';
-// import { NavLink } from 'react-router-dom';
-// import SongMetrics from './SongMetrics';
-// import Filter from './Filter';
 
 const SongForm = ({
 	inputText,
@@ -102,8 +99,6 @@ const SongForm = ({
 		navigate('/');
 	};
 	const clear = () => {
-		// e.preventDefault();
-		// setCurrentId(null);
 		setSongData({
 			artist: '',
 			title: '',
@@ -145,14 +140,12 @@ const SongForm = ({
 			isTab: true,
 			selectedFile: '',
 		});
-		// clear();
 		setIsFormOpen(false);
 	};
 
 	// create a toast
 	const notify = () => {
 		toast.success(`new song successfully added.`, {
-			// toast.success(`${headline_band} gig successfully added.`, {
 			duration: 3000,
 			style: {
 				border: '2px solid #1da000',
@@ -163,38 +156,12 @@ const SongForm = ({
 	return (
 		<>
 			{isArtistFormOpen === true && (
-				<ArtistModal
-					// setInputText={setInputText}
-					// inputText={inputText}
-					// posts={posts}
-					// setArtists={setArtists}
-					// setArtistStatus={setArtistStatus}
-					// inputDate={inputDate}
-					// setInputDate={setInputDate}
-					// inputDescription={inputDescription}
-					// setInputDescription={setInputDescription}
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
+				<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
 			{isArrangerFormOpen === true && (
-				<ArrangerModal
-					// setInputText={setInputText}
-					// inputText={inputText}
-					// posts={posts}
-					// setArrangers={setArrangers}
-					// setArrangerStatus={setArrangerStatus}
-					// inputDate={inputDate}
-					// setInputDate={setInputDate}
-					// inputDescription={inputDescription}
-					// setInputDescription={setInputDescription}
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
+				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
 			<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
-				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
-				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
 				<div className='form-section'>
 					<div className='form-row'>
 						<div className='form-item'>
@@ -225,21 +192,6 @@ const SongForm = ({
 									name='favourite'
 								/>
 							</div>
-							{/* <div className='form-item-row'>
-								<input
-									type='number'
-									placeholder='difficulty'
-									step='1'
-									min='1'
-									max='5'
-									value={songData.difficulty}
-									onChange={(e) =>
-										setSongData({ ...songData, difficulty: e.target.value })
-									}
-									className='form-number'
-									name='difficulty'
-								/>
-							</div> */}
 							<div className='form-item-row'>
 								<label className='song-label' htmlFor='difficulty'>
 									difficulty
@@ -257,85 +209,6 @@ const SongForm = ({
 						</div>
 					</div>
 				</div>
-
-				{/* <div className='form-section'>
-				<div className='form-row'>
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='artist'
-								onChange={(e) =>
-									setSongData({ ...songData, artist: e.target.value })
-								}
-								value={songData.artist}
-								// label={songData.artist}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select artist --
-								</option>
-								{artists.map((artist) => (
-									<option
-										key={artist._id}
-										// selected
-										label={artist.name}
-										value={artist._id}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='newArtist'
-								value={songData.newArtist}
-								placeholder='add an artist here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, newArtist: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-
-					<div className='form-item'>
-						<div className='choice-wrapper'>
-							<select
-								name='arranger'
-								onChange={(e) =>
-									setSongData({ ...songData, arranger: e.target.value })
-								}
-								value={songData.arranger}
-							>
-								<option
-								// label=
-								// value={artist.name}
-								>
-									-- select arranger --
-								</option>
-								{arrangers.map((arranger) => (
-									<option
-										key={arranger._id}
-										// selected
-										label={arranger.name}
-										value={arranger._id}
-									></option>
-								))}
-							</select>
-							<input
-								type='text'
-								name='newArranger'
-								value={songData.newArranger}
-								placeholder='add an arranger here, if not listed above'
-								className='input-create'
-								onChange={(e) =>
-									setSongData({ ...songData, newArranger: e.target.value })
-								}
-							/>
-						</div>
-					</div>
-				</div>
-			</div> */}
 				<div className='form-section'>
 					<div className='form-row'>
 						<div className='form-item'>
@@ -347,20 +220,12 @@ const SongForm = ({
 											setSongData({ ...songData, artist: e.target.value })
 										}
 										value={songData.artist}
-										// label={songData.artist}
 										className='form-select'
 									>
-										<option
-											className='form-option'
-											// label=
-											// value={artist.name}
-										>
-											-- select artist --
-										</option>
+										<option className='form-option'>-- select artist --</option>
 										{artists.map((artist) => (
 											<option
 												key={artist._id}
-												// selected
 												label={artist.name}
 												value={artist._id}
 												className='form-option'
@@ -368,16 +233,6 @@ const SongForm = ({
 										))}
 									</select>
 								</div>
-								{/* <input
-									type='text'
-									name='artist'
-									value={songData.artist}
-									placeholder='add an artist here, if not listed above'
-									className='input-create'
-									onChange={(e) =>
-										setSongData({ ...songData, artist: e.target.value })
-									}
-								/> */}
 								<div
 									className='add-artist-btn-form'
 									onClick={() => {
@@ -388,16 +243,6 @@ const SongForm = ({
 								>
 									<GrAdd className='add-new-record-icon' />
 								</div>
-								{/* <div
-									className='add-artist-btn-form'
-									onClick={() => {
-										isArtistFormOpen === true
-											? setIsArtistFormOpen(false)
-											: setIsArtistFormOpen(true);
-									}}
-								>
-									add new artist
-								</div> */}
 							</div>
 						</div>
 
@@ -412,17 +257,12 @@ const SongForm = ({
 										value={songData.arranger}
 										className='form-select'
 									>
-										<option
-											className='form-option'
-											// label=
-											// value={artist.name}
-										>
+										<option className='form-option'>
 											-- select arranger --
 										</option>
 										{arrangers.map((arranger) => (
 											<option
 												key={arranger._id}
-												// selected
 												label={arranger.name}
 												value={arranger._id}
 												className='form-option'
@@ -430,16 +270,6 @@ const SongForm = ({
 										))}
 									</select>
 								</div>
-								{/* <input
-									type='text'
-									name='arranger'
-									value={songData.arranger}
-									placeholder='add an arranger here, if not listed above'
-									className='input-create'
-									onChange={(e) =>
-										setSongData({ ...songData, arranger: e.target.value })
-									}
-								/> */}
 								<div
 									className='add-artist-btn-form'
 									onClick={() => {
@@ -450,76 +280,10 @@ const SongForm = ({
 								>
 									<GrAdd className='add-new-record-icon' />
 								</div>
-								{/* <div
-									className='add-artist-btn-form'
-									onClick={() => {
-										isArrangerFormOpen === true
-											? setIsArrangerFormOpen(false)
-											: setIsArrangerFormOpen(true);
-									}}
-								>
-									add new arranger
-								</div> */}
 							</div>
 						</div>
 					</div>
 				</div>
-
-				{/* <div className='form-row'>
-				<div className='form-item'>
-					<label>difficulty</label>
-					<input
-						type='range'
-						min='1'
-						max='5'
-						name='difficulty'
-						value={songData.difficulty}
-						onChange={(e) =>
-							setSongData({ ...songData, difficulty: e.target.value })
-						}
-					/>
-				</div>
-			</div> */}
-				{/* <div className='form-row'>
-				<div className='form-item'>
-					<label>favourite</label>
-					<input
-						type='text'
-						name='isFavourite'
-						value={songData.isFavourite}
-						onChange={(e) =>
-							setSongData({ ...songData, isFavourite: e.target.value })
-						}
-					/>
-				</div>
-			</div> */}
-				{/* <div className='form-row'>
-				<div className='form-item'>
-					<label>pages</label>
-					<input
-						type='number'
-						name='pages'
-						value={songData.pages}
-						onChange={(e) =>
-							setSongData({ ...songData, pages: e.target.value })
-						}
-					/>
-				</div>
-			</div>
-			<div className='form-row'>
-				<div className='form-item'>
-					<label>format</label>
-					<input
-						type='text'
-						name='format'
-						value={songData.format}
-						onChange={(e) =>
-							setSongData({ ...songData, format: e.target.value })
-						}
-					/>
-				</div>
-			</div> */}
-
 				<div className='form-section'>
 					<div className='form-row'>
 						<div className='form-item-row'>
@@ -618,9 +382,9 @@ const SongForm = ({
 					<div className='form-row'>
 						<div className='form-item'>
 							<div className='file-input'>
-								{/* <label className='button' htmlFor='upload'>
+								<label className='button' htmlFor='upload'>
 									Upload File
-								</label> */}
+								</label>
 								<FileBase
 									type='false'
 									multiple={false}
@@ -666,11 +430,10 @@ const SongForm = ({
 	);
 };
 const StyledSongForm = styled.form`
-	/* background-image: url('/images/dark wood texture.webp'); */
 	display: flex;
 	flex-direction: column;
 	.form-section {
-		border-bottom: 2px solid ${({ theme }) => theme.engravedBrown};
+		border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
 		padding: 1rem 0;
 		&:last-child {
 			border-bottom: none;
@@ -690,25 +453,13 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			/* .form-input {
-				width: 100%;
-			} */
-			/* .file-input {
-				width: 100%;
-				position: relative;
-				height: 3.9rem;
-				font: inherit;
-			} */
 			.button {
 				display: inline-block;
-				/* padding: 12px 18px; */
 				padding: 0.4rem 1rem;
 				cursor: pointer;
 				border-radius: 0.4rem;
-				background-color: ${({ theme }) => theme.lightBrown};
+				background-color: ${({ theme }) => theme.btnBg};
 				font-size: 1.2rem;
-				/* font-weight: bold; */
-				/* color: #fff; */
 				margin: 0;
 				margin-top: 0.75rem;
 				margin-left: 0.9rem;
@@ -727,7 +478,7 @@ const StyledSongForm = styled.form`
 				column-gap: 0.5rem;
 				flex: 1;
 				.add-artist-btn-form {
-					background-color: ${({ theme }) => theme.lightBrown};
+					background-color: ${({ theme }) => theme.btnBg};
 					display: grid;
 					place-content: center;
 					height: 3.9rem;
@@ -736,31 +487,14 @@ const StyledSongForm = styled.form`
 					border-radius: 0.4rem;
 					box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
 						rgb(0 0 0 / 40%) -2px -2px 2px;
+					color: ${({ theme }) => theme.btnIcon};
 					.add-new-record-icon {
 						font-size: 2.2rem;
 						pointer-events: none;
+						color: ${({ theme }) => theme.btnIcon};
 					}
 				}
 			}
-
-			/* .input-grow {
-				resize: none;
-				width: --webkit-fill-available;
-				width: 100%;
-				margin-top: 1rem;
-				::placeholder {
-					font-size: 1.4rem;
-				}
-			} */
-			/* select.form-select {
-				option.form-option {
-					font-size: 1.6rem;
-					color: ${({ theme }) => theme.engravedBrown};
-					background-color: rgba(36, 14, 0, 0.08);
-					border: 1px solid ${({ theme }) => theme.darkBrown};
-					border-radius: 1rem 0 0 1rem;
-				}
-			} */
 		}
 		.form-item-row {
 			display: flex;
@@ -795,13 +529,14 @@ const StyledSongForm = styled.form`
 			}
 		}
 		.form-action-btn {
-			color: ${({ theme }) => theme.white};
+			/* color: ${({ theme }) => theme.white}; */
 			flex: 1;
 			font-family: 'NewTegomin';
 			padding: 0.5rem 1rem;
 			background-color: ${({ theme }) => theme.btnBg};
 			border-radius: 0.4rem;
-			box-shadow: 3px 3px 4px rgb(0 0 0), -2px -2px 2px rgba(0, 0, 0, 0.4);
+			/* box-shadow: 3px 3px 4px rgb(0 0 0), -2px -2px 2px rgba(0, 0, 0, 0.4); */
+			border: 1px solid ${({ theme }) => theme.btnBorder};
 			font-size: 1.6rem;
 			p {
 				color: ${({ theme }) => theme.btnColor};
@@ -826,22 +561,6 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			/* .form-input {
-				width: 100%;
-				&:focus {
-					border: unset;
-					border: 2px solid black;
-				}
-			} */
-			.file-input {
-				width: 100%;
-				z-index: 5000000;
-				input[type='file'] {
-					width: 100%;
-					z-index: 5000000;
-					cursor: pointer;
-				}
-			}
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
@@ -854,7 +573,7 @@ const StyledSongForm = styled.form`
 				column-gap: 0.5rem;
 				flex: 1;
 				.add-artist-btn-form {
-					background-color: ${({ theme }) => theme.lightBrown};
+					background-color: ${({ theme }) => theme.btnBg};
 					display: grid;
 					place-content: center;
 					padding: 1rem;
@@ -862,47 +581,14 @@ const StyledSongForm = styled.form`
 					border-radius: 0.4rem;
 					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
 						rgb(0 0 0 / 10%) -2px -2px 2px;
+					color: ${({ theme }) => theme.btnIcon};
 					.add-new-record-icon {
-						color: ${({ theme }) => theme.white};
+						color: ${({ theme }) => theme.btnIcon};
 						font-size: 1.6rem;
 						pointer-events: none;
 					}
 				}
 			}
-			/* .input-grow {
-				resize: none;
-				width: --webkit-fill-available;
-				width: 100%;
-				margin-top: 1rem;
-				::placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
-					padding: 0.5rem 1rem;
-					opacity: 1;
-				}
-				:-ms-input-placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
-				}
-				::-ms-input-placeholder {
-					color: ${({ theme }) => theme.engravedBrown};
-				}
-			} */
-			/* select.form-select {
-				margin: 0;
-				cursor: inherit;
-				line-height: inherit;
-				padding: 10px;
-				option.form-option {
-					font-size: 1.6rem;
-					color: ${({ theme }) => theme.engravedBrown};
-					background-color: rgba(36, 14, 0, 0.08);
-					border: 1px solid ${({ theme }) => theme.darkBrown};
-					border-radius: 1rem 0 0 1rem;
-					&:focus {
-						border: 1px solid ${({ theme }) => theme.darkBrown};
-						outline: none;
-					}
-				}
-			} */
 		}
 		.form-item-row {
 			display: flex;
@@ -926,9 +612,6 @@ const StyledSongForm = styled.form`
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			/* input[type='checkbox'] {
-				width: unset;
-			} */
 			input[type='number'].form-number {
 				width: 60px;
 			}
@@ -940,8 +623,8 @@ const StyledSongForm = styled.form`
 			}
 		}
 		.form-action-btn {
-			background-color: ${({ theme }) => theme.lightBrown};
-			color: ${({ theme }) => theme.white};
+			background-color: ${({ theme }) => theme.btnBg};
+			color: ${({ theme }) => theme.btnColor};
 			flex: 1;
 			font-family: 'NewTegomin';
 			padding: 0.5rem 1rem;

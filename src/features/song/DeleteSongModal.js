@@ -1,21 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-// import { useAuthContext } from '../hooks/useAuthContext';
-// import { useResultsContext } from '../hooks/useResultsContext';
+import { useViewport } from '../../hooks/useViewport';
 import { useStateContext } from '../../lib/context';
-// import EditSongForm from './EditSongForm';
-// import { log } from '../../utils/helper';
-// import { ImArrowRight } from 'react-icons/im';
-// import SongForm from './SongForm';
-// import { useSongsContext } from '../../hooks/useSongsContext';
-// import ResultsList from './ResultsList';
-// import ResultsScore from './ResultsScore';
-// import ResultsRanking from './ResultsRanking';
-// import { motion } from 'framer-motion';
-// import { ImCross, ImCheckmark, ImArrowRight } from 'react-icons/im';
 
-const DeleteSongModal = ({ handleDelete, handleCancel }) => {
+const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 	const { dataLoaded } = useStateContext();
 
 	let navigate = useNavigate();
@@ -25,9 +14,15 @@ const DeleteSongModal = ({ handleDelete, handleCancel }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	const { width } = useViewport();
+	const breakpoint = 620;
+
 	return (
 		<StyledDeleteSongModal open>
-			<div className='posts-box'>
+			<div
+				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
+				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+			>
 				<h2>confirm delete</h2>
 				<p>this action can not be undone</p>
 
@@ -39,15 +34,6 @@ const DeleteSongModal = ({ handleDelete, handleCancel }) => {
 						confirm delete
 					</div>
 				</div>
-				{/* <div
-					className='add-post-btn'
-					onClick={() => {
-						handleClose();
-					}}
-				>
-					<p>CONTINUE</p>
-					<ImArrowRight className='arrow-r-icon' />
-				</div> */}
 			</div>
 		</StyledDeleteSongModal>
 	);
@@ -66,21 +52,28 @@ const StyledDeleteSongModal = styled.dialog`
 	font-family: 'NewTegomin';
 	.posts-box {
 		width: calc(100vw - 2rem);
+		padding: 1rem 2rem 2rem;
+		border-radius: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		/* align-items: center; */
-		max-width: 100rem;
-		padding: 1rem 2rem 2rem 2rem;
-		overflow-y: hidden;
-		z-index: 1;
-		transition: all 200ms linear;
-		margin: 0 auto;
-		flex: 1;
-		background-image: url('/images/dark wood texture.webp');
-		border-radius: 1rem;
-		row-gap: 2rem;
+		background-repeat: no-repeat;
+		background-size: cover;
+		row-gap: 0.5rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
+		flex: 1;
+		overflow-y: hidden;
+		/* width: 100%; */
+		&#dark {
+			background-image: url('/images/dark wood texture.webp');
+		}
+		&#light {
+			background-image: url('/images/white wood.jpg');
+		}
+		&.mobile {
+			border-radius: 0.4rem;
+			padding: 1rem;
+		}
 		h2 {
 			font-size: 2.5rem;
 			text-transform: capitalize;
@@ -88,16 +81,17 @@ const StyledDeleteSongModal = styled.dialog`
 			font-weight: bolder;
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 				0px -1px 0px rgb(0 0 0 / 70%);
-			color: ${({ theme }) => theme.engravedBrown};
+			color: ${({ theme }) => theme.primaryColor};
 		}
 		p {
-			/* font-family: 'Roboto'; */
 			font-family: 'NewTegomin';
-			color: white;
+			color: ${({ theme }) => theme.secondaryColor};
 			text-transform: uppercase;
 			font-size: 1.6rem;
 			text-align: center;
-			/* font-size: 1.2rem; */
+			font-weight: bolder;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 		.delete-btn-container {
 			display: flex;
@@ -107,46 +101,39 @@ const StyledDeleteSongModal = styled.dialog`
 			column-gap: 2rem;
 			.cancel-delete-btn {
 				padding: 1rem;
-				/* flex: 1; */
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				column-gap: 0.5rem;
 				border-radius: 0.5rem;
-				background-color: ${({ theme }) => theme.lightBrown};
+				background-color: ${({ theme }) => theme.btnBg};
+				border: 1px solid ${({ theme }) => theme.btnBorder};
 				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				/* background-color: #9a9a9a; */
 				height: 100%;
-				/* width: 9em; */
-				/* height: 2em; */
-
 				cursor: pointer;
 				flex: 1;
 				text-align: center;
 				text-transform: uppercase;
-				color: ${({ theme }) => theme.white};
+				color: ${({ theme }) => theme.btnColor};
 				font-size: 2rem;
 				font-weight: bolder;
 			}
 			.confirm-delete-btn {
 				padding: 1rem;
-				/* flex: 1; */
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				column-gap: 0.5rem;
 				border-radius: 0.5rem;
-				background-color: ${({ theme }) => theme.red};
+				background-color: ${({ theme }) => theme.btnBg};
 				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				/* background-color: #9a9a9a; */
 				height: 100%;
-				/* width: 9em; */
-				/* height: 2em; */
+				border: 1px solid ${({ theme }) => theme.btnBorder};
 				cursor: pointer;
 				flex: 1;
 				text-align: center;
 				text-transform: uppercase;
-				color: ${({ theme }) => theme.white};
+				color: ${({ theme }) => theme.btnColor};
 				font-size: 2rem;
 				font-weight: bolder;
 			}

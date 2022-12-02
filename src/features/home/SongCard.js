@@ -120,13 +120,13 @@ const SongCard = ({ song }) => {
 };
 const StyledSongCard = styled.div`
 	cursor: pointer;
-	/* color: ${({ theme }) => theme.engravedBrown}; */
+	/* color: ${({ theme }) => theme.primaryColor}; */
 
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);
 	&.song-card-wrapper {
 		border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
-		/* border-bottom: 1px solid ${({ theme }) => theme.engravedBrown}; */
+		/* border-bottom: 1px solid ${({ theme }) => theme.primaryColor}; */
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -144,11 +144,11 @@ const StyledSongCard = styled.div`
 			}
 			.heart-on {
 				/* color: ${({ theme }) => theme.red}; */
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.primaryColor};
 				font-size: 2rem;
 			}
 			.heart-off {
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.primaryColor};
 				font-size: 2rem;
 			}
 		}
@@ -156,7 +156,7 @@ const StyledSongCard = styled.div`
 			flex: 1;
 			.primary-text {
 				color: ${({ theme }) => theme.primaryColor};
-				/* color: ${({ theme }) => theme.engravedBrown}; */
+				/* color: ${({ theme }) => theme.primaryColor}; */
 				/* color: black; */
 				text-transform: capitalize;
 				font-weight: bolder;
@@ -168,19 +168,13 @@ const StyledSongCard = styled.div`
 			}
 			.secondary-text {
 				color: ${({ theme }) => theme.secondaryColor};
-				/* color: ${({ theme }) => theme.engravedBrown}; */
-				/* color: ${({ theme }) => theme.lightBrown}; */
 				text-transform: uppercase;
-				/* font-weight: bolder; */
 			}
 		}
 		.artist-wrapper {
 			width: 17rem;
 			.primary-text {
 				color: ${({ theme }) => theme.primaryColor};
-				/* color: ${({ theme }) => theme.engravedBrown}; */
-				/* color: black; */
-				/* color: white; */
 				text-transform: capitalize;
 				font-weight: bolder;
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
@@ -200,7 +194,7 @@ const StyledSongCard = styled.div`
 			display: flex;
 			align-items: center;
 			column-gap: 0.5rem;
-			color: ${({ theme }) => theme.engravedBrown};
+			color: ${({ theme }) => theme.primaryColor};
 			&.hide {
 				display: none;
 			}
@@ -220,7 +214,7 @@ const StyledSongCard = styled.div`
 				color: ${({ theme }) => theme.white};
 				text-transform: capitalize;
 				font-weight: lighter;
-				background-color: ${({ theme }) => theme.red};
+				background-color: ${({ theme }) => theme.alert};
 				padding: 0.5rem 1rem;
 				border-radius: 0.6rem;
 				line-height: 1.4rem;
@@ -239,11 +233,11 @@ const StyledSongCard = styled.div`
 			width: 50px;
 			.card-icon {
 				font-size: 2.5rem;
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.primaryColor};
 			}
 			.song-status-icon {
 				font-size: 3rem;
-				color: ${({ theme }) => theme.engravedBrown};
+				color: ${({ theme }) => theme.primaryColor};
 			}
 			.yt-icon {
 				font-size: 4rem;

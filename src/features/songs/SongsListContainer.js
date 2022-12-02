@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import AddSongButton from './AddSongButton';
 import SongsFilter from './SongsFilter';
-import SongsList from './SongsList';
+// import SongsList from './SongsList';
+// import Light from '../../assets/images/white wood.jpg';
+// import Dark from '../../assets/images/dark wood texture.webp';
+import SongsWidget from './SongsWidget';
+import SearchBar from './SearchBar';
+import SongsSort from './SongsSort';
+import AddSongButton from '../song/AddSongButton';
 
 const SongsListContainer = ({
 	filterValue,
 	homeSongFilterHandler,
 	setFilterValue,
+	songStatusHandler,
+	filteredSongs,
+	songs,
 	theme,
 }) => {
 	const { width } = useViewport();
@@ -19,34 +27,24 @@ const SongsListContainer = ({
 			className={`${width < breakpoint ? 'mobile' : ''}`}
 		>
 			<div className='songs-list-header'>
-				<p
-					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
-				>
-					{filterValue}
-				</p>
-				{/* <AddSongButton /> */}
-				<SongsFilter
-					filterValue={filterValue}
-					homeSongFilterHandler={homeSongFilterHandler}
-					setFilterValue={setFilterValue}
-				/>
+				<AddSongButton />
+				<SongsFilter songStatusHandler={songStatusHandler} />
+				<SongsSort songStatusHandler={songStatusHandler} />
+				<SearchBar songStatusHandler={songStatusHandler} />
 			</div>
-			<SongsList
-				filterValue={filterValue}
-				homeSongFilterHandler={homeSongFilterHandler}
-			/>
+			<SongsWidget songs={songs} filteredSongs={filteredSongs} />
 		</StyledSongsListContainer>
 	);
 };
 const StyledSongsListContainer = styled.div`
-	padding: 1rem 2rem 2rem;
+	padding: 2rem;
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	background-repeat: no-repeat;
 	background-size: cover;
-	row-gap: 0.5rem;
+	row-gap: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	flex: 1;
 	overflow-y: hidden;
@@ -59,27 +57,12 @@ const StyledSongsListContainer = styled.div`
 	&.mobile {
 		border-radius: 0.4rem;
 		padding: 1rem;
+		row-gap: 0.5rem;
 	}
 	.songs-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		column-gap: 2rem;
-		.list-filter-value {
-			font-size: 2.5rem;
-			text-transform: capitalize;
-			color: ${({ theme }) => theme.primaryColor};
-			color: black;
-			font-weight: bolder;
-			line-height: 1;
-			padding-left: 0.5rem;
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-				0px -1px 0px rgb(0 0 0 / 70%);
-			flex: 1;
-			&.mobile {
-				font-size: 2.2rem;
-			}
-		}
 	}
 `;
 

@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
 import SongCard from './SongCard';
-// import SongsPaginationFooter from './SongsPaginationFooter';
 import SongsPaginationNav from './SongsPaginationNav';
-// import Pagination from 'react-js-pagination';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -21,15 +19,6 @@ function SongsList({ filterValue }) {
 		`${process.env.REACT_APP_BACKEND_URL}/api/products/${filterValue}?page=${page}`,
 		fetcher
 	);
-	// const { data, error } = useSWR(
-	// 	`${process.env.REACT_APP_BACKEND_URL}/api/products/practicing?page=${page}`,
-	// 	fetcher
-	// );
-	// const { data, error } = useSWR(
-	// 	`http://localhost:4000/api/products?page=${page}`,
-	// 	fetcher
-	// );
-
 	useEffect(() => {
 		if (data) {
 			setPageCount(data.pagination.pageCount);
@@ -59,28 +48,8 @@ function SongsList({ filterValue }) {
 		return <p>Loading...</p>;
 	}
 
-	// const handlePageChange = (page) => {
-	// 	console.log(`active page is ${page}`);
-	// 	// this.setState({activePage: page});
-	// 	setActivePage(page);
-	// };
-
 	return (
 		<StyledSongsList className={`${width < breakpoint ? 'mobile' : ''}`}>
-			{/* <div className='pagination-header'>
-				<p>
-					Page: {page} / {pageCount}
-				</p>
-				<SongsPaginationNav
-					page={page}
-					setPage={setPage}
-					pageCount={pageCount}
-					handlePrevious={handlePrevious}
-					handleNext={handleNext}
-				/>
-				<p>Songs: {songCount}</p>
-			</div> */}
-
 			<div className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}>
 				{data.items.map((product) => {
 					return <SongCard key={product._id} song={product} />;
@@ -111,10 +80,7 @@ const StyledSongsList = styled.div`
 	max-width: 100rem;
 	overflow-y: hidden;
 	z-index: 1;
-	/* transition: all 200ms linear; */
-	/* margin: 0 auto; */
 	flex: 1;
-	/* padding: 0 0.5rem 2rem 0.5rem; */
 	row-gap: 1rem;
 	padding-bottom: 0.5rem;
 	&.mobile {
@@ -127,30 +93,17 @@ const StyledSongsList = styled.div`
 		align-items: center;
 		border-radius: 1rem;
 		padding: 1rem 2rem;
-
-		/* flex: 1; */
-		/* flex: 1 1 48%; */
-		/* background-color: #120700e9; */
-		/* background-color: ${({ theme }) => theme.bgBrown}; */
-		/* background-color: #170901c8; */
-		/* background-color: ${({ theme }) => theme.engravedBrown}; */
-		/* background-color: rgba(168, 105, 69, 0.57); */
-		/* box-shadow: 3px 3px 4px rgb(0 0 0); */
-		/* border: 1px solid rgba(0, 0, 0, 0.8); */
 		border-radius: 0.4rem 0.4rem 1rem 1rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
 		background-color: rgba(0, 0, 0, 0.1);
 		&.mobile {
 			border-radius: 0.4rem;
-			/* box-shadow: none; */
 			padding: 1rem;
 		}
 		p {
 			font-weight: bolder;
 			color: ${({ theme }) => theme.secondaryColor};
-			/* display: inline-block; */
 		}
 	}
 	.songs-container {
@@ -162,7 +115,6 @@ const StyledSongsList = styled.div`
 		border-radius: 0.4rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
 		background-color: rgba(0, 0, 0, 0.1);
 		padding: 0.5rem;
 		padding-right: 0;

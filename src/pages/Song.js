@@ -173,7 +173,7 @@ const Song = ({ theme }) => {
 						<TiArrowBack
 							className='back-icon'
 							onClick={() => {
-								navigate('/songs');
+								navigate('/home');
 							}}
 						/>
 						<MdDeleteForever
@@ -240,14 +240,16 @@ const Song = ({ theme }) => {
 							)}
 						</div>
 
-						<div className='deadline-wrapper'>
-							{song.deadlineDate && (
+						{song.deadlineDate && (
+							<div className='deadline-wrapper'>
 								<p className='primary-text'>
 									{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
 								</p>
-							)}
-							{song.reason && <h4 className='secondary-text'>{song.reason}</h4>}
-						</div>
+								{song.reason && (
+									<h4 className='secondary-text'>{song.reason}</h4>
+								)}
+							</div>
+						)}
 						<div className='file-wrapper'>
 							{song.fileType === 'pdf' ? (
 								<Tooltip content='pdf file' direction='left'>

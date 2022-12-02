@@ -88,11 +88,13 @@ export const darkTheme = {
 	btnColor: 'rgb(253, 225, 209)',
 	btnIcon: '#7f0101',
 	btnBorder: 'rgba(0, 0, 0, 0.8)',
+	alert: '#7f0101',
 	darkBrown: 'rgba(105, 54, 25, 1)',
 	lightBrown: '#c7581d',
 	bgBrown: '#120700e9',
 	bgDark: '#120700',
 	red: '#7f0101',
+
 	white: 'rgb(253, 225, 209)',
 	// secondaryColor: '#1f1c1e',
 	engravedBrown: '#1d0b01',
@@ -133,6 +135,7 @@ export const darkTheme = {
 	borderCircle: '#36383a',
 	borderLine: '#494a49',
 	bgApp: '#f1f1f1',
+
 	syntax: '#ffffff',
 	black: '#ffffff',
 	gold: '#eab209',
