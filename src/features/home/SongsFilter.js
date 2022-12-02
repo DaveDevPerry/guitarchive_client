@@ -9,12 +9,12 @@ const SongsFilter = ({ homeSongFilterHandler }) => {
 				className='filter-song-select'
 				onChange={homeSongFilterHandler}
 			>
-				<option className='songs'>Songs</option>
+				<option value='songs'>All Songs</option>
 				<option value='favourites'>Favourites</option>
 				<option value='tabs'>Tabs</option>
 				<option value='scores'>Scores</option>
-				{/* <option value='deadline'>Deadlines</option>
-				<option value='practicing'>Practicing</option>
+				<option value='deadlines'>Deadlines</option>
+				{/* <option value='practicing'>Practicing</option>
 				<option value='ready'>Ready</option>
 				<option value='recorded'>Recorded</option>
 				<option value='backlog'>Backlog</option>

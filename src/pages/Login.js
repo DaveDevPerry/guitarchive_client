@@ -80,6 +80,17 @@ const StyledLogin = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	z-index: 600; */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	row-gap: 2rem;
+	max-width: 100rem;
+	padding: 0.5rem 1rem;
+	z-index: 1;
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
+	overflow-y: hidden;
 	.form-page-container {
 		display: flex;
 		flex-direction: column;
@@ -93,23 +104,16 @@ const StyledLogin = styled(motion.div)`
 			row-gap: 1rem;
 			padding: 2rem;
 			border-radius: 1rem;
-			/* background-color: ${({ theme }) => theme.white}; */
-			/* background-image: url('/images/dark wood texture.webp'); */
-			/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
-			/* border-radius: 1rem; */
-			/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 			z-index: 601;
-			/* margin: 0 1rem; */
 			&#dark {
 				background-image: url('/images/dark wood texture.webp');
 			}
 			&#light {
-				background-image: url('/images/white wood.jpg');
+				background-image: url('/images/white wood.webp');
 			}
 			h3 {
 				text-align: center;
 				margin: 0;
-				/* color: ${({ theme }) => theme.txtGrey}; */
 				font-weight: bolder;
 				color: ${({ theme }) => theme.primaryColor};
 				text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
@@ -133,49 +137,20 @@ const StyledLogin = styled(motion.div)`
 					margin: 0;
 					font-size: 1.8rem;
 					flex: 1;
-					/* border-radius: 4px; */
-					/* box-sizing: border-box; */
-
-					/* background-color: rgba(168, 105, 69, 0.57); */
-					/* box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
-						rgb(0 0 0 / 10%) -2px -2px 2px; */
 					width: 100%;
 				}
-				/* input:-webkit-autofill {
-					-webkit-text-fill-color: ${({ theme }) => theme.engravedBrown};
-
-					-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.57) inset;
-					transition: background-color 5000s ease-in-out 0s;
-					padding: 0.8rem 1rem;
-					margin: 0;
-					font-size: 1.8rem;
-					flex: 1;
-					border-radius: 4px;
-					box-sizing: border-box;
-				} */
 			}
 
 			.action-btn {
-				color: ${({ theme }) => theme.filterColor};
-				/* color: ${({ theme }) => theme.white}; */
-				background-color: ${({ theme }) => theme.filterBg};
-				/* background-color: ${({ theme }) => theme.lightBrown}; */
+				color: ${({ theme }) => theme.btnColor};
+				background-color: ${({ theme }) => theme.btnBg};
 				font-weight: bolder;
 				text-transform: uppercase;
 				font-size: 1.6rem;
 				margin-top: 2rem;
-				border: 1px solid ${({ theme }) => theme.filterBorder};
+				border: 1px solid ${({ theme }) => theme.btnBorder};
 			}
 		}
-
-		/* p {
-		text-align: center;
-		color: ${({ theme }) => theme.txtGrey};
-		a {
-			color: ${({ theme }) => theme.green};
-			text-decoration: none;
-		}
-	} */
 		.app-details-container {
 			display: flex;
 			flex-direction: column;
@@ -220,15 +195,6 @@ const StyledLogin = styled(motion.div)`
 					margin-top: 2rem;
 				}
 			}
-
-			/* p {
-		text-align: center;
-		color: ${({ theme }) => theme.txtGrey};
-		a {
-			color: ${({ theme }) => theme.green};
-			text-decoration: none;
-		}
-	} */
 			.app-details-container {
 				display: flex;
 				flex-direction: column;

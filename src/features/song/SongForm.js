@@ -736,6 +736,7 @@ const StyledSongForm = styled.form`
 					border-radius: 0.4rem;
 					box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
 						rgb(0 0 0 / 40%) -2px -2px 2px;
+					color: blue;
 					.add-new-record-icon {
 						font-size: 2.2rem;
 						pointer-events: none;

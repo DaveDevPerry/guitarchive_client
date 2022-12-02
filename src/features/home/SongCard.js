@@ -11,6 +11,7 @@ import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
+import { GoAlert } from 'react-icons/go';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
 import { format, parseISO } from 'date-fns';
@@ -59,9 +60,12 @@ const SongCard = ({ song }) => {
 			</div>
 			<div className={`deadline-wrapper ${width < breakpoint ? 'mobile' : ''}`}>
 				{song.deadlineDate && (
-					<h3 className='primary-text'>
-						{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
-					</h3>
+					<>
+						<GoAlert className='alert-icon' />
+						<p className='primary-text'>
+							{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+						</p>
+					</>
 				)}
 			</div>
 			<div className={`file-wrapper ${width < breakpoint ? 'hide' : ''}`}>
@@ -208,23 +212,36 @@ const StyledSongCard = styled.div`
 		}
 		.deadline-wrapper {
 			width: 100px;
-			display: grid;
-			place-content: center;
+			/* display: grid;
+			place-content: center; */
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			row-gap: 0.5rem;
+			.alert-icon {
+				font-size: 1.8rem;
+				color: ${({ theme }) => theme.alert};
+			}
 			.primary-text {
 				color: ${({ theme }) => theme.white};
 				text-transform: capitalize;
-				font-weight: lighter;
-				background-color: ${({ theme }) => theme.alert};
-				padding: 0.5rem 1rem;
+				font-weight: bolder;
+				/* background-color: ${({ theme }) => theme.alert}; */
+				/* padding: 0.5rem 1rem; */
 				border-radius: 0.6rem;
 				line-height: 1.4rem;
+				font-size: 1.4rem;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			&.mobile {
-				display: grid;
+				width: 80px;
+				/* display: grid;
 				place-content: center;
 				.primary-text {
 					font-size: 1.4rem;
-				}
+				} */
 			}
 		}
 		.status-wrapper {

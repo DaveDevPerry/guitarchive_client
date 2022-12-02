@@ -95,7 +95,7 @@ const StyledMobileMenu = styled(motion.div)`
 	flex: 1;
 	.menu-container {
 		padding: 1rem 2rem 2rem;
-		border-radius: 1rem;
+		border-radius: 0.4rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -110,7 +110,7 @@ const StyledMobileMenu = styled(motion.div)`
 			background-image: url('/images/dark wood texture.webp');
 		}
 		&#light {
-			background-image: url('/images/white wood.jpg');
+			background-image: url('/images/white wood.webp');
 		}
 	}
 	nav {

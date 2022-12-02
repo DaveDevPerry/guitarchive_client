@@ -122,7 +122,7 @@ const StyledYouTube = styled(motion.div)`
 			background-image: url('/images/dark wood texture.webp');
 		}
 		&#light {
-			background-image: url('/images/white wood.jpg');
+			background-image: url('/images/white wood.webp');
 		}
 	}
 `;

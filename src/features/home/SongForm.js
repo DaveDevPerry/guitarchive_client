@@ -234,7 +234,7 @@ const SongForm = ({
 									</select>
 								</div>
 								<div
-									className='add-artist-btn-form'
+									className='add-new-person-btn'
 									onClick={() => {
 										isArtistFormOpen === true
 											? setIsArtistFormOpen(false)
@@ -271,7 +271,7 @@ const SongForm = ({
 									</select>
 								</div>
 								<div
-									className='add-artist-btn-form'
+									className='add-new-person-btn'
 									onClick={() => {
 										isArrangerFormOpen === true
 											? setIsArrangerFormOpen(false)
@@ -324,55 +324,59 @@ const SongForm = ({
 				<div className='form-section'>
 					<div className='form-row-no-wrap'>
 						<div className='form-item'>
-							<div className='choice-wrapper form-dropdown'>
-								<select
-									name='style'
-									onChange={(e) =>
-										setSongData({ ...songData, style: e.target.value })
-									}
-									value={songData.style}
-									className='form-select'
-								>
-									<option
-										className='form-option'
-										// label=
-										// value={artist.name}
+							<div className='choice-wrapper'>
+								<div className='form-dropdown'>
+									<select
+										name='style'
+										onChange={(e) =>
+											setSongData({ ...songData, style: e.target.value })
+										}
+										value={songData.style}
+										className='form-select'
 									>
-										-- select style --
-									</option>
-									{styles.map((style) => (
 										<option
-											key={style._id}
-											// selected
-											label={style.name}
-											value={style._id}
 											className='form-option'
-										></option>
-									))}
-								</select>
+											// label=
+											// value={artist.name}
+										>
+											-- select style --
+										</option>
+										{styles.map((style) => (
+											<option
+												key={style._id}
+												// selected
+												label={style.name}
+												value={style._id}
+												className='form-option'
+											></option>
+										))}
+									</select>
+								</div>
 							</div>
 						</div>
 						<div className='form-item'>
-							<div className='choice-wrapper form-dropdown'>
-								<select
-									name='status'
-									onChange={(e) =>
-										setSongData({ ...songData, status: e.target.value })
-									}
-									value={songData.status}
-									className='form-select'
-								>
-									<option className='form-option'>-- select status --</option>
-									{statuses.map((status) => (
-										<option
-											key={status._id}
-											// selected
-											label={status.name}
-											value={status._id}
-											className='form-option'
-										></option>
-									))}
-								</select>
+							<div className='choice-wrapper'>
+								<div className='form-dropdown'>
+									<select
+										name='status'
+										onChange={(e) =>
+											setSongData({ ...songData, status: e.target.value })
+										}
+										value={songData.status}
+										className='form-select'
+									>
+										<option className='form-option'>-- select status --</option>
+										{statuses.map((status) => (
+											<option
+												key={status._id}
+												// selected
+												label={status.name}
+												value={status._id}
+												className='form-option'
+											></option>
+										))}
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -464,6 +468,7 @@ const StyledSongForm = styled.form`
 				margin-top: 0.75rem;
 				margin-left: 0.9rem;
 				text-transform: capitalize;
+				/* pointer-events: none; */
 			}
 			label {
 				font-size: 1.6rem;
@@ -477,7 +482,8 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				column-gap: 0.5rem;
 				flex: 1;
-				.add-artist-btn-form {
+				/* color: ${({ theme }) => theme.btnIcon}; */
+				.add-new-person-btn {
 					background-color: ${({ theme }) => theme.btnBg};
 					display: grid;
 					place-content: center;
@@ -485,13 +491,16 @@ const StyledSongForm = styled.form`
 					width: 3.9rem;
 					cursor: pointer;
 					border-radius: 0.4rem;
-					box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
-						rgb(0 0 0 / 40%) -2px -2px 2px;
+					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
+						rgb(0 0 0 / 10%) -2px -2px 2px;
+					/* box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
+						rgb(0 0 0 / 40%) -2px -2px 2px; */
 					color: ${({ theme }) => theme.btnIcon};
+					/* border: 2px solid ${({ theme }) => theme.borderLight}; */
 					.add-new-record-icon {
 						font-size: 2.2rem;
 						pointer-events: none;
-						color: ${({ theme }) => theme.btnIcon};
+						/* color: ${({ theme }) => theme.btnIcon}; */
 					}
 				}
 			}
@@ -572,7 +581,7 @@ const StyledSongForm = styled.form`
 				justify-content: space-between;
 				column-gap: 0.5rem;
 				flex: 1;
-				.add-artist-btn-form {
+				.add-new-person-btn {
 					background-color: ${({ theme }) => theme.btnBg};
 					display: grid;
 					place-content: center;
@@ -582,6 +591,7 @@ const StyledSongForm = styled.form`
 					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
 						rgb(0 0 0 / 10%) -2px -2px 2px;
 					color: ${({ theme }) => theme.btnIcon};
+					/* border: 2px solid ${({ theme }) => theme.borderLight}; */
 					.add-new-record-icon {
 						color: ${({ theme }) => theme.btnIcon};
 						font-size: 1.6rem;

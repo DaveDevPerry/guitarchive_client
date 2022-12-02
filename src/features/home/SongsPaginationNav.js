@@ -79,7 +79,7 @@ const StyledSongsPaginationNav = styled.nav`
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		column-gap: 2rem;
+		column-gap: 1rem;
 		button.page-btn {
 			padding: 0rem;
 			display: grid;

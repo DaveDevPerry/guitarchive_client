@@ -29,6 +29,9 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     color: ${({ theme }) => theme.darkBrown};
     overflow: hidden;
+    background-repeat: repeat;
+	background-size: contain;
+background-image: url('/images/light wood background.webp');
   }
 	.App {
     width: 100vw;
@@ -41,7 +44,8 @@ export const GlobalStyles = createGlobalStyle`
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
-  background-color: ${({ theme }) => theme.bodyBg};
+  ${'' /* background-color: ${({ theme }) => theme.bodyBg}; */}
+  
   &.mobile{
     row-gap:0;
     padding-bottom: 1rem;
@@ -63,7 +67,7 @@ export const GlobalStyles = createGlobalStyle`
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
   &.mobile {
 		border-radius: 0.4rem;
@@ -106,7 +110,8 @@ export const GlobalStyles = createGlobalStyle`
   transition: 0.5s;
   outline: none;
     border-radius: 0.4rem;
-    background-color: rgba(168, 105, 69, 0.57);
+    background-color: ${({ theme }) => theme.inputBg};
+    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
     ::placeholder {
   color: ${({ theme }) => theme.primaryColor};
@@ -263,19 +268,32 @@ input[type="date"]{
     border: 2px solid ${({ theme }) => theme.borderLight};
   -webkit-transition: 0.5s;
   transition: 0.5s;
-    background-color: rgba(168, 105, 69, 0.57);
+    background-color: ${({ theme }) => theme.inputBg};
+    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 }
 select.form-select:focus {
   border: 2px solid ${({ theme }) => theme.borderDark};
 }
 option.form-option {
-					font-size: 1.6rem;
+					font-size: 1.4rem;
 					color: ${({ theme }) => theme.primaryColor};
-					background-color: rgba(36, 14, 0, 0.08);
-					border: 1px solid ${({ theme }) => theme.darkBrown};
+          font-weight: bolder;
+					${'' /* background-color: red; */}
+					background-color: ${({ theme }) => theme.optionBg};
+					${'' /* background-color: rgba(36, 14, 0, 0.08); */}
+					border: 1px solid ${({ theme }) => theme.borderDark};
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
+          font-family: 'NewTegomin';
+          cursor: pointer;
+          &:nth-child(odd){
+            background-color:  ${({ theme }) => theme.optionBgOdd};
+            ${
+							'' /* border-top: 1px solid  ${({ theme }) => theme.btnBorder};
+            border-bottom: 1px solid  ${({ theme }) => theme.btnBorder}; */
+						}
+          }
 					&:focus {
 						border: 1px solid ${({ theme }) => theme.darkBrown};
 						outline: none;
@@ -305,11 +323,10 @@ option.form-option {
 }
 
 
-
-        ${
-					'' /* input[type="file"] {
+input[type="file"] {
         position: absolute;
-        z-index: -1;
+        z-index: 1;
+        ${'' /* z-index: -1; */}
         left: 0px;
         width: 100%;
         height: 3.9rem;
@@ -319,6 +336,6 @@ option.form-option {
 				position: relative;
 				height: 3.9rem;
 				font: inherit;
-			} */
-				}
+			} 
+				
 `;

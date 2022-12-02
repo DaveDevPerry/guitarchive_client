@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
 import SongsFilter from './SongsFilter';
 // import SongsList from './SongsList';
-// import Light from '../../assets/images/white wood.jpg';
+// import Light from '../../assets/images/white wood.webp';
 // import Dark from '../../assets/images/dark wood texture.webp';
 import SongsWidget from './SongsWidget';
 import SearchBar from './SearchBar';
@@ -52,7 +52,7 @@ const StyledSongsListContainer = styled.div`
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
 		border-radius: 0.4rem;

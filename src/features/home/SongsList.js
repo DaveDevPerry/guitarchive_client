@@ -59,7 +59,10 @@ function SongsList({ filterValue }) {
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
 			>
 				<p>
-					Page: {page} / {pageCount}
+					Page:
+					<span>
+						{page}/{pageCount}
+					</span>
 				</p>
 				<SongsPaginationNav
 					page={page}
@@ -68,7 +71,9 @@ function SongsList({ filterValue }) {
 					handlePrevious={handlePrevious}
 					handleNext={handleNext}
 				/>
-				<p>Songs: {songCount}</p>
+				<p>
+					Songs:<span>{songCount}</span>
+				</p>
 			</div>
 		</StyledSongsList>
 	);
@@ -84,7 +89,7 @@ const StyledSongsList = styled.div`
 	row-gap: 1rem;
 	padding-bottom: 0.5rem;
 	&.mobile {
-		row-gap: 0.5rem;
+		row-gap: 1rem;
 		padding-bottom: 0rem;
 	}
 	.pagination-header {
@@ -103,7 +108,10 @@ const StyledSongsList = styled.div`
 		}
 		p {
 			font-weight: bolder;
-			color: ${({ theme }) => theme.secondaryColor};
+			color: ${({ theme }) => theme.primaryColor};
+			span {
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 	}
 	.songs-container {

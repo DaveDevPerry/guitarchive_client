@@ -15,6 +15,7 @@ const AddSongButton = () => {
 			}}
 		>
 			<CgPlayListAdd className='add-song-btn' />
+			{/* <p>upload</p> */}
 			{width > breakpoint && <p>add song</p>}
 		</StyledAddSongButton>
 	);

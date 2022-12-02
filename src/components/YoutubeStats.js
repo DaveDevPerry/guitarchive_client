@@ -93,7 +93,7 @@ const StyledYoutubeStats = styled.div`
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
 		border-radius: 0.4rem;

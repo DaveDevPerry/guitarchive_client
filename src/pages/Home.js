@@ -7,15 +7,15 @@ import NextDeadlineSong from '../components/NextDeadlineSong';
 import { useViewport } from '../hooks/useViewport';
 import { CgPlayListAdd } from 'react-icons/cg';
 import SongsListContainer from '../features/home/SongsListContainer';
-// import SongModal from '../features/home/SongModal';
+import SongModal from '../features/home/SongModal';
 
 const Home = ({ youtubeData, theme }) => {
-	const { dataLoaded } = useStateContext();
+	const { dataLoaded, isFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 
 	const [filterValue, setFilterValue] = useState('songs');
-	// const [currentId, setCurrentId] = useState(null);
+	const [currentId, setCurrentId] = useState(null);
 
 	// function sand events
 	const homeSongFilterHandler = (e) => {
@@ -30,9 +30,12 @@ const Home = ({ youtubeData, theme }) => {
 			case 'favourites':
 				setFilterValue('favourites');
 				break;
-			case 'default-filter':
-				setFilterValue('songs');
+			case 'deadlines':
+				setFilterValue('deadlines');
 				break;
+			// case 'default-filter':
+			// 	setFilterValue('songs');
+			// 	break;
 			case 'songs':
 				setFilterValue('songs');
 				break;
@@ -131,9 +134,9 @@ const Home = ({ youtubeData, theme }) => {
 			exit={{ x: window.innerWidth }}
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
 		>
-			{/* {isFormOpen === true && (
+			{isFormOpen === true && (
 				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
-			)} */}
+			)}
 			<div className='add-btns-container'>
 				<QuickAddButton
 				// 	onClick={() => {

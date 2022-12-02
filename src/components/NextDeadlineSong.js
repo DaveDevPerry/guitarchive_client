@@ -98,33 +98,21 @@ const NextDeadlineSong = ({ theme }) => {
 };
 
 const StyledNextDeadlineSong = styled.div`
-	/* color: ${({ theme }) => theme.engravedBrown};
-	border-radius: 4px;
-	flex-direction: row;
-	justify-content: center;
-	padding: 1rem 2rem 2rem;
-	border-radius: 1rem;
-	background-image: url('/images/dark wood texture.webp');
-	background-repeat: no-repeat;
-	background-size: cover;
-	box-shadow: 3px 3px 4px rgb(0 0 0); */
 	padding: 1rem 2rem 2rem;
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 0.5rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
-	/* flex: 1; */
 	overflow-y: hidden;
 	&#dark {
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
 		border-radius: 0.4rem;
@@ -165,7 +153,6 @@ const StyledNextDeadlineSong = styled.div`
 			display: none;
 			span {
 				text-transform: uppercase;
-				/* color: ${({ theme }) => theme.engravedBrown}; */
 				color: ${({ theme }) => theme.secondaryColor};
 				strong {
 					font-size: 1.5rem;
@@ -185,17 +172,13 @@ const StyledNextDeadlineSong = styled.div`
 			row-gap: 0.4rem;
 			flex: 1;
 			width: 100%;
-			/* background-color: #120700e9; */
 			padding: 1rem 2rem;
-			/* box-shadow: 3px 3px 4px rgb(0 0 0); */
 			border-radius: 0.4rem 0.4rem 1rem 1rem;
 			box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 				inset -2px -2px 2px rgba(0, 0, 0, 08);
-			/* box-shadow: 3px 3px 4px rgba(0, 0, 0, 08); */
 			background-color: rgba(0, 0, 0, 0.1);
 			&.mobile {
 				border-radius: 0.4rem;
-				/* box-shadow: none; */
 				padding: 1rem;
 				row-gap: 0.3rem;
 			}
@@ -215,7 +198,6 @@ const StyledNextDeadlineSong = styled.div`
 					.header-time {
 						font-size: 1.4rem;
 						text-transform: capitalize;
-						/* font-weight: bolder; */
 						color: ${({ theme }) => theme.secondaryColor};
 						text-align: left;
 						&.mobile {
@@ -224,12 +206,10 @@ const StyledNextDeadlineSong = styled.div`
 					}
 				}
 				.status-icon-wrapper {
-					/* border: 1px solid red; */
 					height: 100%;
 					font-size: 3rem;
 					.status-icon {
 						color: ${({ theme }) => theme.primaryColor};
-						/* color: ${({ theme }) => theme.lightBrown}; */
 					}
 					&.mobile {
 						font-size: 2.5rem;

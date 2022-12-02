@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import AddSongButton from './AddSongButton';
+import AddSongButton from './AddSongButton';
 import SongsFilter from './SongsFilter';
 import SongsList from './SongsList';
 
@@ -24,7 +24,7 @@ const SongsListContainer = ({
 				>
 					{filterValue}
 				</p>
-				{/* <AddSongButton /> */}
+				<AddSongButton />
 				<SongsFilter
 					filterValue={filterValue}
 					homeSongFilterHandler={homeSongFilterHandler}
@@ -46,7 +46,7 @@ const StyledSongsListContainer = styled.div`
 	justify-content: flex-start;
 	background-repeat: no-repeat;
 	background-size: cover;
-	row-gap: 0.5rem;
+	row-gap: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	flex: 1;
 	overflow-y: hidden;
@@ -54,7 +54,7 @@ const StyledSongsListContainer = styled.div`
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
 		border-radius: 0.4rem;
@@ -64,7 +64,7 @@ const StyledSongsListContainer = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		column-gap: 2rem;
+		column-gap: 1rem;
 		.list-filter-value {
 			font-size: 2.5rem;
 			text-transform: capitalize;

@@ -94,7 +94,7 @@ const StyledSongModal = styled.dialog`
 			background-image: url('/images/dark wood texture.webp');
 		}
 		&#light {
-			background-image: url('/images/white wood.jpg');
+			background-image: url('/images/white wood.webp');
 		}
 		h2 {
 			font-size: 2.5rem;
@@ -106,6 +106,7 @@ const StyledSongModal = styled.dialog`
 		}
 		&.mobile {
 			padding: 1rem 1rem 2rem 1rem;
+			border-radius: 0.4rem;
 		}
 	}
 `;

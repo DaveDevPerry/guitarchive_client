@@ -558,7 +558,7 @@ const StyledSongContainer = styled.div`
 	/* background-image: url('/images/light wood texture.webp'); */
 	/* background-image: url('/images/medium wood texture.png'); */
 
-	/* background-image: url('/images/white wood.jpg'); */
+	/* background-image: url('/images/white wood.webp'); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 0.5rem;
@@ -570,7 +570,7 @@ const StyledSongContainer = styled.div`
 		background-image: url('/images/dark wood texture.webp');
 	}
 	&#light {
-		background-image: url('/images/white wood.jpg');
+		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
 		border-radius: 0.4rem;

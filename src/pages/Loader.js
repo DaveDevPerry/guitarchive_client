@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
@@ -27,9 +26,7 @@ const Loader = ({ youtubeData, theme }) => {
 
 	const { width } = useViewport();
 	const breakpoint = 620;
-
 	const navigate = useNavigate();
-	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
 
 	useEffect(() => {
 		const fetchSongs = async () => {
@@ -42,22 +39,14 @@ const Loader = ({ youtubeData, theme }) => {
 				}
 			);
 			const json = await response.json();
-			// log(user, 'user');
 			log(json, 'json songs');
 			if (response.ok) {
-				// dispatch({
-				// 	type: 'SET_USERS',
-				// 	payload: json,
-				// });
 				dispatch({
 					type: 'SET_SONGS',
 					payload: json,
 				});
 			}
 		};
-
-		// fetchSongs();
-
 		if (user) {
 			fetchSongs();
 		}
@@ -75,31 +64,17 @@ const Loader = ({ youtubeData, theme }) => {
 				`${process.env.REACT_APP_BACKEND_URL}/api/artists`
 			);
 			const json = await response.json();
-			// log(user, 'user');
 			log(json, 'json artist');
 			if (response.ok) {
-				// dispatch({
-				// 	type: 'SET_USERS',
-				// 	payload: json,
-				// });
 				artistDispatch({
 					type: 'SET_ARTISTS',
 					payload: json,
 				});
 			}
 		};
-
-		// fetchArtists();
-
 		if (user) {
 			fetchArtists();
 		}
-		// setTimeout(() => {
-		// 	setDataLoaded(true);
-		// 	setTimeout(() => {
-		// 		navigate('/home');
-		// 	}, 1000);
-		// }, 3000);
 	}, []);
 
 	useEffect(() => {
@@ -108,31 +83,17 @@ const Loader = ({ youtubeData, theme }) => {
 				`${process.env.REACT_APP_BACKEND_URL}/api/arrangers`
 			);
 			const json = await response.json();
-			// log(user, 'user');
 			log(json, 'json arrangers');
 			if (response.ok) {
-				// dispatch({
-				// 	type: 'SET_USERS',
-				// 	payload: json,
-				// });
 				arrangerDispatch({
 					type: 'SET_ARRANGERS',
 					payload: json,
 				});
 			}
 		};
-
-		// fetchArrangers();
-
 		if (user) {
 			fetchArrangers();
 		}
-		// setTimeout(() => {
-		// 	setDataLoaded(true);
-		// 	setTimeout(() => {
-		// 		navigate('/home');
-		// 	}, 1000);
-		// }, 3000);
 	}, []);
 
 	useEffect(() => {
@@ -141,31 +102,17 @@ const Loader = ({ youtubeData, theme }) => {
 				`${process.env.REACT_APP_BACKEND_URL}/api/status`
 			);
 			const json = await response.json();
-			// log(user, 'user');
 			log(json, 'json statuses');
 			if (response.ok) {
-				// dispatch({
-				// 	type: 'SET_USERS',
-				// 	payload: json,
-				// });
 				statusDispatch({
 					type: 'SET_STATUSES',
 					payload: json,
 				});
 			}
 		};
-
-		// fetchStatuses();
-
 		if (user) {
 			fetchStatuses();
 		}
-		// setTimeout(() => {
-		// 	setDataLoaded(true);
-		// 	setTimeout(() => {
-		// 		navigate('/home');
-		// 	}, 1000);
-		// }, 3000);
 	}, []);
 
 	useEffect(() => {
@@ -174,61 +121,18 @@ const Loader = ({ youtubeData, theme }) => {
 				`${process.env.REACT_APP_BACKEND_URL}/api/styles`
 			);
 			const json = await response.json();
-			// log(user, 'user');
 			log(json, 'json styles');
 			if (response.ok) {
-				// dispatch({
-				// 	type: 'SET_USERS',
-				// 	payload: json,
-				// });
 				stylesDispatch({
 					type: 'SET_STYLES',
 					payload: json,
 				});
 			}
 		};
-
-		// fetchStyles();
-
 		if (user) {
 			fetchStyles();
 		}
-		// setTimeout(() => {
-		// 	setDataLoaded(true);
-		// 	setTimeout(() => {
-		// 		navigate('/home');
-		// 	}, 1000);
-		// }, 3000);
 	}, []);
-	// useEffect(() => {
-	// 	// const fetchUsers = async () => {
-	// 	// 	const response = await fetch(
-	// 	// 		`${process.env.REACT_APP_BACKEND_URL}/api/user`
-	// 	// 	);
-	// 	// 	const json = await response.json();
-	// 	// 	log(user, 'user');
-	// 	// 	log(json, 'json user');
-	// 	// 	if (response.ok) {
-	// 	// 		// dispatch({
-	// 	// 		// 	type: 'SET_USERS',
-	// 	// 		// 	payload: json,
-	// 	// 		// });
-	// 	// 		dispatch({
-	// 	// 			type: 'SET_USER',
-	// 	// 			payload: json,
-	// 	// 		});
-	// 	// 	}
-	// 	// };
-	// 	// if (user) {
-	// 	// 	fetchUsers();
-	// 	// }
-	// 	setTimeout(() => {
-	// 		setDataLoaded(true);
-	// 		setTimeout(() => {
-	// 			navigate('/home');
-	// 		}, 1000);
-	// 	}, 1000);
-	// }, []);
 
 	return (
 		<StyledLoader
@@ -430,7 +334,7 @@ const StyledLoader = styled(motion.div)`
 	flex: 1;
 	/* background-image: url('/images/light wood texture.webp'); */
 	/* border: 2px solid red; */
-	background-color: ${({ theme }) => theme.bodyBg};
+	/* background-color: ${({ theme }) => theme.bodyBg}; */
 	h1.app-name {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-family: 'NewTegomin';
