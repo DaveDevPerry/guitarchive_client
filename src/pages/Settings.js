@@ -6,11 +6,9 @@ import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
-
 import Toggle from '../components/Toggler';
 import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
-// import TVAppLinks from '../components/TVAppLinks';
 
 const Settings = ({ themeToggler, theme }) => {
 	const { logout } = useLogout();
@@ -46,15 +44,14 @@ const Settings = ({ themeToggler, theme }) => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			className={`settings-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			<div
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 				className={`wrapper ${width < breakpoint ? 'mobile' : ''}`}
 			>
-				{/* <div className='settings-header'> */}
 				<h2>Settings</h2>
 
-				{/* </div> */}
 				<div className='account-details settings-section'>
 					<h5 className='sub-heading'>account</h5>
 					<div className='settings-section-wrapper'>
@@ -80,7 +77,6 @@ const Settings = ({ themeToggler, theme }) => {
 						<Toggle toggleTheme={themeToggler} theme={theme} />
 					</div>
 				</div>
-				{/* <TVAppLinks /> */}
 				<div className='logout-btn-container'>
 					<button onClick={handleClick}>Log out</button>
 				</div>
@@ -103,25 +99,21 @@ const StyledSettings = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	border-radius: 4px;
+	&.mobile {
+		padding: 0.5rem 1rem 1rem 1rem;
+	}
 	.wrapper {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		row-gap: 2rem;
 		padding: 0rem 2rem;
-		/* background: ${({ theme }) => theme.white}; */
-		/* flex: 1; */
 		transition: all 200ms linear;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		background-repeat: no-repeat;
 		background-size: cover;
 		padding: 1rem 2rem 2rem;
 		border-radius: 1rem;
-		/* .settings-header {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center; */
 		&#dark {
 			background-image: url('/images/dark wood texture.webp');
 		}
@@ -133,7 +125,6 @@ const StyledSettings = styled(motion.div)`
 			padding: 1rem;
 		}
 		h2 {
-			/* flex: 1; */
 			font-size: 2.5rem;
 			text-align: center;
 			color: ${({ theme }) => theme.primaryColor};
@@ -142,24 +133,19 @@ const StyledSettings = styled(motion.div)`
 				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 		.logout-btn-container {
-			/* text-align: right; */
 			flex: 1;
 			button {
-				/* align-self: flex-end; */
 				background: ${({ theme }) => theme.btnBg};
 				color: ${({ theme }) => theme.btnColor};
 				border: 1px solid ${({ theme }) => theme.btnBorder};
 				outline: none;
-				/* font-family: 'Signika', sans-serif; */
 				cursor: pointer;
 				font-size: 1.6rem;
 				font-weight: bolder;
 				width: 100%;
 				margin-top: 3rem;
-				/* text-decoration: underline; */
 			}
 		}
-		/* } */
 		.settings-section-wrapper {
 			border-radius: 1rem;
 			padding: 2rem 2rem;
@@ -170,7 +156,6 @@ const StyledSettings = styled(motion.div)`
 			flex: 1;
 			border: 1px solid ${({ theme }) => theme.primaryColor};
 			border-radius: 0.4rem;
-			/* border-radius: 0.4rem 0.4rem 1rem 1rem; */
 			box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 				inset -2px -2px 2px rgba(0, 0, 0, 08);
 			background-color: rgba(0, 0, 0, 0.1);
@@ -179,7 +164,6 @@ const StyledSettings = styled(motion.div)`
 				border-radius: 0.4rem;
 				padding: 1rem;
 				row-gap: 0.5rem;
-				/* flex: 1 1 30%; */
 			}
 		}
 		.account-details {
@@ -189,8 +173,6 @@ const StyledSettings = styled(motion.div)`
 			justify-content: flex-start;
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
-				/* border-bottom: 1px solid ${({ theme }) => theme.secondaryColor}; */
-				/* margin-bottom: 0.5rem; */
 				width: 100%;
 				font-size: 2rem;
 				text-transform: capitalize;
@@ -227,12 +209,8 @@ const StyledSettings = styled(motion.div)`
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: flex-start;
-			/* flex: 1; */
-			/* display: none; */
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
-				/* border-bottom: 1px solid ${({ theme }) => theme.secondaryColor}; */
-				/* margin-bottom: 1rem; */
 				width: 100%;
 				font-size: 2rem;
 				text-transform: capitalize;

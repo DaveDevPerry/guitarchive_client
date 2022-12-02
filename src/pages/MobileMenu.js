@@ -4,9 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
 import { FaListAlt } from 'react-icons/fa';
-// import { FaListAlt, FaUserEdit } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
-// import { GiMusicalScore } from 'react-icons/gi';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
 
@@ -36,15 +34,6 @@ const MobileMenu = ({ theme }) => {
 						<AiFillHome className='nav-icon' />
 						<p>home</p>
 					</NavLink>
-
-					{/* <NavLink
-					to='/products'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<FaListAlt className='nav-icon' />
-					<p>products</p>
-				</NavLink> */}
-
 					<NavLink
 						to='/songs'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -96,7 +85,6 @@ const StyledMobileMenu = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	/* align-items: center; */
 	row-gap: 1rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
@@ -105,7 +93,6 @@ const StyledMobileMenu = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	/* overflow-y: hidden; */
 	.menu-container {
 		padding: 1rem 2rem 2rem;
 		border-radius: 1rem;
@@ -113,10 +100,6 @@ const StyledMobileMenu = styled(motion.div)`
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		/* background-image: url('/images/light wood texture.webp'); */
-		/* background-image: url('/images/medium wood texture.png'); */
-
-		/* background-image: url('/images/white wood.jpg'); */
 		background-repeat: no-repeat;
 		background-size: cover;
 		row-gap: 0.5rem;
@@ -134,10 +117,7 @@ const StyledMobileMenu = styled(motion.div)`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		/* align-items: center; */
 		row-gap: 2rem;
-		/* transform: translateY(-35px); */
-
 		a {
 			display: flex;
 			justify-content: flex-start;
@@ -150,66 +130,25 @@ const StyledMobileMenu = styled(motion.div)`
 				position: relative;
 			}
 			p {
-				/* color: ${({ theme }) => theme.txtDarkGrey};
-				color: ${({ theme }) => theme.darkBrown}; */
 				color: ${({ theme }) => theme.primaryColor};
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 					0px -1px 0px rgb(0 0 0 / 70%);
 				font-weight: bolder;
-
 				font-size: 3rem;
-				/* font-size: 3.5rem; */
 				text-transform: uppercase;
 			}
-			/* .home-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				}
-				.weights-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				}
-				.settings-icon {
-					color: ${({ theme }) => theme.txtDarkGrey};
-					color: ${({ theme }) => theme.darkBrown};
-
-					font-size: 2.5rem;
-				} */
 		}
 		a.active {
 			.nav-icon {
 				color: ${({ theme }) => theme.lightBrown};
 				-webkit-transition: all 0.5s ease;
 				transition: all 0.5s ease;
-			}
-			p {
-				color: ${({ theme }) => theme.green};
-				color: ${({ theme }) => theme.lightBrown};
-
-				font-weight: bolder;
-			}
-			/* .home-icon {
+				p {
 					color: ${({ theme }) => theme.green};
 					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
+					font-weight: bolder;
 				}
-				.weights-icon {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
-				}
-				.settings-icon {
-					color: ${({ theme }) => theme.green};
-					color: ${({ theme }) => theme.lightBrown};
-
-					font-size: 2.5rem;
-				} */
+			}
 		}
 	}
 `;
