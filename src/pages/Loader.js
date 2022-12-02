@@ -237,7 +237,7 @@ const Loader = ({ youtubeData, theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<YoutubeStats youtubeData={youtubeData} />
+			<YoutubeStats youtubeData={youtubeData} theme={theme} />
 			<StyledPageLoader className='loader-container'>
 				<div className='loader'>
 					<div className='top'>
@@ -428,16 +428,19 @@ const StyledLoader = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	background-image: url('/images/light wood texture.webp');
+	/* background-image: url('/images/light wood texture.webp'); */
 	/* border: 2px solid red; */
+	background-color: ${({ theme }) => theme.bodyBg};
 	h1.app-name {
-		color: ${({ theme }) => theme.lightBrown};
+		color: ${({ theme }) => theme.secondaryColor};
 		font-family: 'NewTegomin';
 		font-weight: lighter;
 		font-size: 4rem;
 		text-align: center;
+		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+			0px -1px 0px rgb(0 0 0 / 70%);
 		span {
-			color: ${({ theme }) => theme.darkBrown};
+			color: ${({ theme }) => theme.primaryColor};
 			font-weight: bolder;
 		}
 	}

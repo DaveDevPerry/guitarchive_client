@@ -44,10 +44,6 @@ const StyledSongsListContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	/* background-image: url('/images/light wood texture.webp'); */
-	/* background-image: url('/images/medium wood texture.png'); */
-
-	/* background-image: url('/images/white wood.jpg'); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 0.5rem;

@@ -4,11 +4,14 @@ import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
 // import { NavLink } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
+import { useViewport } from '../hooks/useViewport';
 
 const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { login, error, isLoading } = useLogin();
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -17,17 +20,17 @@ const Login = ({ theme }) => {
 
 	return (
 		<StyledLogin
-			className='login-page page'
+			className={`login-page page ${width < breakpoint ? 'mobile' : ''}`}
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <div className='brand-wrapper'>
-				<h1 id='brand'>TV Quiz</h1>
-			</div> */}
-
 			<div className='form-page-container'>
-				<form onSubmit={handleSubmit} className='login br'>
+				<form
+					onSubmit={handleSubmit}
+					className='login br'
+					id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				>
 					<h3>Log in</h3>
 					<div className='login-input-wrapper'>
 						<label>Email:</label>
@@ -45,6 +48,7 @@ const Login = ({ theme }) => {
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
 							autoComplete='current-password'
+							id='input-password'
 						/>
 					</div>
 					<button className='action-btn' disabled={isLoading}>
@@ -60,12 +64,6 @@ const Login = ({ theme }) => {
 					<AppDetails theme={theme} />
 				</div>
 			</div>
-
-			{/* <div className='launch-wrapper'>
-				<h1 className='launch-btn' id='lets-rock'>
-					It's the CD's or Me
-				</h1>
-			</div> */}
 		</StyledLogin>
 	);
 };
@@ -88,77 +86,89 @@ const StyledLogin = styled(motion.div)`
 		row-gap: 2rem;
 		flex: 1;
 		justify-content: flex-start;
-	}
-	.login {
-		display: flex;
-		flex-direction: column;
-		row-gap: 1rem;
-		padding: 2rem;
-		/* background-color: ${({ theme }) => theme.white}; */
-		background-image: url('/images/dark wood texture.webp');
-		/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
-		/* border-radius: 1rem; */
-		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
-		z-index: 601;
-		/* margin: 0 1rem; */
-		h3 {
-			text-align: center;
-			margin: 0;
-			/* color: ${({ theme }) => theme.txtGrey}; */
-			font-weight: bolder;
-			color: ${({ theme }) => theme.engravedBrown};
-			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
-				0px -1px 0px rgba(0, 0, 0, 0.7);
-			font-size: 2.5rem;
-			line-height: 2.5rem;
-		}
-		.login-input-wrapper {
-			label {
-				font-size: 1.6rem;
+
+		.login {
+			display: flex;
+			flex-direction: column;
+			row-gap: 1rem;
+			padding: 2rem;
+			border-radius: 1rem;
+			/* background-color: ${({ theme }) => theme.white}; */
+			/* background-image: url('/images/dark wood texture.webp'); */
+			/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
+			/* border-radius: 1rem; */
+			/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+			z-index: 601;
+			/* margin: 0 1rem; */
+			&#dark {
+				background-image: url('/images/dark wood texture.webp');
+			}
+			&#light {
+				background-image: url('/images/white wood.jpg');
+			}
+			h3 {
+				text-align: center;
+				margin: 0;
+				/* color: ${({ theme }) => theme.txtGrey}; */
+				font-weight: bolder;
+				color: ${({ theme }) => theme.primaryColor};
+				text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+					0px -1px 0px rgba(0, 0, 0, 0.7);
+				font-size: 2.5rem;
+				line-height: 2.5rem;
+			}
+			.login-input-wrapper {
+				label {
+					font-size: 1.6rem;
+					text-transform: uppercase;
+					margin: 10px 0 2px;
+					color: ${({ theme }) => theme.primaryColor};
+					text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+						0px -1px 0px rgba(0, 0, 0, 0.7);
+				}
+
+				input[type='email'],
+				input[type='password'] {
+					padding: 0.8rem 1rem;
+					margin: 0;
+					font-size: 1.8rem;
+					flex: 1;
+					/* border-radius: 4px; */
+					/* box-sizing: border-box; */
+
+					/* background-color: rgba(168, 105, 69, 0.57); */
+					/* box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
+						rgb(0 0 0 / 10%) -2px -2px 2px; */
+					width: 100%;
+				}
+				/* input:-webkit-autofill {
+					-webkit-text-fill-color: ${({ theme }) => theme.engravedBrown};
+
+					-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.57) inset;
+					transition: background-color 5000s ease-in-out 0s;
+					padding: 0.8rem 1rem;
+					margin: 0;
+					font-size: 1.8rem;
+					flex: 1;
+					border-radius: 4px;
+					box-sizing: border-box;
+				} */
+			}
+
+			.action-btn {
+				color: ${({ theme }) => theme.filterColor};
+				/* color: ${({ theme }) => theme.white}; */
+				background-color: ${({ theme }) => theme.filterBg};
+				/* background-color: ${({ theme }) => theme.lightBrown}; */
+				font-weight: bolder;
 				text-transform: uppercase;
-				margin: 10px 0 2px;
-				color: ${({ theme }) => theme.engravedBrown};
-			}
-
-			input[type='email'],
-			input[type='password'] {
-				padding: 0.8rem 1rem;
-				margin: 0;
-				font-size: 1.8rem;
-				flex: 1;
-				border-radius: 4px;
-				box-sizing: border-box;
-
-				background-color: rgba(168, 105, 69, 0.57);
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				width: 100%;
-			}
-			input:-webkit-autofill {
-				-webkit-text-fill-color: ${({ theme }) => theme.engravedBrown};
-
-				/* -webkit-text-fill-color: #ffffff; */
-				-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.57) inset;
-				/* -webkit-box-shadow: 0 0 0px 1000px #151718 inset; */
-				transition: background-color 5000s ease-in-out 0s;
-				padding: 0.8rem 1rem;
-				margin: 0;
-				font-size: 1.8rem;
-				flex: 1;
-				border-radius: 4px;
-				box-sizing: border-box;
+				font-size: 1.6rem;
+				margin-top: 2rem;
+				border: 1px solid ${({ theme }) => theme.filterBorder};
 			}
 		}
 
-		.action-btn {
-			color: ${({ theme }) => theme.white};
-			background-color: ${({ theme }) => theme.lightBrown};
-			font-weight: bolder;
-			text-transform: uppercase;
-			font-size: 1.6rem;
-			margin-top: 2rem;
-		}
-	}
-	/* p {
+		/* p {
 		text-align: center;
 		color: ${({ theme }) => theme.txtGrey};
 		a {
@@ -166,11 +176,66 @@ const StyledLogin = styled(motion.div)`
 			text-decoration: none;
 		}
 	} */
-	.app-details-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		flex: 1;
+		.app-details-container {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			flex: 1;
+		}
+	}
+	&.mobile {
+		.form-page-container {
+			display: flex;
+			flex-direction: column;
+			row-gap: 2rem;
+			flex: 1;
+			justify-content: flex-start;
+
+			.login {
+				row-gap: 1rem;
+				padding: 1rem;
+				border-radius: 0.4rem;
+
+				h3 {
+					font-size: 2.5rem;
+					line-height: 2.5rem;
+				}
+				.login-input-wrapper {
+					label {
+						font-size: 1.6rem;
+						margin: 10px 0 2px;
+					}
+
+					input[type='email'],
+					input[type='password'] {
+						padding: 0.8rem 1rem;
+						font-size: 1.8rem;
+
+						width: 100%;
+					}
+				}
+
+				.action-btn {
+					font-size: 1.6rem;
+					margin-top: 2rem;
+				}
+			}
+
+			/* p {
+		text-align: center;
+		color: ${({ theme }) => theme.txtGrey};
+		a {
+			color: ${({ theme }) => theme.green};
+			text-decoration: none;
+		}
+	} */
+			.app-details-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				flex: 1;
+			}
+		}
 	}
 `;
 

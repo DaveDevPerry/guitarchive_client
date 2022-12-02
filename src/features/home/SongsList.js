@@ -158,7 +158,7 @@ const StyledSongsList = styled.div`
 		flex-direction: column;
 		justify-content: flex-start;
 		overflow-y: auto;
-		border: 1px solid ${({ theme }) => theme.darkBrown};
+		border: 1px solid ${({ theme }) => theme.primaryColor};
 		border-radius: 0.4rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);

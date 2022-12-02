@@ -9,6 +9,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 import Toggle from '../components/Toggler';
 import AppDetails from '../components/AppDetails';
+import { useViewport } from '../hooks/useViewport';
 // import TVAppLinks from '../components/TVAppLinks';
 
 const Settings = ({ themeToggler, theme }) => {
@@ -37,37 +38,47 @@ const Settings = ({ themeToggler, theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	const { width } = useViewport();
+	const breakpoint = 620;
+
 	return (
 		<StyledSettings
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<div className='wrapper'>
+			<div
+				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				className={`wrapper ${width < breakpoint ? 'mobile' : ''}`}
+			>
 				{/* <div className='settings-header'> */}
 				<h2>Settings</h2>
 
 				{/* </div> */}
-				<div className='account-details'>
+				<div className='account-details settings-section'>
 					<h5 className='sub-heading'>account</h5>
-					<ul className='user-details-list'>
-						{user.firstName && user.lastName && (
+					<div className='settings-section-wrapper'>
+						<ul className='user-details-list'>
+							{user.firstName && user.lastName && (
+								<li>
+									<p>name:</p>
+									<span id='full-name'>
+										{user.firstName} {user.lastName}
+									</span>
+								</li>
+							)}
 							<li>
-								<p>name:</p>
-								<span id='full-name'>
-									{user.firstName} {user.lastName}
-								</span>
+								<p>email:</p>
+								<span>{user.email}</span>
 							</li>
-						)}
-						<li>
-							<p>email:</p>
-							<span>{user.email}</span>
-						</li>
-					</ul>
+						</ul>
+					</div>
 				</div>
-				<div className='preferences'>
+				<div className='preferences settings-section'>
 					<h5 className='sub-heading'>preferences</h5>
-					<Toggle toggleTheme={themeToggler} theme={theme} />
+					<div className='settings-section-wrapper'>
+						<Toggle toggleTheme={themeToggler} theme={theme} />
+					</div>
 				</div>
 				{/* <TVAppLinks /> */}
 				<div className='logout-btn-container'>
@@ -82,7 +93,8 @@ const Settings = ({ themeToggler, theme }) => {
 const StyledSettings = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
+	justify-content: space-between;
+	row-gap: 2rem;
 	flex: 1;
 	max-width: 100rem;
 	padding: 0.5rem 1rem 2rem 1rem;
@@ -98,33 +110,78 @@ const StyledSettings = styled(motion.div)`
 		row-gap: 2rem;
 		padding: 0rem 2rem;
 		/* background: ${({ theme }) => theme.white}; */
-		flex: 1;
+		/* flex: 1; */
 		transition: all 200ms linear;
+		box-shadow: 3px 3px 4px rgb(0 0 0);
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding: 1rem 2rem 2rem;
+		border-radius: 1rem;
 		/* .settings-header {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center; */
+		&#dark {
+			background-image: url('/images/dark wood texture.webp');
+		}
+		&#light {
+			background-image: url('/images/white wood.jpg');
+		}
+		&.mobile {
+			border-radius: 0.4rem;
+			padding: 1rem;
+		}
 		h2 {
 			/* flex: 1; */
+			font-size: 2.5rem;
 			text-align: center;
+			color: ${({ theme }) => theme.primaryColor};
+			font-weight: bolder;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 		.logout-btn-container {
-			text-align: right;
+			/* text-align: right; */
 			flex: 1;
 			button {
 				/* align-self: flex-end; */
-				background: ${({ theme }) => theme.lightBrown};
-				color: ${({ theme }) => theme.white};
-				border: none;
+				background: ${({ theme }) => theme.btnBg};
+				color: ${({ theme }) => theme.btnColor};
+				border: 1px solid ${({ theme }) => theme.btnBorder};
 				outline: none;
 				/* font-family: 'Signika', sans-serif; */
 				cursor: pointer;
 				font-size: 1.6rem;
+				font-weight: bolder;
+				width: 100%;
+				margin-top: 3rem;
 				/* text-decoration: underline; */
 			}
 		}
 		/* } */
+		.settings-section-wrapper {
+			border-radius: 1rem;
+			padding: 2rem 2rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			row-gap: 1rem;
+			flex: 1;
+			border: 1px solid ${({ theme }) => theme.primaryColor};
+			border-radius: 0.4rem;
+			/* border-radius: 0.4rem 0.4rem 1rem 1rem; */
+			box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
+				inset -2px -2px 2px rgba(0, 0, 0, 08);
+			background-color: rgba(0, 0, 0, 0.1);
+			width: 100%;
+			&.mobile {
+				border-radius: 0.4rem;
+				padding: 1rem;
+				row-gap: 0.5rem;
+				/* flex: 1 1 30%; */
+			}
+		}
 		.account-details {
 			display: flex;
 			flex-direction: column;
@@ -132,10 +189,12 @@ const StyledSettings = styled(motion.div)`
 			justify-content: flex-start;
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
-				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
-				margin-bottom: 1rem;
+				/* border-bottom: 1px solid ${({ theme }) => theme.secondaryColor}; */
+				/* margin-bottom: 0.5rem; */
 				width: 100%;
-				font-size: 1.6rem;
+				font-size: 2rem;
+				text-transform: capitalize;
+				padding-left: 0.5rem;
 			}
 			.user-details-list {
 				list-style: none;
@@ -148,18 +207,17 @@ const StyledSettings = styled(motion.div)`
 						width: 8rem;
 						text-align: right;
 						font-weight: bold;
+						color: ${({ theme }) => theme.primaryColor};
 					}
+					span,
 					#full-name {
-						text-transform: capitalize;
+						font-weight: bold;
+						text-transform: lowercase;
+						color: ${({ theme }) => theme.secondaryColor};
 					}
 				}
 			}
-			p {
-				span {
-					font-weight: bold;
-					text-transform: capitalize;
-				}
-			}
+
 			a {
 				text-decoration: none;
 			}
@@ -173,10 +231,12 @@ const StyledSettings = styled(motion.div)`
 			/* display: none; */
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
-				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
-				margin-bottom: 1rem;
+				/* border-bottom: 1px solid ${({ theme }) => theme.secondaryColor}; */
+				/* margin-bottom: 1rem; */
 				width: 100%;
-				font-size: 1.6rem;
+				font-size: 2rem;
+				text-transform: capitalize;
+				padding-left: 0.5rem;
 			}
 		}
 	}

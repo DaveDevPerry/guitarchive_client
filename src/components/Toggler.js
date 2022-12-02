@@ -31,19 +31,20 @@ const StyledToggle = styled.div`
 		font-weight: bold;
 		width: 11rem;
 		text-align: right;
+		color: ${({ theme }) => theme.primaryColor};
 	}
 	span {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-size: 1.4rem;
-		font-weight: lighter;
+		font-weight: bolder;
 		font-style: italic;
 	}
 	.mode-toggle-icons {
 		cursor: pointer;
 		font-size: 3rem;
-		color: ${({ theme }) => theme.modeIcon};
+		color: ${({ theme }) => theme.secondaryColor};
 		&.active {
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.secondaryColor};
 		}
 	}
 `;

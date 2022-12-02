@@ -443,4 +443,58 @@ ${
   text-align: center;
   right: 2px;
 }
+
+
+input[type='email'],input[type='password'] {
+    font-weight: bolder;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 2px solid ${({ theme }) => theme.loginBorderLight};
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+    border-radius: 0.4rem;
+    background-color: rgba(159, 157, 155, 0.57);
+    box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: ${({ theme }) => theme.primaryColor};
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: ${({ theme }) => theme.primaryColor};
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+color: ${({ theme }) => theme.primaryColor};
+}
+  
+		&:focus {
+  border: 2px solid ${({ theme }) => theme.loginBorderDark};
+} 
+  }
+  ${
+		'' /* input[type='email']:focus,input[type='password']:focus{
+    border: 2px solid ${({ theme }) => theme.borderDark};
+  } */
+	}
+  input[type='email']:-webkit-autofill,input[type='password']:-webkit-autofill {
+					-webkit-text-fill-color: ${({ theme }) => theme.primaryColor};
+          ${'' /* box-shadow: 0 0 0 9999px rgba(159, 157, 155, 0.57) inset; */}
+          ${'' /* box-shadow: 0 0 0 9999px rgba(0,0,0,0.001) inset; */}
+          ${'' /* background-color: yellow; */}
+					-webkit-box-shadow: 0 0 0px 1000px rgba(168, 105, 69, 0.0057) inset;
+					${'' /* transition: background-color 5000s ease-in-out 0s; */}
+					padding: 0.8rem 1rem;
+					margin: 0;
+					font-size: 1.8rem;
+					flex: 1;
+					border-radius: 4px;
+					box-sizing: border-box;
+				}
+  ${
+		'' /* input[type='email']:-webkit-autofill-selected,input[type='password']#input-password:-webkit-autofill-selected {
+					background-color:black !important;
+				} */
+	}
 `;

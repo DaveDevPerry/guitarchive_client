@@ -7,7 +7,10 @@ const AppDetails = ({ theme }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
-		<StyledAppDetails className={`${width < breakpoint ? 'mobile' : ''}`}>
+		<StyledAppDetails
+			className={`${width < breakpoint ? 'mobile' : ''}`}
+			id={`${theme === 'dark' ? 'dark' : 'light'}`}
+		>
 			<div
 				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
 			></div>
@@ -37,13 +40,19 @@ const StyledAppDetails = styled.div`
 	padding: 2rem 1rem;
 	padding-bottom: 3rem;
 	/* background-color: ${({ theme }) => theme.white}; */
-	background-image: url('/images/dark wood texture.webp');
+	/* background-image: url('/images/dark wood texture.webp'); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	transition: all 200ms linear;
 	/* margin: 0 1rem; */
 	border-radius: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
+	&#dark {
+		background-image: url('/images/dark wood texture.webp');
+	}
+	&#light {
+		background-image: url('/images/white wood.jpg');
+	}
 	&.mobile {
 		border-radius: 0.4rem;
 	}
@@ -53,9 +62,9 @@ const StyledAppDetails = styled.div`
 		p {
 			align-self: center;
 			font-size: 1.2rem;
-			color: ${({ theme }) => theme.engravedBrown};
+			/* color: ${({ theme }) => theme.engravedBrown}; */
 			font-weight: bolder;
-			color: ${({ theme }) => theme.engravedBrown};
+			color: ${({ theme }) => theme.primaryColor};
 			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 				0px -1px 0px rgba(0, 0, 0, 0.7);
 		}
@@ -100,7 +109,7 @@ const Brand = styled.div`
 	line-height: 1;
 	/* color: ${({ theme }) => theme.engravedBrown}; */
 	/* font-weight: bolder; */
-	color: ${({ theme }) => theme.engravedBrown};
+	color: ${({ theme }) => theme.primaryColor};
 	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 		0px -1px 0px rgba(0, 0, 0, 0.7);
 	span {
