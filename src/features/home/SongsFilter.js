@@ -9,11 +9,21 @@ const SongsFilter = ({ homeSongFilterHandler }) => {
 				className='filter-song-select'
 				onChange={homeSongFilterHandler}
 			>
-				<option value='songs'>All Songs</option>
-				<option value='favourites'>Favourites</option>
-				<option value='tabs'>Tabs</option>
-				<option value='scores'>Scores</option>
-				<option value='deadlines'>Deadlines</option>
+				<option value='songs' className='form-option'>
+					All Songs
+				</option>
+				<option value='favourites' className='form-option'>
+					Favourites
+				</option>
+				<option value='tabs' className='form-option'>
+					Tabs
+				</option>
+				<option value='scores' className='form-option'>
+					Scores
+				</option>
+				<option value='deadlines' className='form-option'>
+					Deadlines
+				</option>
 				{/* <option value='practicing'>Practicing</option>
 				<option value='ready'>Ready</option>
 				<option value='recorded'>Recorded</option>
@@ -36,7 +46,7 @@ const StyledSongsFilter = styled.div`
 		-moz-border-radius: 0.4rem;
 		border-radius: 0.4rem;
 		outline: none;
-		padding: 5px 45px 5px 10px;
+		padding: 8px 45px 8px 10px;
 		position: relative;
 		width: 100%;
 		box-sizing: border-box;
@@ -51,6 +61,44 @@ const StyledSongsFilter = styled.div`
 		background-color: ${({ theme }) => theme.filterBg};
 		border: 1px solid ${({ theme }) => theme.filterBorder};
 		color: ${({ theme }) => theme.filterColor};
+
+		color: ${({ theme }) => theme.btnColor};
+		border-radius: 5px;
+		padding: 8px 45px 8px 10px;
+		font-size: 1.6rem;
+		font-weight: 900;
+		font-style: normal;
+		text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+		text-decoration: none;
+		background: transparent;
+		cursor: pointer;
+		position: relative;
+		display: inline-block;
+		box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 1),
+			0px 1px 3px rgba(0, 0, 0, 0.3);
+		outline: none;
+		border: 1px solid #ba6;
+		height: 4.1rem;
+		/* line-height: 1; */
+		border-color: #7c7c7c;
+		background: linear-gradient(
+			top,
+			rgba(38, 38, 38, 0.8),
+			#e6e6e6 25%,
+			#ffffff 38%,
+			#c5c5c5 63%,
+			#f7f7f7 87%,
+			rgba(38, 38, 38, 0.8)
+		);
+		background: -webkit-linear-gradient(
+			top,
+			rgba(38, 38, 38, 0.5),
+			#e6e6e6 25%,
+			#ffffff 38%,
+			rgba(0, 0, 0, 0.25) 63%,
+			#e6e6e6 87%,
+			rgba(38, 38, 38, 0.4)
+		);
 		option {
 			font-size: 1.6rem;
 			color: ${({ theme }) => theme.white};
@@ -93,7 +141,7 @@ const StyledSongsFilter = styled.div`
 		padding: 7px 0;
 		position: absolute;
 		pointer-events: none;
-		top: -3px;
+		top: 1px;
 		bottom: 0;
 		text-align: center;
 		right: 2px;

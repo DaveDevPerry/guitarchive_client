@@ -538,6 +538,7 @@ const StyledSongForm = styled.form`
 					height: 3.9rem;
 					width: 3.9rem;
 					padding: 0;
+					color: ${({ theme }) => theme.btnIcon};
 					.add-new-record-icon {
 						/* font-size: 2.2rem; */
 						/* pointer-events: none;

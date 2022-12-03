@@ -22,7 +22,8 @@ const SongsListContainer = ({
 				<p
 					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
 				>
-					{filterValue}
+					{filterValue === 'songs' ? `all ${filterValue}` : filterValue}
+					{/* {filterValue} */}
 				</p>
 				<AddSongButton />
 				<SongsFilter
@@ -39,7 +40,7 @@ const SongsListContainer = ({
 	);
 };
 const StyledSongsListContainer = styled.div`
-	padding: 1rem 2rem 2rem;
+	padding: 1rem 2rem;
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;

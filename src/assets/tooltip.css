@@ -1,7 +1,9 @@
 /* Custom properties */
 :root {
   --tooltip-text-color: white;
-  --tooltip-background-color: rgb(199, 88, 29);
+  --tooltip-background-color: #7f0101;
+  /* --tooltip-text-color: white;
+  --tooltip-background-color: rgb(199, 88, 29); */
   --tooltip-margin: 20px;
   /* --tooltip-margin: 30px; */
   --tooltip-arrow-size: 6px;

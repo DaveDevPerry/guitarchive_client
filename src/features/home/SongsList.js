@@ -96,15 +96,16 @@ const StyledSongsList = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		border-radius: 1rem;
+		padding: 0 0.5rem;
+		/* border-radius: 1rem;
 		padding: 1rem 2rem;
 		border-radius: 0.4rem 0.4rem 1rem 1rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		background-color: rgba(0, 0, 0, 0.1);
+		background-color: rgba(0, 0, 0, 0.1); */
 		&.mobile {
 			border-radius: 0.4rem;
-			padding: 1rem;
+			padding: 0;
 		}
 		p {
 			font-weight: bolder;

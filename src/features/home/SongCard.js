@@ -6,7 +6,11 @@ import {
 	FaStar,
 	FaRegHeart,
 	FaHeart,
+	FaGuitar,
 } from 'react-icons/fa';
+import { SiStylelint } from 'react-icons/si';
+import { IoHandLeftSharp } from 'react-icons/io5';
+import { BsFileEarmarkPdf } from 'react-icons/bs';
 import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
@@ -36,7 +40,7 @@ const SongCard = ({ song }) => {
 				)}
 			</div>
 			<div
-				className='song-wrapper'
+				className={`song-wrapper ${width < breakpoint ? 'mobile' : ''}`}
 				onClick={(e) => {
 					e.preventDefault();
 					log(song._id, 'song id on click');
@@ -69,6 +73,25 @@ const SongCard = ({ song }) => {
 				)}
 			</div>
 			<div className={`file-wrapper ${width < breakpoint ? 'hide' : ''}`}>
+				{song.fileType === 'pdf' ? (
+					<Tooltip content='pdf file' direction='left'>
+						<BsFileEarmarkPdf className='status-icon pdf-icon' />
+					</Tooltip>
+				) : (
+					<Tooltip content='guitar pro file' direction='left'>
+						<FaGuitar className='status-icon guitar-icon' />
+					</Tooltip>
+				)}
+				{song.style.name === 'fingerstyle' && (
+					<Tooltip content='fingerstyle' direction='left'>
+						<IoHandLeftSharp className='status-icon fingerstyle-icon' />
+					</Tooltip>
+				)}
+				{song.style.name === 'classical' && (
+					<Tooltip content='classical' direction='left'>
+						<SiStylelint className='status-icon classical-icon' />
+					</Tooltip>
+				)}
 				{song.isTab ? (
 					<Tooltip content='tablature' direction='left'>
 						<TbNumbers className='music-type-icon' />
@@ -78,7 +101,8 @@ const SongCard = ({ song }) => {
 						<IoMusicalNotes className='music-type-icon' />
 					</Tooltip>
 				)}
-				{song.fileType === 'pdf' ? (
+
+				{/* {song.fileType === 'pdf' ? (
 					<Tooltip content='pdf file' direction='left'>
 						<img src='/images/pdf_icon.png' alt='pdf' className='img-icon' />
 					</Tooltip>
@@ -90,7 +114,7 @@ const SongCard = ({ song }) => {
 							className='img-icon'
 						/>
 					</Tooltip>
-				)}
+				)} */}
 			</div>
 			<div className={`status-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				{song.status.name === 'Recorded' && (
@@ -171,8 +195,16 @@ const StyledSongCard = styled.div`
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			.secondary-text {
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.primaryColor};
+				font-weight: bolder;
 				text-transform: uppercase;
+			}
+			&.mobile {
+				.secondary-text {
+					color: ${({ theme }) => theme.secondaryColor};
+					/* font-weight: bolder;
+				text-transform: uppercase; */
+				}
 			}
 		}
 		.artist-wrapper {
@@ -188,7 +220,7 @@ const StyledSongCard = styled.div`
 				color: ${({ theme }) => theme.secondaryColor};
 			}
 			.star-off {
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.primaryColor};
 			}
 			&.hide {
 				display: none;
@@ -207,6 +239,19 @@ const StyledSongCard = styled.div`
 				width: 30px;
 			}
 			.music-type-icon {
+				font-size: 3rem;
+			}
+			.pdf-icon {
+				font-size: 3rem;
+				/* color: ${({ theme }) => theme.primaryColor}; */
+			}
+			.guitar-icon {
+				font-size: 3rem;
+			}
+			.fingerstyle-icon {
+				font-size: 2.8rem;
+			}
+			.classical-icon {
 				font-size: 3rem;
 			}
 		}
@@ -236,7 +281,7 @@ const StyledSongCard = styled.div`
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			&.mobile {
-				width: 80px;
+				width: auto;
 				/* display: grid;
 				place-content: center;
 				.primary-text {
