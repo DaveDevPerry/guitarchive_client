@@ -10,6 +10,7 @@ const AddSongButton = () => {
 	const breakpoint = 620;
 	return (
 		<StyledAddSongButton
+			className='btn-6 custom-btn'
 			onClick={() => {
 				isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
 			}}
@@ -20,19 +21,23 @@ const AddSongButton = () => {
 		</StyledAddSongButton>
 	);
 };
-const StyledAddSongButton = styled.div`
-	padding: 0 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	column-gap: 0.5rem;
-	border-radius: 0.4rem;
-	background-color: ${({ theme }) => theme.btnBg};
-	height: 100%;
-	cursor: pointer;
-	border: 1px solid ${({ theme }) => theme.btnBorder};
+const StyledAddSongButton = styled.button`
+	/* padding: 0 1rem; */
+	/* border-radius: 0.4rem; */
+	/* background-color: ${({ theme }) => theme.btnBg}; */
+	/* height: 100%; */
+	/* cursor: pointer; */
+	/* border: 1px solid ${({ theme }) => theme.btnBorder}; */
+	&.custom-btn {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		column-gap: 0.5rem;
+		/* width: unset; */
+	}
 	.add-song-btn {
-		font-size: 2rem;
+		margin-top: 0.5rem;
+		/* font-size: 2.4rem; */
 		color: ${({ theme }) => theme.btnIcon};
 	}
 	p {
@@ -41,7 +46,31 @@ const StyledAddSongButton = styled.div`
 		text-transform: uppercase;
 		font-size: 1.6rem;
 		font-weight: bolder;
+		line-height: 1;
 	}
 `;
+// const StyledAddSongButton = styled.div`
+// 	padding: 0 1rem;
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: flex-start;
+// 	column-gap: 0.5rem;
+// 	border-radius: 0.4rem;
+// 	background-color: ${({ theme }) => theme.btnBg};
+// 	height: 100%;
+// 	cursor: pointer;
+// 	border: 1px solid ${({ theme }) => theme.btnBorder};
+// 	.add-song-btn {
+// 		font-size: 2rem;
+// 		color: ${({ theme }) => theme.btnIcon};
+// 	}
+// 	p {
+// 		font-family: 'NewTegomin';
+// 		color: ${({ theme }) => theme.btnColor};
+// 		text-transform: uppercase;
+// 		font-size: 1.6rem;
+// 		font-weight: bolder;
+// 	}
+// `;
 
 export default AddSongButton;

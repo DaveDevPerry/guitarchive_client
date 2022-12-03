@@ -105,7 +105,8 @@ const StyledSongModal = styled.dialog`
 				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 		&.mobile {
-			padding: 1rem 1rem 2rem 1rem;
+			padding: 1rem;
+			/* padding: 1rem 1rem 2rem 1rem; */
 			border-radius: 0.4rem;
 		}
 	}

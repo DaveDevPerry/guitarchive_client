@@ -1,29 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStateContext } from '../../lib/context';
+// import { useStateContext } from '../../lib/context';
 // import { CgPlayListAdd } from 'react-icons/cg';
-import { FaEdit } from 'react-icons/fa';
+// import { FaEdit } from 'react-icons/fa';
 import { useViewport } from '../../hooks/useViewport';
+import { TiArrowBack } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
 
-const EditSongButton = () => {
-	const { isEditFormOpen, setIsEditFormOpen } = useStateContext();
+const BackButton = () => {
+	// const { isEditFormOpen, setIsEditFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
+	let navigate = useNavigate();
+
 	return (
-		<StyledEditSongButton
+		<StyledBackButton
 			className={`btn-6 custom-btn ${width < breakpoint ? 'mobile' : ''}`}
 			onClick={() => {
-				isEditFormOpen === true
-					? setIsEditFormOpen(false)
-					: setIsEditFormOpen(true);
+				navigate('/home');
 			}}
 		>
-			<FaEdit className='edit-song-btn' />
-			{width < breakpoint ? <p>edit</p> : <p>edit song</p>}
-		</StyledEditSongButton>
+			<TiArrowBack className='back-song-btn' />
+			{width < breakpoint ? <p>back</p> : <p>go back</p>}
+		</StyledBackButton>
 	);
 };
-const StyledEditSongButton = styled.button`
+const StyledBackButton = styled.button`
 	/* border: 1px solid #1aac83; */
 	/* padding: 0 1em; */
 	/* padding: 0 1rem; */
@@ -51,11 +53,12 @@ const StyledEditSongButton = styled.button`
 		flex: 1;
 		justify-content: center;
 	}
-	.edit-song-btn {
+	.back-song-btn {
 		/* font-size: 2.5rem; */
 		/* margin-top: 0.5rem; */
-		font-size: 2.2rem;
+		/* font-size: 2.4rem; */
 		color: ${({ theme }) => theme.btnIcon};
+		font-size: 2.2rem;
 	}
 	p {
 		font-family: 'NewTegomin';
@@ -73,4 +76,4 @@ const StyledEditSongButton = styled.button`
 	} */
 `;
 
-export default EditSongButton;
+export default BackButton;

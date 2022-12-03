@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import ArtistModal from '../artists/ArtistModal';
 import ArrangerModal from '../arrangers/ArrangerModal';
 import { GrAdd } from 'react-icons/gr';
+import { useViewport } from '../../hooks/useViewport';
 
 const SongForm = ({
 	inputText,
@@ -98,7 +99,8 @@ const SongForm = ({
 		notify();
 		navigate('/');
 	};
-	const clear = () => {
+	const clear = (e) => {
+		e.preventDefault();
 		setSongData({
 			artist: '',
 			title: '',
@@ -153,6 +155,9 @@ const SongForm = ({
 		});
 	};
 
+	const { width } = useViewport();
+	const breakpoint = 620;
+
 	return (
 		<>
 			{isArtistFormOpen === true && (
@@ -161,7 +166,12 @@ const SongForm = ({
 			{isArrangerFormOpen === true && (
 				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
-			<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
+			<StyledSongForm
+				autoComplete='off'
+				noValidate
+				onSubmit={handleSubmit}
+				className={`${width < breakpoint ? 'mobile' : ''}`}
+			>
 				<div className='form-section'>
 					<div className='form-row'>
 						<div className='form-item'>
@@ -233,7 +243,7 @@ const SongForm = ({
 										))}
 									</select>
 								</div>
-								<div
+								{/* <div
 									className='add-new-person-btn'
 									onClick={() => {
 										isArtistFormOpen === true
@@ -242,7 +252,18 @@ const SongForm = ({
 									}}
 								>
 									<GrAdd className='add-new-record-icon' />
-								</div>
+								</div> */}
+								<button
+									className='add-new-person-btn btn-6 custom-btn'
+									onClick={(e) => {
+										e.preventDefault();
+										isArtistFormOpen === true
+											? setIsArtistFormOpen(false)
+											: setIsArtistFormOpen(true);
+									}}
+								>
+									<GrAdd className='add-new-record-icon' />
+								</button>
 							</div>
 						</div>
 
@@ -270,7 +291,7 @@ const SongForm = ({
 										))}
 									</select>
 								</div>
-								<div
+								{/* <div
 									className='add-new-person-btn'
 									onClick={() => {
 										isArrangerFormOpen === true
@@ -279,7 +300,18 @@ const SongForm = ({
 									}}
 								>
 									<GrAdd className='add-new-record-icon' />
-								</div>
+								</div> */}
+								<button
+									className='add-new-person-btn btn-6 custom-btn'
+									onClick={(e) => {
+										e.preventDefault();
+										isArrangerFormOpen === true
+											? setIsArrangerFormOpen(false)
+											: setIsArrangerFormOpen(true);
+									}}
+								>
+									<GrAdd className='add-new-record-icon' />
+								</button>
 							</div>
 						</div>
 					</div>
@@ -418,15 +450,36 @@ const SongForm = ({
 
 				<div className='form-section'>
 					<div className='form-row'>
-						<button className='form-action-btn' onClick={back}>
+						<button className='form-action-btn btn-6 custom-btn' onClick={back}>
 							<p>cancel</p>
 						</button>
-						<button className='form-action-btn' onClick={clear}>
-							<p>Clear</p>
+						<button
+							className='form-action-btn btn-6 custom-btn'
+							onClick={clear}
+						>
+							<p>Reset</p>
 						</button>
-						<button className='form-action-btn' type='submit'>
+						<button className='form-action-btn btn-6 custom-btn' type='submit'>
 							<p>Submit</p>
 						</button>
+						{/* <button
+							className='form-action-btn btn-silver custom-btn'
+							onClick={back}
+						>
+							<p>cancel</p>
+						</button>
+						<button
+							className='form-action-btn btn-silver custom-btn'
+							onClick={clear}
+						>
+							<p>Reset</p>
+						</button>
+						<button
+							className='form-action-btn btn-silver custom-btn'
+							type='submit'
+						>
+							<p>Submit</p>
+						</button> */}
 					</div>
 				</div>
 			</StyledSongForm>
@@ -468,7 +521,6 @@ const StyledSongForm = styled.form`
 				margin-top: 0.75rem;
 				margin-left: 0.9rem;
 				text-transform: capitalize;
-				/* pointer-events: none; */
 			}
 			label {
 				font-size: 1.6rem;
@@ -482,25 +534,14 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				column-gap: 0.5rem;
 				flex: 1;
-				/* color: ${({ theme }) => theme.btnIcon}; */
 				.add-new-person-btn {
-					background-color: ${({ theme }) => theme.btnBg};
-					display: grid;
-					place-content: center;
 					height: 3.9rem;
 					width: 3.9rem;
-					cursor: pointer;
-					border-radius: 0.4rem;
-					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
-						rgb(0 0 0 / 10%) -2px -2px 2px;
-					/* box-shadow: rgb(0 0 0 / 60%) 2px 2px 2px,
-						rgb(0 0 0 / 40%) -2px -2px 2px; */
-					color: ${({ theme }) => theme.btnIcon};
-					/* border: 2px solid ${({ theme }) => theme.borderLight}; */
+					padding: 0;
 					.add-new-record-icon {
-						font-size: 2.2rem;
-						pointer-events: none;
-						/* color: ${({ theme }) => theme.btnIcon}; */
+						/* font-size: 2.2rem; */
+						/* pointer-events: none;
+						color: currentColor; */
 					}
 				}
 			}
@@ -538,19 +579,18 @@ const StyledSongForm = styled.form`
 			}
 		}
 		.form-action-btn {
-			/* color: ${({ theme }) => theme.white}; */
+			/* width: unset; */
 			flex: 1;
-			font-family: 'NewTegomin';
+			/* font-family: 'NewTegomin';
 			padding: 0.5rem 1rem;
 			background-color: ${({ theme }) => theme.btnBg};
 			border-radius: 0.4rem;
-			/* box-shadow: 3px 3px 4px rgb(0 0 0), -2px -2px 2px rgba(0, 0, 0, 0.4); */
 			border: 1px solid ${({ theme }) => theme.btnBorder};
 			font-size: 1.6rem;
 			p {
 				color: ${({ theme }) => theme.btnColor};
 				font-weight: bolder;
-			}
+			} */
 		}
 	}
 
@@ -581,7 +621,7 @@ const StyledSongForm = styled.form`
 				justify-content: space-between;
 				column-gap: 0.5rem;
 				flex: 1;
-				.add-new-person-btn {
+				/* .add-new-person-btn {
 					background-color: ${({ theme }) => theme.btnBg};
 					display: grid;
 					place-content: center;
@@ -591,13 +631,12 @@ const StyledSongForm = styled.form`
 					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
 						rgb(0 0 0 / 10%) -2px -2px 2px;
 					color: ${({ theme }) => theme.btnIcon};
-					/* border: 2px solid ${({ theme }) => theme.borderLight}; */
 					.add-new-record-icon {
 						color: ${({ theme }) => theme.btnIcon};
 						font-size: 1.6rem;
 						pointer-events: none;
 					}
-				}
+				} */
 			}
 		}
 		.form-item-row {
@@ -632,19 +671,28 @@ const StyledSongForm = styled.form`
 				column-gap: 2rem;
 			}
 		}
-		.form-action-btn {
+		/* .form-action-btn {
 			background-color: ${({ theme }) => theme.btnBg};
 			color: ${({ theme }) => theme.btnColor};
 			flex: 1;
 			font-family: 'NewTegomin';
 			padding: 0.5rem 1rem;
 			font-size: 1.6rem;
+		} */
+	}
+	&.mobile {
+		.form-section {
+			&:last-child {
+				.form-row {
+					column-gap: 1rem;
+				}
+			}
 		}
 	}
 
-	.button-submit {
+	/* .button-submit {
 		margin-bottom: 10px;
-	}
+	} */
 `;
 
 export default SongForm;

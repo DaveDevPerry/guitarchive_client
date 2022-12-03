@@ -78,7 +78,9 @@ const Settings = ({ themeToggler, theme }) => {
 					</div>
 				</div>
 				<div className='logout-btn-container'>
-					<button onClick={handleClick}>Log out</button>
+					<button className='btn-6 custom-btn' onClick={handleClick}>
+						Log out
+					</button>
 				</div>
 			</div>
 
@@ -134,16 +136,16 @@ const StyledSettings = styled(motion.div)`
 		}
 		.logout-btn-container {
 			flex: 1;
-			button {
-				background: ${({ theme }) => theme.btnBg};
+			.custom-btn {
+				/* background: ${({ theme }) => theme.btnBg};
 				color: ${({ theme }) => theme.btnColor};
 				border: 1px solid ${({ theme }) => theme.btnBorder};
 				outline: none;
 				cursor: pointer;
 				font-size: 1.6rem;
-				font-weight: bolder;
+				font-weight: bolder; */
 				width: 100%;
-				margin-top: 3rem;
+				/* margin-top: 3rem; */
 			}
 		}
 		.settings-section-wrapper {

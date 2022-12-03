@@ -2,28 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../../lib/context';
 // import { CgPlayListAdd } from 'react-icons/cg';
-import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md';
 import { useViewport } from '../../hooks/useViewport';
 
-const EditSongButton = () => {
-	const { isEditFormOpen, setIsEditFormOpen } = useStateContext();
+const DeleteSongButton = () => {
+	const { isDeleteFormOpen, setIsDeleteFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
-		<StyledEditSongButton
+		<StyledDeleteSongButton
 			className={`btn-6 custom-btn ${width < breakpoint ? 'mobile' : ''}`}
 			onClick={() => {
-				isEditFormOpen === true
-					? setIsEditFormOpen(false)
-					: setIsEditFormOpen(true);
+				isDeleteFormOpen === true
+					? setIsDeleteFormOpen(false)
+					: setIsDeleteFormOpen(true);
 			}}
 		>
-			<FaEdit className='edit-song-btn' />
-			{width < breakpoint ? <p>edit</p> : <p>edit song</p>}
-		</StyledEditSongButton>
+			<MdDeleteForever className='delete-song-btn' />
+			{width < breakpoint ? <p>delete</p> : <p>delete song</p>}
+		</StyledDeleteSongButton>
 	);
 };
-const StyledEditSongButton = styled.button`
+const StyledDeleteSongButton = styled.button`
 	/* border: 1px solid #1aac83; */
 	/* padding: 0 1em; */
 	/* padding: 0 1rem; */
@@ -51,7 +51,7 @@ const StyledEditSongButton = styled.button`
 		flex: 1;
 		justify-content: center;
 	}
-	.edit-song-btn {
+	.delete-song-btn {
 		/* font-size: 2.5rem; */
 		/* margin-top: 0.5rem; */
 		font-size: 2.2rem;
@@ -73,4 +73,4 @@ const StyledEditSongButton = styled.button`
 	} */
 `;
 
-export default EditSongButton;
+export default DeleteSongButton;

@@ -5,6 +5,7 @@ import { useArrangersContext } from '../../hooks/useArrangerContext';
 import { useStateContext } from '../../lib/context';
 import { log } from '../../utils/helper';
 import toast from 'react-hot-toast';
+import { useViewport } from '../../hooks/useViewport';
 
 const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 	// let navigate = useNavigate();
@@ -16,6 +17,9 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 	const [arrangerData, setArrangerData] = useState({
 		name: '',
 	});
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -52,7 +56,8 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 		notify();
 		// navigate('/');
 	};
-	const clear = () => {
+	const clear = (e) => {
+		e.preventDefault();
 		// setCurrentId(null);
 		setArrangerData({
 			name: '',
@@ -78,7 +83,12 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 	};
 
 	return (
-		<StyledArrangerForm autoComplete='off' noValidate onSubmit={handleSubmit}>
+		<StyledArrangerForm
+			autoComplete='off'
+			noValidate
+			onSubmit={handleSubmit}
+			className={`${width < breakpoint ? 'mobile' : ''}`}
+		>
 			<div className='form-section'>
 				<div className='form-row'>
 					<div className='form-item'>
@@ -100,13 +110,13 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 
 			<div className='form-section'>
 				<div className='form-row'>
-					<button className='form-action-btn' onClick={back}>
+					<button className='form-action-btn btn-6 custom-btn' onClick={back}>
 						cancel
 					</button>
-					<button className='form-action-btn' onClick={clear}>
-						Clear
+					<button className='form-action-btn btn-6 custom-btn' onClick={clear}>
+						reset
 					</button>
-					<button className='form-action-btn' type='submit'>
+					<button className='form-action-btn btn-6 custom-btn' type='submit'>
 						Submit
 					</button>
 				</div>
@@ -119,11 +129,10 @@ const StyledArrangerForm = styled.form`
 	flex-direction: column;
 	overflow-y: hidden;
 	.form-section {
-		border-bottom: 2px solid ${({ theme }) => theme.engravedBrown};
 		padding: 2rem 0;
 		&:last-child {
 			border-bottom: none;
-			padding-bottom: 0;
+			padding: 0;
 		}
 	}
 	.form-row {
@@ -147,22 +156,40 @@ const StyledArrangerForm = styled.form`
 				width: 100%;
 			}
 		}
-		.form-action-btn {
-			background-color: ${({ theme }) => theme.btnBg};
-			border: 1px solid ${({ theme }) => theme.btnBorder};
-			color: ${({ theme }) => theme.btnColor};
+		.btn-6 {
 			flex: 1;
-			font-family: 'NewTegomin';
-			padding: 0.5rem 1rem;
-			border-radius: 0.4rem;
-			font-size: 1.6rem;
-			font-weight: bolder;
+			border-color: #7c7c7c;
+			background: linear-gradient(
+				top,
+				rgba(38, 38, 38, 0.8),
+				#e6e6e6 25%,
+				#ffffff 38%,
+				#c5c5c5 63%,
+				#f7f7f7 87%,
+				rgba(38, 38, 38, 0.8)
+			);
+			background: -webkit-linear-gradient(
+				top,
+				rgba(38, 38, 38, 0.5),
+				#e6e6e6 25%,
+				#ffffff 38%,
+				rgba(0, 0, 0, 0.25) 63%,
+				#e6e6e6 87%,
+				rgba(38, 38, 38, 0.4)
+			);
+		}
+	}
+	&.mobile {
+		.form-section {
+			.form-row {
+				column-gap: 1rem;
+			}
 		}
 	}
 
-	.button-submit {
+	/* .button-submit {
 		margin-bottom: 10px;
-	}
+	} */
 `;
 
 export default ArrangerForm;

@@ -38,13 +38,10 @@ const StyledAppDetails = styled.div`
 	column-gap: 2rem;
 	justify-content: space-between;
 	padding: 2rem 1rem;
-	padding-bottom: 3rem;
-	/* background-color: ${({ theme }) => theme.white}; */
-	/* background-image: url('/images/dark wood texture.webp'); */
+	/* padding-bottom: 3rem; */
 	background-repeat: no-repeat;
 	background-size: cover;
 	transition: all 200ms linear;
-	/* margin: 0 1rem; */
 	border-radius: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	&#dark {

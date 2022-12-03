@@ -51,7 +51,8 @@ const Login = ({ theme }) => {
 							id='input-password'
 						/>
 					</div>
-					<button className='action-btn' disabled={isLoading}>
+					<button className='btn-6 custom-btn' disabled={isLoading}>
+						{/* <button className='action-btn btn-silver custom-btn' disabled={isLoading}> */}
 						Log in
 					</button>
 					{error && <div className='error'>{error}</div>}
@@ -68,18 +69,6 @@ const Login = ({ theme }) => {
 	);
 };
 const StyledLogin = styled(motion.div)`
-	/* display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	row-gap: 2rem;
-	max-width: 100rem;
-	padding: 0.5rem 1rem;
-	overflow-y: auto;
-	z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	z-index: 600; */
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -97,7 +86,6 @@ const StyledLogin = styled(motion.div)`
 		row-gap: 2rem;
 		flex: 1;
 		justify-content: flex-start;
-
 		.login {
 			display: flex;
 			flex-direction: column;
@@ -141,14 +129,14 @@ const StyledLogin = styled(motion.div)`
 				}
 			}
 
-			.action-btn {
-				color: ${({ theme }) => theme.btnColor};
+			.custom-btn {
+				/* color: ${({ theme }) => theme.btnColor};
 				background-color: ${({ theme }) => theme.btnBg};
 				font-weight: bolder;
 				text-transform: uppercase;
-				font-size: 1.6rem;
+				font-size: 1.6rem; */
 				margin-top: 2rem;
-				border: 1px solid ${({ theme }) => theme.btnBorder};
+				/* border: 1px solid ${({ theme }) => theme.btnBorder}; */
 			}
 		}
 		.app-details-container {
@@ -190,10 +178,65 @@ const StyledLogin = styled(motion.div)`
 					}
 				}
 
-				.action-btn {
+				/* .action-btn {
 					font-size: 1.6rem;
 					margin-top: 2rem;
+				} */
+				/* // btn
+				.custom-btn {
+					width: 100%;
+					color: ${({ theme }) => theme.btnColor};
+					border-radius: 5px;
+					padding: 8px 25px;
+					font-size: 1.8rem;
+					font-weight: 900;
+					font-style: normal;
+					text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+					text-decoration: none;
+					background: transparent;
+					cursor: pointer;
+					position: relative;
+					display: inline-block;
+					box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 1),
+						0px 1px 3px rgba(0, 0, 0, 0.3);
+					outline: none;
+					border: 1px solid #ba6;
+					line-height: 1;
 				}
+				.custom-btn:active {
+					-webkit-transform: translateY(2px);
+					transform: translateY(2px);
+				}
+				.btn-silver {
+					border-color: #7c7c7c;
+					background-image: -webkit-repeating-linear-gradient(
+							left,
+							hsla(0, 0%, 100%, 0) 0%,
+							hsla(0, 0%, 100%, 0) 6%,
+							hsla(0, 0%, 100%, 0.1) 7.5%
+						),
+						-webkit-repeating-linear-gradient(left, hsla(0, 0%, 0%, 0) 0%, hsla(
+										0,
+										0%,
+										0%,
+										0
+									)
+									4%, hsla(0, 0%, 0%, 0.03) 4.5%),
+						-webkit-repeating-linear-gradient(left, hsla(0, 0%, 100%, 0) 0%, hsla(
+										0,
+										0%,
+										100%,
+										0
+									)
+									1.2%, hsla(0, 0%, 100%, 0.15) 2.2%),
+						linear-gradient(
+							180deg,
+							hsl(0, 0%, 78%) 0%,
+							hsl(0, 0%, 90%) 47%,
+							hsl(0, 0%, 78%) 53%,
+							hsl(0, 0%, 70%) 100%
+						);
+				} */
 			}
 			.app-details-container {
 				display: flex;
