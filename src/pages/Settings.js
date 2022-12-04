@@ -9,6 +9,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import Toggle from '../components/Toggler';
 import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 
 const Settings = ({ themeToggler, theme }) => {
 	const { logout } = useLogout();
@@ -79,7 +80,8 @@ const Settings = ({ themeToggler, theme }) => {
 				</div>
 				<div className='logout-btn-container'>
 					<button className='btn-6 custom-btn' onClick={handleClick}>
-						Log out
+						<RiLogoutBoxLine className='logout-icon' />
+						<p>Log out</p>
 					</button>
 				</div>
 			</div>
@@ -146,6 +148,11 @@ const StyledSettings = styled(motion.div)`
 				font-weight: bolder; */
 				width: 100%;
 				/* margin-top: 3rem; */
+			}
+			.logout-icon {
+				color: ${({ theme }) => theme.btnIcon};
+				font-size: 2rem;
+				margin-right: 1rem;
 			}
 		}
 		.settings-section-wrapper {

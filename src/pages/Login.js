@@ -5,6 +5,7 @@ import { useLogin } from '../hooks/useLogin';
 // import { NavLink } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 
 const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
@@ -53,7 +54,8 @@ const Login = ({ theme }) => {
 					</div>
 					<button className='btn-6 custom-btn' disabled={isLoading}>
 						{/* <button className='action-btn btn-silver custom-btn' disabled={isLoading}> */}
-						Log in
+						<RiLogoutBoxLine className='login-icon' />
+						<p>Log in</p>
 					</button>
 					{error && <div className='error'>{error}</div>}
 				</form>
@@ -137,6 +139,10 @@ const StyledLogin = styled(motion.div)`
 				font-size: 1.6rem; */
 				margin-top: 2rem;
 				/* border: 1px solid ${({ theme }) => theme.btnBorder}; */
+			}
+			.login-icon {
+				color: ${({ theme }) => theme.btnIcon};
+				font-size: 2rem;
 			}
 		}
 		.app-details-container {

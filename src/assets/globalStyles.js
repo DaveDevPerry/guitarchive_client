@@ -40,7 +40,7 @@ background-image: url('/images/light wood background.webp');
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: 1rem;
+    ${'' /* row-gap: 1rem; */}
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
@@ -57,7 +57,8 @@ background-image: url('/images/texture.png'); */
   }
   }
   .widget-container{
-    padding: 1rem 2rem 2rem;
+    padding: 1rem 2rem;
+    ${'' /* padding: 1rem 2rem 2rem; */}
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;

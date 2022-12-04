@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-import NextDeadlineSong from '../components/NextDeadlineSong';
+// import NextDeadlineSong from '../components/NextDeadlineSong';
 import { useViewport } from '../hooks/useViewport';
 import { CgPlayListAdd } from 'react-icons/cg';
 import SongsListContainer from '../features/home/SongsListContainer';
 import SongModal from '../features/home/SongModal';
+import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
+// import { GoAlert } from 'react-icons/go';
 
 const Home = ({ youtubeData, theme }) => {
 	const { dataLoaded, isFormOpen } = useStateContext();
@@ -153,7 +155,18 @@ const Home = ({ youtubeData, theme }) => {
 					{/* {width > breakpoint && <p>add song</p>} */}
 				</QuickAddButton>
 			</div>
-			<NextDeadlineSong theme={theme} />
+			{/* <div className='deadline-alert-wrapper'>
+							<GoAlert className='alert-icon' />
+							<p className={`song-title ${width < breakpoint ? 'mobile' : ''}`}>
+								<strong>{nextDeadlineSong.title}</strong>
+							</p>
+							<MdOutlineUnfoldMore
+								className='toggle-view-icon'
+								onClick={handleToggleView}
+							/>
+						</div> */}
+			<AlertDeadlineSong theme={theme} />
+			{/* <NextDeadlineSong theme={theme} /> */}
 			<SongsListContainer
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}
@@ -167,7 +180,7 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 2rem;
+	row-gap: 0.5rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	z-index: 1;
@@ -176,7 +189,7 @@ const StyledHome = styled(motion.div)`
 	flex: 1;
 	overflow-y: hidden;
 	&.mobile {
-		row-gap: 1rem;
+		row-gap: 0.5rem;
 	}
 	.add-btns-container {
 		display: flex;
