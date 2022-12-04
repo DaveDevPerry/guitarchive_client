@@ -50,16 +50,15 @@ const SongsPaginationNav = ({
 						}}
 						className='filter-song-select'
 					>
-						{pageCount &&
-							Array(pageCount)
-								.fill(null)
-								.map((_, index) => {
-									return (
-										<option key={index} className='form-option'>
-											page {index + 1}
-										</option>
-									);
-								})}
+						{Array(pageCount)
+							.fill(null)
+							.map((_, index) => {
+								return (
+									<option key={index} className='form-option'>
+										page {index + 1}
+									</option>
+								);
+							})}
 					</select>
 				</div>
 				<button
@@ -98,7 +97,8 @@ const StyledSongsPaginationNav = styled.nav`
 		} */
 		.page-btn {
 			height: 3.9rem;
-			width: 3.9rem;
+			width: 1.9rem;
+			/* width: 3.9rem; */
 			padding: 0;
 			color: ${({ theme }) => theme.btnIcon};
 		}

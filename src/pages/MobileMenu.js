@@ -3,14 +3,17 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
-import { FaListAlt } from 'react-icons/fa';
+// import { FaListAlt } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
+import { useViewport } from '../hooks/useViewport';
 
 const MobileMenu = ({ theme }) => {
 	const { dataLoaded } = useStateContext();
 	let navigate = useNavigate();
+	const { width } = useViewport();
+	const breakpoint = 620;
 	useEffect(() => {
 		if (dataLoaded === false) {
 			navigate('/');
@@ -21,9 +24,10 @@ const MobileMenu = ({ theme }) => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			className={`menu-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			<div
-				className='menu-container'
+				className={`menu-container ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			>
 				<nav>
@@ -34,13 +38,13 @@ const MobileMenu = ({ theme }) => {
 						<AiFillHome className='nav-icon' />
 						<p>home</p>
 					</NavLink>
-					<NavLink
+					{/* <NavLink
 						to='/songs'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 					>
 						<FaListAlt className='nav-icon' />
 						<p>songs</p>
-					</NavLink>
+					</NavLink> */}
 					<NavLink
 						to='/stats'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -93,6 +97,9 @@ const StyledMobileMenu = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
+	&.mobile {
+		padding: 0;
+	}
 	.menu-container {
 		padding: 1rem 2rem 2rem;
 		border-radius: 0.4rem;
@@ -111,6 +118,9 @@ const StyledMobileMenu = styled(motion.div)`
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');
+		}
+		&.mobile {
+			border-radius: 0;
 		}
 	}
 	nav {

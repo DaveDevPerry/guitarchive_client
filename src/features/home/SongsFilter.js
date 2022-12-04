@@ -24,6 +24,13 @@ const SongsFilter = ({ homeSongFilterHandler }) => {
 				<option value='deadlines' className='form-option'>
 					Deadlines
 				</option>
+				<option value='practicing' className='form-option'>
+					Practicing
+				</option>
+				{/* <option value='ready'>Ready</option>
+				<option value='recorded'>Recorded</option>
+				<option value='backlog'>Backlog</option>
+				<option value='archived'>Archived</option> */}
 				{/* <option value='practicing'>Practicing</option>
 				<option value='ready'>Ready</option>
 				<option value='recorded'>Recorded</option>

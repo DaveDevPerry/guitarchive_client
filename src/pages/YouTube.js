@@ -103,8 +103,14 @@ const StyledYouTube = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	&.mobile {
-		padding: 0.5rem 1rem 1rem 1rem;
+		padding: 0;
+		/* padding: 0.5rem 1rem 1rem 1rem; */
+		.channel-container {
+			border-radius: 0;
+			/* padding: 0.5rem 1rem 1rem 1rem; */
+		}
 	}
+
 	.channel-container {
 		padding: 1rem 2rem 2rem;
 		border-radius: 1rem;

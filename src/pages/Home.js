@@ -35,6 +35,9 @@ const Home = ({ youtubeData, theme }) => {
 			case 'deadlines':
 				setFilterValue('deadlines');
 				break;
+			case 'practicing':
+				setFilterValue('practicing');
+				break;
 			// case 'default-filter':
 			// 	setFilterValue('songs');
 			// 	break;
@@ -190,6 +193,7 @@ const StyledHome = styled(motion.div)`
 	overflow-y: hidden;
 	&.mobile {
 		row-gap: 0.5rem;
+		padding: 0;
 	}
 	.add-btns-container {
 		display: flex;

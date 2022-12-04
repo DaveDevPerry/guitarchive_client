@@ -154,6 +154,7 @@ const Song = ({ theme }) => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			className={`song-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			{isEditFormOpen === true && <EditSongModal />}
 			{isDeleteFormOpen === true && (
@@ -395,6 +396,9 @@ const StyledSong = styled(motion.div)`
 	flex: 1;
 	overflow-y: hidden;
 	row-gap: 1rem;
+	&.mobile {
+		padding: 0;
+	}
 `;
 
 const StyledSongDetails = styled.div`
@@ -425,7 +429,7 @@ const StyledSongDetails = styled.div`
 	background-color: rgba(0, 0, 0, 0.1);
 	padding: 2rem 2rem;
 	&.mobile {
-		border-radius: 0.4rem;
+		/* border-radius: 0rem; */
 		row-gap: 1rem;
 		/* padding: 1rem; */
 		.song-wrapper,
@@ -817,8 +821,8 @@ const StyledSongContainer = styled.div`
 		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
-		border-radius: 0.4rem;
-		padding: 1rem;
+		border-radius: 0rem;
+		padding: 1rem 1rem 0;
 	}
 	.songs-list-header {
 		display: flex;

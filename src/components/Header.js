@@ -43,14 +43,14 @@ const Header = () => {
 								>
 									<p>home</p>
 								</NavLink>
-								<NavLink
+								{/* <NavLink
 									to='/songs'
 									className={({ isActive }) =>
 										isActive ? 'active' : 'inactive'
 									}
 								>
 									<p>songs</p>
-								</NavLink>
+								</NavLink> */}
 								<NavLink
 									to='/stats'
 									className={({ isActive }) =>

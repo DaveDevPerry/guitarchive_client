@@ -104,7 +104,8 @@ const StyledSettings = styled(motion.div)`
 	margin: 0 auto;
 	border-radius: 4px;
 	&.mobile {
-		padding: 0.5rem 1rem 1rem 1rem;
+		padding: 0;
+		/* padding: 0.5rem 1rem 1rem 1rem; */
 	}
 	.wrapper {
 		display: flex;
@@ -125,8 +126,10 @@ const StyledSettings = styled(motion.div)`
 			background-image: url('/images/white wood.webp');
 		}
 		&.mobile {
-			border-radius: 0.4rem;
-			padding: 1rem;
+			border-radius: 0;
+			/* border-radius: 0.4rem; */
+			/* padding: 1rem; */
+			padding: 0;
 		}
 		h2 {
 			font-size: 2.5rem;

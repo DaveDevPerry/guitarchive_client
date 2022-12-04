@@ -99,8 +99,8 @@ const SongForm = ({
 		notify();
 		navigate('/');
 	};
-	const clear = (e) => {
-		e.preventDefault();
+	const clear = () => {
+		// e.preventDefault();
 		setSongData({
 			artist: '',
 			title: '',
@@ -496,6 +496,10 @@ const StyledSongForm = styled.form`
 			border-bottom: none;
 			padding-bottom: 0;
 		}
+		&:nth-child(5) {
+			border-bottom: none;
+			/* padding-bottom: 0; */
+		}
 	}
 	.form-row {
 		display: flex;
@@ -539,6 +543,7 @@ const StyledSongForm = styled.form`
 					width: 3.9rem;
 					padding: 0;
 					color: ${({ theme }) => theme.btnIcon};
+					cursor: pointer;
 					.add-new-record-icon {
 						/* font-size: 2.2rem; */
 						/* pointer-events: none;

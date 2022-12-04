@@ -56,8 +56,8 @@ const ArtistForm = ({ currentId, setCurrentId }) => {
 		notify();
 		// navigate('/');
 	};
-	const clear = (e) => {
-		e.preventDefault();
+	const clear = () => {
+		// e.preventDefault();
 		setCurrentId(null);
 		setArtistData({
 			name: '',

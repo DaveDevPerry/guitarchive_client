@@ -58,8 +58,9 @@ const StyledSongsListContainer = styled.div`
 		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {
-		border-radius: 0.4rem;
-		padding: 1rem;
+		border-radius: 0;
+		/* border-radius: 0.4rem; */
+		padding: 1rem 1rem 0rem;
 	}
 	.songs-list-header {
 		display: flex;

@@ -56,8 +56,8 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 		notify();
 		// navigate('/');
 	};
-	const clear = (e) => {
-		e.preventDefault();
+	const clear = () => {
+		// e.preventDefault();
 		// setCurrentId(null);
 		setArrangerData({
 			name: '',

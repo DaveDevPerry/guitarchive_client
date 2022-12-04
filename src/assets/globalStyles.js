@@ -53,7 +53,8 @@ background-image: url('/images/texture.png'); */
   
   &.mobile{
     row-gap:0;
-    padding-bottom: 1rem;
+    ${'' /* padding-bottom: 0; */}
+    ${'' /* padding-bottom: 1rem; */}
   }
   }
   .widget-container{
@@ -326,6 +327,8 @@ option.form-option {
   bottom: 0;
   text-align: center;
   right: 2px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 

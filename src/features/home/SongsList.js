@@ -26,14 +26,17 @@ function SongsList({ filterValue }) {
 		}
 	}, [data]);
 
-	function handlePrevious() {
+	function handlePrevious(e) {
+		e.preventDefault();
 		setPage((p) => {
 			if (p === 1) return p;
 			return p - 1;
 		});
 	}
 
-	function handleNext() {
+	function handleNext(e) {
+		e.preventDefault();
+
 		setPage((p) => {
 			if (p === pageCount) return p;
 			return p + 1;
@@ -110,8 +113,12 @@ const StyledSongsList = styled.div`
 		p {
 			font-weight: bolder;
 			color: ${({ theme }) => theme.primaryColor};
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 			span {
 				color: ${({ theme }) => theme.secondaryColor};
+				/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+					0px -1px 0px rgb(0 0 0 / 70%); */
 			}
 		}
 	}
