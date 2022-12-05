@@ -19,7 +19,7 @@ import StyleStats from '../features/stats/StyleStats';
 // import moment from 'moment';
 // import { differenceInCalendarDays, parseISO } from 'date-fns';
 
-const Stats = ({ youtubeData }) => {
+const Stats = ({ youtubeData, theme }) => {
 	const { dataLoaded } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -41,11 +41,11 @@ const Stats = ({ youtubeData }) => {
 			// className='page'
 		>
 			<YoutubeStats youtubeData={youtubeData} />
+			<SongStatusStats theme={theme} />
 			<div className='stat-flex-container'>
 				<MyArrangementStats />
 				<SheetMusicTypeStats />
 			</div>
-			<SongStatusStats />
 			<div className='stat-flex-container'>
 				<StyleStats />
 				<SheetMusicTypeStats />

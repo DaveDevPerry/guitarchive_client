@@ -55,7 +55,7 @@ const Loader = ({ youtubeData, theme }) => {
 			setTimeout(() => {
 				navigate('/home');
 			}, 1000);
-		}, 2000);
+		}, 3000);
 	}, []);
 
 	useEffect(() => {
@@ -335,6 +335,9 @@ const StyledLoader = styled(motion.div)`
 	/* background-image: url('/images/light wood texture.webp'); */
 	/* border: 2px solid red; */
 	/* background-color: ${({ theme }) => theme.bodyBg}; */
+	&.mobile {
+		justify-content: space-between;
+	}
 	h1.app-name {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-family: 'NewTegomin';

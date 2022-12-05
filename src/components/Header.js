@@ -18,9 +18,9 @@ const Header = () => {
 		<>
 			{location.pathname !== '/' && (
 				<StyledHeader initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-					<div className='container'>
+					<div className={`container ${width < breakpoint ? 'mobile' : ''}`}>
 						<Link to='/'>
-							<h1>
+							<h1 className={`${width < breakpoint ? 'mobile' : ''}`}>
 								guit
 								<span>
 									<strong>ARCHIVE</strong>
@@ -116,6 +116,13 @@ const StyledHeader = styled(motion.header)`
 				color: ${({ theme }) => theme.primaryColor};
 				font-weight: bolder;
 			}
+			&.mobile {
+				font-size: 3rem;
+			}
+		}
+		&.mobile {
+			padding-top: 0;
+			padding-bottom: 0.5rem;
 		}
 		nav.top-nav {
 			display: flex;

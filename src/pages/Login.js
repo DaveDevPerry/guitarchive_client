@@ -29,7 +29,7 @@ const Login = ({ theme }) => {
 			<div className='form-page-container'>
 				<form
 					onSubmit={handleSubmit}
-					className='login br'
+					className={`login ${width < breakpoint ? 'mobile' : ''}`}
 					id={`${theme === 'dark' ? 'dark' : 'light'}`}
 				>
 					<h3>Log in</h3>
@@ -100,6 +100,14 @@ const StyledLogin = styled(motion.div)`
 			}
 			&#light {
 				background-image: url('/images/white wood.webp');
+			}
+			&.mobile {
+				&#dark {
+					background-image: none;
+				}
+				&#light {
+					background-image: none;
+				}
 			}
 			h3 {
 				text-align: center;

@@ -33,6 +33,7 @@ const StyledSheetMusicTypeStats = styled.div`
 	justify-content: flex-start;
 	background-repeat: no-repeat;
 	background-size: cover;
+	transition: all 200ms linear;
 	row-gap: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	flex: 1 1 48%;
@@ -46,6 +47,7 @@ const StyledSheetMusicTypeStats = styled.div`
 		border-radius: 0.4rem;
 		row-gap: 0.5rem;
 		padding: 0.5rem 1rem 1rem;
+		flex: 1 1 50%;
 		.stats-header {
 			font-size: 1.8rem;
 			padding-left: 0.5rem;

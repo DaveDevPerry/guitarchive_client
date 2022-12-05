@@ -108,6 +108,12 @@ const StyledYouTube = styled(motion.div)`
 		.channel-container {
 			border-radius: 0;
 			/* padding: 0.5rem 1rem 1rem 1rem; */
+			&#dark {
+				background-image: none;
+			}
+			&#light {
+				background-image: none;
+			}
 		}
 	}
 

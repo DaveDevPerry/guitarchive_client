@@ -52,6 +52,13 @@ const StyledAppDetails = styled.div`
 	}
 	&.mobile {
 		border-radius: 0.4rem;
+		box-shadow: none;
+		&#dark {
+			background-image: none;
+		}
+		&#light {
+			background-image: none;
+		}
 	}
 	.dev-link-container {
 		display: flex;

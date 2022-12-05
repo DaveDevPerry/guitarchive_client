@@ -61,6 +61,12 @@ const StyledSongsListContainer = styled.div`
 		border-radius: 0;
 		/* border-radius: 0.4rem; */
 		padding: 1rem 1rem 0rem;
+		&#dark {
+			background-image: none;
+		}
+		&#light {
+			background-image: none;
+		}
 	}
 	.songs-list-header {
 		display: flex;

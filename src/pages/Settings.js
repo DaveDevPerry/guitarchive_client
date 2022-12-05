@@ -129,7 +129,15 @@ const StyledSettings = styled(motion.div)`
 			border-radius: 0;
 			/* border-radius: 0.4rem; */
 			/* padding: 1rem; */
-			padding: 0;
+			padding: 0 1rem 1rem;
+			flex: 1;
+			box-shadow: none;
+			&#dark {
+				background-image: none;
+			}
+			&#light {
+				background-image: none;
+			}
 		}
 		h2 {
 			font-size: 2.5rem;

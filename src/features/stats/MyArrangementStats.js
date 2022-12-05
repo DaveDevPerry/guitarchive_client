@@ -48,6 +48,7 @@ const StyledMyArrangementStats = styled.div`
 		border-radius: 0.4rem;
 		row-gap: 0.5rem;
 		padding: 0.5rem 1rem 1rem;
+		flex: 1 1 50%;
 		.stats-header {
 			font-size: 1.8rem;
 			padding-left: 0.5rem;
@@ -67,6 +68,7 @@ const StyledMyArrangementStats = styled.div`
 		flex-wrap: wrap;
 		gap: 1rem;
 		border-radius: 4px;
+		/* flex: 1 1 48%; */
 	}
 `;
 export default MyArrangementStats;

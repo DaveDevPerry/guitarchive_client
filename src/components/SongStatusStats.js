@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSongsContext } from '../hooks/useSongContext';
 import { useViewport } from '../hooks/useViewport';
+import StatusPieChart from './StatusPieChart';
 import StatusStat from './StatusStat';
 
 const SongStatusStats = ({ theme }) => {
@@ -17,10 +18,15 @@ const SongStatusStats = ({ theme }) => {
 				<p className='stats-header'>song status</p>
 			</div>
 			<div className='stats-container'>
-				{songStats &&
-					songStats.map((stat, index) => (
-						<StatusStat key={index} stat={stat} />
-					))}
+				<div className='stats-wrapper chart'>
+					<StatusPieChart theme={theme} songStats={songStats} />
+				</div>
+				<div className='stats-wrapper'>
+					{songStats &&
+						songStats.map((stat, index) => (
+							<StatusStat key={index} stat={stat} />
+						))}
+				</div>
 			</div>
 		</StyledSongStatusStats>
 	);
@@ -65,6 +71,23 @@ const StyledSongStatusStats = styled.div`
 		flex-wrap: wrap;
 		gap: 1rem;
 		border-radius: 4px;
+		.stats-wrapper {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 1rem;
+			border-radius: 4px;
+			flex: 1 1 48%;
+			&.chart {
+				justify-content: center;
+				/* justify-content: space-between; */
+				align-items: center;
+				/* height: 12rem; */
+				position: relative;
+				color: ${({ theme }) => theme.primaryColor};
+				/* flex: 1; */
+			}
+		}
 	}
 `;
 export default SongStatusStats;

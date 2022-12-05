@@ -46,7 +46,7 @@ const StyledSheetMusicTypeStat = styled.div`
 	box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 		inset -2px -2px 2px rgba(0, 0, 0, 08);
 	background-color: rgba(0, 0, 0, 0.1);
-
+	flex: 1 1 44%;
 	&.mobile {
 		border-radius: 0.4rem;
 		padding: 1rem;

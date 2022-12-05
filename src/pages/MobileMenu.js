@@ -8,6 +8,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
 import { useViewport } from '../hooks/useViewport';
+import { ImStatsDots } from 'react-icons/im';
 
 const MobileMenu = ({ theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -49,7 +50,7 @@ const MobileMenu = ({ theme }) => {
 						to='/stats'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 					>
-						<AiFillHome className='nav-icon' />
+						<ImStatsDots className='nav-icon' />
 						<p>stats</p>
 					</NavLink>
 					<NavLink
@@ -121,6 +122,12 @@ const StyledMobileMenu = styled(motion.div)`
 		}
 		&.mobile {
 			border-radius: 0;
+			&#dark {
+				background-image: none;
+			}
+			&#light {
+				background-image: none;
+			}
 		}
 	}
 	nav {

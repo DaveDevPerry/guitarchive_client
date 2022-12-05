@@ -27,11 +27,9 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.bodyBg};
     font-size: 1.6rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.darkBrown};
+    color: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
-    background-repeat: repeat;
-	background-size: contain;
-background-image: url('/images/light wood background.webp');
+
   }
 	.App {
     width: 100vw;
@@ -44,6 +42,9 @@ background-image: url('/images/light wood background.webp');
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
+  background-repeat: repeat;
+	background-size: contain;
+background-image: url('/images/light wood background.webp');
   ${
 		'' /* background-repeat: no-repeat;
 	background-size: cover;
@@ -53,6 +54,7 @@ background-image: url('/images/texture.png'); */
   
   &.mobile{
     row-gap:0;
+    background-image: url('/images/white wood.webp');
     ${'' /* padding-bottom: 0; */}
     ${'' /* padding-bottom: 1rem; */}
   }
@@ -104,6 +106,9 @@ background-image: url('/images/texture.png'); */
   
  a {
     text-decoration: none;
+  }
+  .status-icon{
+    color: ${({ theme }) => theme.primaryColor};
   }
   label, input {
     font-weight: bolder;

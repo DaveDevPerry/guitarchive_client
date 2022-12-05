@@ -99,6 +99,21 @@ const StyledYoutubeStats = styled.div`
 		border-radius: 0.4rem;
 		row-gap: 0.5rem;
 		padding: 0.5rem 1rem 1rem;
+		box-shadow: none;
+		height: 11.4rem;
+		/* display: hidden; */
+		&#dark {
+			background-image: none;
+		}
+		&#light {
+			background-image: none;
+		}
+		.stats-header {
+			display: none;
+		}
+		.stats-container {
+			display: none;
+		}
 	}
 	.stats-header {
 		font-size: 2.5rem;
