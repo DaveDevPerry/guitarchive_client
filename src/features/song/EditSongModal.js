@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useViewport } from '../../hooks/useViewport';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useResultsContext } from '../hooks/useResultsContext';
 import { useStateContext } from '../../lib/context';
@@ -37,8 +38,11 @@ const EditSongModal = ({
 	setSongInputPhone,
 	currentId,
 	setCurrentId,
+	theme,
 }) => {
 	const { dataLoaded } = useStateContext();
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -49,28 +53,13 @@ const EditSongModal = ({
 
 	return (
 		<StyledEditSongModal open>
-			<div className='posts-box br'>
+			<div
+				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
+				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+			>
 				<h2>edit song</h2>
 
-				<EditSongForm
-					// setInputText={setInputText}
-					// inputText={inputText}
-					// posts={posts}
-					// setSongs={setSongs}
-					// setStatus={setStatus}
-					// inputDate={inputDate}
-					// setInputDate={setInputDate}
-					// inputDescription={inputDescription}
-					// setInputDescription={setInputDescription}
-					// setSongInputLocation={setSongInputLocation}
-					// postInputLocation={postInputLocation}
-					// postInputTime={postInputTime}
-					// setSongInputTime={setSongInputTime}
-					// postInputPhone={postInputPhone}
-					// setSongInputPhone={setSongInputPhone}
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
+				<EditSongForm currentId={currentId} setCurrentId={setCurrentId} />
 
 				{/* <div
 					className='add-post-btn'
@@ -96,65 +85,40 @@ const StyledEditSongModal = styled.dialog`
 	place-content: center;
 	background-color: rgba(0, 0, 0, 0.8);
 	border: none;
-	/* border: 1px solid green; */
-	/* ::backdrop {
-	} */
-	/* overflow-y: hidden; */
 	.posts-box {
-		/* padding: 2rem; */
-		/* height: 300px; */
 		width: calc(100vw - 2rem);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		/* row-gap: 1rem; */
-		/* padding: 0.5rem; */
 		max-width: 100rem;
-		/* max-width: 42rem; */
-		/* border: 2px solid blue; */
-		padding: 1rem 1rem 2rem 1rem;
-		/* padding: 0.5rem 1rem; */
+		padding: 1rem 2rem 2rem 2rem;
 		overflow-y: hidden;
-		/* overflow-y: scroll; */
-		/* overflow: hidden; */
 		z-index: 1;
-		/* overflow-y: auto; */
 		transition: all 200ms linear;
 		margin: 0 auto;
 		flex: 1;
 		overflow-y: auto;
-		background-image: url('/images/dark wood texture.webp');
 		border-radius: 1rem;
+		box-shadow: 3px 3px 4px rgb(0 0 0);
+		&#dark {
+			background-image: url('/images/dark wood texture.webp');
+		}
+		&#light {
+			background-image: url('/images/white wood.webp');
+		}
 		h2 {
-			/* color: ${({ theme }) => theme.primaryColor}; */
+			font-size: 2.5rem;
 			text-transform: capitalize;
 			text-align: center;
+			font-weight: bolder;
+			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+				0px -1px 0px rgb(0 0 0 / 70%);
 		}
-
-		/* .add-post-btn {
-			background-color: ${({ theme }) => theme.green};
-			padding: 1rem 2rem;
-			cursor: pointer;
-			border-radius: 4px;
-			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-			position: relative;
-			p {
-				text-transform: uppercase;
-				color: ${({ theme }) => theme.white};
-				font-weight: bold;
-				text-align: center;
-				pointer-events: none;
-			}
-			.arrow-r-icon {
-				position: absolute;
-				font-size: 2rem;
-				color: ${({ theme }) => theme.white};
-				top: 50%;
-				right: 0;
-				transform: translate(-100%, -50%);
-				pointer-events: none;
-			}
-		} */
+		&.mobile {
+			padding: 1rem;
+			/* padding: 1rem 1rem 2rem 1rem; */
+			border-radius: 0.4rem;
+		}
 	}
 `;
 

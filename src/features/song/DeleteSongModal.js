@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
 import { useStateContext } from '../../lib/context';
+import CancelDeleteButton from './CancelDeleteButton';
+import ConfirmDeleteButton from './ConfirmDeleteButton';
 
 const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -27,12 +29,14 @@ const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 				<p>this action can not be undone</p>
 
 				<div className='delete-btn-container'>
-					<div className='cancel-delete-btn' onClick={handleCancel}>
+					<CancelDeleteButton handleCancel={handleCancel} theme={theme} />
+					<ConfirmDeleteButton handleCancel={handleDelete} theme={theme} />
+					{/* <div className='cancel-delete-btn' onClick={handleCancel}>
 						cancel delete
-					</div>
-					<div className='confirm-delete-btn' onClick={handleDelete}>
+					</div> */}
+					{/* <div className='confirm-delete-btn' onClick={handleDelete}>
 						confirm delete
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</StyledDeleteSongModal>
@@ -72,7 +76,7 @@ const StyledDeleteSongModal = styled.dialog`
 		}
 		&.mobile {
 			border-radius: 0.4rem;
-			padding: 1rem;
+			padding: 2rem;
 		}
 		h2 {
 			font-size: 2.5rem;
@@ -99,7 +103,7 @@ const StyledDeleteSongModal = styled.dialog`
 			justify-content: space-between;
 			align-items: center;
 			column-gap: 2rem;
-			.cancel-delete-btn {
+			/* .cancel-delete-btn {
 				padding: 1rem;
 				display: flex;
 				align-items: center;
@@ -117,8 +121,8 @@ const StyledDeleteSongModal = styled.dialog`
 				color: ${({ theme }) => theme.btnColor};
 				font-size: 2rem;
 				font-weight: bolder;
-			}
-			.confirm-delete-btn {
+			} */
+			/* .confirm-delete-btn {
 				padding: 1rem;
 				display: flex;
 				align-items: center;
@@ -136,7 +140,7 @@ const StyledDeleteSongModal = styled.dialog`
 				color: ${({ theme }) => theme.btnColor};
 				font-size: 2rem;
 				font-weight: bolder;
-			}
+			} */
 		}
 	}
 `;

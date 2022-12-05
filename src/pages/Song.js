@@ -152,8 +152,10 @@ const Song = ({ theme }) => {
 	return (
 		<StyledSong
 			initial={{ width: 0 }}
+			transition={{ delay: 0.5 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
+			// exitTransition={{ delay: 0 }}
 			className={`song-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			{isEditFormOpen === true && <EditSongModal />}

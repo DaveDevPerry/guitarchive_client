@@ -14,23 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import ArtistModal from '../artists/ArtistModal';
 import ArrangerModal from '../arrangers/ArrangerModal';
 import { GrAdd } from 'react-icons/gr';
-// import { NavLink } from 'react-router-dom';
-// import SongMetrics from './SongMetrics';
-// import Filter from './Filter';
 
-const SongForm = ({
-	inputText,
-	setInputText,
-	songs,
-	setSongs,
-	setStatus,
-	inputDate,
-	setInputDate,
-	inputDescription,
-	setInputDescription,
-	currentId,
-	setCurrentId,
-}) => {
+const SongForm = ({ currentId, setCurrentId }) => {
 	let navigate = useNavigate();
 	const {
 		isArtistFormOpen,
@@ -73,7 +58,6 @@ const SongForm = ({
 			// dispatch(updateSong(currentId, songData));
 			log(currentId, 'update song in song form');
 		} else {
-			// dispatch(createSong(songData));
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
 				{
@@ -102,8 +86,6 @@ const SongForm = ({
 		navigate('/');
 	};
 	const clear = () => {
-		// e.preventDefault();
-		// setCurrentId(null);
 		setSongData({
 			artist: '',
 			title: '',
@@ -145,14 +127,12 @@ const SongForm = ({
 			isTab: true,
 			selectedFile: '',
 		});
-		// clear();
 		setIsFormOpen(false);
 	};
 
 	// create a toast
 	const notify = () => {
 		toast.success(`new song successfully added.`, {
-			// toast.success(`${headline_band} gig successfully added.`, {
 			duration: 3000,
 			style: {
 				border: '2px solid #1da000',
@@ -163,38 +143,12 @@ const SongForm = ({
 	return (
 		<>
 			{isArtistFormOpen === true && (
-				<ArtistModal
-					// setInputText={setInputText}
-					// inputText={inputText}
-					// posts={posts}
-					// setArtists={setArtists}
-					// setArtistStatus={setArtistStatus}
-					// inputDate={inputDate}
-					// setInputDate={setInputDate}
-					// inputDescription={inputDescription}
-					// setInputDescription={setInputDescription}
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
+				<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
 			{isArrangerFormOpen === true && (
-				<ArrangerModal
-					// setInputText={setInputText}
-					// inputText={inputText}
-					// posts={posts}
-					// setArrangers={setArrangers}
-					// setArrangerStatus={setArrangerStatus}
-					// inputDate={inputDate}
-					// setInputDate={setInputDate}
-					// inputDescription={inputDescription}
-					// setInputDescription={setInputDescription}
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
+				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
 			<StyledSongForm autoComplete='off' noValidate onSubmit={handleSubmit}>
-				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
-				{/* <h2>{currentId ? 'Editing' : 'Creating'} a Memory</h2> */}
 				<div className='form-section'>
 					<div className='form-row'>
 						<div className='form-item'>

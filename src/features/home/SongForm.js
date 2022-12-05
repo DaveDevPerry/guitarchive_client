@@ -16,19 +16,7 @@ import ArrangerModal from '../arrangers/ArrangerModal';
 import { GrAdd } from 'react-icons/gr';
 import { useViewport } from '../../hooks/useViewport';
 
-const SongForm = ({
-	inputText,
-	setInputText,
-	songs,
-	setSongs,
-	setStatus,
-	inputDate,
-	setInputDate,
-	inputDescription,
-	setInputDescription,
-	currentId,
-	setCurrentId,
-}) => {
+const SongForm = ({ currentId, setCurrentId }) => {
 	let navigate = useNavigate();
 	const {
 		isArtistFormOpen,
@@ -71,7 +59,6 @@ const SongForm = ({
 			// dispatch(updateSong(currentId, songData));
 			log(currentId, 'update song in song form');
 		} else {
-			// dispatch(createSong(songData));
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
 				{
@@ -100,7 +87,6 @@ const SongForm = ({
 		navigate('/');
 	};
 	const clear = () => {
-		// e.preventDefault();
 		setSongData({
 			artist: '',
 			title: '',
@@ -566,7 +552,6 @@ const StyledSongForm = styled.form`
 		}
 		&:nth-child(5) {
 			border-bottom: none;
-			/* padding-bottom: 0; */
 		}
 	}
 	.form-row {
@@ -582,7 +567,6 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			/* flex-wrap: wrap; */
 			.button {
 				display: inline-block;
 				padding: 0.4rem 1rem;
@@ -644,9 +628,6 @@ const StyledSongForm = styled.form`
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			/* input[type='number'].form-number {
-				width: 60px;
-			} */
 			.choice-wrapper {
 				display: flex;
 				justify-content: space-between;
@@ -655,18 +636,7 @@ const StyledSongForm = styled.form`
 			}
 		}
 		.form-action-btn {
-			/* width: unset; */
 			flex: 1;
-			/* font-family: 'NewTegomin';
-			padding: 0.5rem 1rem;
-			background-color: ${({ theme }) => theme.btnBg};
-			border-radius: 0.4rem;
-			border: 1px solid ${({ theme }) => theme.btnBorder};
-			font-size: 1.6rem;
-			p {
-				color: ${({ theme }) => theme.btnColor};
-				font-weight: bolder;
-			} */
 		}
 	}
 
@@ -686,7 +656,6 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
-			/* flex-wrap: wrap; */
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
@@ -698,22 +667,6 @@ const StyledSongForm = styled.form`
 				justify-content: space-between;
 				column-gap: 0.5rem;
 				flex: 1;
-				/* .add-new-person-btn {
-					background-color: ${({ theme }) => theme.btnBg};
-					display: grid;
-					place-content: center;
-					padding: 1rem;
-					cursor: pointer;
-					border-radius: 0.4rem;
-					box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px,
-						rgb(0 0 0 / 10%) -2px -2px 2px;
-					color: ${({ theme }) => theme.btnIcon};
-					.add-new-record-icon {
-						color: ${({ theme }) => theme.btnIcon};
-						font-size: 1.6rem;
-						pointer-events: none;
-					}
-				} */
 			}
 		}
 		.form-item-row {
@@ -730,18 +683,11 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				justify-content: flex-start;
 				column-gap: 1rem;
-				/* .input-date {
-					font-size: 1.6rem;
-					text-transform: uppercase;
-				} */
 			}
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			/* input[type='number'].form-number {
-				width: 60px;
-			} */
 			.choice-wrapper {
 				display: flex;
 				justify-content: space-between;
@@ -749,14 +695,6 @@ const StyledSongForm = styled.form`
 				column-gap: 2rem;
 			}
 		}
-		/* .form-action-btn {
-			background-color: ${({ theme }) => theme.btnBg};
-			color: ${({ theme }) => theme.btnColor};
-			flex: 1;
-			font-family: 'NewTegomin';
-			padding: 0.5rem 1rem;
-			font-size: 1.6rem;
-		} */
 	}
 	&.mobile {
 		.form-section {
@@ -767,10 +705,6 @@ const StyledSongForm = styled.form`
 			}
 		}
 	}
-
-	/* .button-submit {
-		margin-bottom: 10px;
-	} */
 
 	input[type='number'] {
 		-webkit-appearance: textfield;
@@ -784,7 +718,6 @@ const StyledSongForm = styled.form`
 	}
 
 	.number-input {
-		/* border: 2px solid #ddd; */
 		border: 2px solid ${({ theme }) => theme.borderLight};
 		display: inline-flex;
 		box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
@@ -797,18 +730,6 @@ const StyledSongForm = styled.form`
 	.number-input,
 	.number-input * {
 		/* box-sizing: border-box; */
-		/* font-weight: bolder; */
-		/* box-sizing: border-box; */
-		/* padding: 1rem; */
-		/* border: 2px solid ${({ theme }) => theme.borderLight}; */
-		/* -webkit-transition: 0.5s;
-		transition: 0.5s; */
-		/* outline: none; */
-		/* border-radius: 0.4rem; */
-		/* background-color: ${({ theme }) => theme.inputBg}; */
-		${
-			'' /* background-color: rgba(168, 105, 69, 0.57); */
-		}/* box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px; */
 	}
 
 	.number-input button {
@@ -828,33 +749,19 @@ const StyledSongForm = styled.form`
 		font-size: 1.4rem;
 		padding: 0.5rem 1rem;
 	}
-
 	.number-input button:after {
 		display: inline-block;
 		position: absolute;
 		font-weight: 900;
 		content: '▼';
-		/* transform: translate(-50%, -45%) rotate(180deg); */
 		transform: translate(-50%, -50%) rotate(0deg);
 		padding: 0.5rem 1rem;
 		border: none;
 		outline: none;
-		/* border-right: 2px solid ${({ theme }) => theme.btnBorder}; */
 		border-radius: 0.4rem 0 0 0.4rem;
 	}
 	.number-input button.plus:after {
-		/* transform: translate(-50%, -50%) rotate(0deg); */
-		/* padding: 0.5rem 1rem;  */
-		/* border-radius: 0 0.4rem 0.4rem 0; */
-		/* border-radius: 0.4rem 0 0 0.4rem; */
-		/* border: none; */
-		/* outline: none; */
-		/* border-left: 2px solid ${({ theme }) => theme.btnBorder}; */
 		transform: translate(-50%, -45%) rotate(180deg);
-		/* padding: 0.5rem 1rem;
-		border: none;
-		outline: none; */
-		/* border-right: 2px solid ${({ theme }) => theme.btnBorder}; */
 	}
 	.number-input button.minus {
 		border-right: 2px solid ${({ theme }) => theme.btnBorder};
@@ -866,19 +773,11 @@ const StyledSongForm = styled.form`
 	}
 
 	.number-input input[type='number'] {
-		/* font-family: sans-serif; */
-		/* font-family: 'NewTegomin'; */
-		/* max-width: 5rem; */
 		font-size: 1.6rem;
 		width: 3.5rem;
 		height: 3.5rem;
 		padding: 0.5rem;
-		/* border: solid #cb0707; */
-		/* border-width: 0 2px; */
-		/* font-size: 2rem; */
-		/* height: 3rem; */
 		outline: none;
-		/* font-weight: bolder; */
 		border-radius: 0;
 		border: none;
 		text-align: center;
