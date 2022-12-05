@@ -189,7 +189,7 @@ const SongForm = ({
 							/>
 						</div>
 						<div className='form-item'>
-							<div className='form-item-row'>
+							{/* <div className='form-item-row'>
 								<label className='song-label' htmlFor='favourite'>
 									Favourite
 								</label>
@@ -201,8 +201,47 @@ const SongForm = ({
 									type='checkbox'
 									name='favourite'
 								/>
-							</div>
+							</div> */}
 							<div className='form-item-row'>
+								<label className='song-label' htmlFor='difficulty'>
+									difficulty
+								</label>
+								<div className='number-input'>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												difficulty: songData.difficulty - 1,
+											});
+										}}
+										className='minus'
+									></button>
+									<input
+										className='form-number'
+										min='0'
+										max='5'
+										name='difficulty'
+										value={songData.difficulty}
+										type='number'
+										onChange={(e) =>
+											setSongData({ ...songData, difficulty: e.target.value })
+										}
+									/>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												difficulty: songData.difficulty + 1,
+											});
+										}}
+										// onClick="this.parentNode.querySelector('input[type=number]').stepUp()"
+										className='plus'
+									></button>
+								</div>
+							</div>
+							{/* <div className='form-item-row'>
 								<label className='song-label' htmlFor='difficulty'>
 									difficulty
 								</label>
@@ -215,7 +254,7 @@ const SongForm = ({
 									className='form-number'
 									name='difficulty'
 								/>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -444,7 +483,36 @@ const SongForm = ({
 									name='tab'
 								/>
 							</div>
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='favourite'>
+									Favourite
+								</label>
+								<input
+									checked={songData.isFavourite}
+									onChange={(e) =>
+										setSongData({ ...songData, isFavourite: e.target.checked })
+									}
+									type='checkbox'
+									name='favourite'
+								/>
+							</div>
 						</div>
+
+						{/* <div className='form-item'> */}
+						{/* <div className='form-item-row'>
+							<label className='song-label' htmlFor='favourite'>
+								Favourite
+							</label>
+							<input
+								checked={songData.isFavourite}
+								onChange={(e) =>
+									setSongData({ ...songData, isFavourite: e.target.checked })
+								}
+								type='checkbox'
+								name='favourite'
+							/>
+						</div> */}
+						{/* </div> */}
 					</div>
 				</div>
 
@@ -514,6 +582,7 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
+			/* flex-wrap: wrap; */
 			.button {
 				display: inline-block;
 				padding: 0.4rem 1rem;
@@ -557,6 +626,7 @@ const StyledSongForm = styled.form`
 			width: unset;
 			align-items: center;
 			column-gap: 1rem;
+			/* flex: 1 1 50%; */
 			label.song-label {
 				margin: 0;
 			}
@@ -566,17 +636,17 @@ const StyledSongForm = styled.form`
 				justify-content: flex-start;
 				column-gap: 1rem;
 				.input-date {
-					font-size: 1.6rem;
-					text-transform: uppercase;
+					/* font-size: 1.6rem; */
+					/* text-transform: uppercase; */
 				}
 			}
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			input[type='number'].form-number {
+			/* input[type='number'].form-number {
 				width: 60px;
-			}
+			} */
 			.choice-wrapper {
 				display: flex;
 				justify-content: space-between;
@@ -616,6 +686,7 @@ const StyledSongForm = styled.form`
 			column-gap: 2rem;
 			align-items: center;
 			justify-content: space-between;
+			/* flex-wrap: wrap; */
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
@@ -650,6 +721,7 @@ const StyledSongForm = styled.form`
 			width: unset;
 			align-items: center;
 			column-gap: 1rem;
+			/* flex: 1 1 50%; */
 			label.song-label {
 				margin: 0;
 			}
@@ -658,18 +730,18 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				justify-content: flex-start;
 				column-gap: 1rem;
-				.input-date {
+				/* .input-date {
 					font-size: 1.6rem;
 					text-transform: uppercase;
-				}
+				} */
 			}
 			label {
 				font-size: 1.6rem;
 				text-transform: uppercase;
 			}
-			input[type='number'].form-number {
+			/* input[type='number'].form-number {
 				width: 60px;
-			}
+			} */
 			.choice-wrapper {
 				display: flex;
 				justify-content: space-between;
@@ -699,6 +771,119 @@ const StyledSongForm = styled.form`
 	/* .button-submit {
 		margin-bottom: 10px;
 	} */
+
+	input[type='number'] {
+		-webkit-appearance: textfield;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+	}
+
+	.number-input {
+		/* border: 2px solid #ddd; */
+		border: 2px solid ${({ theme }) => theme.borderLight};
+		display: inline-flex;
+		box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+		border: 2px solid ${({ theme }) => theme.borderLight};
+		border-radius: 0.4rem;
+		-webkit-transition: 0.5s;
+		transition: 0.5s;
+	}
+
+	.number-input,
+	.number-input * {
+		/* box-sizing: border-box; */
+		/* font-weight: bolder; */
+		/* box-sizing: border-box; */
+		/* padding: 1rem; */
+		/* border: 2px solid ${({ theme }) => theme.borderLight}; */
+		/* -webkit-transition: 0.5s;
+		transition: 0.5s; */
+		/* outline: none; */
+		/* border-radius: 0.4rem; */
+		/* background-color: ${({ theme }) => theme.inputBg}; */
+		${
+			'' /* background-color: rgba(168, 105, 69, 0.57); */
+		}/* box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px; */
+	}
+
+	.number-input button {
+		outline: none;
+		-webkit-appearance: none;
+		border-radius: 0;
+		border: none;
+		align-items: center;
+		justify-content: center;
+		width: 3.5rem;
+		height: 3.5rem;
+		cursor: pointer;
+		margin: 0;
+		position: relative;
+		background-color: ${({ theme }) => theme.btnBg};
+		color: ${({ theme }) => theme.secondaryColor};
+		font-size: 1.4rem;
+		padding: 0.5rem 1rem;
+	}
+
+	.number-input button:after {
+		display: inline-block;
+		position: absolute;
+		font-weight: 900;
+		content: '▼';
+		/* transform: translate(-50%, -45%) rotate(180deg); */
+		transform: translate(-50%, -50%) rotate(0deg);
+		padding: 0.5rem 1rem;
+		border: none;
+		outline: none;
+		/* border-right: 2px solid ${({ theme }) => theme.btnBorder}; */
+		border-radius: 0.4rem 0 0 0.4rem;
+	}
+	.number-input button.plus:after {
+		/* transform: translate(-50%, -50%) rotate(0deg); */
+		/* padding: 0.5rem 1rem;  */
+		/* border-radius: 0 0.4rem 0.4rem 0; */
+		/* border-radius: 0.4rem 0 0 0.4rem; */
+		/* border: none; */
+		/* outline: none; */
+		/* border-left: 2px solid ${({ theme }) => theme.btnBorder}; */
+		transform: translate(-50%, -45%) rotate(180deg);
+		/* padding: 0.5rem 1rem;
+		border: none;
+		outline: none; */
+		/* border-right: 2px solid ${({ theme }) => theme.btnBorder}; */
+	}
+	.number-input button.minus {
+		border-right: 2px solid ${({ theme }) => theme.btnBorder};
+		border-radius: 0.4rem 0 0 0.4rem;
+	}
+	.number-input button.plus {
+		border-left: 2px solid ${({ theme }) => theme.btnBorder};
+		border-radius: 0 0.4rem 0.4rem 0;
+	}
+
+	.number-input input[type='number'] {
+		/* font-family: sans-serif; */
+		/* font-family: 'NewTegomin'; */
+		/* max-width: 5rem; */
+		font-size: 1.6rem;
+		width: 3.5rem;
+		height: 3.5rem;
+		padding: 0.5rem;
+		/* border: solid #cb0707; */
+		/* border-width: 0 2px; */
+		/* font-size: 2rem; */
+		/* height: 3rem; */
+		outline: none;
+		/* font-weight: bolder; */
+		border-radius: 0;
+		border: none;
+		text-align: center;
+		pointer-events: none;
+	}
 `;
 
 export default SongForm;

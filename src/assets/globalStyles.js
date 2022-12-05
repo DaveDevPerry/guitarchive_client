@@ -246,17 +246,28 @@ input[type="checkbox"]:disabled {
   cursor: not-allowed;
 }
 input[type="date"]{
-  font: inherit;
+  ${'' /* font: inherit; */}
   height: 3.9rem;
-    font-size: 1.6rem;
+  ${'' /* font-family: 'NewTegomin'; */}
+    ${'' /* font-size: 1.6rem; */}
     padding: 0 0 0 1rem;
+    ${'' /* color: ${({ theme }) => theme.secondaryColor}; */}
 }
 ::-webkit-calendar-picker-indicator{
     background-color: ${({ theme }) => theme.btnBg};
-   padding: 5px; 
-   margin-right: 0.5rem;
+   padding: 20px 10px; 
+   ${'' /* margin-right: 0.5rem; */}
     cursor: pointer;
-    border-radius: 3px;
+    ${'' /* border-radius: 3px; */}
+    color: ${({ theme }) => theme.secondaryColor};
+    ${'' /* color: transparent; */}
+    height: 1.6rem;
+    width: 1.6rem;
+    border-left: 2px solid ${({ theme }) => theme.btnBorder};
+    ${
+			'' /* filter: invert(1);
+    filter: invert(1), saturate(10000%) */
+		}
 }
 
       select.form-select {
@@ -316,6 +327,7 @@ option.form-option {
   border-radius: 0 3px 3px 0;
   color: ${({ theme }) => theme.secondaryColor};
   content: '▼';
+  font-weight: 900;
   display: block;
   font-size: 1.4rem;
   width: 3.5rem;
@@ -329,6 +341,7 @@ option.form-option {
   right: 2px;
   cursor: pointer;
   z-index: 1;
+  border-left: 2px solid ${({ theme }) => theme.btnBorder};
 }
 
 
@@ -336,16 +349,35 @@ input[type="file"] {
         position: absolute;
         z-index: 1;
         ${'' /* z-index: -1; */}
-        left: 0px;
+        left: 0;
+        ${'' /* top: -2px; */}
         width: 100%;
         height: 3.9rem;
+        ${'' /* font: inherit; */}
+
       }
       .file-input {
 				width: 100%;
 				position: relative;
 				height: 3.9rem;
-				font: inherit;
+				${'' /* font: inherit; */}
 			} 
+      ::-webkit-file-upload-button {
+  background: ${({ theme }) => theme.btnBg};
+  color: ${({ theme }) => theme.btnIcon};
+  ${'' /* height: 3.5rem; */}
+  outline: none;
+  border: none;
+  ${'' /* top: 0; */}
+  ${'' /* padding: 1em; */}
+  padding:0rem  0.7rem;
+  ${
+		'' /* position: absolute;
+  top: 0;
+  left: 0; */
+	}
+	
+}
 				
 
 // btn
