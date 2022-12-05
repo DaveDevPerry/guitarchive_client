@@ -4,6 +4,7 @@ import {
 	MdOutlineArrowBackIosNew,
 	MdOutlineArrowForwardIos,
 } from 'react-icons/md';
+import { useViewport } from '../../hooks/useViewport';
 // import { MdArrowLeft, MdArrowRight,MdOutlineArrowBackIosNew,MdOutlineArrowForwardIosNew } from 'react-icons/md';
 
 const SongsPaginationNav = ({
@@ -13,9 +14,11 @@ const SongsPaginationNav = ({
 	handleNext,
 	setPage,
 }) => {
+	const { width } = useViewport();
+	const breakpoint = 620;
 	return (
 		<StyledSongsPaginationNav>
-			<div className='footer-nav'>
+			<div className={`footer-nav ${width < breakpoint ? 'mobile' : ''}`}>
 				<button
 					className='page-btn  btn-6 custom-btn'
 					disabled={page === 1}
@@ -24,23 +27,6 @@ const SongsPaginationNav = ({
 					{/* <MdArrowLeft className='arrow-icon' /> */}
 					<MdOutlineArrowBackIosNew className='arrow-icon' />
 				</button>
-				{/* <div className='page-links-wrapper'>
-					{Array(pageCount)
-						.fill(null)
-						.map((_, index) => {
-							return (
-								<button
-									className='page-btn'
-									key={index}
-									onClick={(event) => {
-										setPage(event.target.value);
-									}}
-								>
-									{index + 1}
-								</button>
-							);
-						})}
-				</div> */}
 				<div className='filter-page-dropdown'>
 					<select
 						id='pagination-select'
@@ -67,7 +53,6 @@ const SongsPaginationNav = ({
 					onClick={handleNext}
 				>
 					<MdOutlineArrowForwardIos className='arrow-icon' />
-					{/* <MdArrowRight className='arrow-icon' /> */}
 				</button>
 			</div>
 		</StyledSongsPaginationNav>
@@ -84,6 +69,9 @@ const StyledSongsPaginationNav = styled.nav`
 		justify-content: center;
 		align-items: center;
 		column-gap: 1rem;
+		&.mobile {
+			column-gap: 0.5rem;
+		}
 		/* button.page-btn {
 			padding: 0rem;
 			display: grid;
@@ -191,59 +179,7 @@ const StyledSongsPaginationNav = styled.nav`
 				}
 			}
 		}
-		/* .filter-page-dropdown{ */
 
-		/* #pagination-select {
-			cursor: inherit;
-			line-height: inherit;
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			-moz-border-radius: 0.4rem;
-			border-radius: 0.4rem;
-			outline: none;
-			padding: 5px 45px 5px 10px;
-			position: relative;
-			width: 100%;
-			box-sizing: border-box;
-			border: none;
-			-webkit-transition: 0.5s;
-			transition: 0.5s;
-			font-family: 'NewTegomin';
-			text-transform: uppercase;
-			font-size: 1.6rem;
-			font-weight: bolder;
-			cursor: pointer;
-			background-color: ${({ theme }) => theme.filterBg};
-			border: 1px solid ${({ theme }) => theme.filterBorder};
-			color: ${({ theme }) => theme.filterColor};
-			option {
-				font-size: 1.6rem;
-				color: ${({ theme }) => theme.white};
-				padding: 1rem;
-				border: 1px solid ${({ theme }) => theme.darkBrown};
-				border-radius: 0 0 1rem 1rem;
-				&:focus {
-					border: 1px solid ${({ theme }) => theme.darkBrown};
-					outline: none;
-				}
-				&:hover {
-					border: 1px solid ${({ theme }) => theme.darkBrown};
-					outline: none;
-					cursor: pointer;
-				}
-				&.default-filter {
-					font-family: 'NewTegomin';
-					text-transform: uppercase;
-					cursor: pointer;
-					&:hover {
-						border: 1px solid ${({ theme }) => theme.darkBrown};
-						outline: none;
-						cursor: pointer;
-					}
-				}
-			}
-		} */
 		.filter-page-dropdown {
 			position: relative;
 		}
@@ -270,15 +206,6 @@ const StyledSongsPaginationNav = styled.nav`
 			justify-content: center;
 			align-items: center;
 			column-gap: 0.5rem;
-			/* button.page-btn {
-				padding: 0rem 1rem;
-				display: grid;
-				place-content: center;
-				background-color: ${({ theme }) => theme.lightBrown};
-				border-radius: 0.4rem;
-				color: ${({ theme }) => theme.darkBrown};
-				font-weight: bolder;
-			} */
 			.page-btn {
 				height: 3.9rem;
 				width: 3.9rem;

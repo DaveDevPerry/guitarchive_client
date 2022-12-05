@@ -105,7 +105,6 @@ const StyledSettings = styled(motion.div)`
 	border-radius: 4px;
 	&.mobile {
 		padding: 0;
-		/* padding: 0.5rem 1rem 1rem 1rem; */
 	}
 	.wrapper {
 		display: flex;
@@ -127,8 +126,6 @@ const StyledSettings = styled(motion.div)`
 		}
 		&.mobile {
 			border-radius: 0;
-			/* border-radius: 0.4rem; */
-			/* padding: 1rem; */
 			padding: 0 1rem 1rem;
 			flex: 1;
 			box-shadow: none;
@@ -150,15 +147,7 @@ const StyledSettings = styled(motion.div)`
 		.logout-btn-container {
 			flex: 1;
 			.custom-btn {
-				/* background: ${({ theme }) => theme.btnBg};
-				color: ${({ theme }) => theme.btnColor};
-				border: 1px solid ${({ theme }) => theme.btnBorder};
-				outline: none;
-				cursor: pointer;
-				font-size: 1.6rem;
-				font-weight: bolder; */
 				width: 100%;
-				/* margin-top: 3rem; */
 			}
 			.logout-icon {
 				color: ${({ theme }) => theme.btnIcon};

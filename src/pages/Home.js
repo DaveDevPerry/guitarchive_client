@@ -3,15 +3,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-// import NextDeadlineSong from '../components/NextDeadlineSong';
 import { useViewport } from '../hooks/useViewport';
-import { CgPlayListAdd } from 'react-icons/cg';
 import SongsListContainer from '../features/home/SongsListContainer';
 import SongModal from '../features/home/SongModal';
 import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
-// import { GoAlert } from 'react-icons/go';
 
-const Home = ({ youtubeData, theme }) => {
+const Home = ({ theme }) => {
 	const { dataLoaded, isFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -142,34 +139,7 @@ const Home = ({ youtubeData, theme }) => {
 			{isFormOpen === true && (
 				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
 			)}
-			<div className='add-btns-container'>
-				<QuickAddButton
-				// 	onClick={() => {
-				// 	isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
-				// }}
-				>
-					<CgPlayListAdd
-						className='quick-add-icon'
-						// onClick={() => {
-						// 	isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
-						// }}
-					/>
-					<p>add song</p>
-					{/* {width > breakpoint && <p>add song</p>} */}
-				</QuickAddButton>
-			</div>
-			{/* <div className='deadline-alert-wrapper'>
-							<GoAlert className='alert-icon' />
-							<p className={`song-title ${width < breakpoint ? 'mobile' : ''}`}>
-								<strong>{nextDeadlineSong.title}</strong>
-							</p>
-							<MdOutlineUnfoldMore
-								className='toggle-view-icon'
-								onClick={handleToggleView}
-							/>
-						</div> */}
 			<AlertDeadlineSong theme={theme} />
-			{/* <NextDeadlineSong theme={theme} /> */}
 			<SongsListContainer
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}
@@ -192,7 +162,7 @@ const StyledHome = styled(motion.div)`
 	flex: 1;
 	overflow-y: hidden;
 	&.mobile {
-		row-gap: 0.5rem;
+		row-gap: 0rem;
 		padding: 0;
 	}
 	.add-btns-container {
@@ -202,30 +172,6 @@ const StyledHome = styled(motion.div)`
 		gap: 1rem;
 		border: 1px solid black;
 		display: none;
-	}
-`;
-
-const QuickAddButton = styled.div`
-	background-image: url('/images/dark wood texture.webp');
-	padding: 0 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	column-gap: 0.5rem;
-	border-radius: 0.5rem;
-	box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-	height: 100%;
-	cursor: pointer;
-
-	.quick-add-icon {
-		font-size: 2.5rem;
-		color: white;
-	}
-	p {
-		font-family: 'NewTegomin';
-		color: white;
-		text-transform: uppercase;
-		font-size: 1.6rem;
 	}
 `;
 

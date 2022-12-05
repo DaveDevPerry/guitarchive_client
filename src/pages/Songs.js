@@ -1,30 +1,17 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-// import SongsList from '../features/songs/SongsList';
 import SongModal from '../features/song/SongModal';
-// import AddSongButton from '../features/song/AddSongButton';
-// import SearchBar from '../features/songs/SearchBar';
-// import SongsFilter from '../features/songs/SongsFilter';
-// import SongsWidget from '../features/songs/SongsWidget';
 import { useSongsContext } from '../hooks/useSongContext';
 import { useViewport } from '../hooks/useViewport';
-// import SongsSort from '../features/songs/SongsSort';
 import SongsListContainer from '../features/songs/SongsListContainer';
 
-const Songs = ({
-	filteredSongs,
-	setFilteredSongs,
-	songStatusHandler,
-	setSongDetails,
-}) => {
+const Songs = ({ filteredSongs, songStatusHandler }) => {
 	const { dataLoaded, isFormOpen } = useStateContext();
 	const [currentId, setCurrentId] = useState(null);
 	const { songs } = useSongsContext();
-
 	const { width } = useViewport();
 	const breakpoint = 620;
 
@@ -50,20 +37,6 @@ const Songs = ({
 				filteredSongs={filteredSongs}
 				songStatusHandler={songStatusHandler}
 			/>
-			{/* {width < breakpoint ? (
-				<div className='mobile-user-actions-container'>
-					<AddSongButton />
-					<SongsFilter songStatusHandler={songStatusHandler} />
-				</div>
-			) : (
-				<div className='user-actions-container'>
-					<AddSongButton />
-					<SongsFilter songStatusHandler={songStatusHandler} />
-					<SongsSort songStatusHandler={songStatusHandler} />
-					<SearchBar songStatusHandler={songStatusHandler} />
-				</div>
-			)}
-			<SongsWidget songs={songs} filteredSongs={filteredSongs} /> */}
 		</StyledSongs>
 	);
 };

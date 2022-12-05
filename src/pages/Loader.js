@@ -305,7 +305,6 @@ const Loader = ({ youtubeData, theme }) => {
 				</span>
 			</h1>
 			<AppDetails theme={theme} />
-			{/* <YoutubeStats youtubeData={youtubeData} /> */}
 			<AuthVerify />
 		</StyledLoader>
 	);
@@ -332,9 +331,6 @@ const StyledLoader = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	/* background-image: url('/images/light wood texture.webp'); */
-	/* border: 2px solid red; */
-	/* background-color: ${({ theme }) => theme.bodyBg}; */
 	&.mobile {
 		justify-content: space-between;
 	}
@@ -353,28 +349,19 @@ const StyledLoader = styled(motion.div)`
 	}
 `;
 const StyledPageLoader = styled.div`
-	/* position: absolute;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	width: 100vw; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: transparent;
-	/* background-image: url('/images/light wood texture.webp'); */
 	z-index: 50;
 	.loader {
 		position: relative;
 		background-color: transparent;
 		width: 120px;
 		height: 220px;
-		/* padding-bottom: 2px; */
 		box-shadow: 0 8px 6px -6px rgb(7, 7, 7);
-		/* } */
 		.top {
 			height: 10px;
-			/* background-color: lightseagreen; */
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -383,7 +370,6 @@ const StyledPageLoader = styled.div`
 		.point {
 			width: 35px;
 			height: 8px;
-			/* background-color: brown; */
 			border-bottom: 8px solid rgb(85, 17, 17);
 			border-left: 15px solid transparent;
 			border-right: 15px solid transparent;
@@ -395,12 +381,10 @@ const StyledPageLoader = styled.div`
 			border-top: 0.5px solid rgb(116, 19, 19);
 		}
 		.middle {
-			/* background-color: lightskyblue; */
 			height: 200px;
 		}
 		.gubbins {
 			height: 140px;
-			/* background-color: black; */
 			margin: 0 10px;
 			border-bottom: 140px solid black;
 			border-left: 32px solid transparent;
@@ -415,7 +399,6 @@ const StyledPageLoader = styled.div`
 			left: 50%;
 			transform: translateX(-50%);
 			background-color: slategray;
-			/* font-size: 4px; */
 		}
 		.strip ul li {
 			font-size: 3px;
@@ -425,10 +408,6 @@ const StyledPageLoader = styled.div`
 		.strip ul li:nth-child(even) {
 			text-align: right;
 		}
-		/* .strip ul li:last-of-type {
-	text-align: right;
-	font-size: 4px;
-} */
 		.strip ul li.small {
 			padding: 0.2px;
 		}
@@ -447,8 +426,6 @@ const StyledPageLoader = styled.div`
 			top: 6px;
 			left: 30%;
 			transform: translateX(-50%);
-			/* background-color: purple; */
-			/* animation goes here  */
 			animation: tick 2s ease-in-out infinite;
 			transform-origin: 50% 100%;
 		}
@@ -466,7 +443,6 @@ const StyledPageLoader = styled.div`
 			list-style: none;
 			font-size: 14px;
 			line-height: 0.1px;
-			/* width: 4px; */
 			color: rgb(145, 145, 145);
 		}
 		.wand ul.marks li.medium {
@@ -479,7 +455,6 @@ const StyledPageLoader = styled.div`
 			top: 30px;
 			left: 50%;
 			transform: translateX(-50%);
-			/* background-color: silver; */
 			border-top: 14px solid silver;
 			border-left: 2px solid transparent;
 			border-right: 2px solid transparent;
@@ -509,13 +484,9 @@ const StyledPageLoader = styled.div`
 		.base {
 			position: relative;
 			height: 60px;
-			/* background-color: brown; */
 			border-bottom: 60px solid rgb(85, 17, 17);
 			border-left: 10px solid transparent;
 			border-right: 10px solid transparent;
-			/* display: flex;
-	/* align-items: center; */
-			/* justify-content: center;  */
 		}
 		.winder {
 			width: 10px;
@@ -564,14 +535,12 @@ const StyledPageLoader = styled.div`
 		}
 
 		.gold-top {
-			/* background-color: gold; */
 			z-index: 10;
 			position: absolute;
 			top: 2px;
 			right: -14px;
 			height: 18px;
 			width: 26px;
-			/* padding: 2px; */
 			border-bottom: 17px solid gold;
 			border-left: 14px solid transparent;
 			border-right: 14px solid transparent;
@@ -594,22 +563,17 @@ const StyledPageLoader = styled.div`
 			right: -14px;
 			height: 18px;
 			width: 26px;
-			/* padding: 2px; */
 			border-top: 17px solid gold;
 			border-left: 14px solid transparent;
 			border-right: 14px solid transparent;
 		}
-
 		.bottom {
-			/* background-color: lightgreen; */
 			height: 10px;
-
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 		}
 		.foot {
-			/* background-color: black; */
 			width: 14px;
 			height: 10px;
 			margin: 0 8px;
@@ -621,11 +585,6 @@ const StyledPageLoader = styled.div`
 			animation: fadeOut 1s;
 			animation-fill-mode: forwards;
 		}
-
-		/* .loader-container.hide {
-		display: none;
-	} */
-
 		@keyframes tick {
 			0%,
 			100% {
@@ -635,7 +594,6 @@ const StyledPageLoader = styled.div`
 				transform: rotate(30deg);
 			}
 		}
-
 		@keyframes fadeOut {
 			100% {
 				opacity: 0;

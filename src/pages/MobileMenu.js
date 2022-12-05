@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
-// import { FaListAlt } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
@@ -39,13 +38,6 @@ const MobileMenu = ({ theme }) => {
 						<AiFillHome className='nav-icon' />
 						<p>home</p>
 					</NavLink>
-					{/* <NavLink
-						to='/songs'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<FaListAlt className='nav-icon' />
-						<p>songs</p>
-					</NavLink> */}
 					<NavLink
 						to='/stats'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}

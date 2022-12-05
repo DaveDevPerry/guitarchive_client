@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
-// import { NavLink } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
 import { RiLogoutBoxLine } from 'react-icons/ri';
@@ -53,16 +52,11 @@ const Login = ({ theme }) => {
 						/>
 					</div>
 					<button className='btn-6 custom-btn' disabled={isLoading}>
-						{/* <button className='action-btn btn-silver custom-btn' disabled={isLoading}> */}
 						<RiLogoutBoxLine className='login-icon' />
 						<p>Log in</p>
 					</button>
 					{error && <div className='error'>{error}</div>}
 				</form>
-
-				{/* <p>
-					Need an account? Sign up<NavLink to='/signup'> here</NavLink>
-				</p> */}
 				<div className='app-details-container'>
 					<AppDetails theme={theme} />
 				</div>
@@ -128,7 +122,6 @@ const StyledLogin = styled(motion.div)`
 					text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 						0px -1px 0px rgba(0, 0, 0, 0.7);
 				}
-
 				input[type='email'],
 				input[type='password'] {
 					padding: 0.8rem 1rem;
@@ -138,15 +131,8 @@ const StyledLogin = styled(motion.div)`
 					width: 100%;
 				}
 			}
-
 			.custom-btn {
-				/* color: ${({ theme }) => theme.btnColor};
-				background-color: ${({ theme }) => theme.btnBg};
-				font-weight: bolder;
-				text-transform: uppercase;
-				font-size: 1.6rem; */
 				margin-top: 2rem;
-				/* border: 1px solid ${({ theme }) => theme.btnBorder}; */
 			}
 			.login-icon {
 				color: ${({ theme }) => theme.btnIcon};
@@ -191,72 +177,12 @@ const StyledLogin = styled(motion.div)`
 						width: 100%;
 					}
 				}
-
-				/* .action-btn {
-					font-size: 1.6rem;
-					margin-top: 2rem;
-				} */
-				/* // btn
-				.custom-btn {
-					width: 100%;
-					color: ${({ theme }) => theme.btnColor};
-					border-radius: 5px;
-					padding: 8px 25px;
-					font-size: 1.8rem;
-					font-weight: 900;
-					font-style: normal;
-					text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
-					text-decoration: none;
-					background: transparent;
-					cursor: pointer;
-					position: relative;
-					display: inline-block;
-					box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 1),
-						0px 1px 3px rgba(0, 0, 0, 0.3);
-					outline: none;
-					border: 1px solid #ba6;
-					line-height: 1;
+				.app-details-container {
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					flex: 1;
 				}
-				.custom-btn:active {
-					-webkit-transform: translateY(2px);
-					transform: translateY(2px);
-				}
-				.btn-silver {
-					border-color: #7c7c7c;
-					background-image: -webkit-repeating-linear-gradient(
-							left,
-							hsla(0, 0%, 100%, 0) 0%,
-							hsla(0, 0%, 100%, 0) 6%,
-							hsla(0, 0%, 100%, 0.1) 7.5%
-						),
-						-webkit-repeating-linear-gradient(left, hsla(0, 0%, 0%, 0) 0%, hsla(
-										0,
-										0%,
-										0%,
-										0
-									)
-									4%, hsla(0, 0%, 0%, 0.03) 4.5%),
-						-webkit-repeating-linear-gradient(left, hsla(0, 0%, 100%, 0) 0%, hsla(
-										0,
-										0%,
-										100%,
-										0
-									)
-									1.2%, hsla(0, 0%, 100%, 0.15) 2.2%),
-						linear-gradient(
-							180deg,
-							hsl(0, 0%, 78%) 0%,
-							hsl(0, 0%, 90%) 47%,
-							hsl(0, 0%, 78%) 53%,
-							hsl(0, 0%, 70%) 100%
-						);
-				} */
-			}
-			.app-details-container {
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				flex: 1;
 			}
 		}
 	}

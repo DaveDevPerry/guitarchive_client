@@ -4,22 +4,6 @@ import styled from 'styled-components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-// import { useArtistsContext } from '../hooks/useArtistContext';
-// import { format, parseISO } from 'date-fns';
-// import {
-// 	FaCloudDownloadAlt,
-// 	FaRegStar,
-// 	FaStar,
-// 	FaRegHeart,
-// 	FaHeart,
-// } from 'react-icons/fa';
-// import { ImYoutube2 } from 'react-icons/im';
-// import { GiMetronome } from 'react-icons/gi';
-// import { CgCamera } from 'react-icons/cg';
-// import { BiArchiveOut, BiArchive } from 'react-icons/bi';
-// import { log } from '../utils/helper';
-// import { IoMusicalNotes } from 'react-icons/io5';
-// import { TbNumbers } from 'react-icons/tb';
 import { TiArrowBack } from 'react-icons/ti';
 import { useSongsContext } from '../hooks/useSongContext';
 import SongsWidget from '../features/artists/SongsWidget';
@@ -27,15 +11,7 @@ import SongsFilter from '../features/artists/SongsFilter';
 import SearchBar from '../components/SearchBar';
 import { useViewport } from '../hooks/useViewport';
 
-const Artist = ({
-	artistSongStatus,
-	setArtistSongStatus,
-	artistFilteredSongs,
-	setArtistFilteredSongs,
-	artistSongStatusHandler,
-	artistSongDetails,
-	setArtistSongDetails,
-}) => {
+const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
 	const { user } = useAuthContext();
 	const { artistSongs, dispatch: songDispatch } = useSongsContext();
 
@@ -76,7 +52,6 @@ const Artist = ({
 				<StyledArtistDetails className='artists-details-container'>
 					<div className='artist-wrapper'>
 						<p className='primary-text'>{artistSongs[0].artist.name}</p>
-						{/* <h4 className='secondary-text'>{artist.artist.name}</h4> */}
 					</div>
 				</StyledArtistDetails>
 			)}
@@ -84,7 +59,6 @@ const Artist = ({
 				<>
 					{artistSongs[0] && (
 						<div className='mobile-user-actions-container'>
-							{/* <AddSongButton /> */}
 							<TiArrowBack
 								className='back-icon'
 								onClick={() => {
@@ -100,7 +74,6 @@ const Artist = ({
 				<>
 					{artistSongs[0] && (
 						<div className='user-actions-container'>
-							{/* <AddSongButton /> */}
 							<TiArrowBack
 								className='back-icon'
 								onClick={() => {
@@ -118,17 +91,7 @@ const Artist = ({
 	);
 };
 const StyledArtists = styled(motion.div)`
-	/* display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	max-width: 100rem;
-	padding: 0.5rem 1rem; */
 	overflow-y: auto;
-	/* z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	overflow-y: hidden; */
 	.mobile-user-actions-container {
 		display: flex;
 		justify-content: space-between;
@@ -216,33 +179,4 @@ const StyledNoArtistDetails = styled.div`
 		}
 	}
 `;
-
-// const StyledMobileArtists = styled(motion.div)`
-// 	display: flex;
-// 	flex-direction: column;
-// 	justify-content: flex-start;
-// 	/* row-gap: 1rem; */
-// 	max-width: 100rem;
-// 	/* max-width: 100rem; */
-// 	/* padding: 0.5rem 1rem; */
-// 	overflow-y: auto;
-// 	z-index: 1;
-// 	transition: all 200ms linear;
-// 	margin: 0 auto;
-// 	flex: 1;
-// 	overflow-y: hidden;
-// 	.mobile-user-actions-container {
-// 		display: flex;
-// 		justify-content: space-between;
-// 		align-items: center;
-// 		padding: 0 1rem 1rem 1rem;
-// 		column-gap: 2rem;
-// 		transition: all 200ms linear;
-// 	}
-// 	.back-icon {
-// 		font-size: 4rem;
-// 		cursor: pointer;
-// 	}
-// `;
-
 export default Artist;

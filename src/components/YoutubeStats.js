@@ -98,7 +98,7 @@ const StyledYoutubeStats = styled.div`
 	&.mobile {
 		border-radius: 0.4rem;
 		row-gap: 0.5rem;
-		padding: 0.5rem 1rem 1rem;
+		padding: 0.5rem 0rem 1rem;
 		box-shadow: none;
 		height: 11.4rem;
 		/* display: hidden; */
@@ -108,17 +108,11 @@ const StyledYoutubeStats = styled.div`
 		&#light {
 			background-image: none;
 		}
-		.stats-header {
-			display: none;
-		}
-		.stats-container {
-			display: none;
-		}
 	}
 	.stats-header {
 		font-size: 2.5rem;
 		text-transform: capitalize;
-		color: ${({ theme }) => theme.engravedBrown};
+		color: ${({ theme }) => theme.primaryColor};
 		font-weight: bolder;
 		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 			0px -1px 0px rgb(0 0 0 / 70%);
@@ -197,7 +191,7 @@ const StyledYoutubeStat = styled.div`
 	.stat-name {
 		text-transform: uppercase;
 		font-size: 1.4rem;
-		color: ${({ theme }) => theme.white};
+		color: ${({ theme }) => theme.primaryColor};
 		font-weight: bolder;
 		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 			0px -1px 0px rgb(0 0 0 / 70%);

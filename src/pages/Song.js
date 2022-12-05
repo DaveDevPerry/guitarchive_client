@@ -19,11 +19,9 @@ import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
-// import { MdDeleteForever } from 'react-icons/md';
 import { log } from '../utils/helper';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
-// import { TiArrowBack } from 'react-icons/ti';
 import EditSongButton from '../features/song/EditSongButton';
 import EditSongModal from '../features/song/EditSongModal';
 import Tooltip from '../components/Tooltip';
@@ -37,24 +35,10 @@ import { SiStylelint } from 'react-icons/si';
 import { IoHandLeftSharp } from 'react-icons/io5';
 
 const Song = ({ theme }) => {
-	// const { dataLoaded } = useStateContext();
-	// const [currentId, setCurrentId] = useState(null);
-	// const { song } = useSongsContext();
 	const { user } = useAuthContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
-
-	// const currentDay = new Date(new Date().setHours(0, 0, 0, 0));
-
-	// let navigate = useNavigate();
-	// useEffect(() => {
-	// 	if (dataLoaded === false) {
-	// 		navigate('/');
-	// 	}
-	// }, [navigate, dataLoaded]);
-
 	const { song, dispatch } = useSongsContext();
-	// const { gig,gigCounterData, dispatch } = useGigsContext();
 	const {
 		songToView,
 		setArtistToView,
@@ -62,7 +46,6 @@ const Song = ({ theme }) => {
 		isEditFormOpen,
 		isDeleteFormOpen,
 		setIsDeleteFormOpen,
-		// setIsEditFormOpen,
 		dataLoaded,
 	} = useStateContext();
 
@@ -74,8 +57,6 @@ const Song = ({ theme }) => {
 	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
-		// log(gigToView, ' gig id to view  in gig');
-
 		const fetchSong = async () => {
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
@@ -86,33 +67,22 @@ const Song = ({ theme }) => {
 				}
 			);
 			const json = await response.json();
-
 			const clonedSongs = [...json];
 			const songAllData = clonedSongs.filter((obj) => obj._id === songToView);
-
 			log(songAllData, 'song all data - song');
-
 			if (response.ok) {
-				// setBandDetailsData(bandData);
-				// setBandSupportGigsData(bandSupportData);
-				// setBandHeadlineGigsData(bandHeadlineData);
-				// setBandAllGigsData(bandAllData);
 				dispatch({
 					type: 'SET_SONG',
 					payload: songAllData[0],
 				});
-				// log(bandData, 'res ok band data');
-				// log(sortedByDate, 'res ok sorted band data');
 			}
 		};
 		if (user) {
 			fetchSong();
 		}
 	}, [songToView, dispatch, user]);
-
 	const handleDelete = async () => {
 		if (!user) {
-			// setError('You must be logged in');
 			return;
 		}
 
@@ -141,7 +111,6 @@ const Song = ({ theme }) => {
 	// create a toast
 	const notify = () => {
 		toast.success(`song successfully deleted.`, {
-			// toast.success(`${headline_band} gig successfully added.`, {
 			duration: 3000,
 			style: {
 				border: '2px solid #1da000',
@@ -155,7 +124,6 @@ const Song = ({ theme }) => {
 			transition={{ delay: 0.5 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
-			// exitTransition={{ delay: 0 }}
 			className={`song-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			{isEditFormOpen === true && <EditSongModal />}
@@ -165,7 +133,6 @@ const Song = ({ theme }) => {
 					handleCancel={handleCancel}
 				/>
 			)}
-
 			{song && (
 				<StyledSongContainer
 					id={`${theme === 'dark' ? 'dark' : 'light'}`}
@@ -203,7 +170,6 @@ const Song = ({ theme }) => {
 								{song.artist.name}
 							</h4>
 						</div>
-
 						<div className='artist-wrapper'>
 							<p
 								className='primary-text smaller'
@@ -235,7 +201,6 @@ const Song = ({ theme }) => {
 								<FaRegHeart className='card-icon heart-off' />
 							)}
 						</div>
-
 						{song.deadlineDate && (
 							<div className='deadline-wrapper'>
 								<p className='primary-text'>
@@ -256,19 +221,6 @@ const Song = ({ theme }) => {
 									<FaGuitar className='status-icon guitar-icon' />
 								</Tooltip>
 							)}
-							{/* {song.fileType === 'pdf' ? (
-								<Tooltip content='pdf file' direction='bottom'>
-									<div className='img-container'>
-										<img src='/images/pdf_icon.png' alt='pdf' />
-									</div>
-								</Tooltip>
-							) : (
-								<Tooltip content='guitar pro file' direction='bottom'>
-									<div className='img-container'>
-										<img src='/images/gp_icon.png' alt='guitar pro' />
-									</div>
-								</Tooltip>
-							)} */}
 							{song.style.name === 'fingerstyle' && (
 								<Tooltip content='fingerstyle' direction='bottom'>
 									<IoHandLeftSharp className='status-icon fingerstyle-icon' />
@@ -319,67 +271,13 @@ const Song = ({ theme }) => {
 								</Tooltip>
 							)}
 						</div>
-						{/* <div className='status-wrapper'>
-							{song.status.name === 'Recorded' && (
-								<ImYoutube2 className='card-icon status-icon yt-icon' />
-							)}
-							{song.status.name === 'Practicing' && (
-								<GiMetronome className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Ready' && (
-								<CgCamera className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Backlog' && (
-								<BiArchiveOut className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Archived' && (
-								<BiArchive className='card-icon status-icon' />
-							)}
-							<h5>{song.status.name}</h5>
-						</div> */}
-						{/* <div className='status-wrapper'>
-							{song.status.name === 'Recorded' && (
-								<ImYoutube2 className='card-icon status-icon yt-icon' />
-							)}
-							{song.status.name === 'Practicing' && (
-								<GiMetronome className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Ready' && (
-								<CgCamera className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Backlog' && (
-								<BiArchiveOut className='card-icon status-icon' />
-							)}
-							{song.status.name === 'Archived' && (
-								<BiArchive className='card-icon status-icon' />
-							)}
-							<h5>{song.status.name}</h5>
-						</div> */}
 					</StyledSongDetails>
-
 					<div className='songs-list-header'>
-						{/* <p
-						className={`list-filter-value ${
-							width < breakpoint ? 'mobile' : ''
-						}`}
-					>
-						{song.title}
-					</p> */}
 						<div className='nav-btns-container'>
 							<DeleteSongButton />
 							<EditSongButton />
 						</div>
-						{/* <SongsFilter
-					filterValue={filterValue}
-					homeSongFilterHandler={homeSongFilterHandler}
-					setFilterValue={setFilterValue}
-				/> */}
 					</div>
-					{/* )} */}
-					{/* <SongsList
-				filterValue={filterValue}
-				homeSongFilterHandler={homeSongFilterHandler}
-			/> */}
 				</StyledSongContainer>
 			)}
 		</StyledSong>
@@ -412,11 +310,6 @@ const StyledSongDetails = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	overflow-y: auto;
-	/* border: 1px solid ${({ theme }) => theme.darkBrown};
-	border-radius: 0.4rem;
-	box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-		inset -2px -2px 2px rgba(0, 0, 0, 08);
-	background-color: rgba(0, 0, 0, 0.1); */
 	padding: 0.5rem;
 	padding-right: 0;
 	scroll-behavior: smooth;
@@ -431,9 +324,7 @@ const StyledSongDetails = styled.div`
 	background-color: rgba(0, 0, 0, 0.1);
 	padding: 2rem 2rem;
 	&.mobile {
-		/* border-radius: 0rem; */
 		row-gap: 1rem;
-		/* padding: 1rem; */
 		.song-wrapper,
 		.artist-wrapper {
 			padding: 0;
@@ -446,29 +337,12 @@ const StyledSongDetails = styled.div`
 					font-size: 2rem;
 				}
 			}
-			/* h4 {
-				margin-top: 1rem;
-			} */
 			.secondary-text {
-				/* text-transform: uppercase; */
 				font-size: 2.4rem;
-				/* margin: 0; */
-				/* cursor: pointer; */
-				/* color: ${({ theme }) => theme.secondaryColor}; */
-				/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-					0px -1px 0px rgb(0 0 0 / 70%); */
 			}
 		}
 		.artist-wrapper {
-			/* padding: 1rem; */
 			.primary-text {
-				/* text-transform: capitalize; */
-				/* cursor: pointer; */
-				/* color: ${({ theme }) => theme.primaryColor}; */
-				/* text-transform: capitalize; */
-				/* font-weight: bolder; */
-				/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-					0px -1px 0px rgb(0 0 0 / 70%); */
 				&.smaller {
 					font-size: 2.4rem;
 				}
@@ -503,11 +377,6 @@ const StyledSongDetails = styled.div`
 
 		.file-wrapper {
 			padding: 0rem;
-			/* display: flex;
-			justify-content: center;
-			align-items: center; */
-			/* column-gap: 2rem; */
-			/* cursor: pointer; */
 			a {
 				text-decoration: none;
 				display: none;
@@ -536,7 +405,6 @@ const StyledSongDetails = styled.div`
 			}
 			.yt-icon {
 				font-size: 5.5rem;
-				/* color: ${({ theme }) => theme.secondaryColor}; */
 			}
 			.fingerstyle-icon {
 				font-size: 3rem;
@@ -546,45 +414,15 @@ const StyledSongDetails = styled.div`
 			}
 			.pdf-icon {
 				font-size: 3rem;
-				/* color: ${({ theme }) => theme.primaryColor}; */
 			}
 			.guitar-icon {
 				font-size: 3rem;
 			}
 		}
-		/* .status-wrapper {
-			padding: 0rem;
-			h5 {
-				font-size: 2.2rem;
-			}
-			.status-icon {
-				font-size: 2.5rem;
-			}
-			.yt-icon {
-				font-size: 4rem;
-			}
-		} */
 		.deadline-wrapper {
-			/* padding: 1rem;
-			display: flex;
-			width: 100%;
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: center;
-			border: 1px solid ${({ theme }) => theme.darkBrown};
-			border-radius: 0.4rem;
-			box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-				inset -2px -2px 2px rgba(0, 0, 0, 08);
-			background-color: rgba(0, 0, 0, 0.1); */
 			.primary-text {
-				/* color: ${({ theme }) => theme.primaryColor};
-				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
-					0px -1px 0px rgb(0 0 0 / 70%); */
 				font-size: 2.4rem;
-				/* text-align: center; */
 				line-height: 2.4rem;
-				/* margin: 0;
-				font-weight: bolder; */
 				&.smaller {
 					font-size: 3rem;
 				}
@@ -655,7 +493,6 @@ const StyledSongDetails = styled.div`
 		}
 	}
 	.line-wrapper {
-		/* padding-bottom: 1rem; */
 		width: 20rem;
 		border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
 	}
@@ -723,7 +560,6 @@ const StyledSongDetails = styled.div`
 		}
 		.yt-icon {
 			font-size: 6.5rem;
-			/* color: ${({ theme }) => theme.secondaryColor}; */
 		}
 		.fingerstyle-icon {
 			font-size: 4rem;
@@ -733,7 +569,6 @@ const StyledSongDetails = styled.div`
 		}
 		.pdf-icon {
 			font-size: 4rem;
-			/* color: ${({ theme }) => theme.primaryColor}; */
 		}
 		.guitar-icon {
 			font-size: 4rem;
@@ -767,11 +602,6 @@ const StyledSongDetails = styled.div`
 		justify-content: flex-start;
 		align-items: center;
 		flex: 1;
-		/* border: 1px solid ${({ theme }) => theme.darkBrown};
-		border-radius: 0.4rem;
-		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-			inset -2px -2px 2px rgba(0, 0, 0, 08);
-		background-color: rgba(0, 0, 0, 0.1); */
 		.primary-text {
 			color: ${({ theme }) => theme.primaryColor};
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),

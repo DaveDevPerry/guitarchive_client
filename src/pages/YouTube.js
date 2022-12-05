@@ -104,10 +104,8 @@ const StyledYouTube = styled(motion.div)`
 	flex: 1;
 	&.mobile {
 		padding: 0;
-		/* padding: 0.5rem 1rem 1rem 1rem; */
 		.channel-container {
 			border-radius: 0;
-			/* padding: 0.5rem 1rem 1rem 1rem; */
 			&#dark {
 				background-image: none;
 			}
@@ -116,7 +114,6 @@ const StyledYouTube = styled(motion.div)`
 			}
 		}
 	}
-
 	.channel-container {
 		padding: 1rem 2rem 2rem;
 		border-radius: 1rem;
@@ -138,7 +135,6 @@ const StyledYouTube = styled(motion.div)`
 		}
 	}
 `;
-
 const StyledYouTubeWidget = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -158,6 +154,7 @@ const StyledYouTubeWidget = styled.div`
 				aspect-ratio: 1/1;
 				.circle {
 					border-radius: 50%;
+					border: 5px solid ${({ theme }) => theme.secondaryColor};
 				}
 			}
 		}
@@ -173,7 +170,6 @@ const StyledYouTubeWidget = styled.div`
 				0px -1px 0px rgba(0, 0, 0, 0.7);
 		}
 	}
-
 	.stats-container {
 		display: flex;
 		flex-direction: column;
@@ -187,8 +183,8 @@ const StyledYouTubeWidget = styled.div`
 				display: grid;
 				place-content: center;
 				.stat-icon {
-					font-size: 6rem;
-					color: ${({ theme }) => theme.secondaryColor};
+					font-size: 5.5rem;
+					color: ${({ theme }) => theme.primaryColor};
 				}
 			}
 			.stat-wrapper {
@@ -200,7 +196,7 @@ const StyledYouTubeWidget = styled.div`
 					font-size: 3rem;
 					line-height: 2.5rem;
 					font-weight: bolder;
-					color: ${({ theme }) => theme.primaryColor};
+					color: ${({ theme }) => theme.secondaryColor};
 					text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 						0px -1px 0px rgba(0, 0, 0, 0.7);
 				}
