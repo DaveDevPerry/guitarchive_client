@@ -26,6 +26,7 @@ const AnimatedRoutes = ({
 	songStatusHandler,
 	setSongDetails,
 	youtubeData,
+	youtubeTarget,
 	artistSongStatus,
 	setArtistSongStatus,
 	artistFilteredSongs,
@@ -94,6 +95,7 @@ const AnimatedRoutes = ({
 								theme={theme}
 								currentDate={currentDate}
 								youtubeData={youtubeData}
+								youtubeTarget={youtubeTarget}
 							/>
 						) : (
 							<Navigate to='/login' />

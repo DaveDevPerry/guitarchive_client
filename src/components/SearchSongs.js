@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { log } from '../utils/helper';
-// import { log } from '../helper';
-// import { CgCloseR } from 'react-icons/cg';
-// import { useBandsContext } from '../hooks/useBandsContext';
 
 const SearchSongs = ({
 	setDisplay,
@@ -15,7 +10,6 @@ const SearchSongs = ({
 	setSongTitleToSearch,
 }) => {
 	const { user } = useAuthContext();
-	// const [display, setDisplay] = useState(false);
 	const [options, setOptions] = useState([]);
 	const [search, setSearch] = useState('');
 	const wrapperRef = useRef(null);
@@ -38,10 +32,8 @@ const SearchSongs = ({
 
 			if (response.ok) {
 				setOptions(sortedSongs);
-				// setOptions(json);
 			}
 		};
-		// if we have a value for the user then fetch the workouts
 		if (user) {
 			fetchAllSongs();
 		}
@@ -66,8 +58,6 @@ const SearchSongs = ({
 		log(poke, 'poke setBandDex');
 		setSearch(poke);
 		setSongTitleToSearch(poke);
-		// setHeadline_band(poke);
-		// setCreateNewBand(false);
 		setDisplay(false);
 	};
 
@@ -76,18 +66,15 @@ const SearchSongs = ({
 			<input
 				id='auto'
 				onClick={() => setDisplay(!display)}
-				// className={emptyFields.includes('headline_band') ? 'error' : ''}
 				autoFocus
 				value={search}
 				onChange={(event) => {
 					setSearch(event.target.value);
-					// setHeadline_band(event.target.value);
 				}}
 				autoComplete='off'
 				required
 				placeholder='Song title, artist'
 			/>
-			{/* {display && options.length > 0 && ( */}
 			{display && (
 				<div className='autoContainer'>
 					{options
@@ -117,7 +104,6 @@ const StyledSearchSongs = styled.div`
 		width: 100%;
 		padding: 0 1rem;
 		left: 0;
-		/* border: 1px solid ${({ theme }) => theme.primaryColor}; */
 		.option {
 			padding: 0.3rem 0;
 		}

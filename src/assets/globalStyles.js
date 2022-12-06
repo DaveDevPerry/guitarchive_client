@@ -137,6 +137,14 @@ color: ${({ theme }) => theme.primaryColor};
 ::-ms-input-placeholder { 
 color: ${({ theme }) => theme.primaryColor};
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
   }
   input:focus, textarea:focus {
   border: 2px solid ${({ theme }) => theme.borderDark};

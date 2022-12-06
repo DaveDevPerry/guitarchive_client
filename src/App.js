@@ -34,6 +34,7 @@ function App() {
 	const [currentDate] = useState(new Date().toLocaleDateString());
 
 	const [youtubeData, setYoutubeData] = useState(null);
+	// const [youtubeTarget, setYoutubeTarget] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -46,6 +47,12 @@ function App() {
 				setYoutubeData(data);
 			});
 	}, []);
+
+	// useEffect(() => {
+	// 	if (youtubeData[0].statistics.viewCount >= 100000) {
+	// 		setYoutubeTarget(true);
+	// 	}
+	// }, [youtubeData]);
 
 	const [songStatus, setSongStatus] = useState('all');
 	const [filteredSongs, setFilteredSongs] = useState([]);
@@ -339,6 +346,7 @@ function App() {
 							arrangerSongDetails={arrangerSongDetails}
 							setArrangerSongDetails={setArrangerSongDetails}
 							youtubeData={youtubeData}
+							// youtubeTarget={youtubeTarget}
 						/>
 						{/* {width < breakpoint && <Footer />} */}
 					</BrowserRouter>

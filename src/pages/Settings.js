@@ -79,7 +79,7 @@ const Settings = ({ themeToggler, theme }) => {
 					</div>
 				</div>
 				<div className='logout-btn-container'>
-					<button className='btn-6 custom-btn' onClick={handleClick}>
+					<button className='btn-6 custom-btn logout-btn' onClick={handleClick}>
 						<RiLogoutBoxLine className='logout-icon' />
 						<p>Log out</p>
 					</button>
@@ -148,6 +148,10 @@ const StyledSettings = styled(motion.div)`
 			flex: 1;
 			.custom-btn {
 				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				column-gap: 0.5rem;
 			}
 			.logout-icon {
 				color: ${({ theme }) => theme.btnIcon};
