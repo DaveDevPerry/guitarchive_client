@@ -131,6 +131,7 @@ const Song = ({ theme }) => {
 				<DeleteSongModal
 					handleDelete={handleDelete}
 					handleCancel={handleCancel}
+					theme={theme}
 				/>
 			)}
 			{song && (
@@ -162,8 +163,8 @@ const Song = ({ theme }) => {
 								className='secondary-text'
 								onClick={(e) => {
 									e.preventDefault();
-									log(song.artist._id, 'song artist id on click');
-									setArtistToView(song.artist._id);
+									log(song.artist.name, 'song artist id on click');
+									setArtistToView(song.artist.name);
 									navigate('/artist');
 								}}
 							>
@@ -175,8 +176,8 @@ const Song = ({ theme }) => {
 								className='primary-text smaller'
 								onClick={(e) => {
 									e.preventDefault();
-									log(song.arranger._id, 'song arranger id on click');
-									setArrangerToView(song.arranger._id);
+									log(song.arranger.name, 'song arranger id on click');
+									setArrangerToView(song.arranger.name);
 									navigate('/arranger');
 								}}
 							>

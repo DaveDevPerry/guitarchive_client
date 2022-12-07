@@ -66,12 +66,14 @@ const Header = () => {
 							<p>products</p>
 						</NavLink> */}
 
-								{/* <NavLink
-							to='/artists'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>artists</p>
-						</NavLink> */}
+								<NavLink
+									to='/artists'
+									className={({ isActive }) =>
+										isActive ? 'active' : 'inactive'
+									}
+								>
+									<p>artists</p>
+								</NavLink>
 								{/* <NavLink
 							to='/arrangers'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}

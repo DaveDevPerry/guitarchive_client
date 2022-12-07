@@ -33,6 +33,11 @@ yarn-error.log*
 /src/features/songs/SongsFilter copy.js
 /src/features/songs/SongCard copy.js
 /src/features/songs/SongsWidget copy.js
+/src/features/artists/ArtistCard 1.js
+/src/features/artists/SongCard 1.js
+/src/features/artists/SongsList 1.js
+# /src/features/artists/Artist.js
+# /src/features/artists/Artist.js
 /src/pages/Loader copy.js
 /src/pages/Songs copy.js
 /src/components/ListProducts copy.js

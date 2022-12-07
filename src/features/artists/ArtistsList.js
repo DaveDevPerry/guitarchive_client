@@ -2,12 +2,13 @@
 import styled from 'styled-components';
 // import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
-import SongCard from './SongCard';
+import ArtistCard from './ArtistCard';
+// import SongCard from './SongCard';
 // import SongsPaginationNav from './SongsPaginationNav';
 
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 
-function SongsList({ filterValue, songs }) {
+function ArtistsList({ filterValue, artists }) {
 	// const [page, setPage] = useState(1);
 	// const [pageCount, setPageCount] = useState(0);
 	// const [songCount, setSongCount] = useState(0);
@@ -52,11 +53,13 @@ function SongsList({ filterValue, songs }) {
 	// }
 
 	return (
-		<StyledSongsList className={`${width < breakpoint ? 'mobile' : ''}`}>
-			<div className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}>
-				{songs &&
-					songs.map((song) => {
-						return <SongCard key={song._id} song={song} />;
+		<StyledArtistsList className={`${width < breakpoint ? 'mobile' : ''}`}>
+			<div
+				className={`artists-container ${width < breakpoint ? 'mobile' : ''}`}
+			>
+				{artists &&
+					artists.map((artist, index) => {
+						return <ArtistCard key={index} artist={artist} />;
 					})}
 				{/* {data.items.map((product) => {
 					return <SongCard key={product._id} song={product} />;
@@ -82,10 +85,10 @@ function SongsList({ filterValue, songs }) {
 					Songs:<span>{songCount}</span>
 				</p>
 			</div> */}
-		</StyledSongsList>
+		</StyledArtistsList>
 	);
 }
-const StyledSongsList = styled.div`
+const StyledArtistsList = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -126,7 +129,7 @@ const StyledSongsList = styled.div`
 			}
 		}
 	}
-	.songs-container {
+	.artists-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -168,4 +171,4 @@ const StyledSongsList = styled.div`
 	}
 `;
 
-export default SongsList;
+export default ArtistsList;

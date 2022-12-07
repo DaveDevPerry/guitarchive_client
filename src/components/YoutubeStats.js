@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
-import { HiVideoCamera } from 'react-icons/hi';
+import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
+import { TfiYoutube } from 'react-icons/tfi';
 // import Tooltip from './Tooltip';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import StatusStat from './StatusStat';
@@ -16,10 +17,23 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 			className={`${width < breakpoint ? 'mobile' : ''}`}
 			id={`${theme === 'dark' ? 'dark' : 'light'}`}
 		>
-			<div className='status-stats-header'>
-				<p className={`stats-header ${width < breakpoint ? 'mobile' : ''}`}>
-					dave perry guitarist
-				</p>
+			<div className='youtube-stats-header'>
+				<div
+					className={`youtube-channel-name ${
+						width < breakpoint ? 'mobile' : ''
+					}`}
+				>
+					<TfiYoutube className='youtube-channel-icon' />
+					<p>dave perry guitarist</p>
+				</div>
+				<a
+					href='https://www.youtube.com/channel/UC3q51Pr9_zxUGIka8bj6Hvw'
+					target='_blank'
+					rel='noreferrer'
+				>
+					{/* <span className='yt-channel-link'>visit channel</span> */}
+					<HiExternalLink className='external-link-icon' />
+				</a>
 			</div>
 			<div className='stats-container'>
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
@@ -109,15 +123,42 @@ const StyledYoutubeStats = styled.div`
 			background-image: none;
 		}
 	}
-	.stats-header {
-		font-size: 2.5rem;
-		text-transform: capitalize;
-		color: ${({ theme }) => theme.primaryColor};
-		font-weight: bolder;
-		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-			0px -1px 0px rgb(0 0 0 / 70%);
-		&.mobile {
-			font-size: 1.8rem;
+	.youtube-stats-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.youtube-channel-name {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			column-gap: 1rem;
+			flex: 1;
+			.youtube-channel-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 2.5rem;
+			}
+			p {
+				font-size: 2.5rem;
+				text-transform: capitalize;
+				color: ${({ theme }) => theme.primaryColor};
+				font-weight: bolder;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+					0px -1px 0px rgb(0 0 0 / 70%);
+			}
+			&.mobile {
+				font-size: 1.8rem;
+			}
+		}
+		a {
+			display: grid;
+			place-content: center;
+			/* span.yt-channel-link {
+				text-transform: uppercase;
+			} */
+			.external-link-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 3rem;
+			}
 		}
 	}
 	.stats-container {

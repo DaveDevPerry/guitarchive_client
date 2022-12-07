@@ -8,6 +8,7 @@ import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
 import { useViewport } from '../hooks/useViewport';
 import { ImStatsDots } from 'react-icons/im';
+import { GiMusicalScore } from 'react-icons/gi';
 
 const MobileMenu = ({ theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -52,13 +53,13 @@ const MobileMenu = ({ theme }) => {
 						<TfiYoutube className='nav-icon' />
 						<p>youtube</p>
 					</NavLink>
-					{/* <NavLink
-					to='/artists'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<GiMusicalScore className='nav-icon' />
-					<p>artists</p>
-				</NavLink> */}
+					<NavLink
+						to='/artists'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<GiMusicalScore className='nav-icon' />
+						<p>artists</p>
+					</NavLink>
 					{/* <NavLink
 					to='/arrangers'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}

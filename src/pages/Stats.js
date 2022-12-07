@@ -9,6 +9,7 @@ import { useViewport } from '../hooks/useViewport';
 import MyArrangementStats from '../features/stats/MyArrangementStats';
 import SheetMusicTypeStats from '../features/stats/SheetMusicTypeStats';
 import StyleStats from '../features/stats/StyleStats';
+import MusicianStats from '../features/stats/MusicianStats';
 
 const Stats = ({ youtubeData, theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -35,8 +36,8 @@ const Stats = ({ youtubeData, theme }) => {
 				<SheetMusicTypeStats />
 			</div>
 			<div className='stat-flex-container'>
+				<MusicianStats />
 				<StyleStats />
-				<SheetMusicTypeStats />
 			</div>
 		</StyledStats>
 	);

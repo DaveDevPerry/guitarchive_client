@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useStateContext } from '../../lib/context';
-// import { CgPlayListAdd } from 'react-icons/cg';
-// import { MdDeleteForever } from 'react-icons/md';
 import { useViewport } from '../../hooks/useViewport';
 
 const ConfirmDeleteButton = ({ handleDelete, theme }) => {
-	// const { isDeleteFormOpen, setIsDeleteFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
@@ -17,9 +13,8 @@ const ConfirmDeleteButton = ({ handleDelete, theme }) => {
 				handleDelete();
 			}}
 		>
-			{/* <MdDeleteForever className='delete-song-btn' /> */}
 			{width < breakpoint ? (
-				<p className='btn-text'>
+				<p className='btn-text mobile'>
 					confirm
 					<br />
 					delete
@@ -32,6 +27,7 @@ const ConfirmDeleteButton = ({ handleDelete, theme }) => {
 };
 const StyledConfirmDeleteButton = styled.button`
 	flex: 1 1 48%;
+	color: ${({ theme }) => theme.primaryColor};
 	p.btn-text {
 		font-family: 'NewTegomin';
 		color: ${({ theme }) => theme.primaryColor};
@@ -39,6 +35,9 @@ const StyledConfirmDeleteButton = styled.button`
 		font-size: 1.6rem;
 		font-weight: bolder;
 		line-height: 1;
+		&.mobile {
+			color: ${({ theme }) => theme.primaryColor};
+		}
 	}
 `;
 

@@ -35,17 +35,73 @@ const getArtistStats = async (arr) => {
 	return newStats;
 };
 
+// const getMusicianStats = async (arr) => {
+// 	const clonedSongs = [...arr];
+// 	const musicianCountObj = clonedSongs
+// 		.map(({ artist }) => artist.name)
+// 		.reduce(function (count, currentValue) {
+// 			return (
+// 				count[currentValue] ? ++count[currentValue] : (count[currentValue] = 1),
+// 				count
+// 			);
+// 		}, {});
+
+// 	log(musicianCountObj, 'musician ');
+
+// 	const artistArr = Object.entries(musicianCountObj).map(([key, value]) => ({
+// 		name: key,
+// 		count: value,
+// 	}));
+
+// 	log(artistArr, 'artist');
+// };
+
 export const songsReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_SONGS':
+			// getMusicianStats(action.payload);
 			return {
 				...state,
 				// songs: action.payload,
 				songs: action.payload.sort(function (a, b) {
 					return (a.deadlineDate === null) - (b.deadlineDate === null);
 				}),
-				artistSongs: action.payload,
-				arrangerSongs: action.payload,
+				artists: Object.entries(
+					[...action.payload]
+						.map(({ artist }) => artist.name)
+						.reduce(function (count, currentValue) {
+							return (
+								count[currentValue]
+									? ++count[currentValue]
+									: (count[currentValue] = 1),
+								count
+							);
+						}, {})
+				)
+					.map(([key, value]) => ({
+						name: key,
+						count: value,
+					}))
+					.sort((a, b) => a.name.localeCompare(b.name)),
+				arrangers: Object.entries(
+					[...action.payload]
+						.map(({ arranger }) => arranger.name)
+						.reduce(function (count, currentValue) {
+							return (
+								count[currentValue]
+									? ++count[currentValue]
+									: (count[currentValue] = 1),
+								count
+							);
+						}, {})
+				)
+					.map(([key, value]) => ({
+						name: key,
+						count: value,
+					}))
+					.sort((a, b) => a.name.localeCompare(b.name)),
+				// artistSongs: action.payload,
+				// arrangerSongs: action.payload,
 				nextDeadlineSong: action.payload[0],
 				myArrangementStats: [
 					{
@@ -133,19 +189,44 @@ export const songsReducer = (state, action) => {
 				musicianStats: [
 					{
 						statName: 'artists',
-						statCount: [...action.payload.filter((song) => song.isTab === true)]
-							.length,
+						statCount: Object.entries(
+							[...action.payload]
+								.map(({ artist }) => artist.name)
+								.reduce(function (count, currentValue) {
+									return (
+										count[currentValue]
+											? ++count[currentValue]
+											: (count[currentValue] = 1),
+										count
+									);
+								}, {})
+						).map(([key, value]) => ({
+							name: key,
+							count: value,
+						})).length,
 						statSongs: [
-							...action.payload.filter((song) => song.isTab === true),
+							// ...action.payload.filter((song) => song.isTab === true),
 						],
 					},
 					{
 						statName: 'arrangers',
-						statCount: [
-							...action.payload.filter((song) => song.isTab === false),
-						].length,
+						statCount: Object.entries(
+							[...action.payload]
+								.map(({ arranger }) => arranger.name)
+								.reduce(function (count, currentValue) {
+									return (
+										count[currentValue]
+											? ++count[currentValue]
+											: (count[currentValue] = 1),
+										count
+									);
+								}, {})
+						).map(([key, value]) => ({
+							name: key,
+							count: value,
+						})).length,
 						statSongs: [
-							...action.payload.filter((song) => song.isTab === false),
+							// ...action.payload.filter((song) => song.isTab === false),
 						],
 					},
 				],
@@ -280,8 +361,11 @@ export const songsReducer = (state, action) => {
 				]),
 				// artistStats: getStats,
 				artistSongs: [
-					...state.songs.filter((song) => song.artist._id === action.payload),
+					...state.songs.filter((song) => song.artist.name === action.payload),
 				],
+				// artistSongs: [
+				// 	...state.songs.filter((song) => song.artist._id === action.payload),
+				// ],
 			};
 		case 'SET_ARRANGER':
 			log(action.payload, 'payload - sng context - set arranger');
@@ -296,15 +380,19 @@ export const songsReducer = (state, action) => {
 				// ]),
 				// arrangerStats: getStats,
 				arrangerSongs: [
-					...state.songs.filter((song) => song.arranger._id === action.payload),
+					...state.songs.filter(
+						(song) => song.arranger.name === action.payload
+					),
 				],
 			};
 		case 'LOGOUT':
 			return {
 				song: null,
 				songs: null,
+				artists: null,
 				artistSongs: null,
 				artistStats: null,
+				arrangers: null,
 				arrangerSongs: null,
 				readySongs: null,
 				practicingSongs: null,
@@ -327,8 +415,11 @@ export const SongsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(songsReducer, {
 		song: null,
 		songs: null,
+		artists: null,
 		artistSongs: null,
 		artistStats: null,
+		arrangers: null,
+
 		arrangerSongs: null,
 		readySongs: null,
 		practicingSongs: null,

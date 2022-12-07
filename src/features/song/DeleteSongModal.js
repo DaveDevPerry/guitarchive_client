@@ -31,12 +31,6 @@ const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 				<div className='delete-btn-container'>
 					<CancelDeleteButton handleCancel={handleCancel} theme={theme} />
 					<ConfirmDeleteButton handleCancel={handleDelete} theme={theme} />
-					{/* <div className='cancel-delete-btn' onClick={handleCancel}>
-						cancel delete
-					</div> */}
-					{/* <div className='confirm-delete-btn' onClick={handleDelete}>
-						confirm delete
-					</div> */}
 				</div>
 			</div>
 		</StyledDeleteSongModal>
@@ -67,7 +61,6 @@ const StyledDeleteSongModal = styled.dialog`
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		flex: 1;
 		overflow-y: hidden;
-		/* width: 100%; */
 		&#dark {
 			background-image: url('/images/dark wood texture.webp');
 		}
@@ -77,6 +70,10 @@ const StyledDeleteSongModal = styled.dialog`
 		&.mobile {
 			border-radius: 0.4rem;
 			padding: 2rem;
+			row-gap: 2rem;
+			.delete-btn-container {
+				color: ${({ theme }) => theme.primaryColor};
+			}
 		}
 		h2 {
 			font-size: 2.5rem;
@@ -103,44 +100,7 @@ const StyledDeleteSongModal = styled.dialog`
 			justify-content: space-between;
 			align-items: center;
 			column-gap: 2rem;
-			/* .cancel-delete-btn {
-				padding: 1rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				column-gap: 0.5rem;
-				border-radius: 0.5rem;
-				background-color: ${({ theme }) => theme.btnBg};
-				border: 1px solid ${({ theme }) => theme.btnBorder};
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				height: 100%;
-				cursor: pointer;
-				flex: 1;
-				text-align: center;
-				text-transform: uppercase;
-				color: ${({ theme }) => theme.btnColor};
-				font-size: 2rem;
-				font-weight: bolder;
-			} */
-			/* .confirm-delete-btn {
-				padding: 1rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				column-gap: 0.5rem;
-				border-radius: 0.5rem;
-				background-color: ${({ theme }) => theme.btnBg};
-				box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
-				height: 100%;
-				border: 1px solid ${({ theme }) => theme.btnBorder};
-				cursor: pointer;
-				flex: 1;
-				text-align: center;
-				text-transform: uppercase;
-				color: ${({ theme }) => theme.btnColor};
-				font-size: 2rem;
-				font-weight: bolder;
-			} */
+			color: ${({ theme }) => theme.primaryColor};
 		}
 	}
 `;

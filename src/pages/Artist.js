@@ -4,14 +4,15 @@ import styled from 'styled-components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack } from 'react-icons/ti';
+// import { TiArrowBack } from 'react-icons/ti';
 import { useSongsContext } from '../hooks/useSongContext';
-import SongsWidget from '../features/artists/SongsWidget';
-import SongsFilter from '../features/artists/SongsFilter';
-import SearchBar from '../components/SearchBar';
+// import SongsWidget from '../features/artists/SongsWidget';
+// import SongsFilter from '../features/artists/SongsFilter';
+// import SearchBar from '../components/SearchBar';
 import { useViewport } from '../hooks/useViewport';
+import SongsListContainer from '../features/artists/SongsListContainer';
 
-const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
+const Artist = ({ artistSongStatusHandler, artistFilteredSongs, theme }) => {
 	const { user } = useAuthContext();
 	const { artistSongs, dispatch: songDispatch } = useSongsContext();
 
@@ -39,7 +40,7 @@ const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
-			className='page'
+			className={`artist-page page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			{artistSongs.length < 1 && (
 				<StyledNoArtistDetails className='artists-details-container'>
@@ -55,7 +56,7 @@ const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
 					</div>
 				</StyledArtistDetails>
 			)}
-			{width < breakpoint ? (
+			{/* {width < breakpoint ? (
 				<>
 					{artistSongs[0] && (
 						<div className='mobile-user-actions-container'>
@@ -66,7 +67,6 @@ const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
 								}}
 							/>
 							<SongsFilter songStatusHandler={artistSongStatusHandler} />
-							{/* <SearchBar /> */}
 						</div>
 					)}
 				</>
@@ -85,13 +85,24 @@ const Artist = ({ artistSongStatusHandler, artistFilteredSongs }) => {
 						</div>
 					)}
 				</>
-			)}
-			<SongsWidget songs={artistSongs} filteredSongs={artistFilteredSongs} />
+			)} */}
+			<SongsListContainer
+				// filterValue={filterValue}
+				// 	homeSongFilterHandler={homeSongFilterHandler}
+				// 	setFilterValue={setFilterValue}
+				songs={artistSongs}
+				filteredSongs={artistFilteredSongs}
+				theme={theme}
+			/>
+			{/* <SongsWidget songs={artistSongs} filteredSongs={artistFilteredSongs} /> */}
 		</StyledArtists>
 	);
 };
 const StyledArtists = styled(motion.div)`
 	overflow-y: auto;
+	&.mobile {
+		padding: 0;
+	}
 	.mobile-user-actions-container {
 		display: flex;
 		justify-content: space-between;

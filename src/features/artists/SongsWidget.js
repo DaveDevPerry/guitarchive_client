@@ -13,7 +13,7 @@ import { useViewport } from '../../hooks/useViewport';
 // 	SectionTitle,
 // 	SectionDivider,
 // } from '../styles/GlobalComponents';
-import SongCard from './SongCard';
+import SongCard from './SongCard 1';
 // import { songsTextWrapper, InfoText } from './songsStyles';
 
 const SongsWidget = ({ songs, filteredSongs }) => {

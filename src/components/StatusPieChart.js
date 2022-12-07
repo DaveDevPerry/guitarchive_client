@@ -8,8 +8,12 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const StatusPieChart = ({ songStats, theme }) => {
 	// log(themeToggler, theme, 'themeToggler and theme');
 
+	// const borderFromTheme =
+	// 	theme === 'light' ? 'rgba(105, 54, 25, 0)' : '#156d01';
 	const borderFromTheme =
-		theme === 'light' ? `${({ theme }) => theme.primaryColor}` : '#00000000';
+		theme === 'light'
+			? `${({ theme }) => theme.primaryColor}`
+			: `${({ theme }) => theme.secondaryColor}`;
 
 	const options = {
 		responsive: false,
@@ -60,11 +64,11 @@ const StatusPieChart = ({ songStats, theme }) => {
 				label: '# of songs',
 				data: statCount,
 				backgroundColor: [
-					'#1aac83',
-					'rgb(250, 186, 11)',
 					'rgb(158, 11, 250)',
-					'rgb(54, 162, 235)',
-					'rgb(250, 11, 234)',
+					'#156d01',
+					'#eab209',
+					'rgb(0, 53, 88)',
+					'rgb(80, 51, 0)',
 				],
 				borderColor: [
 					borderFromTheme,

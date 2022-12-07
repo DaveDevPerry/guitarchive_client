@@ -1,25 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useStateContext } from '../../lib/context';
-// import { CgPlayListAdd } from 'react-icons/cg';
-// import { MdDeleteForever } from 'react-icons/md';
 import { useViewport } from '../../hooks/useViewport';
 
 const CancelDeleteButton = ({ handleCancel, theme }) => {
-	// const { isDeleteFormOpen, setIsDeleteFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
 		<StyledCancelDeleteButton
-			className={`btn-6 custom-btn`}
+			className={`btn-6 custom-btn ${width < breakpoint ? 'mobile' : ''}`}
 			onClick={(e) => {
 				e.preventDefault();
 				handleCancel();
 			}}
 		>
-			{/* <MdDeleteForever className='delete-song-btn' /> */}
 			{width < breakpoint ? (
-				<p className='btn-text'>
+				<p className='btn-text mobile'>
 					cancel
 					<br />
 					delete
@@ -32,6 +27,7 @@ const CancelDeleteButton = ({ handleCancel, theme }) => {
 };
 const StyledCancelDeleteButton = styled.button`
 	flex: 1 1 48%;
+	color: ${({ theme }) => theme.primaryColor};
 	p.btn-text {
 		font-family: 'NewTegomin';
 		color: ${({ theme }) => theme.primaryColor};
@@ -39,6 +35,9 @@ const StyledCancelDeleteButton = styled.button`
 		font-size: 1.6rem;
 		font-weight: bolder;
 		line-height: 1;
+		&.mobile {
+			color: ${({ theme }) => theme.primaryColor};
+		}
 	}
 `;
 
