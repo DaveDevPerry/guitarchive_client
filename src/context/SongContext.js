@@ -100,8 +100,8 @@ export const songsReducer = (state, action) => {
 						count: value,
 					}))
 					.sort((a, b) => a.name.localeCompare(b.name)),
-				// artistSongs: action.payload,
-				// arrangerSongs: action.payload,
+				artistSongs: action.payload,
+				arrangerSongs: action.payload,
 				nextDeadlineSong: action.payload[0],
 				myArrangementStats: [
 					{

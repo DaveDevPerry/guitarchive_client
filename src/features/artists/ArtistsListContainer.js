@@ -45,7 +45,7 @@ const ArtistsListContainer = ({
 	);
 };
 const StyledArtistsListContainer = styled.div`
-	padding: 1rem 2rem;
+	padding: 1rem 2rem 2rem;
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;

@@ -1,30 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
+import ArrangersList from './ArrangersList';
 
-import SongsList from './SongsList';
+// import SongsList from './SongsList';
 
-const SongsListContainer = ({
+const ArrangersListContainer = ({
 	// filterValue,
 	// homeSongFilterHandler,
 	// setFilterValue,
-	songs,
+	arrangers,
 	filteredSongs,
 	theme,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
-		<StyledSongsListContainer
+		<StyledArrangersListContainer
 			id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			className={`${width < breakpoint ? 'mobile' : ''}`}
 		>
-			<div className='songs-list-header'>
+			<div className='arrangers-list-header'>
 				<p
 					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
 				>
-					{/* {filterValue === 'songs' ? `all ${filterValue}` : filterValue} */}
-					{songs[0].artist.name}
+					{/* {filterValue === 'arrangers' ? `all ${filterValue}` : filterValue} */}
+					{/* {arrangers[0].name} */}
+					all arrangers
 				</p>
 				{/* <AddSongButton /> */}
 				{/* <SongsFilter
@@ -33,15 +35,16 @@ const SongsListContainer = ({
 					setFilterValue={setFilterValue}
 				/> */}
 			</div>
-			<SongsList
+			<ArrangersList arrangers={arrangers} />
+			{/* <SongsList
 				// filterValue={filterValue}
 				// homeSongFilterHandler={homeSongFilterHandler}
-				songs={songs}
-			/>
-		</StyledSongsListContainer>
+				arrangers={arrangers}
+			/> */}
+		</StyledArrangersListContainer>
 	);
 };
-const StyledSongsListContainer = styled.div`
+const StyledArrangersListContainer = styled.div`
 	padding: 1rem 2rem 2rem;
 	border-radius: 1rem;
 	display: flex;
@@ -71,7 +74,7 @@ const StyledSongsListContainer = styled.div`
 			background-image: none;
 		}
 	}
-	.songs-list-header {
+	.arrangers-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -94,4 +97,4 @@ const StyledSongsListContainer = styled.div`
 	}
 `;
 
-export default SongsListContainer;
+export default ArrangersListContainer;

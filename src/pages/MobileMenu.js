@@ -9,6 +9,7 @@ import { useStateContext } from '../lib/context';
 import { useViewport } from '../hooks/useViewport';
 import { ImStatsDots } from 'react-icons/im';
 import { GiMusicalScore } from 'react-icons/gi';
+import { FaUserEdit } from 'react-icons/fa';
 
 const MobileMenu = ({ theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -39,6 +40,21 @@ const MobileMenu = ({ theme }) => {
 						<AiFillHome className='nav-icon' />
 						<p>home</p>
 					</NavLink>
+
+					<NavLink
+						to='/artists'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<GiMusicalScore className='nav-icon' />
+						<p>artists</p>
+					</NavLink>
+					<NavLink
+						to='/arrangers'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<FaUserEdit className='nav-icon' />
+						<p>arrangers</p>
+					</NavLink>
 					<NavLink
 						to='/stats'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -53,20 +69,6 @@ const MobileMenu = ({ theme }) => {
 						<TfiYoutube className='nav-icon' />
 						<p>youtube</p>
 					</NavLink>
-					<NavLink
-						to='/artists'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<GiMusicalScore className='nav-icon' />
-						<p>artists</p>
-					</NavLink>
-					{/* <NavLink
-					to='/arrangers'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<FaUserEdit className='nav-icon' />
-					<p>arrangers</p>
-				</NavLink> */}
 					<NavLink
 						to='/settings'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}

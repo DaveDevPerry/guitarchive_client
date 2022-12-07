@@ -195,9 +195,11 @@ const StyledSongCard = styled.div`
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			.secondary-text {
-				color: ${({ theme }) => theme.primaryColor};
+				color: ${({ theme }) => theme.secondaryColor};
 				font-weight: bolder;
 				text-transform: uppercase;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+					0px -1px 0px rgb(0 0 0 / 70%);
 			}
 			&.mobile {
 				.secondary-text {

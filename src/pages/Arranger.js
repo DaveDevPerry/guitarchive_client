@@ -4,14 +4,19 @@ import styled from 'styled-components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack } from 'react-icons/ti';
+// import { TiArrowBack } from 'react-icons/ti';
 import { useSongsContext } from '../hooks/useSongContext';
-import SongsWidget from '../features/arrangers/SongsWidget';
-import SongsFilter from '../features/arrangers/SongsFilter';
-import SearchBar from '../components/SearchBar';
+// import SongsWidget from '../features/arrangers/SongsWidget';
+// import SongsFilter from '../features/arrangers/SongsFilter';
+// import SearchBar from '../components/SearchBar';
 import { useViewport } from '../hooks/useViewport';
+import SongsListContainer from '../features/arrangers/SongsListContainer';
 
-const Arranger = ({ arrangerFilteredSongs, arrangerSongStatusHandler }) => {
+const Arranger = ({
+	arrangerSongStatusHandler,
+	arrangerFilteredSongs,
+	theme,
+}) => {
 	const { user } = useAuthContext();
 	const { arrangerSongs, dispatch: songDispatch } = useSongsContext();
 
@@ -35,103 +40,81 @@ const Arranger = ({ arrangerFilteredSongs, arrangerSongStatusHandler }) => {
 	}, [arrangerToView, songDispatch, user]);
 
 	return (
-		<>
-			{width > breakpoint ? (
-				<StyledArrangers
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{arrangerSongs.length < 1 && (
-						<StyledNoArrangerDetails className='arrangers-details-container'>
-							<div className='arranger-wrapper'>
-								<p className='primary-text'>Arranger has no music</p>
-							</div>
-						</StyledNoArrangerDetails>
-					)}
-					{arrangerSongs[0] && (
-						<StyledArrangerDetails className='arrangers-details-container'>
-							<div className='arranger-wrapper'>
-								<p className='primary-text'>{arrangerSongs[0].arranger.name}</p>
-							</div>
-						</StyledArrangerDetails>
-					)}
-					{arrangerSongs[0] && (
-						<>
-							<div className='user-actions-container'>
-								{/* <AddSongButton /> */}
-								<TiArrowBack
-									className='back-icon'
-									onClick={() => {
-										navigate('/arrangers');
-									}}
-								/>
-								<SongsFilter songStatusHandler={arrangerSongStatusHandler} />
-								<SearchBar />
-							</div>
-							<SongsWidget
-								songs={arrangerSongs}
-								filteredSongs={arrangerFilteredSongs}
-							/>
-						</>
-					)}
-				</StyledArrangers>
-			) : (
-				<StyledMobileArrangers
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					exit={{ x: window.innerWidth }}
-				>
-					{arrangerSongs.length < 1 && (
-						<StyledNoArrangerDetails className='arrangers-details-container'>
-							<div className='arranger-wrapper'>
-								<p className='primary-text'>Arranger has no music</p>
-							</div>
-						</StyledNoArrangerDetails>
-					)}
-					{arrangerSongs[0] && (
-						<StyledArrangerDetails className='arrangers-details-container'>
-							<div className='arranger-wrapper'>
-								<p className='primary-text'>{arrangerSongs[0].arranger.name}</p>
-							</div>
-						</StyledArrangerDetails>
-					)}
-					{arrangerSongs[0] && (
-						<>
-							<div className='mobile-user-actions-container'>
-								{/* <AddSongButton /> */}
-								<TiArrowBack
-									className='back-icon'
-									onClick={() => {
-										navigate('/arrangers');
-									}}
-								/>
-								<SongsFilter songStatusHandler={arrangerSongStatusHandler} />
-								{/* <SearchBar /> */}
-							</div>
-							<SongsWidget
-								songs={arrangerSongs}
-								filteredSongs={arrangerFilteredSongs}
-							/>
-						</>
-					)}
-				</StyledMobileArrangers>
+		<StyledArrangers
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+			className={`arranger-page page ${width < breakpoint ? 'mobile' : ''}`}
+		>
+			{arrangerSongs.length < 1 && (
+				<StyledNoArrangerDetails className='arrangers-details-container'>
+					<div className='arranger-wrapper'>
+						<p className='primary-text'>Arranger has no music</p>
+					</div>
+				</StyledNoArrangerDetails>
 			)}
-		</>
+			{arrangerSongs[0] && (
+				<StyledArrangerDetails className='arrangers-details-container'>
+					<div className='arranger-wrapper'>
+						<p className='primary-text'>{arrangerSongs[0].arranger.name}</p>
+					</div>
+				</StyledArrangerDetails>
+			)}
+			{/* {width < breakpoint ? (
+				<>
+					{arrangerSongs[0] && (
+						<div className='mobile-user-actions-container'>
+							<TiArrowBack
+								className='back-icon'
+								onClick={() => {
+									navigate('/arrangers');
+								}}
+							/>
+							<SongsFilter songStatusHandler={arrangerSongStatusHandler} />
+						</div>
+					)}
+				</>
+			) : (
+				<>
+					{arrangerSongs[0] && (
+						<div className='user-actions-container'>
+							<TiArrowBack
+								className='back-icon'
+								onClick={() => {
+									navigate('/arrangers');
+								}}
+							/>
+							<SongsFilter songStatusHandler={arrangerSongStatusHandler} />
+							<SearchBar />
+						</div>
+					)}
+				</>
+			)} */}
+			<SongsListContainer
+				// filterValue={filterValue}
+				// 	homeSongFilterHandler={homeSongFilterHandler}
+				// 	setFilterValue={setFilterValue}
+				songs={arrangerSongs}
+				filteredSongs={arrangerFilteredSongs}
+				theme={theme}
+			/>
+			{/* <SongsWidget songs={arrangerSongs} filteredSongs={arrangerFilteredSongs} /> */}
+		</StyledArrangers>
 	);
 };
 const StyledArrangers = styled(motion.div)`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	max-width: 100rem;
-	padding: 0.5rem 1rem;
 	overflow-y: auto;
-	z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	overflow-y: hidden;
+	&.mobile {
+		padding: 0;
+	}
+	.mobile-user-actions-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 1rem 1rem 1rem;
+		column-gap: 2rem;
+		transition: all 200ms linear;
+	}
 	.user-actions-container {
 		display: flex;
 		justify-content: space-between;
@@ -149,6 +132,7 @@ const StyledArrangers = styled(motion.div)`
 const StyledArrangerDetails = styled.div`
 	transition: all 200ms linear;
 	text-align: center;
+	display: none;
 	.arranger-wrapper,
 	.arranger-wrapper {
 		padding: 0 1rem;
@@ -181,6 +165,7 @@ const StyledArrangerDetails = styled.div`
 const StyledNoArrangerDetails = styled.div`
 	transition: all 200ms linear;
 	text-align: center;
+	display: none;
 	.arranger-wrapper,
 	.arranger-wrapper {
 		padding: 0 1rem;
@@ -207,31 +192,6 @@ const StyledNoArrangerDetails = styled.div`
 			font-size: 2.2rem;
 			margin: 0;
 		}
-	}
-`;
-
-const StyledMobileArrangers = styled(motion.div)`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	max-width: 100rem;
-	overflow-y: auto;
-	z-index: 1;
-	transition: all 200ms linear;
-	margin: 0 auto;
-	flex: 1;
-	overflow-y: hidden;
-	.mobile-user-actions-container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0 1rem 1rem 1rem;
-		column-gap: 2rem;
-		transition: all 200ms linear;
-	}
-	.back-icon {
-		font-size: 4rem;
-		cursor: pointer;
 	}
 `;
 export default Arranger;

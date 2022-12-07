@@ -51,14 +51,7 @@ const Header = () => {
 								>
 									<p>songs</p>
 								</NavLink> */}
-								<NavLink
-									to='/stats'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>stats</p>
-								</NavLink>
+
 								{/* <NavLink
 							to='/products'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -74,12 +67,22 @@ const Header = () => {
 								>
 									<p>artists</p>
 								</NavLink>
-								{/* <NavLink
-							to='/arrangers'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>arrangers</p>
-						</NavLink> */}
+								<NavLink
+									to='/arrangers'
+									className={({ isActive }) =>
+										isActive ? 'active' : 'inactive'
+									}
+								>
+									<p>arrangers</p>
+								</NavLink>
+								<NavLink
+									to='/stats'
+									className={({ isActive }) =>
+										isActive ? 'active' : 'inactive'
+									}
+								>
+									<p>stats</p>
+								</NavLink>
 								<NavLink
 									to='/settings'
 									className={({ isActive }) =>

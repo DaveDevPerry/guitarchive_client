@@ -24,7 +24,7 @@ const SongsListContainer = ({
 					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
 				>
 					{/* {filterValue === 'songs' ? `all ${filterValue}` : filterValue} */}
-					{songs[0].artist.name}
+					{songs[0].arranger.name}
 				</p>
 				{/* <AddSongButton /> */}
 				{/* <SongsFilter
