@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
@@ -35,7 +36,9 @@ const ArrangersListContainer = ({
 					setFilterValue={setFilterValue}
 				/> */}
 			</div>
-			<ArrangersList arrangers={arrangers} />
+			<AnimatePresence mode='wait'>
+				<ArrangersList arrangers={arrangers} />
+			</AnimatePresence>
 			{/* <SongsList
 				// filterValue={filterValue}
 				// homeSongFilterHandler={homeSongFilterHandler}

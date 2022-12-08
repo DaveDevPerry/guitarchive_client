@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
@@ -96,13 +97,37 @@ function SongsList({ filterValue }) {
 		return <p>Loading...</p>;
 	}
 
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			delay: 2,
+			transition: {
+				staggerChildren: 0.2,
+				// delayChildren: 0.5
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
+
 	return (
 		<StyledSongsList className={`${width < breakpoint ? 'mobile' : ''}`}>
-			<div className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}>
+			<motion.div
+				className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}
+				variants={container}
+				initial='hidden'
+				animate='show'
+				// exit='hidden'
+			>
 				{data.items.map((product) => {
-					return <SongCard key={product._id} song={product} />;
+					return <SongCard key={product._id} song={product} item={item} />;
 				})}
-			</div>
+			</motion.div>
 			<div
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
 			>
@@ -211,3 +236,32 @@ const StyledSongsList = styled.div`
 `;
 
 export default SongsList;
+
+// {/* <StyledSongsList className={`${width < breakpoint ? 'mobile' : ''}`}>
+// 			<div className={`songs-container ${width < breakpoint ? 'mobile' : ''}`}>
+// 				{data.items.map((product) => {
+// 					return <SongCard key={product._id} song={product} />;
+// 				})}
+// 			</div>
+// 			<div
+// 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
+// 			>
+// 				<p>
+// 					Page:
+// 					<span>
+// 						{page}/{pageCount}
+// 					</span>
+// 				</p>
+// 				<SongsPaginationNav
+// 					page={page}
+// 					setPage={setPage}
+// 					pageCount={pageCount}
+// 					handlePrevious={handlePrevious}
+// 					handleNext={handleNext}
+// 					handleChoosePage={handleChoosePage}
+// 				/>
+// 				<p>
+// 					Songs:<span>{songCount}</span>
+// 				</p>
+// 			</div>
+// 		</StyledSongsList> */}

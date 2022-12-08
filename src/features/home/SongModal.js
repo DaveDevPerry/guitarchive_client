@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
@@ -51,11 +52,37 @@ const SongModal = ({
 		}
 	}, [navigate, dataLoaded]);
 
+	// const formVariants = {
+	// 	hidden: {
+	// 		scale: 0,
+	// 		opacity: 0,
+	// 		y: 100,
+	// 	},
+	// 	visible: {
+	// 		scale: 1,
+	// 		opacity: 1,
+	// 		y: 0,
+	// 		transition: {
+	// 			duration: 1,
+	// 			mass: 1.5,
+	// 			stiffness: 200,
+	// 		},
+	// 	},
+	// };
+
 	return (
-		<StyledSongModal open>
+		<StyledSongModal
+			open
+			// variants={formVariants}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			// transition={{ delay: 3.5 }}
+			exit={{ opacity: 0 }}
+		>
 			<div
 				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				// variants={formVariants}
 			>
 				<h2>add song</h2>
 
@@ -64,7 +91,7 @@ const SongModal = ({
 		</StyledSongModal>
 	);
 };
-const StyledSongModal = styled.dialog`
+const StyledSongModal = styled(motion.dialog)`
 	position: absolute;
 	top: 0;
 	left: 0;

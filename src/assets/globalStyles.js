@@ -497,12 +497,12 @@ input[type="file"] {
     button.page-number-btn:disabled,
 button.page-number-btn[disabled]{
   color: #7c7c7c !important;
-  cursor: unset;
+  cursor:not-allowed;
 }
     button:disabled,
 button[disabled]{
   color: #7c7c7c !important;
-  cursor: unset;
+  cursor: not-allowed;
 }
 
         // btn

@@ -22,9 +22,10 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
+import { motion } from 'framer-motion';
 // import Tooltip from '../../components/Tooltip';
 
-const ArtistCard = ({ artist }) => {
+const ArtistCard = ({ artist, item }) => {
 	const { setArtistToView } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -38,6 +39,7 @@ const ArtistCard = ({ artist }) => {
 				setArtistToView(artist.name);
 				navigate('/artist');
 			}}
+			variants={item}
 		>
 			<div className={`artist-wrapper ${width < breakpoint ? 'mobile' : ''}`}>
 				{/* <h3 className='primary-text'>artist name</h3> */}
@@ -59,7 +61,7 @@ const ArtistCard = ({ artist }) => {
 		</StyledArtistCard>
 	);
 };
-const StyledArtistCard = styled.div`
+const StyledArtistCard = styled(motion.div)`
 	cursor: pointer;
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);

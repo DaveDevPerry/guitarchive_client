@@ -11,8 +11,8 @@ import { useArtistsContext } from '../hooks/useArtistContext';
 import { useArrangersContext } from '../hooks/useArrangerContext';
 import { useStatusContext } from '../hooks/useStatusContext';
 import { useStylesContext } from '../hooks/useStyleContext';
-import YoutubeStats from '../components/YoutubeStats';
-import AppDetails from '../components/AppDetails';
+// import YoutubeStats from '../components/YoutubeStats';
+// import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
 
 const Loader = ({ youtubeData, theme }) => {
@@ -137,11 +137,14 @@ const Loader = ({ youtubeData, theme }) => {
 	return (
 		<StyledLoader
 			className={`page loader-page ${width < breakpoint ? 'mobile' : ''}`}
-			initial={{ width: 0 }}
-			animate={{ width: '100%' }}
-			exit={{ x: window.innerWidth }}
+			// initial={{ width: 0 }}
+			// animate={{ width: '100%' }}
+			// exit={{ x: window.innerWidth }}
+			initial={{ opacity: 1 }}
+			animate={{ opacity: 0 }}
+			transition={{ delay: 3.5 }}
 		>
-			<YoutubeStats youtubeData={youtubeData} theme={theme} />
+			{/* <YoutubeStats youtubeData={youtubeData} theme={theme} /> */}
 			<StyledPageLoader className='loader-container'>
 				<div className='loader'>
 					<div className='top'>
@@ -304,7 +307,7 @@ const Loader = ({ youtubeData, theme }) => {
 					<strong>ARCHIVE</strong>
 				</span>
 			</h1>
-			<AppDetails theme={theme} />
+			{/* <AppDetails theme={theme} /> */}
 			<AuthVerify />
 		</StyledLoader>
 	);

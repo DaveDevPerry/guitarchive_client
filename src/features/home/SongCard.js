@@ -24,14 +24,15 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
 import Tooltip from '../../components/Tooltip';
+import { motion } from 'framer-motion';
 
-const SongCard = ({ song }) => {
+const SongCard = ({ song, item }) => {
 	const { setSongToView } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	let navigate = useNavigate();
 	return (
-		<StyledSongCard className='song-card-wrapper'>
+		<StyledSongCard className='song-card-wrapper' variants={item}>
 			<div className={`fav-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				{song.isFavourite === true ? (
 					<FaHeart className='card-icon heart-on' />
@@ -146,12 +147,15 @@ const SongCard = ({ song }) => {
 		</StyledSongCard>
 	);
 };
-const StyledSongCard = styled.div`
+const StyledSongCard = styled(motion.div)`
 	cursor: pointer;
 	/* color: ${({ theme }) => theme.primaryColor}; */
 
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);
+	&:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
 	&.song-card-wrapper {
 		border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 		/* border-bottom: 1px solid ${({ theme }) => theme.primaryColor}; */
@@ -160,7 +164,7 @@ const StyledSongCard = styled.div`
 		justify-content: space-between;
 		column-gap: 0.5rem;
 		padding: 0.5rem;
-		color: ${({ theme }) => theme.white};
+		/* color: ${({ theme }) => theme.white}; */
 
 		.fav-wrapper {
 			display: grid;

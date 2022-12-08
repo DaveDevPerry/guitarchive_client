@@ -22,9 +22,10 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
+import { motion } from 'framer-motion';
 // import Tooltip from '../../components/Tooltip';
 
-const ArrangerCard = ({ arranger }) => {
+const ArrangerCard = ({ arranger, item }) => {
 	const { setArrangerToView } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -38,6 +39,7 @@ const ArrangerCard = ({ arranger }) => {
 				setArrangerToView(arranger.name);
 				navigate('/arranger');
 			}}
+			variants={item}
 		>
 			<div className={`arranger-wrapper ${width < breakpoint ? 'mobile' : ''}`}>
 				{/* <h3 className='primary-text'>arranger name</h3> */}
@@ -59,7 +61,7 @@ const ArrangerCard = ({ arranger }) => {
 		</StyledArrangerCard>
 	);
 };
-const StyledArrangerCard = styled.div`
+const StyledArrangerCard = styled(motion.div)`
 	cursor: pointer;
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);

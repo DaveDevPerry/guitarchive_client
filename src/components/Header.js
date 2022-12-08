@@ -2,8 +2,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../hooks/useViewport';
 import { FiMenu } from 'react-icons/fi';
-import { useEffect } from 'react';
-import { log } from '../utils/helper';
+// import { useEffect } from 'react';
+// import { log } from '../utils/helper';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -11,9 +11,6 @@ const Header = () => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 
-	useEffect(() => {
-		log(location, 'location');
-	}, [location]);
 	return (
 		<>
 			{location.pathname !== '/' && (

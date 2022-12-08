@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
@@ -136,9 +136,11 @@ const Home = ({ theme }) => {
 			exit={{ x: window.innerWidth }}
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
 		>
-			{isFormOpen === true && (
-				<SongModal currentId={currentId} setCurrentId={setCurrentId} />
-			)}
+			<AnimatePresence mode='wait'>
+				{isFormOpen === true && (
+					<SongModal currentId={currentId} setCurrentId={setCurrentId} />
+				)}
+			</AnimatePresence>
 			<AlertDeadlineSong theme={theme} />
 			<SongsListContainer
 				filterValue={filterValue}

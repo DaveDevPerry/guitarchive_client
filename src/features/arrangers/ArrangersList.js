@@ -1,5 +1,7 @@
 // import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
 // import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
 import ArrangerCard from './ArrangerCard';
@@ -15,6 +17,24 @@ function ArrangersList({ filterValue, arrangers }) {
 
 	const { width } = useViewport();
 	const breakpoint = 620;
+
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			delay: 2,
+			transition: {
+				staggerChildren: 0.2,
+				// delayChildren: 0.5
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
 
 	// const { data, error } = useSWR(
 	// 	`${process.env.REACT_APP_BACKEND_URL}/api/products/${filterValue}?page=${page}`,
@@ -54,17 +74,20 @@ function ArrangersList({ filterValue, arrangers }) {
 
 	return (
 		<StyledArrangersList className={`${width < breakpoint ? 'mobile' : ''}`}>
-			<div
+			<motion.div
 				className={`arrangers-container ${width < breakpoint ? 'mobile' : ''}`}
+				variants={container}
+				initial='hidden'
+				animate='show'
 			>
 				{arrangers &&
 					arrangers.map((arranger, index) => {
-						return <ArrangerCard key={index} arranger={arranger} />;
+						return <ArrangerCard key={index} arranger={arranger} item={item} />;
 					})}
 				{/* {data.items.map((product) => {
 					return <SongCard key={product._id} song={product} />;
 				})} */}
-			</div>
+			</motion.div>
 			{/* <div
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
 			>
