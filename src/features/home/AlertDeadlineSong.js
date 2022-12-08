@@ -238,6 +238,7 @@ const StyledAlertDeadlineSong = styled.div`
 		.alert-icon {
 			font-size: 2.4rem;
 			color: ${({ theme }) => theme.alert};
+			animation: 2s linear infinite condemned_blink_effect;
 		}
 		.song-title {
 			flex: 1;
@@ -283,6 +284,22 @@ const StyledAlertDeadlineSong = styled.div`
 				font-size: 1.6rem;
 				display: none;
 			}
+		}
+	}
+
+	/* blink {
+  animation: 2s linear infinite condemned_blink_effect;
+} */
+
+	@keyframes condemned_blink_effect {
+		0% {
+			visibility: hidden;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
 		}
 	}
 `;

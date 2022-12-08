@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,7 +19,12 @@ const ArtistModal = ({ currentId, setCurrentId, theme }) => {
 	}, [navigate, dataLoaded]);
 
 	return (
-		<StyledArtistModal open>
+		<StyledArtistModal
+			open
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
 			<div
 				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
@@ -29,7 +35,7 @@ const ArtistModal = ({ currentId, setCurrentId, theme }) => {
 		</StyledArtistModal>
 	);
 };
-const StyledArtistModal = styled.dialog`
+const StyledArtistModal = styled(motion.dialog)`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -45,7 +51,7 @@ const StyledArtistModal = styled.dialog`
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		max-width: 100rem;
+		max-width: 60rem;
 		padding: 1rem 2rem 2rem 2rem;
 		overflow-y: hidden;
 		z-index: 1;
@@ -56,7 +62,7 @@ const StyledArtistModal = styled.dialog`
 		border-radius: 1rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');

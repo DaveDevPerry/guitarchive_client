@@ -65,6 +65,9 @@ const StyledArrangerCard = styled(motion.div)`
 	cursor: pointer;
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);
+	&:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
 	&.arranger-card-wrapper {
 		border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
 		display: flex;

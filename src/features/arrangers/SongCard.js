@@ -152,6 +152,9 @@ const StyledSongCard = styled.div`
 
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);
+	&:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
 	&.song-card-wrapper {
 		border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
 		/* border-bottom: 1px solid ${({ theme }) => theme.primaryColor}; */

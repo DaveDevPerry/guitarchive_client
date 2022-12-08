@@ -56,8 +56,8 @@ const ArtistForm = ({ currentId, setCurrentId }) => {
 		notify();
 		// navigate('/');
 	};
-	const clear = () => {
-		// e.preventDefault();
+	const clear = (e) => {
+		e.preventDefault();
 		setCurrentId(null);
 		setArtistData({
 			name: '',
@@ -104,6 +104,8 @@ const ArtistForm = ({ currentId, setCurrentId }) => {
 							}
 							placeholder='Artist Name'
 							className='form-input'
+							autoFocus
+							required
 						/>
 					</div>
 				</div>

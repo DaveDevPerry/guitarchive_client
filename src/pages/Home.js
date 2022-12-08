@@ -135,6 +135,9 @@ const Home = ({ theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
+			// initial={{ opacity: 0 }}
+			// animate={{ opacity: 1 }}
+			// exit={{ opacity: 0 }}
 		>
 			<AnimatePresence mode='wait'>
 				{isFormOpen === true && (

@@ -56,8 +56,8 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 		notify();
 		// navigate('/');
 	};
-	const clear = () => {
-		// e.preventDefault();
+	const clear = (e) => {
+		e.preventDefault();
 		// setCurrentId(null);
 		setArrangerData({
 			name: '',
@@ -103,6 +103,8 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 							}
 							placeholder='Arranger Name'
 							className='form-input'
+							autoFocus
+							required
 						/>
 					</div>
 				</div>
@@ -114,7 +116,7 @@ const ArrangerForm = ({ currentId, setCurrentId, theme }) => {
 						cancel
 					</button>
 					<button className='form-action-btn btn-6 custom-btn' onClick={clear}>
-						reset
+						clear
 					</button>
 					<button className='form-action-btn btn-6 custom-btn' type='submit'>
 						Submit

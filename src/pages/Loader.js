@@ -334,9 +334,9 @@ const StyledLoader = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	&.mobile {
+	/* &.mobile {
 		justify-content: space-between;
-	}
+	} */
 	h1.app-name {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-family: 'NewTegomin';

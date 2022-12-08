@@ -3,44 +3,10 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import { useAuthContext } from '../hooks/useAuthContext';
-// import { useResultsContext } from '../hooks/useResultsContext';
 import { useStateContext } from '../../lib/context';
-// import { log } from '../../utils/helper';
-// import { ImArrowRight } from 'react-icons/im';
 import SongForm from './SongForm';
-// import { useSongsContext } from '../../hooks/useSongsContext';
-// import ResultsList from './ResultsList';
-// import ResultsScore from './ResultsScore';
-// import ResultsRanking from './ResultsRanking';
-// import { motion } from 'framer-motion';
-// import { ImCross, ImCheckmark, ImArrowRight } from 'react-icons/im';
-// import '../../assets/images/dark wood texture.webp';
 
-const SongModal = ({
-	inputText,
-	setInputText,
-	posts,
-	setSongs,
-	setStatus,
-	inputDate,
-	setInputDate,
-	postInputTime,
-	setSongInputTime,
-	inputDescription,
-	setInputDescription,
-
-	setSongInputLocation,
-	postInputLocation,
-	// setSongs,
-	// setStatus,
-
-	postInputPhone,
-	setSongInputPhone,
-	currentId,
-	setCurrentId,
-	theme,
-}) => {
+const SongModal = ({ currentId, setCurrentId, theme }) => {
 	const { dataLoaded } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -118,7 +84,7 @@ const StyledSongModal = styled(motion.dialog)`
 		border-radius: 1rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');

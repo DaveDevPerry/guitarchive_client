@@ -16,6 +16,7 @@ import Header from './components/Header';
 // import Footer from './components/Footer';
 import { useSongsContext } from './hooks/useSongContext';
 import { useViewport } from './hooks/useViewport';
+import Footer from './components/Footer';
 // import MobileMenu from './components/MobileMenu';
 
 function App() {
@@ -351,7 +352,7 @@ function App() {
 							youtubeData={youtubeData}
 							// youtubeTarget={youtubeTarget}
 						/>
-						{/* {width < breakpoint && <Footer />} */}
+						{width > breakpoint && <Footer />}
 					</BrowserRouter>
 				</div>
 			</StateContext>

@@ -15,6 +15,7 @@ import ArtistModal from '../artists/ArtistModal';
 import ArrangerModal from '../arrangers/ArrangerModal';
 import { GrAdd } from 'react-icons/gr';
 import { useViewport } from '../../hooks/useViewport';
+import { AnimatePresence } from 'framer-motion';
 
 const SongForm = ({ currentId, setCurrentId }) => {
 	let navigate = useNavigate();
@@ -86,7 +87,8 @@ const SongForm = ({ currentId, setCurrentId }) => {
 		notify();
 		navigate('/');
 	};
-	const clear = () => {
+	const clear = (e) => {
+		e.preventDefault();
 		setSongData({
 			artist: '',
 			title: '',
@@ -146,12 +148,14 @@ const SongForm = ({ currentId, setCurrentId }) => {
 
 	return (
 		<>
-			{isArtistFormOpen === true && (
-				<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
-			)}
-			{isArrangerFormOpen === true && (
-				<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
-			)}
+			<AnimatePresence mode='wait'>
+				{isArtistFormOpen === true && (
+					<ArtistModal currentId={currentId} setCurrentId={setCurrentId} />
+				)}
+				{isArrangerFormOpen === true && (
+					<ArrangerModal currentId={currentId} setCurrentId={setCurrentId} />
+				)}
+			</AnimatePresence>
 			<StyledSongForm
 				autoComplete='off'
 				noValidate
@@ -511,7 +515,7 @@ const SongForm = ({ currentId, setCurrentId }) => {
 							className='form-action-btn btn-6 custom-btn'
 							onClick={clear}
 						>
-							<p>Reset</p>
+							<p>Clear</p>
 						</button>
 						<button className='form-action-btn btn-6 custom-btn' type='submit'>
 							<p>Submit</p>
