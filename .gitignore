@@ -28,6 +28,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+/public/offline copy.html
+
+
 /src/features/song/SongForm copy.js
 /src/features/song/SongForm copy 2.js
 /src/features/songs/SongsFilter copy.js

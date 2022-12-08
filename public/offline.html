@@ -5,44 +5,502 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>guitARCHIVE</title>
 		<style type="text/css">
+			@font-face {
+				font-family: 'NewTegomin';
+				src: url('https://guitarchive-client.vercel.app/NewTegomin-Regular.woff2')
+						format('woff2'),
+					url('https://guitarchive-client.vercel.app/NewTegomin-Regular.woff')
+						format('woff');
+				font-weight: normal;
+				font-style: normal;
+				font-display: swap;
+			}
 			html {
-				height: 100%;
+				/* height: 100%; */
+				font-size: 62.5%;
 			}
 			body {
-				height: 100%;
+				height: 100vh;
+				width: 100vw;
 				margin: 0;
-				background: rgb(38, 61, 142);
+				/* background: rgb(38, 61, 142); */
 				display: flex;
 				align-items: center;
-				text-align: center;
+				/* text-align: center; */
 				justify-content: center;
 				padding: 1rem;
+				background-image: url('https://guitarchive-client.vercel.app/whitewood.webp');
+				background-repeat: repeat;
+				background-size: cover;
+				overflow: hidden;
+				font-family: 'NewTegomin';
 			}
 			.offline-msg-wrapper {
-				border-radius: 5px;
-				background-color: rgb(51, 112, 156);
+				/* border-radius: 5px; */
+				/* background-color: rgb(51, 112, 156); */
 				padding: 2rem;
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				row-gap: 2rem;
+				/* text-align: center; */
+				justify-content: center;
 			}
-			h1 {
+			.loader-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: transparent;
+				z-index: 50;
+			}
+			.loader {
+				position: relative;
+				background-color: transparent;
+				width: 120px;
+				height: 220px;
+				box-shadow: 0 8px 6px -6px rgb(7, 7, 7);
+			}
+			.loader .top {
+				height: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			.loader .point {
+				width: 35px;
+				height: 8px;
+				border-bottom: 8px solid rgb(85, 17, 17);
+				border-left: 15px solid transparent;
+				border-right: 15px solid transparent;
+			}
+			.loader .line {
+				background-color: rgb(85, 17, 17);
+				height: 2px;
+				width: 36px;
+				border-top: 0.5px solid rgb(116, 19, 19);
+			}
+			.loader .middle {
+				height: 200px;
+			}
+			.loader .gubbins {
+				height: 140px;
+				margin: 0 10px;
+				border-bottom: 140px solid black;
+				border-left: 32px solid transparent;
+				border-right: 32px solid transparent;
+				position: relative;
+			}
+			.loader .strip {
+				position: absolute;
+				width: 12px;
+				height: 136px;
+				top: 2px;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: slategray;
+			}
+			.loader .strip ul li {
+				font-size: 3px;
+				list-style: none;
+				padding: 0.2px;
+			}
+			.loader .strip ul li:nth-child(even) {
+				text-align: right;
+			}
+			.loader .strip ul li.small {
+				padding: 0.2px;
+			}
+			.loader .strip ul li.medium {
+				padding: 1px 0.2px;
+				font-size: 3.5px;
+			}
+			.loader .strip ul li.large {
+				padding: 2.4px 0.2px;
+				font-size: 4px;
+			}
+			.loader .wand-wrapper {
+				position: absolute;
+				width: 16px;
+				height: 136px;
+				top: 6px;
+				left: 30%;
+				transform: translateX(-50%);
+				animation: tick 2s ease-in-out infinite;
+				transform-origin: 50% 100%;
+			}
+			.loader .wand {
+				position: absolute;
+				width: 4px;
+				height: 100%;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: silver;
+				border: 0.5px solid black;
+			}
+			.loader .wand ul.marks li {
+				list-style: none;
+				font-size: 14px;
+				line-height: 0.1px;
+				color: rgb(145, 145, 145);
+			}
+			.loader .wand ul.marks li.medium {
+				line-height: 8px;
+			}
+			.loader .block {
+				position: absolute;
+				width: 16px;
+				height: 14px;
+				top: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				border-top: 14px solid silver;
+				border-left: 2px solid transparent;
+				border-right: 2px solid transparent;
+				border-radius: 2px;
+			}
+			.loader .block::before {
+				position: absolute;
+				content: '';
+				height: 3px;
+				width: 3px;
+				background-color: black;
+				border-radius: 50%;
+				bottom: 7px;
+				left: 1px;
+			}
+			.loader .block::after {
+				position: absolute;
+				content: '';
+				height: 3px;
+				width: 3px;
+				background-color: black;
+				border-radius: 50%;
+				bottom: 7px;
+				right: 1px;
+			}
+
+			.loader .base {
+				position: relative;
+				height: 60px;
+				border-bottom: 60px solid rgb(85, 17, 17);
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+			}
+			.loader .winder {
+				width: 10px;
+				height: 4px;
+				position: absolute;
+				top: 20px;
+				left: 102px;
+				z-index: -1;
+				background-color: silver;
+				border: 0.5px solid black;
+			}
+			.loader .winder::after {
+				position: absolute;
+				content: '';
+				height: 8px;
+				width: 1px;
+				background-color: silver;
+				border: 0.5px solid black;
+				top: 1px;
+				right: 2px;
+			}
+			.loader .logo {
+				position: absolute;
+				height: 30px;
+				width: 30px;
+				border: 1px solid black;
+				top: 10px;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: gold;
+				transform: rotate(45deg);
+			}
+			.loader .logo-sign {
+				transform: rotateX(-45deg);
+			}
+
+			.loader .logo-top {
+				position: absolute;
+				height: 20px;
+				width: 30px;
+				top: 0;
+				left: 0;
+				border-bottom: 20px solid black;
+				border-left: 15px solid transparent;
+				border-right: 15px solid transparent;
+			}
+
+			.loader .gold-top {
+				z-index: 10;
+				position: absolute;
+				top: 2px;
+				right: -14px;
+				height: 18px;
+				width: 26px;
+				border-bottom: 17px solid gold;
+				border-left: 14px solid transparent;
+				border-right: 14px solid transparent;
+			}
+			.loader .logo-bottom {
+				position: absolute;
+				height: 20px;
+				width: 30px;
+				top: 20px;
+				left: 0;
+				border-top: 20px solid black;
+				border-left: 15px solid transparent;
+				border-right: 15px solid transparent;
+			}
+
+			.loader .gold-bottom {
+				z-index: 10;
+				position: absolute;
+				bottom: 2px;
+				right: -14px;
+				height: 18px;
+				width: 26px;
+				border-top: 17px solid gold;
+				border-left: 14px solid transparent;
+				border-right: 14px solid transparent;
+			}
+			.loader .bottom {
+				height: 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.loader .foot {
+				width: 14px;
+				height: 10px;
+				margin: 0 8px;
+				border-top: 10px solid black;
+				border-left: 2px solid transparent;
+				border-right: 2px solid transparent;
+			}
+			.loader-container.hide-loader {
+				animation: fadeOut 1s;
+				animation-fill-mode: forwards;
+			}
+			h1.offline-msg {
+				color: #1d0b01;
+				font-family: 'NewTegomin';
+				font-weight: lighter;
+				font-size: 4rem;
+				text-align: center;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+					0px -1px 0px rgb(0 0 0 / 70%);
+			}
+			h1.app-name {
+				color: #7f0101;
+				font-family: 'NewTegomin';
+				font-weight: lighter;
+				font-size: 4rem;
+				text-align: center;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+					0px -1px 0px rgb(0 0 0 / 70%);
+			}
+			h1.app-name span {
+				color: #1d0b01;
+				font-weight: bolder;
+			}
+
+			@keyframes tick {
+				0%,
+				100% {
+					transform: rotate(-30deg);
+				}
+				50% {
+					transform: rotate(30deg);
+				}
+			}
+			@keyframes fadeOut {
+				100% {
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+
+			/* h1 {
 				font-size: 2rem;
 				color: white;
 				font-family: 'Montserrat', sans-serif;
-			}
+			} */
 		</style>
 	</head>
 	<body>
 		<div class="offline-msg-wrapper">
-			<!-- <img
-				src="./images/savannah icon.png"
-				alt="savannah"
-				id="offline-sausage"
-			/> -->
-			<h1>Please go online to access guitARCHIVE.</h1>
-			<img src="./darkwoodtexture.webp" alt="image" />
+			<h1 class="'offline-msg">Please go online to access files.</h1>
+			<div class="loader-container">
+				<div class="loader">
+					<div class="top">
+						<div class="point"></div>
+						<div class="line"></div>
+					</div>
+
+					<div class="middle">
+						<div class="gubbins">
+							<div class="strip">
+								<ul>
+									<li class="small">
+										<u>80</u>
+									</li>
+									<li class="small">
+										<u>84</u>
+									</li>
+									<li class="small">
+										<u>88</u>
+									</li>
+									<li class="small">
+										<u>92</u>
+									</li>
+									<li class="small">
+										<u>96</u>
+									</li>
+									<li class="small">
+										<u>100</u>
+									</li>
+									<li class="small">
+										<u>104</u>
+									</li>
+									<li class="small">
+										<u>108</u>
+									</li>
+									<li class="small">
+										<u>112</u>
+									</li>
+									<li class="small">
+										<u>116</u>
+									</li>
+									<li class="small">
+										<u>120</u>
+									</li>
+									<li class="medium">
+										<u>126</u>
+									</li>
+									<li class="medium">
+										<u>132</u>
+									</li>
+									<li class="medium">
+										<u>138</u>
+									</li>
+									<li class="medium">
+										<u>144</u>
+									</li>
+									<li class="medium">
+										<u>152</u>
+									</li>
+									<li class="medium">
+										<u>160</u>
+									</li>
+									<li class="medium">
+										<u>168</u>
+									</li>
+									<li class="large">
+										<u>176</u>
+									</li>
+									<li class="large">
+										<u>184</u>
+									</li>
+									<li class="large">
+										<u>192</u>
+									</li>
+									<li class="large">
+										<u>200</u>
+									</li>
+									<li class="large">
+										<u>208</u>
+									</li>
+								</ul>
+							</div>
+							<div class="wand-wrapper">
+								<div class="wand">
+									<ul class="marks">
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="little">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+										<li class="medium">
+											<u>&nbsp;</u>
+										</li>
+									</ul>
+								</div>
+								<div class="block"></div>
+							</div>
+						</div>
+
+						<div class="base">
+							<div class="winder"></div>
+						</div>
+					</div>
+
+					<div class="bottom">
+						<div class="foot"></div>
+						<div class="foot"></div>
+					</div>
+				</div>
+			</div>
+			<h1 class="app-name">
+				guit
+				<span>
+					<strong>ARCHIVE</strong>
+				</span>
+			</h1>
+			<!-- <img src="/darkwoodtexture.webp" alt="image" />
 			<img
 				src="https://guitarchive-client.vercel.app/darkwoodtexture.webp"
 				alt="image"
-			/>
+			/> -->
 		</div>
 	</body>
 </html>

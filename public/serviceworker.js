@@ -1,9 +1,10 @@
-const CACHE_NAME = 'guitarchive-version-1';
+const CACHE_NAME = 'guitarchive-version-2';
 const urlsToCache = [
 	'index.html',
 	'offline.html',
-	'darkwoodtexture.webp',
-	// 'NewTegomin-Regular.woff2',
+	'whitewood.webp',
+	'NewTegomin-Regular.woff',
+	'NewTegomin-Regular.woff2',
 ];
 // const cacheUrls = [
 // 	"static/css/main.c16ed571.chunk.css",
