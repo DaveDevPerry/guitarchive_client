@@ -5,6 +5,8 @@ import {
 	MdOutlineArrowForwardIos,
 } from 'react-icons/md';
 import { useViewport } from '../../hooks/useViewport';
+// import { useState } from 'react';
+// import { log } from '../../utils/helper';
 // import { MdArrowLeft, MdArrowRight,MdOutlineArrowBackIosNew,MdOutlineArrowForwardIosNew } from 'react-icons/md';
 
 const SongsPaginationNav = ({
@@ -13,9 +15,17 @@ const SongsPaginationNav = ({
 	handlePrevious,
 	handleNext,
 	setPage,
+	handleTestPage,
+	handleChoosePage,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
+
+	// const [testPage, setTestPage] = useState(page);
+	// useEffect(() => {
+	// 	log(testPage, 'test page');
+	// }, [testPage]);
+
 	return (
 		<StyledSongsPaginationNav>
 			<div className={`footer-nav ${width < breakpoint ? 'mobile' : ''}`}>
@@ -27,11 +37,31 @@ const SongsPaginationNav = ({
 					{/* <MdArrowLeft className='arrow-icon' /> */}
 					<MdOutlineArrowBackIosNew className='arrow-icon' />
 				</button>
-				<div className='filter-page-dropdown'>
+				<div className='filter-page-number-btn'>
+					{Array(pageCount)
+						.fill(null)
+						.map((_, index) => {
+							return (
+								<button
+									key={index}
+									className='page-btn btn-6 custom-btn page-number-btn'
+									onClick={(e) => {
+										handleChoosePage(e, index + 1);
+									}}
+									disabled={page === index + 1}
+								>
+									{index + 1}
+								</button>
+							);
+						})}
+				</div>
+				{/* <div className='filter-page-dropdown'>
 					<select
 						id='pagination-select'
 						value={page}
 						onChange={(event) => {
+							handleTestPage(event.target.value);
+							setTestPage(parseInt(event.target.value.split(' ')[1]));
 							setPage(event.target.value);
 						}}
 						className='filter-song-select'
@@ -46,7 +76,7 @@ const SongsPaginationNav = ({
 								);
 							})}
 					</select>
-				</div>
+				</div> */}
 				<button
 					className='page-btn  btn-6 custom-btn'
 					disabled={page === pageCount}
@@ -89,6 +119,21 @@ const StyledSongsPaginationNav = styled.nav`
 			/* width: 3.9rem; */
 			padding: 0;
 			color: ${({ theme }) => theme.btnIcon};
+		}
+		.filter-page-number-btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			column-gap: 0.5rem;
+			.page-number-btn {
+				height: 3.9rem;
+				width: 3.9rem;
+				/* width: 3.9rem; */
+				padding: 0;
+				display: grid;
+				place-content: center;
+				color: ${({ theme }) => theme.btnIcon};
+			}
 		}
 		select.filter-song-select {
 			cursor: inherit;
@@ -199,6 +244,7 @@ const StyledSongsPaginationNav = styled.nav`
 			bottom: 0;
 			text-align: center;
 			right: 2px;
+			font-weight: bolder;
 		}
 		.page-links-wrapper {
 			display: flex;

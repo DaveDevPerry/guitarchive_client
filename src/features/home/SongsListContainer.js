@@ -52,7 +52,7 @@ const StyledSongsListContainer = styled.div`
 	flex: 1;
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');
@@ -77,7 +77,7 @@ const StyledSongsListContainer = styled.div`
 			font-size: 2.5rem;
 			text-transform: capitalize;
 			color: ${({ theme }) => theme.primaryColor};
-			color: black;
+			/* color: black; */
 			font-weight: bolder;
 			line-height: 1;
 			padding-left: 0.5rem;
@@ -86,6 +86,7 @@ const StyledSongsListContainer = styled.div`
 			flex: 1;
 			&.mobile {
 				font-size: 2.2rem;
+				font-weight: lighter;
 			}
 		}
 	}

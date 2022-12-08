@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
+import { log } from '../../utils/helper';
 import SongCard from './SongCard';
 import SongsPaginationNav from './SongsPaginationNav';
 
@@ -25,6 +26,50 @@ function SongsList({ filterValue }) {
 			setSongCount(data.pagination.count);
 		}
 	}, [data]);
+
+	function handleChoosePage(e, number) {
+		e.preventDefault();
+		log(page, 'page');
+		log(pageCount, 'page count');
+		log(number, 'number');
+
+		setPage(number);
+		// setPage((p) => {
+		// 	if (p === pageCount || p ===1) return p;
+		// 	if(p < pageCount)
+		// 	return p + 1;
+		// 	if (p === 1) return p;
+		// 	return p - 1;
+		// });
+		// setPage((p) => {
+		// 	if (p === pageCount) {
+		// 		return p;
+		// 	} else if (p !== pageCount && p !== 1);
+		// 	if (p === 1) return p;
+
+		// 	return getNumber;
+		// });
+		// setPage(getNumber);
+	}
+	// function handleTestPage(e) {
+	// 	// e.preventDefault();
+	// 	const string = e;
+	// 	const splitPage = string.split(' ');
+	// 	// log(string, 'str');
+	// 	// log(splitPage, 'split');
+	// 	const getPage = splitPage[1];
+	// 	const getNumber = parseInt(getPage);
+	// 	// setTestPage(getNumber);
+	// 	setPage((p) => {
+	// 		if (p === pageCount) {
+	// 			return p;
+	// 		} else if (p !== pageCount && p !== 1);
+	// 		if (p === 1) return p;
+
+	// 		return getNumber;
+	// 	});
+	// 	// setPage(getNumber);
+	// }
 
 	function handlePrevious(e) {
 		e.preventDefault();
@@ -73,6 +118,7 @@ function SongsList({ filterValue }) {
 					pageCount={pageCount}
 					handlePrevious={handlePrevious}
 					handleNext={handleNext}
+					handleChoosePage={handleChoosePage}
 				/>
 				<p>
 					Songs:<span>{songCount}</span>
@@ -127,7 +173,7 @@ const StyledSongsList = styled.div`
 		flex-direction: column;
 		justify-content: flex-start;
 		overflow-y: auto;
-		border: 1px solid ${({ theme }) => theme.primaryColor};
+		border: 1px solid ${({ theme }) => theme.borderColor};
 		border-radius: 0.4rem;
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);

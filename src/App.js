@@ -315,7 +315,10 @@ function App() {
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
 			<StateContext>
-				<div className={`App ${width < breakpoint ? 'mobile' : ''}`}>
+				<div
+					className={`App ${width < breakpoint ? 'mobile' : ''}`}
+					id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				>
 					<BrowserRouter>
 						<Toaster />
 						<Header />

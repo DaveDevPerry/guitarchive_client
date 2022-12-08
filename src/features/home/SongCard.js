@@ -153,7 +153,7 @@ const StyledSongCard = styled.div`
 	font-weight: bolder;
 	background-color: rgba(0, 0, 0, 0.05);
 	&.song-card-wrapper {
-		border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+		border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 		/* border-bottom: 1px solid ${({ theme }) => theme.primaryColor}; */
 		display: flex;
 		flex-direction: row;
@@ -201,13 +201,17 @@ const StyledSongCard = styled.div`
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
-			&.mobile {
+			/* &.mobile {
+				.primary-text {
+					font-weight: lighter;
+					text-shadow: none;
+				}
 				.secondary-text {
 					color: ${({ theme }) => theme.secondaryColor};
-					/* font-weight: bolder;
-				text-transform: uppercase; */
+					font-weight: lighter;
+					text-shadow: none;
 				}
-			}
+			} */
 		}
 		.artist-wrapper {
 			width: 17rem;

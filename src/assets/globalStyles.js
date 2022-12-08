@@ -51,12 +51,29 @@ background-image: url('/images/light wood background.webp');
 background-image: url('/images/texture.png'); */
 	}
   ${'' /* background-color: ${({ theme }) => theme.bodyBg}; */}
-  
+  &#dark {
+		background-image: url('/images/dark wood background.webp');
+    ${
+			'' /* background-repeat: no-repeat;
+	background-size: cover; */
+		}
+	}
+	&#light {
+		${'' /* background-image: url('/images/white wood.webp'); */}
+    background-image: url('/images/light wood background.webp');
+	}
   &.mobile{
     row-gap:0;
-    background-image: url('/images/white wood.webp');
+    ${'' /* background-image: url('/images/white wood.webp'); */}
     ${'' /* padding-bottom: 0; */}
     ${'' /* padding-bottom: 1rem; */}
+    &#dark {
+		background-image: url('/images/black wood.webp');
+	}
+	&#light {
+		${'' /* background-image: url('/images/white wood.webp'); */}
+    background-image: url('/images/white wood.webp');
+	}
   }
   }
   .widget-container{
@@ -73,7 +90,7 @@ background-image: url('/images/texture.png'); */
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/dark wood.png');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');
@@ -137,13 +154,17 @@ color: ${({ theme }) => theme.primaryColor};
 ::-ms-input-placeholder { 
 color: ${({ theme }) => theme.primaryColor};
 }
-
+${
+	'' /* 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
+} */
 }
-input[data-autocompleted] {
+${
+	'' /* input[data-autocompleted] {
     background-color: transparent !important;
+} */
 }
   }
   input:focus, textarea:focus {
@@ -470,6 +491,19 @@ input[type="file"] {
 				rgba(38, 38, 38, 0.4)
 			);
 		}
+
+
+
+    button.page-number-btn:disabled,
+button.page-number-btn[disabled]{
+  color: #7c7c7c !important;
+  cursor: unset;
+}
+    button:disabled,
+button[disabled]{
+  color: #7c7c7c !important;
+  cursor: unset;
+}
 
         // btn
         ${

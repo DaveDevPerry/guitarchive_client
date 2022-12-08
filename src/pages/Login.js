@@ -73,7 +73,7 @@ const StyledLogin = styled(motion.div)`
 	row-gap: 2rem;
 	flex: 1;
 	max-width: 100rem;
-	padding: 0.5rem 1rem 2rem 1rem;
+	padding: 1rem 2rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
 	transition: all 200ms linear;
@@ -97,7 +97,7 @@ const StyledLogin = styled(motion.div)`
 			z-index: 601;
 			box-shadow: 3px 3px 4px rgb(0 0 0);
 			&#dark {
-				background-image: url('/images/dark wood texture.webp');
+				background-image: url('/images/black wood.webp');
 			}
 			&#light {
 				background-image: url('/images/white wood.webp');
@@ -112,14 +112,21 @@ const StyledLogin = styled(motion.div)`
 					background-image: none;
 				}
 
-				input[type='email'],
-				input[type='password'] {
+				input {
 					padding: 0.8rem 1rem;
 					font-size: 1.8rem;
 
 					width: 100%;
 					background-color: transparent !important;
 				}
+				/* input[type='email'],
+				input[type='password'] {
+					padding: 0.8rem 1rem;
+					font-size: 1.8rem;
+
+					width: 100%;
+					background-color: transparent !important;
+				} */
 			}
 			.login-btn-container {
 				flex: 1;
@@ -155,7 +162,15 @@ const StyledLogin = styled(motion.div)`
 					text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 						0px -1px 0px rgba(0, 0, 0, 0.7);
 				}
-				input[type='email'],
+				input {
+					padding: 0.8rem 1rem;
+					margin: 0;
+					font-size: 1.8rem;
+					flex: 1;
+					width: 100%;
+					/* background-color: transparent; */
+				}
+				/* input[type='email'],
 				input[type='password'] {
 					padding: 0.8rem 1rem;
 					margin: 0;
@@ -163,7 +178,7 @@ const StyledLogin = styled(motion.div)`
 					flex: 1;
 					width: 100%;
 					background-color: transparent;
-				}
+				} */
 			}
 			.custom-btn {
 				margin-top: 2rem;

@@ -51,7 +51,13 @@ const Settings = ({ themeToggler, theme }) => {
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 				className={`wrapper ${width < breakpoint ? 'mobile' : ''}`}
 			>
-				<h2>Settings</h2>
+				<div className='settings-header'>
+					<h2>Settings</h2>
+					<button className='btn-6 custom-btn logout-btn' onClick={handleClick}>
+						<RiLogoutBoxLine className='logout-icon' />
+						<p>Log out</p>
+					</button>
+				</div>
 
 				<div className='account-details settings-section'>
 					<h5 className='sub-heading'>account</h5>
@@ -119,7 +125,7 @@ const StyledSettings = styled(motion.div)`
 		padding: 1rem 2rem 2rem;
 		border-radius: 1rem;
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');
@@ -136,16 +142,35 @@ const StyledSettings = styled(motion.div)`
 				background-image: none;
 			}
 		}
-		h2 {
-			font-size: 2.5rem;
-			text-align: center;
-			color: ${({ theme }) => theme.primaryColor};
-			font-weight: bolder;
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-				0px -1px 0px rgb(0 0 0 / 70%);
+		.settings-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			h2 {
+				font-size: 2.5rem;
+				text-align: left;
+				color: ${({ theme }) => theme.primaryColor};
+				font-weight: bolder;
+				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+					0px -1px 0px rgb(0 0 0 / 70%);
+			}
+			.custom-btn {
+				/* width: 100%; */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				column-gap: 0.5rem;
+				.logout-icon {
+					color: ${({ theme }) => theme.btnIcon};
+					font-size: 2rem;
+					/* margin-right: 1rem; */
+				}
+			}
 		}
 		.logout-btn-container {
 			flex: 1;
+			display: none;
 			.custom-btn {
 				width: 100%;
 				display: flex;
@@ -185,7 +210,7 @@ const StyledSettings = styled(motion.div)`
 			align-items: flex-start;
 			justify-content: flex-start;
 			.sub-heading {
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.primaryColor};
 				width: 100%;
 				font-size: 2rem;
 				text-transform: capitalize;
@@ -223,7 +248,7 @@ const StyledSettings = styled(motion.div)`
 			align-items: flex-start;
 			justify-content: flex-start;
 			.sub-heading {
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.primaryColor};
 				width: 100%;
 				font-size: 2rem;
 				text-transform: capitalize;

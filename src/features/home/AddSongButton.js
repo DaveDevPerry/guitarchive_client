@@ -39,6 +39,7 @@ const StyledAddSongButton = styled.button`
 		margin-top: 0.5rem;
 		/* font-size: 2.4rem; */
 		color: ${({ theme }) => theme.btnIcon};
+		font-weight: bolder;
 	}
 	p {
 		font-family: 'NewTegomin';
