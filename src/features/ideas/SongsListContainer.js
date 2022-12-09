@@ -27,7 +27,6 @@ const SongsListContainer = ({
 					{ideasFilterValue === 'songs'
 						? `all ${ideasFilterValue}`
 						: ideasFilterValue}
-					{/* {ideasFilterValue} */}
 				</p>
 				<AddSongButton />
 				<SongsFilter

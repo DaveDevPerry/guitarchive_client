@@ -27,13 +27,57 @@ import { GiGuitarHead } from 'react-icons/gi';
 import { useViewport } from '../../hooks/useViewport';
 import { motion } from 'framer-motion';
 import Tooltip from '../../components/Tooltip';
+import { log } from '../../utils/helper';
+import { useIdeasContext } from '../../hooks/useIdeaContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 // import { log } from '../../utils/helper';
 
 const SongCard = ({ song, item }) => {
 	// const { setSongToView } = useStateContext();
+	const { user } = useAuthContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
+
+	const { dispatch } = useIdeasContext();
 	// let navigate = useNavigate();
+
+	const handleSubmit = async (id) => {
+		// e.preventDefault();
+		log(id, 'id');
+
+		const updatedSongData = {
+			songID: id,
+			isComplete: true,
+		};
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/ideas/${id}`,
+			{
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+				body: JSON.stringify({ updatedSongData }),
+			}
+		);
+		const json = await response.json();
+		log(json, 'new song json');
+
+		if (response.ok) {
+			dispatch({
+				type: 'UPDATE_SONG',
+				payload: json,
+			});
+			log('here');
+		}
+	};
+	// clear();
+	// setIsEditFormOpen(false);
+	// notify();
+	// navigate('/');
+	// };
+
 	return (
 		<StyledSongCard
 			className={`song-card-wrapper ${width < breakpoint ? 'mobile' : ''}`}
@@ -109,9 +153,19 @@ const SongCard = ({ song, item }) => {
 				)} */}
 			</div>
 			<div className={`action-wrapper ${width < breakpoint ? 'hide' : ''}`}>
-				<div className='action-icon-wrapper'>
-					<ImCheckmark className='check-icon' />
-				</div>
+				{song.isComplete === false && (
+					<div
+						className='action-icon-wrapper'
+						onClick={() => {
+							// e.preventDefault();
+							// log(song._id, 'song id on click');
+							// setSongToView(song._id);
+							handleSubmit(song._id);
+						}}
+					>
+						<ImCheckmark className='check-icon' />
+					</div>
+				)}
 			</div>
 			{/* <div className={`artist-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				<h3 className='primary-text'>{song.arranger.name}</h3>

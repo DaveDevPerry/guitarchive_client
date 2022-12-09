@@ -91,9 +91,10 @@ function SongsList({ ideasFilterValue }) {
 				animate='show'
 				// exit='hidden'
 			>
-				{songs.map((song) => {
-					return <SongCard key={song._id} song={song} item={item} />;
-				})}
+				{songs &&
+					songs.map((song) => {
+						return <SongCard key={song._id} song={song} item={item} />;
+					})}
 			</motion.div>
 			{/* <div
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
