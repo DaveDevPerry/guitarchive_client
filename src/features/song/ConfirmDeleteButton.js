@@ -30,13 +30,13 @@ const StyledConfirmDeleteButton = styled.button`
 	color: ${({ theme }) => theme.primaryColor};
 	p.btn-text {
 		font-family: 'NewTegomin';
-		color: ${({ theme }) => theme.primaryColor};
+		color: ${({ theme }) => theme.primaryColor} !important;
 		text-transform: uppercase;
 		font-size: 1.6rem;
 		font-weight: bolder;
 		line-height: 1;
 		&.mobile {
-			color: ${({ theme }) => theme.primaryColor};
+			color: ${({ theme }) => theme.primaryColor} !important;
 		}
 	}
 `;

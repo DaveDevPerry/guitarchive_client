@@ -7,6 +7,7 @@ const AppContext = createContext();
 export const StateContext = ({ children }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [isIdeaFormOpen, setIsIdeaFormOpen] = useState(false);
 	const [isArtistFormOpen, setIsArtistFormOpen] = useState(false);
 	const [isArrangerFormOpen, setIsArrangerFormOpen] = useState(false);
 	const [songToView, setSongToView] = useState(null);
@@ -40,6 +41,8 @@ export const StateContext = ({ children }) => {
 				setIsEditFormOpen,
 				isDeleteFormOpen,
 				setIsDeleteFormOpen,
+				isIdeaFormOpen,
+				setIsIdeaFormOpen,
 			}}
 		>
 			{children}

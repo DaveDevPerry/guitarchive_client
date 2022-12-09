@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
+    -webkit-tap-highlight-color: transparent;
   }
   body {
     -webkit-font-smoothing: antialiased;

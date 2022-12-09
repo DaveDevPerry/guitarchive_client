@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
 import { useStateContext } from '../../lib/context';
-import EditSongForm from './EditSongForm';
+import SongForm from './SongForm';
 
-const EditSongModal = ({ currentId, setCurrentId, theme }) => {
+const SongModal = ({ currentId, setCurrentId, theme }) => {
 	const { dataLoaded } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -18,25 +18,46 @@ const EditSongModal = ({ currentId, setCurrentId, theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	// const formVariants = {
+	// 	hidden: {
+	// 		scale: 0,
+	// 		opacity: 0,
+	// 		y: 100,
+	// 	},
+	// 	visible: {
+	// 		scale: 1,
+	// 		opacity: 1,
+	// 		y: 0,
+	// 		transition: {
+	// 			duration: 1,
+	// 			mass: 1.5,
+	// 			stiffness: 200,
+	// 		},
+	// 	},
+	// };
+
 	return (
-		<StyledEditSongModal
+		<StyledSongModal
 			open
+			// variants={formVariants}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
+			// transition={{ delay: 3.5 }}
 			exit={{ opacity: 0 }}
 		>
 			<div
 				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				// variants={formVariants}
 			>
-				<h2>edit song</h2>
+				<h2>add song</h2>
 
-				<EditSongForm currentId={currentId} setCurrentId={setCurrentId} />
+				<SongForm />
 			</div>
-		</StyledEditSongModal>
+		</StyledSongModal>
 	);
 };
-const StyledEditSongModal = styled(motion.dialog)`
+const StyledSongModal = styled(motion.dialog)`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -51,8 +72,9 @@ const StyledEditSongModal = styled(motion.dialog)`
 		width: calc(100vw - 2rem);
 		display: flex;
 		flex-direction: column;
+		row-gap: 2rem;
 		justify-content: flex-start;
-		max-width: 100rem;
+		max-width: 80rem;
 		padding: 1rem 2rem 2rem 2rem;
 		overflow-y: hidden;
 		z-index: 1;
@@ -63,7 +85,7 @@ const StyledEditSongModal = styled(motion.dialog)`
 		border-radius: 1rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');
@@ -78,9 +100,10 @@ const StyledEditSongModal = styled(motion.dialog)`
 		}
 		&.mobile {
 			padding: 1rem;
+			/* padding: 1rem 1rem 2rem 1rem; */
 			border-radius: 0.4rem;
 		}
 	}
 `;
 
-export default EditSongModal;
+export default SongModal;

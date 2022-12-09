@@ -15,6 +15,7 @@ import Artist from './pages/Artist';
 import Arranger from './pages/Arranger';
 import Products from './pages/Products';
 import Stats from './pages/Stats';
+import Ideas from './pages/Ideas';
 
 const AnimatedRoutes = ({
 	user,
@@ -74,6 +75,16 @@ const AnimatedRoutes = ({
 					}
 				/>
 				<Route
+					path='/ideas'
+					element={
+						user ? (
+							<Ideas theme={theme} currentDate={currentDate} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
 					path='/stats'
 					element={
 						user ? (
@@ -102,6 +113,7 @@ const AnimatedRoutes = ({
 						)
 					}
 				/>
+
 				<Route
 					path='/menu'
 					element={

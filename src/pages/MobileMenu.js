@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
-import { AiFillHome } from 'react-icons/ai';
+// import { AiFillHome } from 'react-icons/ai';
+import { MdLocalLibrary } from 'react-icons/md';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
 import { useViewport } from '../hooks/useViewport';
 import { ImStatsDots } from 'react-icons/im';
-import { GiMusicalScore } from 'react-icons/gi';
+import { GiMusicalScore, GiLightBulb } from 'react-icons/gi';
 import { FaUserEdit } from 'react-icons/fa';
 
 const MobileMenu = ({ theme }) => {
@@ -21,6 +22,24 @@ const MobileMenu = ({ theme }) => {
 			navigate('/');
 		}
 	}, [navigate, dataLoaded]);
+
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			delay: 2,
+			transition: {
+				staggerChildren: 0.2,
+				// delayChildren: 0.5
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
 	return (
 		<StyledMobileMenu
 			initial={{ width: 0 }}
@@ -32,51 +51,79 @@ const MobileMenu = ({ theme }) => {
 				className={`menu-container ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			>
-				<nav>
-					<NavLink
-						to='/home'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<AiFillHome className='nav-icon' />
-						<p>home</p>
-					</NavLink>
+				<motion.nav variants={container} initial='hidden' animate='show'>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/home'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<MdLocalLibrary className='nav-icon' />
+							<p>library</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/ideas'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<GiLightBulb className='nav-icon' />
+							<p>ideas</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/artists'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<GiMusicalScore className='nav-icon' />
+							<p>artists</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/arrangers'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<FaUserEdit className='nav-icon' />
+							<p>arrangers</p>
+						</NavLink>
+					</motion.div>
 
-					<NavLink
-						to='/artists'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<GiMusicalScore className='nav-icon' />
-						<p>artists</p>
-					</NavLink>
-					<NavLink
-						to='/arrangers'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<FaUserEdit className='nav-icon' />
-						<p>arrangers</p>
-					</NavLink>
-					<NavLink
-						to='/stats'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<ImStatsDots className='nav-icon' />
-						<p>stats</p>
-					</NavLink>
-					<NavLink
-						to='/youtube'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<TfiYoutube className='nav-icon' />
-						<p>youtube</p>
-					</NavLink>
-					<NavLink
-						to='/settings'
-						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-					>
-						<RiSettings2Fill className='nav-icon' />
-						<p>settings</p>
-					</NavLink>
-				</nav>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/youtube'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<TfiYoutube className='nav-icon' />
+							<p>youtube</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/stats'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<ImStatsDots className='nav-icon' />
+							<p>stats</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/settings'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// item={item}
+						>
+							<RiSettings2Fill className='nav-icon' />
+							<p>settings</p>
+						</NavLink>
+					</motion.div>
+				</motion.nav>
 			</div>
 		</StyledMobileMenu>
 	);
@@ -130,24 +177,26 @@ const StyledMobileMenu = styled(motion.div)`
 		flex-direction: column;
 		justify-content: center;
 		row-gap: 2rem;
-		a {
-			display: flex;
-			justify-content: flex-start;
-			column-gap: 2rem;
-			align-items: center;
-			text-decoration: none;
-			.nav-icon {
-				font-size: 3rem;
-				color: ${({ theme }) => theme.secondaryColor};
-				position: relative;
-			}
-			p {
-				color: ${({ theme }) => theme.primaryColor};
-				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-					0px -1px 0px rgb(0 0 0 / 70%);
-				font-weight: bolder;
-				font-size: 3rem;
-				text-transform: uppercase;
+		.menu-item {
+			a {
+				display: flex;
+				justify-content: flex-start;
+				column-gap: 2rem;
+				align-items: center;
+				text-decoration: none;
+				.nav-icon {
+					font-size: 3rem;
+					color: ${({ theme }) => theme.secondaryColor};
+					position: relative;
+				}
+				p {
+					color: ${({ theme }) => theme.primaryColor};
+					text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+						0px -1px 0px rgb(0 0 0 / 70%);
+					font-weight: bolder;
+					font-size: 3rem;
+					text-transform: uppercase;
+				}
 			}
 		}
 		a.active {

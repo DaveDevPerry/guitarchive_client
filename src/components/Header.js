@@ -38,6 +38,14 @@ const Header = () => {
 								>
 									<p>home</p>
 								</NavLink>
+								<NavLink
+									to='/ideas'
+									className={({ isActive }) =>
+										isActive ? 'active' : 'inactive'
+									}
+								>
+									<p>ideas</p>
+								</NavLink>
 								{/* <NavLink
 									to='/songs'
 									className={({ isActive }) =>
@@ -78,14 +86,15 @@ const Header = () => {
 								>
 									<p>stats</p>
 								</NavLink>
-								<NavLink
+
+								{/* <NavLink
 									to='/settings'
 									className={({ isActive }) =>
 										isActive ? 'active' : 'inactive'
 									}
 								>
 									<p>settings</p>
-								</NavLink>
+								</NavLink> */}
 							</nav>
 						)}
 					</div>

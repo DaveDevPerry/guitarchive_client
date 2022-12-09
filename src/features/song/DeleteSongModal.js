@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -20,7 +21,12 @@ const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 	const breakpoint = 620;
 
 	return (
-		<StyledDeleteSongModal open>
+		<StyledDeleteSongModal
+			open
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
 			<div
 				className={`posts-box ${width < breakpoint ? 'mobile' : ''}`}
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
@@ -36,7 +42,7 @@ const DeleteSongModal = ({ handleDelete, handleCancel, theme }) => {
 		</StyledDeleteSongModal>
 	);
 };
-const StyledDeleteSongModal = styled.dialog`
+const StyledDeleteSongModal = styled(motion.dialog)`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -56,13 +62,14 @@ const StyledDeleteSongModal = styled.dialog`
 		flex-direction: column;
 		justify-content: flex-start;
 		background-repeat: no-repeat;
+		max-width: 60rem;
 		background-size: cover;
-		row-gap: 0.5rem;
+		row-gap: 1rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		flex: 1;
 		overflow-y: hidden;
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');

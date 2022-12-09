@@ -14,6 +14,7 @@ import { useStylesContext } from '../hooks/useStyleContext';
 // import YoutubeStats from '../components/YoutubeStats';
 // import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
+import { useIdeasContext } from '../hooks/useIdeaContext';
 
 const Loader = ({ youtubeData, theme }) => {
 	const { user } = useAuthContext();
@@ -23,6 +24,7 @@ const Loader = ({ youtubeData, theme }) => {
 	const { dispatch: arrangerDispatch } = useArrangersContext();
 	const { dispatch: statusDispatch } = useStatusContext();
 	const { dispatch: stylesDispatch } = useStylesContext();
+	const { dispatch: ideasDispatch } = useIdeasContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -56,6 +58,30 @@ const Loader = ({ youtubeData, theme }) => {
 				navigate('/home');
 			}, 1000);
 		}, 3000);
+	}, []);
+
+	useEffect(() => {
+		const fetchIdeas = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/ideas`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json ideas');
+			if (response.ok) {
+				ideasDispatch({
+					type: 'SET_SONGS',
+					payload: json,
+				});
+			}
+		};
+		if (user) {
+			fetchIdeas();
+		}
 	}, []);
 
 	useEffect(() => {

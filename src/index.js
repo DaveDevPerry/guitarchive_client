@@ -9,6 +9,7 @@ import { ArtistsContextProvider } from './context/ArtistContext';
 import { ArrangersContextProvider } from './context/ArrangerContext';
 import { StatusContextProvider } from './context/StatusContext';
 import { StylesContextProvider } from './context/StyleContext';
+import { IdeasContextProvider } from './context/IdeaContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,15 +17,17 @@ root.render(
 		<ViewportContextProvider>
 			<AuthContextProvider>
 				<SongsContextProvider>
-					<ArtistsContextProvider>
-						<ArrangersContextProvider>
-							<StatusContextProvider>
-								<StylesContextProvider>
-									<App />
-								</StylesContextProvider>
-							</StatusContextProvider>
-						</ArrangersContextProvider>
-					</ArtistsContextProvider>
+					<IdeasContextProvider>
+						<ArtistsContextProvider>
+							<ArrangersContextProvider>
+								<StatusContextProvider>
+									<StylesContextProvider>
+										<App />
+									</StylesContextProvider>
+								</StatusContextProvider>
+							</ArrangersContextProvider>
+						</ArtistsContextProvider>
+					</IdeasContextProvider>
 				</SongsContextProvider>
 			</AuthContextProvider>
 		</ViewportContextProvider>

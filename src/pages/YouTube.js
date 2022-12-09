@@ -7,6 +7,7 @@ import { MdOutlineOndemandVideo } from 'react-icons/md';
 import { HiVideoCamera } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
+import Counter from '../components/Counter';
 
 const YouTube = ({ youtubeData, theme }) => {
 	const { dataLoaded } = useStateContext();
@@ -110,7 +111,12 @@ const YouTube = ({ youtubeData, theme }) => {
 								</div>
 								<div className='stat-wrapper'>
 									<p className='stat-figure'>
-										{youtubeData && youtubeData[0].statistics.viewCount}
+										<Counter
+											from={0}
+											to={Number(
+												youtubeData && youtubeData[0].statistics.viewCount
+											)}
+										/>
 									</p>
 									<p className='stat-name'>VIEWS</p>
 								</div>
@@ -121,7 +127,12 @@ const YouTube = ({ youtubeData, theme }) => {
 								</div>
 								<div className='stat-wrapper'>
 									<p className='stat-figure'>
-										{youtubeData && youtubeData[0].statistics.subscriberCount}
+										<Counter
+											from={0}
+											to={Number(
+												youtubeData && youtubeData[0].statistics.subscriberCount
+											)}
+										/>
 									</p>
 									<p className='stat-name'>SUBSCRIBERS</p>
 								</div>
@@ -132,7 +143,12 @@ const YouTube = ({ youtubeData, theme }) => {
 								</div>
 								<div className='stat-wrapper'>
 									<p className='stat-figure'>
-										{youtubeData && youtubeData[0].statistics.videoCount}
+										<Counter
+											from={0}
+											to={Number(
+												youtubeData && youtubeData[0].statistics.videoCount
+											)}
+										/>
 									</p>
 									<p className='stat-name'>VIDEOS</p>
 								</div>

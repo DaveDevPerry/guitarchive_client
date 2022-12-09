@@ -5,6 +5,7 @@ import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
 import { TfiYoutube } from 'react-icons/tfi';
+import Counter from './Counter';
 // import Tooltip from './Tooltip';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import StatusStat from './StatusStat';
@@ -39,7 +40,10 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
 						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
-							{youtubeData && youtubeData[0].statistics.viewCount}
+							<Counter
+								from={0}
+								to={Number(youtubeData && youtubeData[0].statistics.viewCount)}
+							/>
 						</p>
 						<div
 							className={`stat-icon-wrapper ${
@@ -56,7 +60,12 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
 						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
-							{youtubeData && youtubeData[0].statistics.subscriberCount}{' '}
+							<Counter
+								from={0}
+								to={Number(
+									youtubeData && youtubeData[0].statistics.subscriberCount
+								)}
+							/>
 						</p>
 						<div
 							className={`stat-icon-wrapper ${
@@ -73,7 +82,10 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
 						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
-							{youtubeData && youtubeData[0].statistics.videoCount}
+							<Counter
+								from={0}
+								to={Number(youtubeData && youtubeData[0].statistics.videoCount)}
+							/>
 						</p>
 						<div
 							className={`stat-icon-wrapper ${
@@ -126,16 +138,17 @@ const StyledYoutubeStats = styled.div`
 	.youtube-stats-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-end;
 		.youtube-channel-name {
 			display: flex;
 			justify-content: flex-start;
-			align-items: center;
+			align-items: flex-end;
 			column-gap: 1rem;
 			flex: 1;
 			.youtube-channel-icon {
-				color: ${({ theme }) => theme.secondaryColor};
-				font-size: 2.5rem;
+				color: ${({ theme }) => theme.primaryColor};
+				font-size: 2.2rem;
+				margin-bottom: 0.5rem;
 			}
 			p {
 				font-size: 2.5rem;
