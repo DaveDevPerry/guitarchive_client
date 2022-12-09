@@ -15,6 +15,7 @@ import { MdSpeakerNotes } from 'react-icons/md';
 // import { BsFileEarmarkPdf } from 'react-icons/bs';
 import { ImCheckmark } from 'react-icons/im';
 import { GiGuitarHead } from 'react-icons/gi';
+import { HiDotsVertical } from 'react-icons/hi';
 // import { CgCamera } from 'react-icons/cg';
 // import { BiArchiveOut, BiArchive } from 'react-icons/bi';
 // import { GoAlert } from 'react-icons/go';
@@ -25,15 +26,17 @@ import { GiGuitarHead } from 'react-icons/gi';
 // import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../../lib/context';
 import { useViewport } from '../../hooks/useViewport';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Tooltip from '../../components/Tooltip';
 import { log } from '../../utils/helper';
 import { useIdeasContext } from '../../hooks/useIdeaContext';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { toast } from 'react-hot-toast';
+import { useStateContext } from '../../lib/context';
 // import { log } from '../../utils/helper';
 
-const SongCard = ({ song, item }) => {
-	// const { setSongToView } = useStateContext();
+const SongCard = ({ song, item, handleOptions, index }) => {
+	const { showOptions, setShowOptions, setShowNotes } = useStateContext();
 	const { user } = useAuthContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -47,7 +50,8 @@ const SongCard = ({ song, item }) => {
 
 		const updatedSongData = {
 			songID: id,
-			isComplete: true,
+			isComplete: !song.isComplete,
+			// isComplete: true,
 		};
 
 		const response = await fetch(
@@ -71,6 +75,48 @@ const SongCard = ({ song, item }) => {
 			});
 			log('here');
 		}
+	};
+	const handleDelete = async (id) => {
+		// e.preventDefault();
+		log(id, 'id');
+
+		// const updatedSongData = {
+		// 	songID: id,
+		// 	isComplete: true,
+		// };
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/ideas/${id}`,
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+				// body: JSON.stringify({ updatedSongData }),
+			}
+		);
+		const json = await response.json();
+		log(json, 'new song json');
+
+		if (response.ok) {
+			dispatch({
+				type: 'DELETE_SONG',
+				payload: id,
+			});
+			log('here');
+		}
+	};
+
+	// create a toast
+	const notify = (songTitle) => {
+		toast.success(`${songTitle} deleted from ideas.`, {
+			duration: 2000,
+			style: {
+				border: '2px solid #1da000',
+				textAlign: 'center',
+			},
+		});
 	};
 	// clear();
 	// setIsEditFormOpen(false);
@@ -97,20 +143,21 @@ const SongCard = ({ song, item }) => {
 			</div>
 			<div
 				className={`notes-wrapper ${width < breakpoint ? 'mobile' : ''}`}
-				// onClick={(e) => {
-				// 	e.preventDefault();
-				// 	log(song.notes, 'song id on click');
-				// 	setSongToView(song._id);
-				// 	navigate('/song');
-				// }}
+				onClick={(e) => {
+					e.preventDefault();
+					log(song.notes, 'song id on click');
+					setShowNotes(true);
+					// navigate('/song');
+				}}
 			>
 				{/* <h3 className='primary-text'>{song.title}</h3>
 				<h4 className='secondary-text'>{song.artist}</h4> */}
-				{song.notes.length >= 1 && (
+				{song.notes.length >= 1 && <MdSpeakerNotes className='notes-icon' />}
+				{/* {song.notes.length >= 1 && (
 					<Tooltip content='notes' direction='left'>
 						<MdSpeakerNotes className='notes-icon' />
 					</Tooltip>
-				)}
+				)} */}
 			</div>
 			<div className={`file-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				{/* {song.fileType === 'pdf' ? (
@@ -153,7 +200,19 @@ const SongCard = ({ song, item }) => {
 				)} */}
 			</div>
 			<div className={`action-wrapper ${width < breakpoint ? 'hide' : ''}`}>
-				{song.isComplete === false && (
+				{song.isComplete === true ? (
+					<div
+						className='action-icon-wrapper off'
+						onClick={() => {
+							// e.preventDefault();
+							// log(song._id, 'song id on click');
+							// setSongToView(song._id);
+							handleSubmit(song._id);
+						}}
+					>
+						<ImCheckmark className='check-icon' />
+					</div>
+				) : (
 					<div
 						className='action-icon-wrapper'
 						onClick={() => {
@@ -167,6 +226,63 @@ const SongCard = ({ song, item }) => {
 					</div>
 				)}
 			</div>
+
+			<div className='options-wrapper'>
+				<div
+					className='options-icon-wrapper'
+					onClick={(e) => {
+						// e.preventDefault();
+						// log(song._id, 'song id on click');
+						// setSongToView(song._id);
+						handleDelete(song._id);
+						handleOptions(e, song._id, index);
+					}}
+				>
+					<HiDotsVertical className='options-icon' />
+				</div>
+				<AnimatePresence mode='wait'>
+					{showOptions === index && (
+						<motion.div
+							className='options-modal'
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+						>
+							<p
+								onClick={() => {
+									log(song.title, 'for notify');
+									// handleDelete(song._id);
+									// removeSongFromPlaylist(song._id, playlist._id);
+									notify(song.title);
+									setTimeout(() => {
+										setShowOptions(false);
+									}, 2000);
+								}}
+							>
+								delete
+							</p>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</div>
+
+			{/* <div className='playlist_btns_group'>
+								<button className='fav_song playlist_btn'>
+									<FiHeart className='far fa-heart fa-lg' />
+								</button>
+								<button
+									className='options_song playlist_btn'
+									onClick={(e) => {
+										handleOptions(e, song.title, i);
+									}}
+								>
+									<FaEllipsisV className='fas fa-ellipsis-v fa-lg' />
+								</button>
+								
+							</div> */}
+			{/* <div className="options-icon-wrapper">
+					<HiDotsVertical className='options-icon' />
+				</div> */}
 			{/* <div className={`artist-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				<h3 className='primary-text'>{song.arranger.name}</h3>
 				<div className='rating-wrapper'>
@@ -339,6 +455,7 @@ const StyledSongCard = styled(motion.div)`
 				height: 3rem;
 				background-color: ${({ theme }) => theme.green};
 				border-radius: 0.4rem;
+				transition: all 200ms linear;
 				.check-icon {
 					font-size: 1.4rem;
 					color: white;
@@ -346,6 +463,45 @@ const StyledSongCard = styled(motion.div)`
 				}
 				&.hide {
 					display: none;
+				}
+				&.off {
+					background-color: ${({ theme }) => theme.filterBorder};
+				}
+			}
+		}
+		.options-wrapper {
+			position: relative;
+			display: grid;
+			place-content: center;
+			.options-icon-wrapper {
+				display: grid;
+				place-content: center;
+				width: 3rem;
+				/* height: 3rem; */
+				/* background-color: ${({ theme }) => theme.green}; */
+				/* border-radius: 0.4rem; */
+				transition: all 200ms linear;
+				.options-icon {
+					font-size: 3rem;
+				}
+			}
+			.options-modal {
+				position: absolute;
+				right: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+				height: calc(100% - 1rem);
+				background-color: ${({ theme }) => theme.secondaryColor};
+				color: white;
+				width: max-content;
+				border-radius: 0.5rem;
+				padding: 0.5rem;
+				display: grid;
+				place-content: center;
+				p {
+					text-transform: uppercase;
+					font-weight: bold;
+					padding: 0 1rem;
 				}
 			}
 		}

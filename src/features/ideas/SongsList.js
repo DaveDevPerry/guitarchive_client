@@ -1,23 +1,42 @@
 // import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { useIdeasContext } from '../../hooks/useIdeaContext';
+// import { useIdeasContext } from '../../hooks/useIdeaContext';
 // import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
+import { useStateContext } from '../../lib/context';
+import { log } from '../../utils/helper';
 // import { log } from '../../utils/helper';
 import SongCard from './SongCard';
 // import SongsPaginationNav from './SongsPaginationNav';
 
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 
-function SongsList({ ideasFilterValue }) {
+function SongsList({
+	ideasFilterValue,
+	filteredIdeas,
+	setFilteredIdeas,
+	ideaStatusHandler,
+}) {
 	// const [page, setPage] = useState(1);
 	// const [pageCount, setPageCount] = useState(0);
 	// const [songCount, setSongCount] = useState(0);
-	const { songs } = useIdeasContext();
+	// const { songs } = useIdeasContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
+	const { showOptions, setShowOptions } = useStateContext();
+
+	const handleOptions = (e, songTitle, index) => {
+		e.preventDefault();
+		log('handle options');
+		log(e.target, 'handle options song target');
+		log(songTitle, 'handle options song title');
+		log(index, 'handle options song i');
+		// setShowOptions(!showOptions);
+		showOptions === false ? setShowOptions(songTitle) : setShowOptions(false);
+		// showOptions === false ? setShowOptions(index) : setShowOptions(false);
+	};
 
 	// const { data, error } = useSWR(
 	// 	`${process.env.REACT_APP_BACKEND_URL}/api/products/${ideasFilterValue}?page=${page}`,
@@ -91,10 +110,22 @@ function SongsList({ ideasFilterValue }) {
 				animate='show'
 				// exit='hidden'
 			>
-				{songs &&
+				{filteredIdeas &&
+					filteredIdeas.map((song, index) => {
+						return (
+							<SongCard
+								key={song._id}
+								song={song}
+								item={item}
+								handleOptions={handleOptions}
+								index={index}
+							/>
+						);
+					})}
+				{/* {songs &&
 					songs.map((song) => {
 						return <SongCard key={song._id} song={song} item={item} />;
-					})}
+					})} */}
 			</motion.div>
 			{/* <div
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}

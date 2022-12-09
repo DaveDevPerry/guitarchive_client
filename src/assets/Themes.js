@@ -46,6 +46,7 @@ export const lightTheme = {
 
 	title: '3rem',
 	bgWoodDark: `url(${Light})`,
+	congratulations: '#ea6909',
 	//engrave
 	// engraveText:
 	// 	'0px 1px 0px rgba(226, 186, 186, 0.5)' /* 50% white from bottom */,

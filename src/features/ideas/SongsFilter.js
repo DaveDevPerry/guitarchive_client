@@ -1,19 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SongsFilter = ({ ideasSongFilterHandler }) => {
+const SongsFilter = ({ ideasSongFilterHandler, ideaStatusHandler }) => {
 	return (
 		<StyledSongsFilter className='filter-song-dropdown'>
 			<select
 				name='songs'
 				className='filter-song-select'
-				onChange={ideasSongFilterHandler}
+				onChange={ideaStatusHandler}
+				// onChange={ideasSongFilterHandler}
 			>
 				<option value='ideas' className='form-option'>
-					Ideas
+					song Ideas
+				</option>
+				<option value='fingerstyle' className='form-option'>
+					fingerstyle
+				</option>
+				<option value='electric' className='form-option'>
+					electric
+				</option>
+				<option value='classical' className='form-option'>
+					classical
+				</option>
+				<option value='notes' className='form-option'>
+					with notes
+				</option>
+				<option value='no-notes' className='form-option'>
+					without notes
 				</option>
 				<option value='complete' className='form-option'>
-					Arranged
+					arranged
 				</option>
 				{/* <option value='tabs' className='form-option'>
 					Tabs

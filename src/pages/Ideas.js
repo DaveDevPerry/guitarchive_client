@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
@@ -10,14 +10,19 @@ import SongModal from '../features/ideas/SongModal';
 // import SongModal from '../features/home/SongModal';
 // import AlertDeadlineSong from '../features/ideas/AlertDeadlineSong';
 
-const Ideas = ({ theme }) => {
+const Ideas = ({
+	theme,
+	filteredIdeas,
+	setFilteredIdeas,
+	ideaStatusHandler,
+}) => {
 	const { dataLoaded, isIdeaFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 
 	// const {songs} = useIdeasContext();
 
-	const [ideasFilterValue, setIdeasFilterValue] = useState('ideas');
+	// const [ideasFilterValue, setIdeasFilterValue] = useState('ideas');
 	let navigate = useNavigate();
 	useEffect(() => {
 		if (dataLoaded === false) {
@@ -25,33 +30,33 @@ const Ideas = ({ theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
-	// function sand events
-	const ideasSongFilterHandler = (e) => {
-		console.log(e, 'e');
-		switch (e.target.value) {
-			// case 'tabs':
-			// 	setIdeasFilterValue('tabs');
-			// 	break;
-			// case 'scores':
-			// 	setIdeasFilterValue('scores');
-			// 	break;
-			// case 'favourites':
-			// 	setIdeasFilterValue('favourites');
-			// 	break;
-			// case 'deadlines':
-			// 	setIdeasFilterValue('deadlines');
-			// 	break;
-			// case 'practicing':
-			// 	setIdeasFilterValue('practicing');
-			// 	break;
-			case 'complete':
-				setIdeasFilterValue('arranged');
-				break;
-			default:
-				setIdeasFilterValue('ideas');
-				break;
-		}
-	};
+	// // function sand events
+	// const ideasSongFilterHandler = (e) => {
+	// 	console.log(e, 'e');
+	// 	switch (e.target.value) {
+	// 		// case 'tabs':
+	// 		// 	setIdeasFilterValue('tabs');
+	// 		// 	break;
+	// 		// case 'scores':
+	// 		// 	setIdeasFilterValue('scores');
+	// 		// 	break;
+	// 		// case 'favourites':
+	// 		// 	setIdeasFilterValue('favourites');
+	// 		// 	break;
+	// 		// case 'deadlines':
+	// 		// 	setIdeasFilterValue('deadlines');
+	// 		// 	break;
+	// 		// case 'practicing':
+	// 		// 	setIdeasFilterValue('practicing');
+	// 		// 	break;
+	// 		case 'complete':
+	// 			setIdeasFilterValue('arranged');
+	// 			break;
+	// 		default:
+	// 			setIdeasFilterValue('ideas');
+	// 			break;
+	// 	}
+	// };
 
 	return (
 		<StyledIdeas
@@ -64,9 +69,12 @@ const Ideas = ({ theme }) => {
 				{isIdeaFormOpen === true && <SongModal />}
 			</AnimatePresence>
 			<SongsListContainer
-				ideasFilterValue={ideasFilterValue}
-				ideasSongFilterHandler={ideasSongFilterHandler}
-				setIdeasFilterValue={setIdeasFilterValue}
+				// ideasFilterValue={ideasFilterValue}
+				// ideasSongFilterHandler={ideasSongFilterHandler}
+				// setIdeasFilterValue={setIdeasFilterValue}
+				filteredIdeas={filteredIdeas}
+				setFilteredIdeas={setFilteredIdeas}
+				ideaStatusHandler={ideaStatusHandler}
 				theme={theme}
 			/>
 		</StyledIdeas>

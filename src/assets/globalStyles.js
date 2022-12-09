@@ -46,6 +46,7 @@ export const GlobalStyles = createGlobalStyle`
   background-repeat: repeat;
 	background-size: contain;
 background-image: url('/images/light wood background.webp');
+position: relative;
   ${
 		'' /* background-repeat: no-repeat;
 	background-size: cover;
@@ -75,6 +76,17 @@ background-image: url('/images/texture.png'); */
 		${'' /* background-image: url('/images/white wood.webp'); */}
     background-image: url('/images/white wood.webp');
 	}
+  }
+  .test-modal{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    height: 20rem;
+    width: 20rem;
+    padding: 2rem;
+    background-color: blue;
+    transform: translate(-50%,-50%);
+    z-index: 2000000;
   }
   }
   .widget-container{
@@ -545,4 +557,37 @@ button[disabled]{
 } */
 				}
 
+
+        .backdrop{
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: #000000e1;
+          display: flex;
+          align-items:center;
+          justify-content: center;
+          z-index: 200000;
+        }
+        ${
+					'' /* .modal{
+          width: clamp(50%,700px,92%);
+          height: min(50%, 300px);
+
+          margin: auto;
+          padding: 1rem;
+          border-radius: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          z-index: 20000;
+          column-gap: 2rem;
+          &.orange-gradient{
+            background: rgb(251,245,63);
+background: radial-gradient(circle, rgba(251,245,63,1) 0%, rgba(251,211,63,1) 8%, rgba(251,162,63,1) 49%, rgba(251,122,63,1) 100%);
+          }
+        } */
+				}
 `;

@@ -42,6 +42,9 @@ const AnimatedRoutes = ({
 	arrangerSongStatusHandler,
 	arrangerSongDetails,
 	setArrangerSongDetails,
+	filteredIdeas,
+	setFilteredIdeas,
+	ideaStatusHandler,
 }) => {
 	const location = useLocation();
 
@@ -78,7 +81,13 @@ const AnimatedRoutes = ({
 					path='/ideas'
 					element={
 						user ? (
-							<Ideas theme={theme} currentDate={currentDate} />
+							<Ideas
+								theme={theme}
+								currentDate={currentDate}
+								filteredIdeas={filteredIdeas}
+								setFilteredIdeas={setFilteredIdeas}
+								ideaStatusHandler={ideaStatusHandler}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)

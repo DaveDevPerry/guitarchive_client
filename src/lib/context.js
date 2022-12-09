@@ -15,8 +15,10 @@ export const StateContext = ({ children }) => {
 	const [arrangerToView, setArrangerToView] = useState(null);
 	const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 	const [isDeleteFormOpen, setIsDeleteFormOpen] = useState(false);
-
+	const [showOptions, setShowOptions] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [showNotes, setShowNotes] = useState(false);
+	const [youtubeGoal, setYoutubeGoal] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -43,6 +45,12 @@ export const StateContext = ({ children }) => {
 				setIsDeleteFormOpen,
 				isIdeaFormOpen,
 				setIsIdeaFormOpen,
+				showOptions,
+				setShowOptions,
+				showNotes,
+				setShowNotes,
+				youtubeGoal,
+				setYoutubeGoal,
 			}}
 		>
 			{children}

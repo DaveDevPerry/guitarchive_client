@@ -43,6 +43,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							<Counter
 								from={0}
 								to={Number(youtubeData && youtubeData[0].statistics.viewCount)}
+								time={3}
 							/>
 						</p>
 						<div
@@ -65,6 +66,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 								to={Number(
 									youtubeData && youtubeData[0].statistics.subscriberCount
 								)}
+								time={3}
 							/>
 						</p>
 						<div
@@ -85,6 +87,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							<Counter
 								from={0}
 								to={Number(youtubeData && youtubeData[0].statistics.videoCount)}
+								time={3}
 							/>
 						</p>
 						<div

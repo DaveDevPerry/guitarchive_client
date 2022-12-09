@@ -7,14 +7,21 @@ import { useViewport } from '../hooks/useViewport';
 import SongsListContainer from '../features/home/SongsListContainer';
 import SongModal from '../features/home/SongModal';
 import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
+import Modal from '../components/Modal';
 
-const Home = ({ theme }) => {
-	const { dataLoaded, isFormOpen } = useStateContext();
+const Home = ({ theme, youtubeData }) => {
+	const { dataLoaded, isFormOpen, youtubeGoal, setYoutubeGoal } =
+		useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 
 	const [filterValue, setFilterValue] = useState('songs');
 	const [currentId, setCurrentId] = useState(null);
+
+	const [modalOpen, setModalOpen] = useState(false);
+
+	const close = () => setModalOpen(false);
+	const open = () => setModalOpen(true);
 
 	// function sand events
 	const homeSongFilterHandler = (e) => {
@@ -129,6 +136,16 @@ const Home = ({ theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	useEffect(() => {
+		if (youtubeGoal === true) return;
+		if (youtubeData && youtubeData[0].statistics.viewCount >= 99000) {
+			setTimeout(() => {
+				modalOpen ? close() : open();
+			}, 1000);
+			setYoutubeGoal(true);
+		}
+	}, []);
+
 	return (
 		<StyledHome
 			initial={{ width: 0 }}
@@ -139,11 +156,27 @@ const Home = ({ theme }) => {
 			// animate={{ opacity: 1 }}
 			// exit={{ opacity: 0 }}
 		>
+			{/* <AnimatePresence mode='wait' initial={false} onExitComplete={() => null}> */}
 			<AnimatePresence mode='wait'>
+				{modalOpen && (
+					<Modal
+						modalOpen={modalOpen}
+						handleClose={close}
+						youtubeData={youtubeData}
+					/>
+				)}
 				{isFormOpen === true && (
 					<SongModal currentId={currentId} setCurrentId={setCurrentId} />
 				)}
 			</AnimatePresence>
+			{/* <motion.button
+				whileHover={{ scale: 1.1 }}
+				whileTap={{ scale: 0.9 }}
+				className='save-button'
+				onClick={() => (modalOpen ? close() : open())}
+			>
+				launch modal
+			</motion.button> */}
 			<AlertDeadlineSong theme={theme} />
 			<SongsListContainer
 				filterValue={filterValue}

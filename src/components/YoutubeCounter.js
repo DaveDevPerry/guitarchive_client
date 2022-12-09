@@ -1,7 +1,7 @@
 import { animate } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
 
-function Counter({ from, to, time }) {
+function YoutubeCounter({ from, to, time }) {
 	const ref = useRef();
 
 	useEffect(() => {
@@ -17,4 +17,4 @@ function Counter({ from, to, time }) {
 	return <span ref={ref} />;
 }
 
-export default Counter;
+export default YoutubeCounter;

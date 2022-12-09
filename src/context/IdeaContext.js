@@ -4,28 +4,28 @@ import { log } from '../utils/helper';
 export const IdeasContext = createContext();
 
 // const getArtistStats = async (arr) => {
-// 	log(arr, 'artist songs in get stats func');
+// 	log(arr, 'artist ideas in get stats func');
 // 	const stats = {
 // 		myArrangements: [
-// 			...arr.filter((song) => song.arranger.name === 'dave perry'),
+// 			...arr.filter((idea) => idea.arranger.name === 'dave perry'),
 // 		].length,
-// 		myFavourites: [...arr.filter((song) => song.isFavourite === true)].length,
-// 		tabCount: [...arr.filter((song) => song.isTab === true)].length,
-// 		scoreCount: [...arr.filter((song) => song.isTab === false)].length,
+// 		myFavourites: [...arr.filter((idea) => idea.isFavourite === true)].length,
+// 		tabCount: [...arr.filter((idea) => idea.isTab === true)].length,
+// 		scoreCount: [...arr.filter((idea) => idea.isTab === false)].length,
 // 		deadlineCount: [
 // 			...arr.filter(
-// 				(song) => song.deadlineDate !== null && song.status.name !== 'Recorded'
+// 				(idea) => idea.deadlineDate !== null && idea.status.name !== 'Recorded'
 // 			),
 // 		].length,
 // 		practicingCount: [
-// 			...arr.filter((song) => song.status.name === 'Practicing'),
+// 			...arr.filter((idea) => idea.status.name === 'Practicing'),
 // 		].length,
-// 		readyCount: [...arr.filter((song) => song.status.name === 'Ready')].length,
-// 		recordedCount: [...arr.filter((song) => song.status.name === 'Recorded')]
+// 		readyCount: [...arr.filter((idea) => idea.status.name === 'Ready')].length,
+// 		recordedCount: [...arr.filter((idea) => idea.status.name === 'Recorded')]
 // 			.length,
-// 		backlogCount: [...arr.filter((song) => song.status.name === 'Backlog')]
+// 		backlogCount: [...arr.filter((idea) => idea.status.name === 'Backlog')]
 // 			.length,
-// 		archivedCount: [...arr.filter((song) => song.status.name === 'Archived')]
+// 		archivedCount: [...arr.filter((idea) => idea.status.name === 'Archived')]
 // 			.length,
 // 	};
 
@@ -62,8 +62,8 @@ export const ideaSongsReducer = (state, action) => {
 			// getMusicianStats(action.payload);
 			return {
 				...state,
-				// songs: action.payload,
-				songs: action.payload,
+				// ideas: action.payload,
+				ideas: action.payload,
 				// artists: Object.entries(
 				// 	[...action.payload]
 				// 		.map(({ artist }) => artist.name)
@@ -106,16 +106,16 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'terrorvision',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) =>
-				// 					song.arranger.name === 'dave perry' &&
-				// 					song.artist.name === 'terrorvision'
+				// 				(idea) =>
+				// 					idea.arranger.name === 'dave perry' &&
+				// 					idea.artist.name === 'terrorvision'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) =>
-				// 					song.arranger.name === 'dave perry' &&
-				// 					song.artist.name === 'terrorvision'
+				// 				(idea) =>
+				// 					idea.arranger.name === 'dave perry' &&
+				// 					idea.artist.name === 'terrorvision'
 				// 			),
 				// 		],
 				// 	},
@@ -123,16 +123,16 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'other',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) =>
-				// 					song.arranger.name === 'dave perry' &&
-				// 					song.artist.name !== 'terrorvision'
+				// 				(idea) =>
+				// 					idea.arranger.name === 'dave perry' &&
+				// 					idea.artist.name !== 'terrorvision'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) =>
-				// 					song.arranger.name === 'dave perry' &&
-				// 					song.artist.name !== 'terrorvision'
+				// 				(idea) =>
+				// 					idea.arranger.name === 'dave perry' &&
+				// 					idea.artist.name !== 'terrorvision'
 				// 			),
 				// 		],
 				// 	},
@@ -142,12 +142,12 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'fingerstyle',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.style.name === 'fingerstyle'
+				// 				(idea) => idea.style.name === 'fingerstyle'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.style.name === 'fingerstyle'
+				// 				(idea) => idea.style.name === 'fingerstyle'
 				// 			),
 				// 		],
 				// 	},
@@ -155,12 +155,12 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'classical',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.style.name === 'classical'
+				// 				(idea) => idea.style.name === 'classical'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.style.name === 'classical'
+				// 				(idea) => idea.style.name === 'classical'
 				// 			),
 				// 		],
 				// 	},
@@ -168,19 +168,19 @@ export const ideaSongsReducer = (state, action) => {
 				// sheetMusicTypeStats: [
 				// 	{
 				// 		statName: 'tablature',
-				// 		statCount: [...action.payload.filter((song) => song.isTab === true)]
+				// 		statCount: [...action.payload.filter((idea) => idea.isTab === true)]
 				// 			.length,
 				// 		statSongs: [
-				// 			...action.payload.filter((song) => song.isTab === true),
+				// 			...action.payload.filter((idea) => idea.isTab === true),
 				// 		],
 				// 	},
 				// 	{
 				// 		statName: 'music',
 				// 		statCount: [
-				// 			...action.payload.filter((song) => song.isTab === false),
+				// 			...action.payload.filter((idea) => idea.isTab === false),
 				// 		].length,
 				// 		statSongs: [
-				// 			...action.payload.filter((song) => song.isTab === false),
+				// 			...action.payload.filter((idea) => idea.isTab === false),
 				// 		],
 				// 	},
 				// ],
@@ -203,7 +203,7 @@ export const ideaSongsReducer = (state, action) => {
 				// 			count: value,
 				// 		})).length,
 				// 		statSongs: [
-				// 			// ...action.payload.filter((song) => song.isTab === true),
+				// 			// ...action.payload.filter((idea) => idea.isTab === true),
 				// 		],
 				// 	},
 				// 	{
@@ -224,13 +224,13 @@ export const ideaSongsReducer = (state, action) => {
 				// 			count: value,
 				// 		})).length,
 				// 		statSongs: [
-				// 			// ...action.payload.filter((song) => song.isTab === false),
+				// 			// ...action.payload.filter((idea) => idea.isTab === false),
 				// 		],
 				// 	},
 				// ],
-				// songStats: [
+				// ideaStats: [
 				// 	{
-				// 		statName: 'all songs',
+				// 		statName: 'all ideas',
 				// 		statCount: action.payload.length,
 				// 		statSongs: action.payload.sort(function (a, b) {
 				// 			return (a.deadlineDate === null) - (b.deadlineDate === null);
@@ -240,34 +240,34 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'Recorded',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Recorded'
+				// 				(idea) => idea.status.name === 'Recorded'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Recorded'
+				// 				(idea) => idea.status.name === 'Recorded'
 				// 			),
 				// 		],
 				// 	},
 				// 	{
 				// 		statName: 'Ready',
 				// 		statCount: [
-				// 			...action.payload.filter((song) => song.status.name === 'Ready'),
+				// 			...action.payload.filter((idea) => idea.status.name === 'Ready'),
 				// 		].length,
 				// 		statSongs: [
-				// 			...action.payload.filter((song) => song.status.name === 'Ready'),
+				// 			...action.payload.filter((idea) => idea.status.name === 'Ready'),
 				// 		],
 				// 	},
 				// 	{
 				// 		statName: 'Practicing',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Practicing'
+				// 				(idea) => idea.status.name === 'Practicing'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Practicing'
+				// 				(idea) => idea.status.name === 'Practicing'
 				// 			),
 				// 		],
 				// 	},
@@ -276,12 +276,12 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'Backlog',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Backlog'
+				// 				(idea) => idea.status.name === 'Backlog'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Backlog'
+				// 				(idea) => idea.status.name === 'Backlog'
 				// 			),
 				// 		],
 				// 	},
@@ -289,104 +289,138 @@ export const ideaSongsReducer = (state, action) => {
 				// 		statName: 'Archived',
 				// 		statCount: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Archived'
+				// 				(idea) => idea.status.name === 'Archived'
 				// 			),
 				// 		].length,
 				// 		statSongs: [
 				// 			...action.payload.filter(
-				// 				(song) => song.status.name === 'Archived'
+				// 				(idea) => idea.status.name === 'Archived'
 				// 			),
 				// 		],
 				// 	},
 				// ],
 				// readySongs: [
-				// 	...action.payload.filter((song) => song.status.name === 'Ready'),
+				// 	...action.payload.filter((idea) => idea.status.name === 'Ready'),
 				// ],
 				// practicingSongs: [
-				// 	...action.payload.filter((song) => song.status.name === 'Practicing'),
+				// 	...action.payload.filter((idea) => idea.status.name === 'Practicing'),
 				// ],
 				// recordedSongs: [
-				// 	...action.payload.filter((song) => song.status.name === 'Recorded'),
+				// 	...action.payload.filter((idea) => idea.status.name === 'Recorded'),
 				// ],
 				// backlogSongs: [
-				// 	...action.payload.filter((song) => song.status.name === 'Backlog'),
+				// 	...action.payload.filter((idea) => idea.status.name === 'Backlog'),
 				// ],
 				// archivedSongs: [
-				// 	...action.payload.filter((song) => song.status.name === 'Archived'),
+				// 	...action.payload.filter((idea) => idea.status.name === 'Archived'),
 				// ],
 			};
 		case 'SET_SONG':
 			return {
 				...state,
-				song: action.payload,
+				idea: action.payload,
 			};
-		// return { song: action.payload[0] };
+		// return { idea: action.payload[0] };
 		case 'CREATE_SONG':
 			return {
 				...state,
-				// songs: ...state.songs, action.payload,
-				songs: [...state.songs, action.payload],
-				// songs: [action.payload, ...state.songs],
+				// ideas: ...state.ideas, action.payload,
+				ideas: [...state.ideas, action.payload],
+				// ideas: [action.payload, ...state.ideas],
 			};
 		case 'UPDATE_SONG':
-			log(action.payload, 'payload - update songs');
+			log(action.payload, 'payload - update ideas');
 			log(state, 'state');
-			// return {
-			// 	...state,
-			// 	song: action.payload,
-			// };
+
 			return {
 				...state,
-				songs: state.songs.map((song) =>
-					song._id === action.payload._id ? action.payload : song
+				ideas: state.ideas.map((idea) =>
+					idea._id === action.payload._id
+						? { ...idea, isComplete: !idea.isComplete }
+						: idea
 				),
+				// filteredDays: state.filteredDays.map((item) => {
+				// 	if (item._id === action.payload._id) {
+				// 		return {
+				// 			...item,
+				// 			isComplete: !item.isComplete,
+				// 		};
+				// 	}
+				// 	return item;
+				// }),
 			};
+		// case 'UPDATE_SONG':
+		// 	log(action.payload, 'payload - update ideas');
+		// 	log(state, 'state');
+
+		// 	return {
+		// 		...state,
+		// 		ideas: state.ideas.map((idea) =>
+		// 			idea._id === action.payload._id ? action.payload : idea
+		// 		),
+		// 	};
 		case 'DELETE_SONG':
 			return {
 				...state,
-				songs: state.songs.filter((song) => song._id !== action.payload),
+				ideas: state.ideas.filter((idea) => idea._id !== action.payload),
 			};
+
+		// case 'DELETE_PLAYLIST':
+		// 	log(action.payload, 'delete playlist context');
+		// 	log(state, 'state, delete playlist');
+		// 	log(
+		// 		state.playlists.filter(
+		// 			(playlist) => playlist._id !== action.payload._id
+		// 		),
+		// 		'test'
+		// 	);
+		// 	return {
+		// 		// users: state.users.filter((user) => user._id === action.payload._id),
+		// 		playlists: state.playlists.filter(
+		// 			(playlist) => playlist._id !== action.payload._id
+		// 		),
+		// 	};
 		// case 'SET_ARTIST':
 		// 	log(action.payload, 'payload - sng context - set artist');
 		// 	// const getStats = getArtistStats([
-		// 	// 	...state.songs.filter((song) => song.artist._id === action.payload),
+		// 	// 	...state.ideas.filter((idea) => idea.artist._id === action.payload),
 		// 	// ]);
 		// 	return {
 		// 		...state,
 		// 		// artist:
 		// 		artistStats: getArtistStats([
-		// 			...state.songs.filter((song) => song.artist._id === action.payload),
+		// 			...state.ideas.filter((idea) => idea.artist._id === action.payload),
 		// 		]),
 		// 		// artistStats: getStats,
 		// 		artistSongs: [
-		// 			...state.songs.filter((song) => song.artist.name === action.payload),
+		// 			...state.ideas.filter((idea) => idea.artist.name === action.payload),
 		// 		],
 		// 		// artistSongs: [
-		// 		// 	...state.songs.filter((song) => song.artist._id === action.payload),
+		// 		// 	...state.ideas.filter((idea) => idea.artist._id === action.payload),
 		// 		// ],
 		// 	};
 		// case 'SET_ARRANGER':
 		// 	log(action.payload, 'payload - sng context - set arranger');
 		// 	// const getStats = getArtistStats([
-		// 	// 	...state.songs.filter((song) => song.artist._id === action.payload),
+		// 	// 	...state.ideas.filter((idea) => idea.artist._id === action.payload),
 		// 	// ]);
 		// 	return {
 		// 		...state,
 		// 		// artist:
 		// 		// arrangerStats: getArtistStats([
-		// 		// 	...state.songs.filter((song) => song.arranger._id === action.payload),
+		// 		// 	...state.ideas.filter((idea) => idea.arranger._id === action.payload),
 		// 		// ]),
 		// 		// arrangerStats: getStats,
 		// 		arrangerSongs: [
-		// 			...state.songs.filter(
-		// 				(song) => song.arranger.name === action.payload
+		// 			...state.ideas.filter(
+		// 				(idea) => idea.arranger.name === action.payload
 		// 			),
 		// 		],
 		// 	};
 		case 'LOGOUT':
 			return {
-				song: null,
-				songs: null,
+				idea: null,
+				ideas: null,
 				// artists: null,
 				// artistSongs: null,
 				// artistStats: null,
@@ -397,7 +431,7 @@ export const ideaSongsReducer = (state, action) => {
 				// recordedSongs: null,
 				// backlogSongs: null,
 				// archivedSongs: null,
-				// songStats: null,
+				// ideaStats: null,
 				// myArrangementStats: null,
 				// nextDeadlineSong: null,
 				// sheetMusicTypeStats: null,
@@ -411,8 +445,8 @@ export const ideaSongsReducer = (state, action) => {
 
 export const IdeasContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ideaSongsReducer, {
-		song: null,
-		songs: null,
+		idea: null,
+		ideas: null,
 		// artists: null,
 		// artistSongs: null,
 		// artistStats: null,
@@ -424,7 +458,7 @@ export const IdeasContextProvider = ({ children }) => {
 		// recordedSongs: null,
 		// backlogSongs: null,
 		// archivedSongs: null,
-		// songStats: null,
+		// ideaStats: null,
 		// myArrangementStats: null,
 		// nextDeadlineSong: null,
 		// sheetMusicTypeStats: null,

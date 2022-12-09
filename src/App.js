@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+// import './index.css';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from './assets/globalStyles';
@@ -17,6 +18,7 @@ import Header from './components/Header';
 import { useSongsContext } from './hooks/useSongContext';
 import { useViewport } from './hooks/useViewport';
 import Footer from './components/Footer';
+import { useIdeasContext } from './hooks/useIdeaContext';
 // import MobileMenu from './components/MobileMenu';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
 	}, []);
 	const { user } = useAuthContext();
 	const { songs, artistSongs, arrangerSongs } = useSongsContext();
+	const { ideas } = useIdeasContext();
+	// const { showNotes } = useStateContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
@@ -162,6 +166,72 @@ function App() {
 		log(e.target.textContent);
 		log(e.target.value);
 		setSongStatus(e.target.value);
+	};
+
+	// ideas
+	const [ideaStatus, setIdeaStatus] = useState('ideas');
+	// const [ideasFilterValue, setIdeasFilterValue] = useState('ideas');
+	const [filteredIdeas, setFilteredIdeas] = useState([]);
+
+	useEffect(() => {
+		ideasSongFilterHandler();
+	}, [ideas, ideaStatus]);
+	// function sand events
+	const ideasSongFilterHandler = (e) => {
+		console.log(ideaStatus, 'in set filter');
+		switch (ideaStatus) {
+			case 'ideas':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.isComplete === false)
+				);
+				break;
+			case 'fingerstyle':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.style === 'fingerstyle')
+				);
+				break;
+			case 'electric':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.style === 'electric')
+				);
+				break;
+			case 'classical':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.style === 'classical')
+				);
+				break;
+			case 'notes':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.notes.length >= 1)
+				);
+				break;
+			case 'no-notes':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.notes.length === 0)
+				);
+				break;
+			case 'complete':
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.isComplete === true)
+				);
+				break;
+			case 'all':
+				setFilteredIdeas(ideas && ideas);
+				break;
+			default:
+				setFilteredIdeas(
+					ideas && ideas.filter((idea) => idea.isComplete === false)
+				);
+
+				break;
+		}
+	};
+	// function sand events
+
+	const ideaStatusHandler = (e) => {
+		// log(e.target.textContent);
+		log(e.target.value);
+		setIdeaStatus(e.target.value);
 	};
 
 	// artists
@@ -335,6 +405,9 @@ function App() {
 							songStatusHandler={songStatusHandler}
 							songDetails={songDetails}
 							setSongDetails={setSongDetails}
+							filteredIdeas={filteredIdeas}
+							setFilteredIdeas={setFilteredIdeas}
+							ideaStatusHandler={ideaStatusHandler}
 							artistSongStatus={artistSongStatus}
 							setArtistSongStatus={setArtistSongStatus}
 							artistFilteredSongs={artistFilteredSongs}
@@ -354,6 +427,11 @@ function App() {
 						/>
 						{width > breakpoint && <Footer />}
 					</BrowserRouter>
+					{/* {showNotes === true ? (
+						<div className='test-modal'>modal</div>
+					) : (
+						<div></div>
+					)} */}
 				</div>
 			</StateContext>
 		</ThemeProvider>

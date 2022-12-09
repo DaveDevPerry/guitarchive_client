@@ -12,6 +12,9 @@ const SongsListContainer = ({
 	ideasSongFilterHandler,
 	setIdeasFilterValue,
 	theme,
+	filteredIdeas,
+	setFilteredIdeas,
+	ideaStatusHandler,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -24,15 +27,18 @@ const SongsListContainer = ({
 				<p
 					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
 				>
-					{ideasFilterValue === 'songs'
+					{/* {ideasFilterValue === 'songs'
 						? `all ${ideasFilterValue}`
-						: ideasFilterValue}
+						: ideasFilterValue} */}
 				</p>
 				<AddSongButton />
 				<SongsFilter
-					ideasFilterValue={ideasFilterValue}
-					ideasSongFilterHandler={ideasSongFilterHandler}
-					setIdeasFilterValue={setIdeasFilterValue}
+					// ideasFilterValue={ideasFilterValue}
+					// ideasSongFilterHandler={ideasSongFilterHandler}
+					// setIdeasFilterValue={setIdeasFilterValue}
+					filteredIdeas={filteredIdeas}
+					setFilteredIdeas={setFilteredIdeas}
+					ideaStatusHandler={ideaStatusHandler}
 				/>
 			</div>
 			{/* <IdeaForm /> */}
@@ -40,6 +46,9 @@ const SongsListContainer = ({
 				<SongsList
 					ideasFilterValue={ideasFilterValue}
 					ideasSongFilterHandler={ideasSongFilterHandler}
+					filteredIdeas={filteredIdeas}
+					setFilteredIdeas={setFilteredIdeas}
+					ideaStatusHandler={ideaStatusHandler}
 				/>
 			</AnimatePresence>
 		</StyledSongsListContainer>
