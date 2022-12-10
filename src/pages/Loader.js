@@ -15,6 +15,7 @@ import { useStylesContext } from '../hooks/useStyleContext';
 // import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
 import { useIdeasContext } from '../hooks/useIdeaContext';
+import { useRequestsContext } from '../hooks/useRequestContext';
 
 const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const { user } = useAuthContext();
@@ -25,6 +26,7 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const { dispatch: statusDispatch } = useStatusContext();
 	const { dispatch: stylesDispatch } = useStylesContext();
 	const { dispatch: ideasDispatch } = useIdeasContext();
+	const { dispatch: requestsDispatch } = useRequestsContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -100,6 +102,38 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 		};
 		if (user) {
 			fetchIdeas();
+		}
+	}, []);
+	useEffect(() => {
+		const fetchRequests = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/requests`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json requests');
+			if (!response.ok) {
+				setMode('offline');
+				let collection = JSON.parse(localStorage.getItem('requests'));
+				requestsDispatch({
+					type: 'SET_SONGS',
+					payload: collection,
+				});
+			}
+			if (response.ok) {
+				requestsDispatch({
+					type: 'SET_SONGS',
+					payload: json,
+				});
+				localStorage.setItem('requests', JSON.stringify(json));
+			}
+		};
+		if (user) {
+			fetchRequests();
 		}
 	}, []);
 

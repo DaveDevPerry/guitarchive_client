@@ -19,6 +19,7 @@ export const StateContext = ({ children }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [showNotes, setShowNotes] = useState(false);
 	const [youtubeGoal, setYoutubeGoal] = useState(false);
+	const [showListsMenu, setShowListsMenu] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -51,6 +52,8 @@ export const StateContext = ({ children }) => {
 				setShowNotes,
 				youtubeGoal,
 				setYoutubeGoal,
+				showListsMenu,
+				setShowListsMenu,
 			}}
 		>
 			{children}

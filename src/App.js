@@ -19,6 +19,7 @@ import { useSongsContext } from './hooks/useSongContext';
 import { useViewport } from './hooks/useViewport';
 import Footer from './components/Footer';
 import { useIdeasContext } from './hooks/useIdeaContext';
+import { useRequestsContext } from './hooks/useRequestContext';
 // import MobileMenu from './components/MobileMenu';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 	const { user } = useAuthContext();
 	const { songs, artistSongs, arrangerSongs } = useSongsContext();
 	const { ideas } = useIdeasContext();
+	const { requests } = useRequestsContext();
 	// const { showNotes } = useStateContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
@@ -235,6 +237,73 @@ function App() {
 		log(e.target.value);
 		setIdeaStatus(e.target.value);
 	};
+	// ideas
+	const [requestStatus, setRequestStatus] = useState('requests');
+	// const [requestsFilterValue, setRequestsFilterValue] = useState('requests');
+	const [filteredRequests, setFilteredRequests] = useState([]);
+
+	useEffect(() => {
+		requestsSongFilterHandler();
+	}, [requests, requestStatus]);
+	// function sand events
+	const requestsSongFilterHandler = (e) => {
+		console.log(requestStatus, 'in set filter');
+		switch (requestStatus) {
+			case 'requests':
+				setFilteredRequests(
+					requests && requests.filter((request) => request.isComplete === false)
+				);
+				break;
+			case 'fingerstyle':
+				setFilteredRequests(
+					requests &&
+						requests.filter((request) => request.style === 'fingerstyle')
+				);
+				break;
+			case 'electric':
+				setFilteredRequests(
+					requests && requests.filter((request) => request.style === 'electric')
+				);
+				break;
+			case 'classical':
+				setFilteredRequests(
+					requests &&
+						requests.filter((request) => request.style === 'classical')
+				);
+				break;
+			case 'notes':
+				setFilteredRequests(
+					requests && requests.filter((request) => request.notes.length >= 1)
+				);
+				break;
+			case 'no-notes':
+				setFilteredRequests(
+					requests && requests.filter((request) => request.notes.length === 0)
+				);
+				break;
+			case 'complete':
+				setFilteredRequests(
+					requests && requests.filter((request) => request.isComplete === true)
+				);
+				break;
+			case 'all':
+				setFilteredRequests(requests && requests);
+				break;
+			default:
+				setFilteredRequests(
+					requests && requests.filter((request) => request.isComplete === false)
+				);
+
+				break;
+		}
+	};
+	// function sand events
+
+	const requestStatusHandler = (e) => {
+		// log(e.target.textContent);
+		log(e.target.value);
+		setRequestStatus(e.target.value);
+	};
 
 	// artists
 
@@ -412,6 +481,9 @@ function App() {
 							filteredIdeas={filteredIdeas}
 							setFilteredIdeas={setFilteredIdeas}
 							ideaStatusHandler={ideaStatusHandler}
+							filteredRequests={filteredRequests}
+							setFilteredRequests={setFilteredRequests}
+							requestStatusHandler={requestStatusHandler}
 							artistSongStatus={artistSongStatus}
 							setArtistSongStatus={setArtistSongStatus}
 							artistFilteredSongs={artistFilteredSongs}

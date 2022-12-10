@@ -2,19 +2,19 @@ import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
-// import IdeaForm from './IdeaForm';
+// import RequestForm from './RequestForm';
 import AddSongButton from './AddSongButton';
 import SongsFilter from './SongsFilter';
 import SongsList from './SongsList';
 
 const SongsListContainer = ({
-	ideasFilterValue,
-	ideasSongFilterHandler,
-	setIdeasFilterValue,
+	setRequestsFilterValue,
 	theme,
-	filteredIdeas,
-	setFilteredIdeas,
-	ideaStatusHandler,
+	filteredRequests,
+	setFilteredRequests,
+	requestsFilterValue,
+	requestsSongFilterHandler,
+	requestStatusHandler,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -27,29 +27,29 @@ const SongsListContainer = ({
 				<p
 					className={`list-filter-value ${width < breakpoint ? 'mobile' : ''}`}
 				>
-					{/* {ideasFilterValue === 'songs'
-						? `all ${ideasFilterValue}`
-						: ideasFilterValue} */}
-					ideas
+					{/* {requestsFilterValue === 'songs'
+						? `all ${requestsFilterValue}`
+						: requestsFilterValue} */}
+					requests
 				</p>
 				<AddSongButton />
 				<SongsFilter
-					// ideasFilterValue={ideasFilterValue}
-					// ideasSongFilterHandler={ideasSongFilterHandler}
-					// setIdeasFilterValue={setIdeasFilterValue}
-					filteredIdeas={filteredIdeas}
-					setFilteredIdeas={setFilteredIdeas}
-					ideaStatusHandler={ideaStatusHandler}
+					// requestsFilterValue={requestsFilterValue}
+					// requestsSongFilterHandler={requestsSongFilterHandler}
+					// setRequestsFilterValue={setRequestsFilterValue}
+					filteredRequests={filteredRequests}
+					setFilteredRequests={setFilteredRequests}
+					requestStatusHandler={requestStatusHandler}
 				/>
 			</div>
-			{/* <IdeaForm /> */}
+			{/* <RequestForm /> */}
 			<AnimatePresence mode='wait'>
 				<SongsList
-					ideasFilterValue={ideasFilterValue}
-					ideasSongFilterHandler={ideasSongFilterHandler}
-					filteredIdeas={filteredIdeas}
-					setFilteredIdeas={setFilteredIdeas}
-					ideaStatusHandler={ideaStatusHandler}
+					requestsFilterValue={requestsFilterValue}
+					requestsSongFilterHandler={requestsSongFilterHandler}
+					filteredRequests={filteredRequests}
+					setFilteredRequests={setFilteredRequests}
+					requestStatusHandler={requestStatusHandler}
 				/>
 			</AnimatePresence>
 		</StyledSongsListContainer>

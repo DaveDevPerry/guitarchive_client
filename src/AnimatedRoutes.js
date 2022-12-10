@@ -16,6 +16,7 @@ import Arranger from './pages/Arranger';
 import Products from './pages/Products';
 import Stats from './pages/Stats';
 import Ideas from './pages/Ideas';
+import Requests from './pages/Requests';
 
 const AnimatedRoutes = ({
 	user,
@@ -45,6 +46,9 @@ const AnimatedRoutes = ({
 	filteredIdeas,
 	setFilteredIdeas,
 	ideaStatusHandler,
+	filteredRequests,
+	setFilteredRequests,
+	requestStatusHandler,
 	mode,
 	setMode,
 }) => {
@@ -91,6 +95,22 @@ const AnimatedRoutes = ({
 								filteredIdeas={filteredIdeas}
 								setFilteredIdeas={setFilteredIdeas}
 								ideaStatusHandler={ideaStatusHandler}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/requests'
+					element={
+						user ? (
+							<Requests
+								theme={theme}
+								currentDate={currentDate}
+								filteredRequests={filteredRequests}
+								setFilteredRequests={setFilteredRequests}
+								requestStatusHandler={requestStatusHandler}
 							/>
 						) : (
 							<Navigate to='/login' />

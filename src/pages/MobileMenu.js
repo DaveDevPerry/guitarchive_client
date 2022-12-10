@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiSettings2Fill } from 'react-icons/ri';
-// import { AiFillHome } from 'react-icons/ai';
+import { AiOutlineFileSearch } from 'react-icons/ai';
 import { MdLocalLibrary } from 'react-icons/md';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useStateContext } from '../lib/context';
@@ -70,6 +70,16 @@ const MobileMenu = ({ theme }) => {
 						>
 							<GiLightBulb className='nav-icon' />
 							<p>ideas</p>
+						</NavLink>
+					</motion.div>
+					<motion.div className='menu-item' variants={item}>
+						<NavLink
+							to='/requests'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+							// variants={item}
+						>
+							<AiOutlineFileSearch className='nav-icon' />
+							<p>requests</p>
 						</NavLink>
 					</motion.div>
 					<motion.div className='menu-item' variants={item}>

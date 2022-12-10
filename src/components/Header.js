@@ -2,12 +2,21 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../hooks/useViewport';
 import { FiMenu } from 'react-icons/fi';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { log } from '../utils/helper';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import { useStateContext } from '../lib/context';
 
 const Header = ({ mode }) => {
 	const location = useLocation();
 	const { width } = useViewport();
 	const breakpoint = 620;
+	const { showListsMenu, setShowListsMenu } = useStateContext();
+
+	const handleSubMenu = () => {
+		log('clicked');
+		setShowListsMenu(!showListsMenu);
+	};
 
 	return (
 		<>
@@ -39,9 +48,44 @@ const Header = ({ mode }) => {
 											isActive ? 'active' : 'inactive'
 										}
 									>
-										<p>home</p>
+										<p>library</p>
 									</NavLink>
-									<NavLink
+									<div className='sub-menu' onClick={handleSubMenu}>
+										<p>
+											lists{' '}
+											<span>
+												<IoMdArrowDropdown className='arrow-icon' />
+											</span>
+										</p>
+										<AnimatePresence mode='wait'>
+											{showListsMenu && (
+												<motion.div
+													className='dropdown-links'
+													initial={{ opacity: 0 }}
+													animate={{ opacity: 1 }}
+													exit={{ opacity: 0 }}
+												>
+													<NavLink
+														to='/ideas'
+														className={({ isActive }) =>
+															isActive ? 'active' : 'inactive'
+														}
+													>
+														<p>ideas</p>
+													</NavLink>
+													<NavLink
+														to='/requests'
+														className={({ isActive }) =>
+															isActive ? 'active' : 'inactive'
+														}
+													>
+														<p>requests</p>
+													</NavLink>
+												</motion.div>
+											)}
+										</AnimatePresence>
+									</div>
+									{/* <NavLink
 										to='/ideas'
 										className={({ isActive }) =>
 											isActive ? 'active' : 'inactive'
@@ -49,6 +93,14 @@ const Header = ({ mode }) => {
 									>
 										<p>ideas</p>
 									</NavLink>
+									<NavLink
+										to='/requests'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>requests</p>
+									</NavLink> */}
 									{/* <NavLink
 									to='/songs'
 									className={({ isActive }) =>
@@ -159,6 +211,72 @@ const StyledHeader = styled(motion.header)`
 			display: flex;
 			align-items: center;
 			column-gap: 1.5rem;
+			.sub-menu {
+				position: relative;
+				display: grid;
+				place-content: center;
+				/* display: flex;
+				justify-content: center;
+				align-items: center; */
+				column-gap: 0.5rem;
+				padding-left: 0.5rem;
+				cursor: pointer;
+				p {
+					color: ${({ theme }) => theme.primaryColor};
+					font-size: 1.6rem;
+					text-transform: uppercase;
+					font-size: 2rem;
+					font-weight: bolder;
+					display: flex;
+					align-items: center;
+					span {
+						display: flex;
+						align-items: center;
+						.arrow-icon {
+							font-size: 2rem;
+						}
+					}
+				}
+				.dropdown-links {
+					position: absolute;
+					top: calc(100% + 0.5rem);
+					left: 0.5rem;
+					border: 1px solid rgba(0, 0, 0, 0.2);
+					box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+					border-radius: 0.4rem;
+					z-index: 3000000;
+					background-color: #bdbcbc;
+					padding-bottom: 0.5rem;
+					font-size: 1.8rem;
+					a {
+						/* display: grid;
+						place-content: center; */
+						display: flex;
+						justify-content: flex-start;
+
+						padding: 0rem 0.3rem;
+						p {
+							color: ${({ theme }) => theme.primaryColor};
+							font-size: 1.6rem;
+							text-transform: uppercase;
+							font-size: 2rem;
+							font-weight: bolder;
+							padding: 0.5rem;
+							font-size: 1.8rem;
+
+							/* ba */
+						}
+						&:hover {
+							background-color: rgba(0, 0, 0, 0.05);
+						}
+						&.active {
+							p {
+								color: ${({ theme }) => theme.secondaryColor};
+							}
+						}
+					}
+				}
+			}
 			a {
 				display: grid;
 				place-content: center;

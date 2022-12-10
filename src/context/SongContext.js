@@ -56,10 +56,19 @@ const getArtistStats = async (arr) => {
 // 	log(artistArr, 'artist');
 // };
 
+// const getSongsByArtist = (arr) => {
+// 	log('in func')
+// 	const clonedSongs = [...arr];
+// 	const mapped = clonedSongs.map(({song}) => {
+
+// 	})
+// }
+
 export const songsReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_SONGS':
 			// getMusicianStats(action.payload);
+			// getSongsByArtist(action.payload)
 			return {
 				...state,
 				// songs: action.payload,
