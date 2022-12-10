@@ -4,7 +4,7 @@ import { useViewport } from '../hooks/useViewport';
 import { FiMenu } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
-const Header = () => {
+const Header = ({ mode }) => {
 	const location = useLocation();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -22,6 +22,7 @@ const Header = () => {
 								</span>
 							</h1>
 						</Link>
+						{mode && mode === 'offline' && <p>offline mode</p>}
 						{width < breakpoint ? (
 							<nav className='top-nav'>
 								<NavLink to='/menu' className='filter-menu-icon-wrapper'>
@@ -29,24 +30,26 @@ const Header = () => {
 								</NavLink>
 							</nav>
 						) : (
-							<nav className='top-nav desktop'>
-								<NavLink
-									to='/home'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>home</p>
-								</NavLink>
-								<NavLink
-									to='/ideas'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>ideas</p>
-								</NavLink>
-								{/* <NavLink
+							<>
+								{mode && mode === 'offline' && <p>offline mode</p>}
+								<nav className='top-nav desktop'>
+									<NavLink
+										to='/home'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>home</p>
+									</NavLink>
+									<NavLink
+										to='/ideas'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>ideas</p>
+									</NavLink>
+									{/* <NavLink
 									to='/songs'
 									className={({ isActive }) =>
 										isActive ? 'active' : 'inactive'
@@ -55,39 +58,39 @@ const Header = () => {
 									<p>songs</p>
 								</NavLink> */}
 
-								{/* <NavLink
+									{/* <NavLink
 							to='/products'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<p>products</p>
 						</NavLink> */}
 
-								<NavLink
-									to='/artists'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>artists</p>
-								</NavLink>
-								<NavLink
-									to='/arrangers'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>arrangers</p>
-								</NavLink>
-								<NavLink
-									to='/stats'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>stats</p>
-								</NavLink>
+									<NavLink
+										to='/artists'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>artists</p>
+									</NavLink>
+									<NavLink
+										to='/arrangers'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>arrangers</p>
+									</NavLink>
+									<NavLink
+										to='/stats'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>stats</p>
+									</NavLink>
 
-								{/* <NavLink
+									{/* <NavLink
 									to='/settings'
 									className={({ isActive }) =>
 										isActive ? 'active' : 'inactive'
@@ -95,7 +98,8 @@ const Header = () => {
 								>
 									<p>settings</p>
 								</NavLink> */}
-							</nav>
+								</nav>
+							</>
 						)}
 					</div>
 				</StyledHeader>

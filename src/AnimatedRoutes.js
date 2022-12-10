@@ -45,6 +45,8 @@ const AnimatedRoutes = ({
 	filteredIdeas,
 	setFilteredIdeas,
 	ideaStatusHandler,
+	mode,
+	setMode,
 }) => {
 	const location = useLocation();
 
@@ -53,7 +55,9 @@ const AnimatedRoutes = ({
 			<Routes location={location} key={location.pathname}>
 				<Route
 					path='/'
-					element={<Loader theme={theme} youtubeData={youtubeData} />}
+					element={
+						<Loader theme={theme} youtubeData={youtubeData} setMode={setMode} />
+					}
 				/>
 				<Route
 					path='/login'

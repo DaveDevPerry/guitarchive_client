@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/index.css';
 import App from './App';
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import * as registerSW from './registerSW';
+import swDev from './swDev';
 import { ViewportContextProvider } from './context/ViewportContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { SongsContextProvider } from './context/SongContext';
@@ -33,3 +36,6 @@ root.render(
 		</ViewportContextProvider>
 	</React.StrictMode>
 );
+swDev();
+// registerSW.register();
+// serviceWorkerRegistration.register();

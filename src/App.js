@@ -41,6 +41,8 @@ function App() {
 	const [youtubeData, setYoutubeData] = useState(null);
 	// const [youtubeTarget, setYoutubeTarget] = useState(false);
 
+	const [mode, setMode] = useState('online');
+
 	useEffect(() => {
 		axios
 			.get(
@@ -392,8 +394,10 @@ function App() {
 				>
 					<BrowserRouter>
 						<Toaster />
-						<Header />
+						<Header mode={mode} />
 						<AnimatedRoutes
+							mode={mode}
+							setMode={setMode}
 							currentDate={currentDate}
 							user={user}
 							themeToggler={themeToggler}

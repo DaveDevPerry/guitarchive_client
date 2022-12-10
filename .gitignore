@@ -34,6 +34,14 @@ yarn-error.log*
 /public/NewTegomin-Regular.woff
 /public/NewTegomin-Regular.woff2
 /public/serviceworker.js
+/public/sw.js
+
+/src/service-worker.js
+/src/serviceWorkerRegistration.js
+/src/sw.js
+/src/registerSW.js
+
+
 
 
 

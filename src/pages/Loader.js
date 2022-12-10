@@ -16,7 +16,7 @@ import { useStylesContext } from '../hooks/useStyleContext';
 import { useViewport } from '../hooks/useViewport';
 import { useIdeasContext } from '../hooks/useIdeaContext';
 
-const Loader = ({ youtubeData, theme }) => {
+const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const { user } = useAuthContext();
 	const { setDataLoaded } = useStateContext();
 	const { dispatch } = useSongsContext();
@@ -42,11 +42,21 @@ const Loader = ({ youtubeData, theme }) => {
 			);
 			const json = await response.json();
 			log(json, 'json songs');
+			log(response, 'response');
+			if (!response.ok) {
+				setMode('offline');
+				let collection = JSON.parse(localStorage.getItem('songs'));
+				dispatch({
+					type: 'SET_SONGS',
+					payload: collection,
+				});
+			}
 			if (response.ok) {
 				dispatch({
 					type: 'SET_SONGS',
 					payload: json,
 				});
+				localStorage.setItem('songs', JSON.stringify(json));
 			}
 		};
 		if (user) {
@@ -72,11 +82,20 @@ const Loader = ({ youtubeData, theme }) => {
 			);
 			const json = await response.json();
 			log(json, 'json ideas');
+			if (!response.ok) {
+				setMode('offline');
+				let collection = JSON.parse(localStorage.getItem('ideas'));
+				ideasDispatch({
+					type: 'SET_SONGS',
+					payload: collection,
+				});
+			}
 			if (response.ok) {
 				ideasDispatch({
 					type: 'SET_SONGS',
 					payload: json,
 				});
+				localStorage.setItem('ideas', JSON.stringify(json));
 			}
 		};
 		if (user) {
