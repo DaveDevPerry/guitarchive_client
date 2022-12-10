@@ -29,6 +29,13 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/offline copy.html
+/public/darkwoodtexture.webp
+/public/whitewood.webp
+/public/NewTegomin-Regular.woff
+/public/NewTegomin-Regular.woff2
+/public/serviceworker.js
+
+
 
 
 /src/features/song/SongForm copy.js
