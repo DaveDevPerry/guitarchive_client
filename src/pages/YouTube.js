@@ -116,6 +116,7 @@ const YouTube = ({ youtubeData, theme }) => {
 											to={Number(
 												youtubeData && youtubeData[0].statistics.viewCount
 											)}
+											time={3}
 										/>
 									</p>
 									<p className='stat-name'>VIEWS</p>
@@ -132,6 +133,7 @@ const YouTube = ({ youtubeData, theme }) => {
 											to={Number(
 												youtubeData && youtubeData[0].statistics.subscriberCount
 											)}
+											time={3}
 										/>
 									</p>
 									<p className='stat-name'>SUBSCRIBERS</p>
@@ -148,6 +150,7 @@ const YouTube = ({ youtubeData, theme }) => {
 											to={Number(
 												youtubeData && youtubeData[0].statistics.videoCount
 											)}
+											time={3}
 										/>
 									</p>
 									<p className='stat-name'>VIDEOS</p>

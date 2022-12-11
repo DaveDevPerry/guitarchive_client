@@ -13,7 +13,7 @@ const StatusPieChart = ({ songStats, theme }) => {
 	const borderFromTheme =
 		theme === 'light'
 			? `${({ theme }) => theme.primaryColor}`
-			: `${({ theme }) => theme.secondaryColor}`;
+			: `${({ theme }) => theme.primaryColor}`;
 
 	const options = {
 		responsive: false,

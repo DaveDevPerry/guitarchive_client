@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 const SongsFilter = ({ homeSongFilterHandler, theme }) => {
 	return (
-		<StyledSongsFilter className='filter-song-dropdown'>
+		<StyledSongsFilter
+			className='filter-song-dropdown'
+			id={`${theme === 'dark' ? 'dark' : 'light'}`}
+		>
 			<select
 				name='songs'
 				className='filter-song-select'
 				onChange={homeSongFilterHandler}
-				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			>
 				<option value='songs' className='form-option'>
 					All Songs
@@ -66,10 +68,7 @@ const StyledSongsFilter = styled.div`
 		font-size: 1.6rem;
 		font-weight: bolder;
 		cursor: pointer;
-		background-color: ${({ theme }) => theme.filterBg};
 		border: 1px solid ${({ theme }) => theme.filterBorder};
-		color: ${({ theme }) => theme.filterColor};
-
 		color: ${({ theme }) => theme.btnColor};
 		border-radius: 5px;
 		padding: 8px 45px 8px 10px;
@@ -79,7 +78,6 @@ const StyledSongsFilter = styled.div`
 		text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
 		text-decoration: none;
 		background: transparent;
-		cursor: pointer;
 		position: relative;
 		display: inline-block;
 		box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 1),
@@ -98,15 +96,6 @@ const StyledSongsFilter = styled.div`
 			#f7f7f7 87%,
 			rgba(38, 38, 38, 0.8)
 		);
-		/* background: linear-gradient(
-			top,
-			rgba(38, 38, 38, 0.8),
-			#e6e6e6 25%,
-			#ffffff 38%,
-			#c5c5c5 63%,
-			#f7f7f7 87%,
-			rgba(38, 38, 38, 0.8)
-		); */
 		background: -webkit-linear-gradient(
 			top,
 			rgba(38, 38, 38, 0.5),

@@ -245,7 +245,7 @@ const StyledHeader = styled(motion.header)`
 					box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 					border-radius: 0.4rem;
 					z-index: 3000000;
-					background-color: #bdbcbc;
+					background-color: ${({ theme }) => theme.dropDownLinks};
 					padding-bottom: 0.5rem;
 					font-size: 1.8rem;
 					a {
