@@ -38,7 +38,7 @@ yarn-error.log*
 /public/anilsw.js
 
 
-/public/fonts
+# /public/fonts
 # /src/assets/fonts
 
 /src/service-worker.js

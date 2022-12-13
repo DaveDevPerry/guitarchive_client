@@ -1,35 +1,22 @@
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-// import Login from './pages/Login';
-// import Signup from './pages/Signup';
-// import Loader from './pages/Loader';
-// import Home from './pages/Home';
-// import Settings from './pages/Settings';
-// import Songs from './pages/Songs';
-// import Song from './pages/Song';
-// import Artists from './pages/Artists';
-// import Arrangers from './pages/Arrangers';
-// import MobileMenu from './pages/MobileMenu';
-// import YouTube from './pages/YouTube';
-// import Artist from './pages/Artist';
-// import Arranger from './pages/Arranger';
-// import Products from './pages/Products';
-// import Stats from './pages/Stats';
-// import Ideas from './pages/Ideas';
-// import Requests from './pages/Requests';
-
-// import Settings from './pages/Settings';
-// import Songs from './pages/Songs';
-// import Song from './pages/Song';
-// import Artists from './pages/Artists';
-// import Arrangers from './pages/Arrangers';
-// import MobileMenu from './pages/MobileMenu';
-// import YouTube from './pages/YouTube';
-// import Artist from './pages/Artist';
-// import Arranger from './pages/Arranger';
-// import Products from './pages/Products';
-// import Stats from './pages/Stats';
 import { lazy, Suspense } from 'react';
+const Login = lazy(() => import('./pages/Login'));
+const Loader = lazy(() => import('./pages/Loader'));
+const Home = lazy(() => import('./pages/Home'));
+const Ideas = lazy(() => import('./pages/Ideas'));
+const Requests = lazy(() => import('./pages/Requests'));
+const Artists = lazy(() => import('./pages/Artists'));
+const Artist = lazy(() => import('./pages/Artist'));
+const Arrangers = lazy(() => import('./pages/Arrangers'));
+const Arranger = lazy(() => import('./pages/Arranger'));
+const Stats = lazy(() => import('./pages/Stats'));
+const Settings = lazy(() => import('./pages/Settings'));
+const YouTube = lazy(() => import('./pages/YouTube'));
+const MobileMenu = lazy(() => import('./pages/MobileMenu'));
+const Song = lazy(() => import('./pages/Song'));
+const Products = lazy(() => import('./pages/Products'));
+const Songs = lazy(() => import('./pages/Songs'));
 
 const AnimatedRoutes = ({
 	user,
@@ -66,37 +53,6 @@ const AnimatedRoutes = ({
 	setMode,
 }) => {
 	const location = useLocation();
-
-	// 	import Settings from './pages/Settings';
-	// import Songs from './pages/Songs';
-	// import Song from './pages/Song';
-	// import Artists from './pages/Artists';
-	// import Arrangers from './pages/Arrangers';
-	// import MobileMenu from './pages/MobileMenu';
-	// import YouTube from './pages/YouTube';
-	// import Artist from './pages/Artist';
-	// import Arranger from './pages/Arranger';
-	// import Products from './pages/Products';
-	// import Stats from './pages/Stats';
-	// import Ideas from './pages/Ideas';
-	// import Requests from './pages/Requests';
-
-	const Login = lazy(() => import('./pages/Login'));
-	const Loader = lazy(() => import('./pages/Loader'));
-	const Home = lazy(() => import('./pages/Home'));
-	const Ideas = lazy(() => import('./pages/Ideas'));
-	const Requests = lazy(() => import('./pages/Requests'));
-	const Artists = lazy(() => import('./pages/Artists'));
-	const Artist = lazy(() => import('./pages/Artist'));
-	const Arrangers = lazy(() => import('./pages/Arrangers'));
-	const Arranger = lazy(() => import('./pages/Arranger'));
-	const Stats = lazy(() => import('./pages/Stats'));
-	const Settings = lazy(() => import('./pages/Settings'));
-	const YouTube = lazy(() => import('./pages/YouTube'));
-	const MobileMenu = lazy(() => import('./pages/MobileMenu'));
-	const Song = lazy(() => import('./pages/Song'));
-	const Products = lazy(() => import('./pages/Products'));
-	const Songs = lazy(() => import('./pages/Songs'));
 
 	return (
 		<AnimatePresence mode='wait'>
