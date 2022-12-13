@@ -1,23 +1,25 @@
 import { motion } from 'framer-motion';
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
+// import React, { lazy, Suspense, useEffect } from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import SongStatusStats from '../components/SongStatusStats';
-// import YoutubeStats from '../components/YoutubeStats';
+import YoutubeStats from '../components/YoutubeStats';
 import { useViewport } from '../hooks/useViewport';
 import MyArrangementStats from '../features/stats/MyArrangementStats';
 import SheetMusicTypeStats from '../features/stats/SheetMusicTypeStats';
 import StyleStats from '../features/stats/StyleStats';
 import MusicianStats from '../features/stats/MusicianStats';
 
-const YoutubeStats = lazy(() => import('../components/YoutubeStats'));
+// const YoutubeStats = lazy(() => import('../components/YoutubeStats'));
 // .then(module => {
 // 	return
 // }))
 
 const Stats = ({ youtubeData, theme }) => {
-	const { dataLoaded, isAdmin } = useStateContext();
+	const { dataLoaded } = useStateContext();
+	// const { dataLoaded, isAdmin } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	let navigate = useNavigate();
@@ -34,14 +36,14 @@ const Stats = ({ youtubeData, theme }) => {
 			exit={{ x: window.innerWidth }}
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
 		>
-			<Suspense fallback={<h2>Loading....</h2>}>
+			{/* <Suspense fallback={<h2>Loading....</h2>}>
 				{isAdmin ? (
 					<YoutubeStats youtubeData={youtubeData} />
 				) : (
 					<h4>Not Admin</h4>
 				)}
-			</Suspense>
-			{/* <YoutubeStats youtubeData={youtubeData} /> */}
+			</Suspense> */}
+			<YoutubeStats youtubeData={youtubeData} />
 			<SongStatusStats theme={theme} />
 			<div className='stat-flex-container'>
 				<MyArrangementStats />
