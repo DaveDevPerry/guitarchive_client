@@ -234,6 +234,7 @@ const StyledHeader = styled(motion.header)`
 						align-items: center;
 						.arrow-icon {
 							font-size: 2rem;
+							color: ${({ theme }) => theme.secondaryColor};
 						}
 					}
 				}

@@ -330,11 +330,13 @@ input[type="date"]{
   position: relative;
   width: 100%;
   box-sizing: border-box;
-    border: 2px solid ${({ theme }) => theme.borderLight};
+    ${'' /* border: 2px solid ${({ theme }) => theme.borderLight}; */}
+    border: 2px solid rgba(16, 16, 16,0.5);
+
   -webkit-transition: 0.5s;
   transition: 0.5s;
-    background-color: ${({ theme }) => theme.inputBg};
-    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
+    ${'' /* background-color: ${({ theme }) => theme.inputBg}; */}
+    background-color: rgba(168, 105, 69, 0.57);
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 }
 select.form-select:focus {
@@ -348,6 +350,7 @@ option.form-option {
 					background-color: ${({ theme }) => theme.optionBg};
 					${'' /* background-color: rgba(36, 14, 0, 0.08); */}
 					border: 1px solid ${({ theme }) => theme.borderDark};
+          ${'' /* border: 2px solid rgba(16, 16, 16,0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
           font-family: 'NewTegomin';
@@ -446,6 +449,7 @@ input[type="file"] {
 						0px 1px 3px rgba(0, 0, 0, 0.3);
 					outline: none;
 					border: 1px solid #ba6;
+					border: 2px solid #14130d;
 					line-height: 1;
 				}
 				.custom-btn:active {
@@ -484,7 +488,8 @@ input[type="file"] {
 				}
         .btn-6 {
 			${'' /* flex: 1; */}
-			border-color: #7c7c7c;
+			${'' /* border-color: #7c7c7c; */}
+			border-color: rgba(16, 16, 16,0.5);
 			background: linear-gradient(
 				top,
 				rgba(38, 38, 38, 0.8),

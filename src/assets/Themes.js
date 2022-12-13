@@ -92,7 +92,7 @@ export const lightTheme = {
 export const darkTheme = {
 	// primaryColor: '#1d0b01',
 	primaryColor: '#efefef',
-	secondaryColor: '#dad005',
+	secondaryColor: '#e1d600',
 	bodyBg: '#271509',
 	filterBg: '#120700e9',
 	filterColor: 'rgb(253, 225, 209)',

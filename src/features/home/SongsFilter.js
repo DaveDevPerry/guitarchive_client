@@ -88,7 +88,8 @@ const StyledSongsFilter = styled.div`
 		/* border: 1px solid #ba6; */
 		height: 4.1rem;
 		/* line-height: 1; */
-		border-color: ${({ theme }) => theme.filterBorderColor};
+		/* border-color: ${({ theme }) => theme.filterBorderColor}; */
+		border: 2px solid rgba(16, 16, 16, 0.5);
 		background: linear-gradient(
 			top,
 			rgba(38, 38, 38, 0.8),
