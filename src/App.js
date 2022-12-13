@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-// import './index.css';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from './assets/globalStyles';
 import { lightTheme, darkTheme } from './assets/Themes';
 import { ThemeProvider } from 'styled-components';
-// import { useViewport } from './hooks/useViewport';
 import { useAuthContext } from './hooks/useAuthContext';
 import { StateContext } from './lib/context';
 import { log } from './utils/helper';
@@ -13,14 +11,11 @@ import { Toaster } from 'react-hot-toast';
 import AnimatedRoutes from './AnimatedRoutes';
 import { useDarkMode } from './assets/useDarkMode';
 import Header from './components/Header';
-// import MobileHeader from './components/MobileHeader';
-// import Footer from './components/Footer';
 import { useSongsContext } from './hooks/useSongContext';
 import { useViewport } from './hooks/useViewport';
 import Footer from './components/Footer';
 import { useIdeasContext } from './hooks/useIdeaContext';
 import { useRequestsContext } from './hooks/useRequestContext';
-// import MobileMenu from './components/MobileMenu';
 
 function App() {
 	// run one when app starts
@@ -31,18 +26,10 @@ function App() {
 	const { songs, artistSongs, arrangerSongs } = useSongsContext();
 	const { ideas } = useIdeasContext();
 	const { requests } = useRequestsContext();
-	// const { showNotes } = useStateContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
-
-	// const { width } = useViewport();
-	// const breakpoint = 620;
-
 	const [currentDate] = useState(new Date().toLocaleDateString());
-
 	const [youtubeData, setYoutubeData] = useState(null);
-	// const [youtubeTarget, setYoutubeTarget] = useState(false);
-
 	const [mode, setMode] = useState('online');
 
 	useEffect(() => {
@@ -57,12 +44,6 @@ function App() {
 			});
 	}, []);
 
-	// useEffect(() => {
-	// 	if (youtubeData[0].statistics.viewCount >= 100000) {
-	// 		setYoutubeTarget(true);
-	// 	}
-	// }, [youtubeData]);
-
 	const [songStatus, setSongStatus] = useState('all');
 	const [filteredSongs, setFilteredSongs] = useState([]);
 	const [songDetails, setSongDetails] = useState({});
@@ -70,8 +51,6 @@ function App() {
 	useEffect(() => {
 		songFilterHandler();
 	}, [songs, songStatus]);
-
-	// const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
 
 	// function sand events
 	const songFilterHandler = () => {
@@ -174,7 +153,6 @@ function App() {
 
 	// ideas
 	const [ideaStatus, setIdeaStatus] = useState('ideas');
-	// const [ideasFilterValue, setIdeasFilterValue] = useState('ideas');
 	const [filteredIdeas, setFilteredIdeas] = useState([]);
 
 	useEffect(() => {
@@ -182,7 +160,7 @@ function App() {
 	}, [ideas, ideaStatus]);
 	// function sand events
 	const ideasSongFilterHandler = (e) => {
-		console.log(ideaStatus, 'in set filter');
+		log(ideaStatus, 'in set filter');
 		switch (ideaStatus) {
 			case 'ideas':
 				setFilteredIdeas(
@@ -231,15 +209,12 @@ function App() {
 		}
 	};
 	// function sand events
-
 	const ideaStatusHandler = (e) => {
-		// log(e.target.textContent);
 		log(e.target.value);
 		setIdeaStatus(e.target.value);
 	};
 	// ideas
 	const [requestStatus, setRequestStatus] = useState('requests');
-	// const [requestsFilterValue, setRequestsFilterValue] = useState('requests');
 	const [filteredRequests, setFilteredRequests] = useState([]);
 
 	useEffect(() => {
@@ -247,7 +222,7 @@ function App() {
 	}, [requests, requestStatus]);
 	// function sand events
 	const requestsSongFilterHandler = (e) => {
-		console.log(requestStatus, 'in set filter');
+		log(requestStatus, 'in set filter');
 		switch (requestStatus) {
 			case 'requests':
 				setFilteredRequests(
@@ -305,53 +280,6 @@ function App() {
 		setRequestStatus(e.target.value);
 	};
 
-	// artists
-
-	// const [artistStatus, setArtistStatus] = useState('all');
-	// const [filteredArtists, setFilteredArtists] = useState([]);
-	// const [artistDetails, setArtistDetails] = useState({});
-
-	// useEffect(() => {
-	// 	artistFilterHandler();
-	// }, [artists, artistStatus]);
-
-	// // const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
-
-	// // function sand events
-	// const artistFilterHandler = () => {
-	// 	switch (artistStatus) {
-	// 		case 'tabs':
-	// 			setFilteredArtists(
-	// 				artists && artists.filter((artist) => artist.isTab)
-	// 			);
-	// 			break;
-	// 		case 'scores':
-	// 			setFilteredArtists(
-	// 				artists &&
-	// 					artists.filter((artist) => artist.isTab === false)
-	// 			);
-	// 			break;
-	// 		case 'favourite':
-	// 			setFilteredArtists(
-	// 				artists &&
-	// 					artists.filter((artist) => artist.isFavourite)
-	// 			);
-	// 			break;
-	// 		case 'all':
-	// 			setFilteredArtists(artists && artists);
-	// 			break;
-	// 		default:
-	// 			setFilteredArtists(artists && artists);
-	// 			break;
-	// 	}
-	// };
-
-	// const artistStatusHandler = (e) => {
-	// 	log(e.target.textContent);
-	// 	log(e.target.value);
-	// 	setArtistStatus(e.target.value);
-	// };
-
 	// artist songs
 
 	const [artistSongStatus, setArtistSongStatus] = useState('all');
@@ -361,9 +289,6 @@ function App() {
 	useEffect(() => {
 		artistSongFilterHandler();
 	}, [artistSongs, artistSongStatus]);
-
-	// const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
-
 	// function sand events
 	const artistSongFilterHandler = () => {
 		switch (artistSongStatus) {
@@ -409,8 +334,6 @@ function App() {
 		arrangerSongFilterHandler();
 	}, [arrangerSongs, arrangerSongStatus]);
 
-	// const currentSongDay = new Date(new Date().setHours(0, 0, 0, 0));
-
 	// function sand events
 	const arrangerSongFilterHandler = () => {
 		switch (arrangerSongStatus) {
@@ -446,8 +369,6 @@ function App() {
 		log(e.target.value);
 		setArrangerSongStatus(e.target.value);
 	};
-
-	// const { isMenuOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 

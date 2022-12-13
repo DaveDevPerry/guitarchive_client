@@ -2,19 +2,14 @@
 :root {
   --tooltip-text-color: white;
   --tooltip-background-color: #7f0101;
-  /* --tooltip-text-color: white;
-  --tooltip-background-color: rgb(199, 88, 29); */
   --tooltip-margin: 20px;
-  /* --tooltip-margin: 30px; */
   --tooltip-arrow-size: 6px;
 }
-
 /* Wrapping */
 .Tooltip-Wrapper {
   display: inline-block;
   position: relative;
 }
-
 /* Absolute positioning */
 .Tooltip-Tip {
   position: absolute;
@@ -22,18 +17,15 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 20px;
-  /* padding: 6px 10px; */
   color: var(--tooltip-text-color);
   background: var(--tooltip-background-color);
   font-size: 18px;
-  /* font-family: sans-serif; */
   line-height: 1;
   z-index: 100;
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: bolder;
 }
-
 /* CSS border triangles */
 .Tooltip-Tip::before {
   content: " ";
@@ -46,7 +38,6 @@
   border-width: var(--tooltip-arrow-size);
   margin-left: calc(var(--tooltip-arrow-size) * -1);
 }
-
 /* Absolute positioning */
 .Tooltip-Tip.top {
   top: calc(var(--tooltip-margin) * -1);

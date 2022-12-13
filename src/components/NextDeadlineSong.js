@@ -117,64 +117,6 @@ const NextDeadlineSong = ({ theme }) => {
 							</motion.div>
 						)}
 					</AnimatePresence>
-					{/* <div
-						className={`deadline-wrapper ${width < breakpoint ? 'mobile' : ''}`}
-					>
-						<div className='deadline-header'>
-							<div className='deadline-header-dates'>
-								<p className='header-date'>
-									{new Date(nextDeadlineSong.deadlineDate).toLocaleDateString(
-										'en-us',
-										{
-											weekday: 'long',
-											year: 'numeric',
-											month: 'short',
-											day: 'numeric',
-										}
-									)}
-								</p>
-								<p
-									className={`header-time ${
-										width < breakpoint ? 'mobile' : ''
-									}`}
-								>
-									{intlFormatDistance(
-										new Date(
-											new Date(nextDeadlineSong.deadlineDate).toDateString()
-										),
-										new Date(new Date(new Date().toDateString())),
-										{
-											numeric: 'auto',
-										}
-									)}
-								</p>
-							</div>
-							<div
-								className={`status-icon-wrapper ${
-									width < breakpoint ? 'mobile' : ''
-								}`}
-							>
-								{nextDeadlineSong.status.name === 'Recorded' && (
-									<ImYoutube2 className='card-icon status-icon yt-icon' />
-								)}
-								{nextDeadlineSong.status.name === 'Practicing' && (
-									<GiMetronome className='card-icon status-icon' />
-								)}
-								{nextDeadlineSong.status.name === 'Ready' && (
-									<CgCamera className='card-icon status-icon' />
-								)}
-								{nextDeadlineSong.status.name === 'Backlog' && (
-									<BiArchiveOut className='card-icon status-icon' />
-								)}
-								{nextDeadlineSong.status.name === 'Archived' && (
-									<BiArchive className='card-icon status-icon' />
-								)}
-							</div>
-						</div>
-						<p className={`reason ${width < breakpoint ? 'mobile' : ''}`}>
-							{nextDeadlineSong.reason}
-						</p>
-					</div> */}
 				</div>
 			)}
 		</StyledNextDeadlineSong>
@@ -183,7 +125,6 @@ const NextDeadlineSong = ({ theme }) => {
 
 const StyledNextDeadlineSong = styled.div`
 	padding: 1rem 2rem;
-	/* padding: 1rem 2rem 2rem; */
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -194,7 +135,7 @@ const StyledNextDeadlineSong = styled.div`
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');

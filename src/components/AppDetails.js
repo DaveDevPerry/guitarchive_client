@@ -38,14 +38,13 @@ const StyledAppDetails = styled.div`
 	column-gap: 2rem;
 	justify-content: space-between;
 	padding: 2rem 1rem;
-	/* padding-bottom: 3rem; */
 	background-repeat: no-repeat;
 	background-size: cover;
 	transition: all 200ms linear;
 	border-radius: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');
@@ -66,7 +65,6 @@ const StyledAppDetails = styled.div`
 		p {
 			align-self: center;
 			font-size: 1.2rem;
-			/* color: ${({ theme }) => theme.engravedBrown}; */
 			font-weight: bolder;
 			color: ${({ theme }) => theme.primaryColor};
 			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
@@ -111,14 +109,11 @@ const Brand = styled.div`
 	font-weight: lighter;
 	text-align: center;
 	line-height: 1;
-	/* color: ${({ theme }) => theme.engravedBrown}; */
-	/* font-weight: bolder; */
 	color: ${({ theme }) => theme.primaryColor};
 	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 		0px -1px 0px rgba(0, 0, 0, 0.7);
 	span {
 		font-weight: bolder;
-		/* text-transform: uppercase; */
 	}
 	span:last-child {
 		color: ${({ theme }) => theme.red};

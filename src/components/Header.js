@@ -131,54 +131,6 @@ const Header = ({ mode }) => {
 											)}
 										</AnimatePresence>
 									</div>
-									{/* <NavLink
-										to='/ideas'
-										className={({ isActive }) =>
-											isActive ? 'active' : 'inactive'
-										}
-									>
-										<p>ideas</p>
-									</NavLink>
-									<NavLink
-										to='/requests'
-										className={({ isActive }) =>
-											isActive ? 'active' : 'inactive'
-										}
-									>
-										<p>requests</p>
-									</NavLink> */}
-									{/* <NavLink
-									to='/songs'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>songs</p>
-								</NavLink> */}
-
-									{/* <NavLink
-							to='/products'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<p>products</p>
-						</NavLink> */}
-
-									{/* <NavLink
-										to='/artists'
-										className={({ isActive }) =>
-											isActive ? 'active' : 'inactive'
-										}
-									>
-										<p>artists</p>
-									</NavLink>
-									<NavLink
-										to='/arrangers'
-										className={({ isActive }) =>
-											isActive ? 'active' : 'inactive'
-										}
-									>
-										<p>arrangers</p>
-									</NavLink> */}
 									<NavLink
 										to='/stats'
 										className={({ isActive }) =>
@@ -261,9 +213,6 @@ const StyledHeader = styled(motion.header)`
 				position: relative;
 				display: grid;
 				place-content: center;
-				/* display: flex;
-				justify-content: center;
-				align-items: center; */
 				column-gap: 0.5rem;
 				padding-left: 0.5rem;
 				cursor: pointer;
@@ -296,11 +245,8 @@ const StyledHeader = styled(motion.header)`
 					padding-bottom: 0.5rem;
 					font-size: 1.8rem;
 					a {
-						/* display: grid;
-						place-content: center; */
 						display: flex;
 						justify-content: flex-start;
-
 						padding: 0rem 0.3rem;
 						p {
 							color: ${({ theme }) => theme.primaryColor};
@@ -310,8 +256,6 @@ const StyledHeader = styled(motion.header)`
 							font-weight: bolder;
 							padding: 0.5rem;
 							font-size: 1.8rem;
-
-							/* ba */
 						}
 						&:hover {
 							background-color: rgba(0, 0, 0, 0.05);

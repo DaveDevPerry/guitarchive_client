@@ -66,5 +66,6 @@ yarn-error.log*
 /src/components/ListProducts copy.js
 /src/components/AppLogo.js
 /src/components/Song copy.js
+/src/components/MobileHeader.js
 /src/pages/Song copy.js
 

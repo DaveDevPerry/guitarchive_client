@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-${
-	'' /* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&family=Oswald:wght@200;400&display=swap'); */
-}
   *,
   *::before,
   *::after {
@@ -33,7 +30,6 @@ ${
     font-weight: 400;
     color: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
-
   }
 	.App {
     width: 100vw;
@@ -42,42 +38,26 @@ ${
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    ${'' /* row-gap: 1rem; */}
     margin: auto;
 	overflow: hidden;
   padding-bottom: 1rem;
   background-repeat: repeat;
 	background-size: contain;
-background-image: url('/images/light wood background.webp');
+background-image: url('./images/light wood background.webp');
 position: relative;
-  ${
-		'' /* background-repeat: no-repeat;
-	background-size: cover;
-background-image: url('/images/texture.png'); */
-	}
-  ${'' /* background-color: ${({ theme }) => theme.bodyBg}; */}
   &#dark {
-		background-image: url('/images/dark wood background.webp');
-    ${
-			'' /* background-repeat: no-repeat;
-	background-size: cover; */
-		}
+		background-image: url('./images/dark wood background.webp');
 	}
 	&#light {
-		${'' /* background-image: url('/images/white wood.webp'); */}
-    background-image: url('/images/light wood background.webp');
+    background-image: url('./images/light wood background.webp');
 	}
   &.mobile{
     row-gap:0;
-    ${'' /* background-image: url('/images/white wood.webp'); */}
-    ${'' /* padding-bottom: 0; */}
-    ${'' /* padding-bottom: 1rem; */}
     &#dark {
-		background-image: url('/images/black wood.webp');
+		background-image: url('./images/black wood.webp');
 	}
 	&#light {
-		${'' /* background-image: url('/images/white wood.webp'); */}
-    background-image: url('/images/white wood.webp');
+    background-image: url('./images/white wood.webp');
 	}
   }
   .test-modal{
@@ -94,19 +74,17 @@ background-image: url('/images/texture.png'); */
   }
   .widget-container{
     padding: 1rem 2rem;
-    ${'' /* padding: 1rem 2rem 2rem; */}
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
 	background-repeat: no-repeat;
 	background-size: cover;
 	row-gap: 0.5rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood.png');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');
@@ -125,7 +103,7 @@ background-image: url('/images/texture.png'); */
   }
   button {
 		background-color: ${({ theme }) => theme.btnBg};
-    font-family: 'NewTegomin';
+    font-family: 'NewTegomin', serif;
 		padding: 1rem 3rem;
 		text-transform: uppercase;
 		border: none;
@@ -136,7 +114,6 @@ background-image: url('/images/texture.png'); */
 		cursor: pointer;
     color: ${({ theme }) => theme.btnColor};
 	}
-  
  a {
     text-decoration: none;
   }
@@ -162,11 +139,9 @@ background-image: url('/images/texture.png'); */
   color: ${({ theme }) => theme.primaryColor};
   opacity: 1; 
 }
-
 :-ms-input-placeholder { 
 color: ${({ theme }) => theme.primaryColor};
 }
-
 ::-ms-input-placeholder { 
 color: ${({ theme }) => theme.primaryColor};
 }
@@ -260,8 +235,6 @@ ${
     border-radius: 5px;
     box-shadow: inset -1px -1px 2px rgba(0,0,0,0.3), inset 1px 1px 1px rgba(0,0,0,0.1);
   }
-
-
   input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
@@ -296,30 +269,18 @@ input[type="checkbox"]:disabled {
   cursor: not-allowed;
 }
 input[type="date"]{
-  ${'' /* font: inherit; */}
   height: 3.9rem;
-  ${'' /* font-family: 'NewTegomin'; */}
-    ${'' /* font-size: 1.6rem; */}
     padding: 0 0 0 1rem;
-    ${'' /* color: ${({ theme }) => theme.secondaryColor}; */}
 }
 ::-webkit-calendar-picker-indicator{
     background-color: ${({ theme }) => theme.btnBg};
    padding: 20px 10px; 
-   ${'' /* margin-right: 0.5rem; */}
     cursor: pointer;
-    ${'' /* border-radius: 3px; */}
     color: ${({ theme }) => theme.secondaryColor};
-    ${'' /* color: transparent; */}
     height: 1.6rem;
     width: 1.6rem;
     border-left: 2px solid ${({ theme }) => theme.btnBorder};
-    ${
-			'' /* filter: invert(1);
-    filter: invert(1), saturate(10000%) */
-		}
 }
-
       select.form-select {
         cursor: inherit;
 				line-height: inherit;
@@ -335,7 +296,6 @@ input[type="date"]{
   box-sizing: border-box;
     border: 2px solid ${({ theme }) => theme.borderLight};
     ${'' /* border: 2px solid rgba(16, 16, 16,0.5); */}
-
   -webkit-transition: 0.5s;
   transition: 0.5s;
     background-color: ${({ theme }) => theme.inputBg};
@@ -349,34 +309,20 @@ option.form-option {
 					font-size: 1.6rem;
 					color: ${({ theme }) => theme.primaryColor};
           font-weight: bolder;
-					${'' /* background-color: red; */}
 					background-color: ${({ theme }) => theme.optionBg};
 					${'' /* background-color: rgba(36, 14, 0, 0.08); */}
 					border: 1px solid ${({ theme }) => theme.borderDark};
           ${'' /* border: 2px solid rgba(16, 16, 16, 0.5); */}
-          ${'' /* border: 2px solid rgba(16, 16, 16,0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
           font-family: 'NewTegomin';
           cursor: pointer;
           &:nth-child(odd){
             background-color:  ${({ theme }) => theme.optionBgOdd};
-            ${
-							'' /* border-top: 1px solid  ${({ theme }) => theme.btnBorder};
-            border-bottom: 1px solid  ${({ theme }) => theme.btnBorder}; */
-						}
           }
 					&:focus {
 						border: 1px solid ${({ theme }) => theme.darkBrown};
 						outline: none;
-					}
-          ${
-						'' /* &:hover {
-				border: 1px solid ${({ theme }) => theme.darkBrown};
-        background: red;
-				outline: none;
-				cursor: pointer;
-			} */
 					}
 				}
 .form-dropdown {
@@ -405,46 +351,29 @@ option.form-option {
   z-index: 1;
   border-left: 2px solid ${({ theme }) => theme.btnBorder};
 }
-
-
 input[type="file"] {
         position: absolute;
         z-index: 1;
-        ${'' /* z-index: -1; */}
         left: 0;
-        ${'' /* top: -2px; */}
         width: 100%;
         height: 3.9rem;
-        ${'' /* font: inherit; */}
-
       }
       .file-input {
 				width: 100%;
 				position: relative;
 				height: 3.9rem;
-				${'' /* font: inherit; */}
 			} 
       ::-webkit-file-upload-button {
   background: ${({ theme }) => theme.btnBg};
   color: ${({ theme }) => theme.btnIcon};
-  ${'' /* height: 3.5rem; */}
   outline: none;
   border: none;
-  ${'' /* top: 0; */}
-  ${'' /* padding: 1em; */}
   padding:0rem  0.7rem;
-  ${
-		'' /* position: absolute;
-  top: 0;
-  left: 0; */
-	}
-	
 }
 				
 
 // btn
 .custom-btn {
-					${'' /* width: 100%; */}
 					color: ${({ theme }) => theme.btnColor};
 					border-radius: 5px;
 					padding: 7px 10px;
@@ -522,9 +451,6 @@ input[type="file"] {
 				rgba(38, 38, 38, 0.4)
 			);
 		}
-
-
-
     button.page-number-btn:disabled,
 button.page-number-btn[disabled]{
   color: #7c7c7c !important;
@@ -535,46 +461,6 @@ button[disabled]{
   color: #7c7c7c !important;
   cursor: not-allowed;
 }
-
-        // btn
-        ${
-					'' /* .custom-btn {
-  width: 100%;
-  color: ${({ theme }) => theme.btnColor};
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-size: 16px;
-  font-weight: 900;
-  font-style: normal;
-  text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
-    text-decoration: none;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 0px 1px 0px rgba(255,255,255,1),0px 1px 3px rgba(0,0,0,0.3);
-  outline: none;
-  border: 1px solid #ba6;
-  line-height: 1;
-}
-.custom-btn:active{
-  -webkit-transform: translateY(2px);
-  transform: translateY(2px);
-}
-.btn-silver{
-  border-color: #7c7c7c;
-  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
-  -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)  4%, hsla(0,0%,  0%,.03) 4.5%),
-  -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 12%, hsla(0,0%,100%,.15) 2.2%),
-  linear-gradient(180deg,
-  hsl(0,0%,78%)  0%, 
-  hsl(0,0%,90%) 47%, 
-  hsl(0,0%,78%) 53%,
-  hsl(0,0%,70%) 100%,
-  )
-} */
-				}
-
 
         .backdrop{
           position: absolute;
@@ -588,24 +474,4 @@ button[disabled]{
           justify-content: center;
           z-index: 200000;
         }
-        ${
-					'' /* .modal{
-          width: clamp(50%,700px,92%);
-          height: min(50%, 300px);
-
-          margin: auto;
-          padding: 1rem;
-          border-radius: 1rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-          z-index: 20000;
-          column-gap: 2rem;
-          &.orange-gradient{
-            background: rgb(251,245,63);
-background: radial-gradient(circle, rgba(251,245,63,1) 0%, rgba(251,211,63,1) 8%, rgba(251,162,63,1) 49%, rgba(251,122,63,1) 100%);
-          }
-        } */
-				}
 `;

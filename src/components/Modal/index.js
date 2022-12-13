@@ -59,7 +59,6 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 						rel='noreferrer'
 						className='link-to-channel'
 					>
-						{/* <span className='yt-channel-link'>visit channel</span> */}
 						<HiExternalLink className='external-link-icon' />
 					</a>
 				</div>
@@ -73,7 +72,6 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 						<p>views on youtube</p>
 					</div>
 					<p className='congrats-text'>congratulations</p>
-					{/* <p>{youtubeData && youtubeData[0].statistics.viewCount}</p> */}
 				</div>
 				<div className='stats-container'>
 					<StyledYoutubeStat
@@ -164,16 +162,6 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 						</p>
 					</StyledYoutubeStat>
 				</div>
-
-				{/* <p className='congrats-text'>congratulations</p>
-				<div className='congrats-wrapper'>
-					<p>You have reached</p>
-					<p className='congrats-figure'>
-						<Counter from={0} to={100000} />
-					</p>
-					<p>views on youtube</p>
-				</div>
-				<p>{youtubeData && youtubeData[0].statistics.viewCount}</p> */}
 			</StyledModal>
 		</Backdrop>
 	);
@@ -186,12 +174,10 @@ const StyledModal = styled(motion.div)`
 	row-gap: 3rem;
 	background-repeat: no-repeat;
 	background-size: cover;
-	/* transition: all 200ms linear; */
 	border-radius: 1rem;
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	z-index: 20000;
 	width: clamp(50%, 700px, 92%);
-	/* height: min(50%, 300px); */
 	&#dark {
 		background-image: url('/images/black wood.webp');
 	}
@@ -204,18 +190,9 @@ const StyledModal = styled(motion.div)`
 		padding: 0.5rem 1rem 1.5rem;
 		box-shadow: none;
 		width: clamp(50%, 700px, 95%);
-		/* height: 11.4rem; */
-		/* display: hidden; */
-		/* &#dark {
-			background-image: none;
-		}
-		&#light {
-			background-image: none;
-		} */
 		.congrats-container {
 			display: flex;
 			flex-direction: column;
-
 			.congrats-text {
 				text-transform: uppercase;
 				font-size: 3rem;
@@ -224,7 +201,6 @@ const StyledModal = styled(motion.div)`
 				text-align: center;
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 					0px -1px 0px rgb(0 0 0 / 70%);
-				/* -webkit-text-stroke: 1px ${({ theme }) => theme.primaryColor}; */
 			}
 			.congrats-wrapper {
 				display: flex;
@@ -270,18 +246,10 @@ const StyledModal = styled(motion.div)`
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 					0px -1px 0px rgb(0 0 0 / 70%);
 			}
-			/* &.mobile {
-				p {
-					font-size: 1.8rem;
-				}
-			} */
 		}
 		a.link-to-channel {
 			display: grid;
 			place-content: center;
-			/* span.yt-channel-link {
-				text-transform: uppercase;
-			} */
 			display: none;
 			.external-link-icon {
 				color: ${({ theme }) => theme.secondaryColor};
@@ -301,7 +269,6 @@ const StyledModal = styled(motion.div)`
 			text-align: center;
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 				0px -1px 0px rgb(0 0 0 / 70%);
-			/* -webkit-text-stroke: 1px ${({ theme }) => theme.primaryColor}; */
 		}
 		.congrats-wrapper {
 			display: flex;
@@ -382,7 +349,6 @@ const StyledYoutubeStat = styled.div`
 			&.mobile {
 				.status-icon {
 					font-size: 1.6rem;
-					/* color: ${({ theme }) => theme.lightBrown}; */
 					&.yt-icon {
 						font-size: 2rem;
 					}
