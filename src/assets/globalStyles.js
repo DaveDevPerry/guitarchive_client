@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+${
+	'' /* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&family=Oswald:wght@200;400&display=swap'); */
+}
   *,
   *::before,
   *::after {
@@ -16,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: 'NewTegomin';
+    font-family: 'NewTegomin', serif;
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
@@ -330,26 +333,27 @@ input[type="date"]{
   position: relative;
   width: 100%;
   box-sizing: border-box;
-    ${'' /* border: 2px solid ${({ theme }) => theme.borderLight}; */}
-    border: 2px solid rgba(16, 16, 16,0.5);
+    border: 2px solid ${({ theme }) => theme.borderLight};
+    ${'' /* border: 2px solid rgba(16, 16, 16,0.5); */}
 
   -webkit-transition: 0.5s;
   transition: 0.5s;
-    ${'' /* background-color: ${({ theme }) => theme.inputBg}; */}
-    background-color: rgba(168, 105, 69, 0.57);
+    background-color: ${({ theme }) => theme.inputBg};
+    ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
 }
 select.form-select:focus {
   border: 2px solid ${({ theme }) => theme.borderDark};
 }
 option.form-option {
-					font-size: 1.4rem;
+					font-size: 1.6rem;
 					color: ${({ theme }) => theme.primaryColor};
           font-weight: bolder;
 					${'' /* background-color: red; */}
 					background-color: ${({ theme }) => theme.optionBg};
 					${'' /* background-color: rgba(36, 14, 0, 0.08); */}
 					border: 1px solid ${({ theme }) => theme.borderDark};
+          ${'' /* border: 2px solid rgba(16, 16, 16, 0.5); */}
           ${'' /* border: 2px solid rgba(16, 16, 16,0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
@@ -365,6 +369,14 @@ option.form-option {
 					&:focus {
 						border: 1px solid ${({ theme }) => theme.darkBrown};
 						outline: none;
+					}
+          ${
+						'' /* &:hover {
+				border: 1px solid ${({ theme }) => theme.darkBrown};
+        background: red;
+				outline: none;
+				cursor: pointer;
+			} */
 					}
 				}
 .form-dropdown {
@@ -435,7 +447,8 @@ input[type="file"] {
 					${'' /* width: 100%; */}
 					color: ${({ theme }) => theme.btnColor};
 					border-radius: 5px;
-					padding: 8px 10px;
+					padding: 7px 10px;
+					${'' /* padding: 8px 10px; */}
 					font-size: 1.8rem;
 					font-weight: 900;
 					font-style: normal;

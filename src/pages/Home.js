@@ -138,7 +138,7 @@ const Home = ({ theme, youtubeData }) => {
 
 	useEffect(() => {
 		if (youtubeGoal === true) return;
-		if (youtubeData && youtubeData[0].statistics.viewCount >= 199000) {
+		if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
 			setTimeout(() => {
 				modalOpen ? close() : open();
 			}, 1000);

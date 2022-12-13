@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,7 +13,7 @@ import { GiMusicalScore, GiLightBulb } from 'react-icons/gi';
 import { FaUserEdit } from 'react-icons/fa';
 
 const MobileMenu = ({ theme }) => {
-	const { dataLoaded } = useStateContext();
+	const { dataLoaded, isAdmin } = useStateContext();
 	let navigate = useNavigate();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -103,16 +103,22 @@ const MobileMenu = ({ theme }) => {
 						</NavLink>
 					</motion.div>
 
-					<motion.div className='menu-item' variants={item}>
-						<NavLink
-							to='/youtube'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-							// variants={item}
-						>
-							<TfiYoutube className='nav-icon' />
-							<p>youtube</p>
-						</NavLink>
-					</motion.div>
+					<Suspense fallback={''}>
+						{isAdmin && (
+							<motion.div className='menu-item' variants={item}>
+								<NavLink
+									to='/youtube'
+									className={({ isActive }) =>
+										isActive ? 'active' : 'inactive'
+									}
+									// variants={item}
+								>
+									<TfiYoutube className='nav-icon' />
+									<p>youtube</p>
+								</NavLink>
+							</motion.div>
+						)}
+					</Suspense>
 					<motion.div className='menu-item' variants={item}>
 						<NavLink
 							to='/stats'

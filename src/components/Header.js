@@ -11,11 +11,22 @@ const Header = ({ mode }) => {
 	const location = useLocation();
 	const { width } = useViewport();
 	const breakpoint = 620;
-	const { showListsMenu, setShowListsMenu } = useStateContext();
+	const {
+		showListsMenu,
+		setShowListsMenu,
+		showMusiciansMenu,
+		setShowMusiciansMenu,
+	} = useStateContext();
 
 	const handleSubMenu = () => {
 		log('clicked');
 		setShowListsMenu(!showListsMenu);
+		setShowMusiciansMenu(false);
+	};
+	const handleMusicianSubMenu = () => {
+		log('clicked');
+		setShowMusiciansMenu(!showMusiciansMenu);
+		setShowListsMenu(false);
 	};
 
 	return (
@@ -85,6 +96,41 @@ const Header = ({ mode }) => {
 											)}
 										</AnimatePresence>
 									</div>
+									<div className='sub-menu' onClick={handleMusicianSubMenu}>
+										<p>
+											musicians{' '}
+											<span>
+												<IoMdArrowDropdown className='arrow-icon' />
+											</span>
+										</p>
+										<AnimatePresence mode='wait'>
+											{showMusiciansMenu && (
+												<motion.div
+													className='dropdown-links'
+													initial={{ opacity: 0 }}
+													animate={{ opacity: 1 }}
+													exit={{ opacity: 0 }}
+												>
+													<NavLink
+														to='/artists'
+														className={({ isActive }) =>
+															isActive ? 'active' : 'inactive'
+														}
+													>
+														<p>artists</p>
+													</NavLink>
+													<NavLink
+														to='/arrangers'
+														className={({ isActive }) =>
+															isActive ? 'active' : 'inactive'
+														}
+													>
+														<p>arrangers</p>
+													</NavLink>
+												</motion.div>
+											)}
+										</AnimatePresence>
+									</div>
 									{/* <NavLink
 										to='/ideas'
 										className={({ isActive }) =>
@@ -117,7 +163,7 @@ const Header = ({ mode }) => {
 							<p>products</p>
 						</NavLink> */}
 
-									<NavLink
+									{/* <NavLink
 										to='/artists'
 										className={({ isActive }) =>
 											isActive ? 'active' : 'inactive'
@@ -132,7 +178,7 @@ const Header = ({ mode }) => {
 										}
 									>
 										<p>arrangers</p>
-									</NavLink>
+									</NavLink> */}
 									<NavLink
 										to='/stats'
 										className={({ isActive }) =>
@@ -210,7 +256,7 @@ const StyledHeader = styled(motion.header)`
 		nav.top-nav.desktop {
 			display: flex;
 			align-items: center;
-			column-gap: 1.5rem;
+			column-gap: 0.5rem;
 			.sub-menu {
 				position: relative;
 				display: grid;

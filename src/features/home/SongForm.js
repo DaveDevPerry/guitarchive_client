@@ -595,16 +595,18 @@ const StyledSongForm = styled.form`
 				align-items: center;
 				column-gap: 0.5rem;
 				flex: 1;
+				/* color: ${({ theme }) => theme.btnIcon}; */
 				.add-new-person-btn {
 					height: 3.9rem;
 					width: 3.9rem;
 					padding: 0;
 					color: ${({ theme }) => theme.btnIcon};
 					cursor: pointer;
-					.add-new-record-icon {
+					svg.add-new-record-icon {
 						/* font-size: 2.2rem; */
 						/* pointer-events: none;
 						color: currentColor; */
+						color: ${({ theme }) => theme.btnIcon};
 					}
 				}
 			}

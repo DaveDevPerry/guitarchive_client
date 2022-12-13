@@ -25,9 +25,9 @@ const SongsFilter = ({ homeSongFilterHandler, theme }) => {
 				<option value='deadlines' className='form-option'>
 					Deadlines
 				</option>
-				{/* <option value='practicing' className='form-option'>
+				<option value='practicing' className='form-option'>
 					Practicing
-				</option> */}
+				</option>
 				{/* <option value='ready'>Ready</option>
 				<option value='recorded'>Recorded</option>
 				<option value='backlog'>Backlog</option>
@@ -117,6 +117,12 @@ const StyledSongsFilter = styled.div`
 			#e6e6e6 87%,
 			rgba(38, 38, 38, 0.4)
 		);
+		/* &:hover {
+			border: 1px solid ${({ theme }) => theme.darkBrown};
+			background: red;
+			outline: none;
+			cursor: pointer;
+		} */
 		&#dark {
 			border-color: ${({ theme }) => theme.filterBorderColor};
 			background: linear-gradient(
@@ -140,9 +146,10 @@ const StyledSongsFilter = styled.div`
 		}
 		option {
 			font-size: 1.6rem;
-			color: ${({ theme }) => theme.syntax};
+			color: ${({ theme }) => theme.primaryColor};
 			padding: 1rem;
 			border: 1px solid ${({ theme }) => theme.darkBrown};
+			/* border: 2px solid rgba(16, 16, 16, 0.5); */
 			border-radius: 0 0 1rem 1rem;
 			&:focus {
 				border: 1px solid ${({ theme }) => theme.darkBrown};

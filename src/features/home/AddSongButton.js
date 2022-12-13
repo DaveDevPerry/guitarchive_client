@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../../lib/context';
 import { CgPlayListAdd } from 'react-icons/cg';
+// import { GrAdd } from 'react-icons/gr';
 import { useViewport } from '../../hooks/useViewport';
 
 const AddSongButton = () => {
@@ -16,6 +17,7 @@ const AddSongButton = () => {
 			}}
 		>
 			<CgPlayListAdd className='add-song-btn' />
+			{/* <GrAdd className='add-song-btn' /> */}
 			{/* <p>upload</p> */}
 			{width > breakpoint && <p>add song</p>}
 		</StyledAddSongButton>
@@ -34,20 +36,20 @@ const StyledAddSongButton = styled.button`
 		justify-content: flex-start;
 		column-gap: 0.5rem;
 		/* width: unset; */
-	}
-	.add-song-btn {
-		margin-top: 0.5rem;
-		/* font-size: 2.4rem; */
-		color: ${({ theme }) => theme.btnIcon};
-		font-weight: bolder;
-	}
-	p {
-		font-family: 'NewTegomin';
-		color: ${({ theme }) => theme.btnColor};
-		text-transform: uppercase;
-		font-size: 1.6rem;
-		font-weight: bolder;
-		line-height: 1;
+		.add-song-btn {
+			margin-top: 0.5rem;
+			/* font-size: 2.4rem; */
+			color: ${({ theme }) => theme.btnIcon};
+			font-weight: bolder;
+		}
+		p {
+			font-family: 'NewTegomin';
+			color: ${({ theme }) => theme.btnColor};
+			text-transform: uppercase;
+			font-size: 1.6rem;
+			font-weight: bolder;
+			line-height: 1;
+		}
 	}
 `;
 // const StyledAddSongButton = styled.div`
