@@ -15,7 +15,8 @@ const Artists = () => {
 	const { dataLoaded, isArtistFormOpen } = useStateContext();
 	const [currentId, setCurrentId] = useState(null);
 	// const { artists } = useArtistsContext();
-	const { artists } = useSongsContext();
+	// const { artists } = useSongsContext();
+	const { artistsCounters } = useSongsContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -49,7 +50,7 @@ const Artists = () => {
 					{width > breakpoint && <SearchBar />}
 				</div>
 			)} */}
-			<ArtistsListContainer artists={artists} />
+			<ArtistsListContainer artists={artistsCounters} />
 		</StyledArtists>
 	);
 };

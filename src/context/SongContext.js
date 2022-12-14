@@ -35,6 +35,115 @@ const getArtistStats = async (arr) => {
 	return newStats;
 };
 
+const getArtistData = (arr) => {
+	log('in artist data');
+	const clonedSongs = [...arr];
+	log(clonedSongs, 'cloned songs');
+	// returns each song with referenced data obj just name
+	const flatten = clonedSongs.map((song) => {
+		return {
+			...song,
+			artist: song.artist.name,
+			arranger: song.arranger.name,
+			status: song.status.name,
+			style: song.style.name,
+		};
+	});
+	log(flatten, 'flatten');
+
+	const getArtistNames = Object.entries(
+		[...arr]
+			.map(({ artist }) => artist.name)
+			.reduce(function (count, currentValue) {
+				return (
+					count[currentValue]
+						? ++count[currentValue]
+						: (count[currentValue] = 1),
+					count
+				);
+			}, {})
+	)
+		.map(([key, value]) => ({
+			name: key,
+			count: value,
+		}))
+		.sort((a, b) => a.name.localeCompare(b.name));
+	log(getArtistNames, 'names');
+
+	const artistArr = [];
+	// loop through artist names and new array of song objects from each artist
+
+	getArtistNames.forEach((artist) => {
+		// const tempArr = [];
+		const songsByArtist = [...flatten].filter((song) => {
+			return song.artist === artist.name;
+		});
+		artistArr.push(songsByArtist);
+	});
+	log(artistArr, 'artist arr');
+
+	const artistsCounterData = [];
+	for (let i = 0; i < artistArr.length; i++) {
+		// let aName = getArtistNames[i].name;
+		let countersObj = {
+			name: artistArr[i][0].artist,
+			songs: artistArr[i].length,
+			tab: [...artistArr[i]].filter((song) => song.isTab === true).length,
+			score: [...artistArr[i]].filter((song) => song.isTab === false).length,
+			fav: [...artistArr[i]].filter((song) => song.isFavourite === true).length,
+			fingerstyle: [...artistArr[i]].filter(
+				(song) => song.style === 'fingerstyle'
+			).length,
+			electric: [...artistArr[i]].filter((song) => song.style === 'electric')
+				.length,
+			classical: [...artistArr[i]].filter((song) => song.style === 'classical')
+				.length,
+			recorded: [...artistArr[i]].filter((song) => song.status === 'Recorded')
+				.length,
+			practicing: [...artistArr[i]].filter(
+				(song) => song.status === 'Practicing'
+			).length,
+			ready: [...artistArr[i]].filter((song) => song.status === 'Ready').length,
+			backlog: [...artistArr[i]].filter((song) => song.status === 'Backlog')
+				.length,
+			archived: [...artistArr[i]].filter((song) => song.status === 'Archived')
+				.length,
+			deadline: [...artistArr[i]].filter(
+				(song) => song.deadlineDate !== null && song.status !== 'Recorded'
+			).length,
+			// tab: [...artistArr].filter((song) => song.isTab === true).length,
+			// tab: [...artistArr].filter((song) => song.isTab === true).length,
+		};
+		artistsCounterData.push(countersObj);
+	}
+	log(artistsCounterData, 'art counter data');
+
+	return artistsCounterData;
+	// getArtistNames.forEach((artist) => {
+	// 	// const tempArr = [];
+	// 	const songsByArtist = [...flatten].map((song) => {
+	// 		return song.artist === artist.name;
+	// 	});
+	// 	artistArr.push(songsByArtist);
+	// });
+	// log(artistArr, 'artist arr');
+
+	// const duplicatedArtists = flatten
+	// 	.map((v) => v.artist)
+	// 	.filter((v, i, vNames) => vNames.indexOf(v) !== i);
+	// log(duplicatedArtists, 'dup art');
+	// const duplicates = flatten.filter((obj) =>
+	// 	duplicatedArtists.includes(obj.id)
+	// );
+	// console.log(duplicates, 'dups');
+	// 	const duplicateIds = values
+	//   .map(v => v.id)
+	//   .filter((v, i, vIds) => vIds.indexOf(v) !== i)
+	// const duplicates = values
+	//   .filter(obj => duplicateIds.includes(obj.id));
+	// console.log(duplicates)
+};
+
 // const getMusicianStats = async (arr) => {
 // 	const clonedSongs = [...arr];
 // 	const musicianCountObj = clonedSongs
@@ -69,6 +178,7 @@ export const songsReducer = (state, action) => {
 		case 'SET_SONGS':
 			// getMusicianStats(action.payload);
 			// getSongsByArtist(action.payload)
+			getArtistData(action.payload);
 			return {
 				...state,
 				// songs: action.payload,
@@ -92,6 +202,7 @@ export const songsReducer = (state, action) => {
 						count: value,
 					}))
 					.sort((a, b) => a.name.localeCompare(b.name)),
+				artistsCounters: getArtistData(action.payload),
 				arrangers: Object.entries(
 					[...action.payload]
 						.map(({ arranger }) => arranger.name)
@@ -399,6 +510,7 @@ export const songsReducer = (state, action) => {
 				song: null,
 				songs: null,
 				artists: null,
+				artistsCounters: null,
 				artistSongs: null,
 				artistStats: null,
 				arrangers: null,
@@ -425,6 +537,7 @@ export const SongsContextProvider = ({ children }) => {
 		song: null,
 		songs: null,
 		artists: null,
+		artistsCounters: null,
 		artistSongs: null,
 		artistStats: null,
 		arrangers: null,
