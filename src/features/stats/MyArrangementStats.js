@@ -39,7 +39,7 @@ const StyledMyArrangementStats = styled.div`
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	flex: 1 1 48%;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');

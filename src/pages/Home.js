@@ -42,87 +42,10 @@ const Home = ({ theme, youtubeData }) => {
 			case 'practicing':
 				setFilterValue('practicing');
 				break;
-			// case 'default-filter':
-			// 	setFilterValue('songs');
-			// 	break;
+
 			case 'songs':
 				setFilterValue('songs');
 				break;
-			// case 'deadline':
-			// 	setFilterValue(
-			// 		songs &&
-			// 			songs.filter(
-			// 				(song) =>
-			// 					song.deadlineDate !== null && song.status.name !== 'Recorded'
-			// 			)
-			// 	);
-			// 	break;
-			// case 'practicing':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.status.name === 'Practicing')
-			// 	);
-			// 	break;
-			// case 'ready':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.status.name === 'Ready')
-			// 	);
-			// 	break;
-			// case 'recorded':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.status.name === 'Recorded')
-			// 	);
-			// 	break;
-			// case 'backlog':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.status.name === 'Backlog')
-			// 	);
-			// 	break;
-			// case 'archived':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.status.name === 'Archived')
-			// 	);
-			// 	break;
-			// case 'pdf':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.fileType === 'pdf')
-			// 	);
-			// 	break;
-			// case 'gp':
-			// 	setFilterValue(
-			// 		songs && songs.filter((song) => song.fileType !== 'pdf')
-			// 	);
-			// 	break;
-			// case 'difficulty-lth':
-			// 	setFilterValue(
-			// 		songs &&
-			// 			songs.sort((a, b) => {
-			// 				return b.difficulty - a.difficulty;
-			// 			})
-			// 	);
-			// 	break;
-			// case 'difficulty-htl':
-			// 	setFilterValue(
-			// 		songs &&
-			// 			songs.sort((a, b) => {
-			// 				return a.difficulty - b.difficulty;
-			// 			})
-			// 	);
-			// 	break;
-			// case 'remove-sort':
-			// 	setFilterValue(
-			// 		songs &&
-			// 			songs
-			// 				.sort((a, b) => {
-			// 					return new Date(b.deadlineDate) > new Date(a.deadlineDate);
-			// 				})
-			// 				.sort(function (a, b) {
-			// 					return (a.deadlineDate === null) - (b.deadlineDate === null);
-			// 				})
-			// 	);
-			// 	break;
-			// case 'all':
-			// 	setFilterValue(songs && songs);
-			// 	break;
 			default:
 				setFilterValue('songs');
 				break;
@@ -152,11 +75,7 @@ const Home = ({ theme, youtubeData }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
-			// initial={{ opacity: 0 }}
-			// animate={{ opacity: 1 }}
-			// exit={{ opacity: 0 }}
 		>
-			{/* <AnimatePresence mode='wait' initial={false} onExitComplete={() => null}> */}
 			<AnimatePresence mode='wait'>
 				{modalOpen && (
 					<Modal
@@ -169,14 +88,6 @@ const Home = ({ theme, youtubeData }) => {
 					<SongModal currentId={currentId} setCurrentId={setCurrentId} />
 				)}
 			</AnimatePresence>
-			{/* <motion.button
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.9 }}
-				className='save-button'
-				onClick={() => (modalOpen ? close() : open())}
-			>
-				launch modal
-			</motion.button> */}
 			<AlertDeadlineSong theme={theme} />
 			<SongsListContainer
 				filterValue={filterValue}
@@ -203,14 +114,14 @@ const StyledHome = styled(motion.div)`
 		row-gap: 0rem;
 		padding: 0;
 	}
-	.add-btns-container {
+	/* .add-btns-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
 		border: 1px solid black;
 		display: none;
-	}
+	} */
 `;
 
 export default Home;

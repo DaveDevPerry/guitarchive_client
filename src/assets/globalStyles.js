@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
   padding-bottom: 1rem;
   background-repeat: repeat;
 	background-size: contain;
-background-image: url('./images/light wood background.webp');
+${'' /* background-image: url('./images/light wood background.webp'); */}
 position: relative;
   &#dark {
 		background-image: url('./images/dark wood background.webp');
@@ -315,7 +315,7 @@ option.form-option {
           ${'' /* border: 2px solid rgba(16, 16, 16, 0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
-          font-family: 'NewTegomin';
+          font-family: 'NewTegomin',serif;
           cursor: pointer;
           &:nth-child(odd){
             background-color:  ${({ theme }) => theme.optionBgOdd};

@@ -61,15 +61,14 @@ const StyledSongsFilter = styled.div`
 		border: none;
 		-webkit-transition: 0.5s;
 		transition: 0.5s;
-		font-family: 'NewTegomin';
+		font-family: 'NewTegomin', serif;
 		text-transform: uppercase;
 		font-size: 1.6rem;
 		font-weight: bolder;
 		cursor: pointer;
 		background-color: ${({ theme }) => theme.filterBg};
 		border: 1px solid ${({ theme }) => theme.filterBorder};
-		color: ${({ theme }) => theme.filterColor};
-
+		/* color: ${({ theme }) => theme.filterColor}; */
 		color: ${({ theme }) => theme.btnColor};
 		border-radius: 5px;
 		padding: 8px 45px 8px 10px;

@@ -4,7 +4,7 @@ import { useViewport } from '../../hooks/useViewport';
 import SongsFilter from './SongsFilter';
 // import SongsList from './SongsList';
 // import Light from '../../assets/images/white wood.webp';
-// import Dark from '../../assets/images/dark wood texture.webp';
+// import Dark from '../../assets/images/black wood.webp';
 import SongsWidget from './SongsWidget';
 import SearchBar from './SearchBar';
 import SongsSort from './SongsSort';
@@ -49,7 +49,7 @@ const StyledSongsListContainer = styled.div`
 	flex: 1;
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');

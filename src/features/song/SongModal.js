@@ -14,7 +14,7 @@ import SongForm from './SongForm';
 // import ResultsRanking from './ResultsRanking';
 // import { motion } from 'framer-motion';
 // import { ImCross, ImCheckmark, ImArrowRight } from 'react-icons/im';
-// import '../../assets/images/dark wood texture.webp';
+// import '../../assets/images/black wood.webp';
 
 const SongModal = ({
 	inputText,
@@ -84,7 +84,7 @@ const StyledSongModal = styled.dialog`
 		margin: 0 auto;
 		flex: 1;
 		overflow-y: auto;
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 		border-radius: 1rem;
 		box-shadow: 3px 3px 4px rgb(0 0 0);
 		h2 {

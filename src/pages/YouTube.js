@@ -201,7 +201,7 @@ const StyledYouTube = styled(motion.div)`
 		flex: 1;
 		overflow-y: hidden;
 		&#dark {
-			background-image: url('/images/dark wood texture.webp');
+			background-image: url('/images/black wood.webp');
 		}
 		&#light {
 			background-image: url('/images/white wood.webp');
