@@ -201,6 +201,8 @@ const StyledModal = styled(motion.div)`
 				text-align: center;
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 					0px -1px 0px rgb(0 0 0 / 70%);
+				/* animation: 2s linear forwards showText;
+				animation-delay: 6s; */
 			}
 			.congrats-wrapper {
 				display: flex;
@@ -267,8 +269,11 @@ const StyledModal = styled(motion.div)`
 			font-weight: bolder;
 			color: ${({ theme }) => theme.congratulations};
 			text-align: center;
+			/* visibility: hidden; */
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
 				0px -1px 0px rgb(0 0 0 / 70%);
+			/* animation: 2s linear forwards showText;
+			animation-delay: 6s; */
 		}
 		.congrats-wrapper {
 			display: flex;
@@ -296,6 +301,28 @@ const StyledModal = styled(motion.div)`
 		border-radius: 4px;
 		margin-top: 1rem;
 	}
+
+	@keyframes showText {
+		0% {
+			visibility: visible;
+			opacity: 0;
+		}
+		50% {
+			opacity: 0;
+		}
+		100% {
+			/* visibility: visible; */
+			opacity: 1;
+		}
+	}
+	/* @keyframes showText {
+		from {
+			visibility: hidden;
+		}
+		to {
+			visibility: visible;
+		}
+	} */
 `;
 
 const StyledYoutubeStat = styled.div`

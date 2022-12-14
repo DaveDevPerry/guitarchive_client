@@ -72,7 +72,7 @@ const AnimatedRoutes = ({
 
 	return (
 		<AnimatePresence mode='wait'>
-			<Suspense fallback={<h1>loading ....</h1>}>
+			<Suspense fallback={<h1 className='text-center'>loading ....</h1>}>
 				<Routes location={location} key={location.pathname}>
 					<Route
 						path='/'

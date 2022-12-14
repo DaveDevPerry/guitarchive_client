@@ -33,7 +33,7 @@ const YouTube = ({ youtubeData, theme }) => {
 				className='channel-container'
 				id={`${theme === 'dark' ? 'dark' : 'light'}`}
 			>
-				{youtubeData && youtubeData[0].statistics.viewCount >= 100000 ? (
+				{youtubeData && youtubeData[0].statistics.viewCount >= 200000 ? (
 					<StyledYouTubeWidgetTarget
 						id={`${theme === 'dark' ? 'dark' : 'light'}`}
 						className={`${width < breakpoint ? 'mobile' : ''}`}

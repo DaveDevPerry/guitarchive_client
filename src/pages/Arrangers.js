@@ -15,7 +15,8 @@ const Arrangers = () => {
 	const { dataLoaded, isArrangerFormOpen } = useStateContext();
 	const [currentId, setCurrentId] = useState(null);
 	// const { arrangers } = useArrangersContext();
-	const { arrangers } = useSongsContext();
+	const { arrangersCounters } = useSongsContext();
+	// const { arrangers } = useSongsContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -49,7 +50,7 @@ const Arrangers = () => {
 					{width > breakpoint && <SearchBar />}
 				</div>
 			)} */}
-			<ArrangersListContainer arrangers={arrangers} />
+			<ArrangersListContainer arrangers={arrangersCounters} />
 		</StyledArrangers>
 	);
 };

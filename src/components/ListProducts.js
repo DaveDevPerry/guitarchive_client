@@ -60,7 +60,7 @@ function ListProducts() {
 	}
 
 	if (!data) {
-		return <p>Loading...</p>;
+		return <p className='text-center'>Loading...</p>;
 	}
 
 	// const handlePageChange = (page) => {

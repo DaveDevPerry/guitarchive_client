@@ -474,4 +474,9 @@ button[disabled]{
           justify-content: center;
           z-index: 200000;
         }
+
+        .text-center{
+          width: 100%;
+          text-align: center;
+        }
 `;

@@ -27,7 +27,7 @@ const ArrangersListContainer = ({
 				>
 					{/* {filterValue === 'arrangers' ? `all ${filterValue}` : filterValue} */}
 					{/* {arrangers[0].name} */}
-					all arrangers
+					arrangers
 				</p>
 				{/* <AddSongButton /> */}
 				{/* <SongsFilter
@@ -60,7 +60,7 @@ const StyledArrangersListContainer = styled.div`
 	flex: 1;
 	overflow-y: hidden;
 	&#dark {
-		background-image: url('/images/dark wood texture.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
 		background-image: url('/images/white wood.webp');
