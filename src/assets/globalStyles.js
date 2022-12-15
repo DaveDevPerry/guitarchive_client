@@ -46,18 +46,18 @@ export const GlobalStyles = createGlobalStyle`
 ${'' /* background-image: url('./images/light wood background.webp'); */}
 position: relative;
   &#dark {
-		background-image: url('./images/dark wood background.webp');
+		background-image: url('/images/dark wood background.webp');
 	}
 	&#light {
-    background-image: url('./images/light wood background.webp');
+    background-image: url('/images/light wood background.webp');
 	}
   &.mobile{
     row-gap:0;
     &#dark {
-		background-image: url('./images/black wood.webp');
+		background-image: url('/images/black wood.webp');
 	}
 	&#light {
-    background-image: url('./images/white wood.webp');
+    background-image: url('/images/white wood.webp');
 	}
   }
   .test-modal{
@@ -94,11 +94,11 @@ position: relative;
 		padding: 1rem;
 	}
   }
-  h3{
+  h2,h3{
     font-size: 1.6rem;
 
   }
-  h4{
+  h3,h4{
     font-size: 1.4rem;
   }
   button {
@@ -113,6 +113,9 @@ position: relative;
 		font-size: 2.5rem;
 		cursor: pointer;
     color: ${({ theme }) => theme.btnColor};
+    .btn-hidden-text{
+      font-size: 0px;
+    }
 	}
  a {
     text-decoration: none;

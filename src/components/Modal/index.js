@@ -42,7 +42,7 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 				initial='hidden'
 				animate='visible'
 				exit='exit'
-				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				id={`${theme === 'dark' ? 'dark-modal' : 'light-modal'}`}
 			>
 				<div className='youtube-stats-header'>
 					<TfiYoutube className='youtube-channel-icon' />
@@ -178,10 +178,10 @@ const StyledModal = styled(motion.div)`
 	box-shadow: 3px 3px 4px rgb(0 0 0);
 	z-index: 20000;
 	width: clamp(50%, 700px, 92%);
-	&#dark {
+	&#dark-modal {
 		background-image: url('/images/black wood.webp');
 	}
-	&#light {
+	&#light-modal {
 		background-image: url('/images/white wood.webp');
 	}
 	&.mobile {

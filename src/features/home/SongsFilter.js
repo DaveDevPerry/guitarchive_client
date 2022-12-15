@@ -8,7 +8,7 @@ const SongsFilter = ({ homeSongFilterHandler, theme }) => {
 				name='songs'
 				className='filter-song-select'
 				onChange={homeSongFilterHandler}
-				id={`${theme === 'dark' ? 'dark' : 'light'}`}
+				id={`${theme === 'dark' ? 'dark-select' : 'light-select'}`}
 			>
 				<option value='songs' className='form-option'>
 					All Songs
@@ -122,7 +122,7 @@ const StyledSongsFilter = styled.div`
 			outline: none;
 			cursor: pointer;
 		} */
-		&#dark {
+		&#dark-select {
 			border-color: ${({ theme }) => theme.filterBorderColor};
 			background: linear-gradient(
 				top,

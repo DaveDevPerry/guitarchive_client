@@ -36,6 +36,7 @@ const SongsPaginationNav = ({
 				>
 					{/* <MdArrowLeft className='arrow-icon' /> */}
 					<MdOutlineArrowBackIosNew className='arrow-icon' />
+					<p className='btn-hidden-text'>back</p>
 				</button>
 				<div className='filter-page-number-btn'>
 					{Array(pageCount)
@@ -83,6 +84,7 @@ const SongsPaginationNav = ({
 					onClick={handleNext}
 				>
 					<MdOutlineArrowForwardIos className='arrow-icon' />
+					<p className='btn-hidden-text'>forward</p>
 				</button>
 			</div>
 		</StyledSongsPaginationNav>

@@ -49,8 +49,8 @@ const SongCard = ({ song, item }) => {
 					navigate('/song');
 				}}
 			>
-				<h3 className='primary-text'>{song.title}</h3>
-				<h4 className='secondary-text'>{song.artist.name}</h4>
+				<h2 className='primary-text'>{song.title}</h2>
+				<h3 className='secondary-text'>{song.artist.name}</h3>
 			</div>
 			<div className={`artist-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				<h3 className='primary-text'>{song.arranger.name}</h3>

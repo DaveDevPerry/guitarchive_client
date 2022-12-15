@@ -5,7 +5,7 @@ import './assets/index.css';
 import App from './App';
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import * as registerSW from './registerSW';
-// import swDev from './swDev';
+import swDev from './swDev';
 import { ViewportContextProvider } from './context/ViewportContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { SongsContextProvider } from './context/SongContext';
@@ -40,6 +40,6 @@ root.render(
 		</ViewportContextProvider>
 	</React.StrictMode>
 );
-// swDev();
+swDev();
 // registerSW.register();
 // serviceWorkerRegistration.register();

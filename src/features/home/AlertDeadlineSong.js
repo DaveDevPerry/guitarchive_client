@@ -17,7 +17,7 @@ const AlertDeadlineSong = ({ theme }) => {
 	return (
 		<StyledAlertDeadlineSong
 			className={`${width < breakpoint ? 'mobile' : ''}`}
-			id={`${theme === 'dark' ? 'dark' : 'light'}`}
+			id={`${theme === 'dark' ? 'dark-alert' : 'light-alert'}`}
 		>
 			{nextDeadlineSong && nextDeadlineSong.title && (
 				<div

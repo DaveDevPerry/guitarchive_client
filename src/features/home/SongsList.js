@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
-import { log } from '../../utils/helper';
+// import { log } from '../../utils/helper';
 import SongCard from './SongCard';
 import SongsPaginationNav from './SongsPaginationNav';
 
@@ -30,9 +30,9 @@ function SongsList({ filterValue }) {
 
 	function handleChoosePage(e, number) {
 		e.preventDefault();
-		log(page, 'page');
-		log(pageCount, 'page count');
-		log(number, 'number');
+		// log(page, 'page');
+		// log(pageCount, 'page count');
+		// log(number, 'number');
 
 		setPage(number);
 		// setPage((p) => {
