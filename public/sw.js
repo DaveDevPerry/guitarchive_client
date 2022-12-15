@@ -1,5 +1,10 @@
-const staticCacheName = 'site-static-v1';
-const dynamicCacheName = 'site-dynamic-v1';
+const staticCacheName = 'site-static-v2';
+const dynamicCacheName = 'site-dynamic-v2';
+// const apiCacheName = 'api-v1';
+// const apiAssets = [
+// 	'/index.html',
+// 	'/',
+// ];
 const assets = [
 	'/static/js/main.chunk.js',
 	'/static/js/0.chunk.js',
@@ -36,15 +41,15 @@ const assets = [
 //   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
 
 // cache size limit function
-// const limitCacheSize = (name, size) => {
-//   caches.open(name).then(cache => {
-//     cache.keys().then(keys => {
-//       if(keys.length > size){
-//         cache.delete(keys[0]).then(limitCacheSize(name, size));
-//       }
-//     });
-//   });
-// };
+const limitCacheSize = (name, size) => {
+	caches.open(name).then((cache) => {
+		cache.keys().then((keys) => {
+			if (keys.length > size) {
+				cache.delete(keys[0]).then(limitCacheSize(name, size));
+			}
+		});
+	});
+};
 
 // self is the service worker
 const self = this;
@@ -103,24 +108,76 @@ self.addEventListener('activate', (evt) => {
 });
 
 // fetch events
-// self.addEventListener('fetch', evt => {
-//   if(evt.request.url.indexOf('firestore.googleapis.com') === -1){
-//     evt.respondWith(
-//       caches.match(evt.request).then(cacheRes => {
-//         return cacheRes || fetch(evt.request).then(fetchRes => {
-//           return caches.open(dynamicCacheName).then(cache => {
-//             cache.put(evt.request.url, fetchRes.clone());
-//             // check cached items size
-//             limitCacheSize(dynamicCacheName, 15);
-//             return fetchRes;
-//           })
-//         });
-//       }).catch(() => {
-//         if(evt.request.url.indexOf('.html') > -1){
-//           return caches.match('/offline.html');
-//           // return caches.match('/pages/fallback.html');
-//         }
-//       })
-//     );
+self.addEventListener('fetch', (evt) => {
+	if (evt.request.url.indexOf('firestore.googleapis.com') === -1) {
+		evt.respondWith(
+			caches
+				.match(evt.request)
+				.then((cacheRes) => {
+					return (
+						cacheRes ||
+						fetch(evt.request).then((fetchRes) => {
+							return caches.open(dynamicCacheName).then((cache) => {
+								cache.put(evt.request.url, fetchRes.clone());
+								// check cached items size
+								limitCacheSize(dynamicCacheName, 15);
+								return fetchRes;
+							});
+						})
+					);
+				})
+				.catch(() => {
+					if (evt.request.url.indexOf('.html') > -1) {
+						return caches.match('/offline.html');
+						// return caches.match('/pages/fallback.html');
+					}
+				})
+		);
+	}
+});
+
+// const openApiCache = () => caches.open("api")
+
+// const getFromCache = async event => {
+//   const cache = await openApiCache()
+//   return cache.match(event.request.url)
+// }
+
+// const addClonedResponse = async (event, response) => {
+//   const cache = await openApiCache()
+//   await cache.put(event.request, response.clone())
+// }
+
+// const verifyAndSaveResponse = async (event, response) => {
+//   if (event.request.method === "GET") {
+//     return addClonedResponse(event, response)
 //   }
-// });
+// }
+
+// const getFromNetworkOrCache = async event => {
+//   const response = await fetch(event.request)
+//   if (response.ok) {
+//     await verifyAndSaveResponse(event, response)
+//     return response
+//   }
+//   return getFromCache(event)
+// }
+
+// const fetchAndSaveResponse = async event => {
+//   try {
+//     return await getFromNetworkOrCache(event)
+//   } catch (error) {
+//     if (error) {
+//       return getFromCache(event)
+//     }
+//   }
+// }
+
+// const getFromStaticCache = async event => {
+//   const cache = await openStaticCache()
+//   return cache.match(event.request)
+// }
+
+// self.addEventListener("fetch", async event => {
+//   return event.respondWith(fetchAndSaveResponse(event))
+// })
