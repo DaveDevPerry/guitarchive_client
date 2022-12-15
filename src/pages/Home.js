@@ -59,15 +59,15 @@ const Home = ({ theme, youtubeData }) => {
 		}
 	}, [navigate, dataLoaded]);
 
-	// useEffect(() => {
-	// 	if (youtubeGoal === true) return;
-	// 	if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
-	// 		setTimeout(() => {
-	// 			modalOpen ? close() : open();
-	// 		}, 1000);
-	// 		setYoutubeGoal(true);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (youtubeGoal === true) return;
+		if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
+			setTimeout(() => {
+				modalOpen ? close() : open();
+			}, 1000);
+			setYoutubeGoal(true);
+		}
+	}, []);
 
 	return (
 		<StyledHome
