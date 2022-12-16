@@ -13,6 +13,8 @@ import { IoHandLeftSharp } from 'react-icons/io5';
 import { BsFileEarmarkPdf } from 'react-icons/bs';
 import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
+import { GiGuitarHead } from 'react-icons/gi';
+
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
 import { GoAlert } from 'react-icons/go';
@@ -86,6 +88,11 @@ const SongCard = ({ song, item }) => {
 				{song.style.name === 'fingerstyle' && (
 					<Tooltip content='fingerstyle' direction='left'>
 						<IoHandLeftSharp className='status-icon fingerstyle-icon' />
+					</Tooltip>
+				)}
+				{song.style.name === 'electric' && (
+					<Tooltip content='electric' direction='left'>
+						<GiGuitarHead className='status-icon electric-icon' />
 					</Tooltip>
 				)}
 				{song.style.name === 'classical' && (
@@ -262,6 +269,9 @@ const StyledSongCard = styled(motion.div)`
 				font-size: 2.8rem;
 			}
 			.classical-icon {
+				font-size: 3rem;
+			}
+			.electric-icon {
 				font-size: 3rem;
 			}
 		}

@@ -87,8 +87,8 @@ const SongForm = ({ currentId, setCurrentId }) => {
 		notify();
 		navigate('/');
 	};
-	const clear = (e) => {
-		e.preventDefault();
+	const clear = () => {
+		// e.preventDefault();
 		setSongData({
 			artist: '',
 			title: '',
