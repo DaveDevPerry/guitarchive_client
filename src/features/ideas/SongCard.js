@@ -85,27 +85,26 @@ const SongCard = ({ song, item, handleOptions, index }) => {
 		// 	isComplete: true,
 		// };
 
-		const response = await fetch(
-			`${process.env.REACT_APP_BACKEND_URL}/api/ideas/${id}`,
-			{
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${user.token}`,
-				},
-				// body: JSON.stringify({ updatedSongData }),
-			}
-		);
-		const json = await response.json();
-		log(json, 'new song json');
+		// const response = await fetch(
+		// 	`${process.env.REACT_APP_BACKEND_URL}/api/ideas/${id}`,
+		// 	{
+		// 		method: 'DELETE',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 			Authorization: `Bearer ${user.token}`,
+		// 		},
+		// 	}
+		// );
+		// const json = await response.json();
+		// log(json, 'new song json');
 
-		if (response.ok) {
-			dispatch({
-				type: 'DELETE_SONG',
-				payload: id,
-			});
-			log('here');
-		}
+		// if (response.ok) {
+		// 	dispatch({
+		// 		type: 'DELETE_SONG',
+		// 		payload: id,
+		// 	});
+		// 	log('here');
+		// }
 	};
 
 	// create a toast
@@ -138,8 +137,8 @@ const SongCard = ({ song, item, handleOptions, index }) => {
 				// 	navigate('/song');
 				// }}
 			>
-				<h3 className='primary-text'>{song.title}</h3>
-				<h4 className='secondary-text'>{song.artist}</h4>
+				<h2 className='primary-text'>{song.title}</h2>
+				<h3 className='secondary-text'>{song.artist}</h3>
 			</div>
 			<div
 				className={`notes-wrapper ${width < breakpoint ? 'mobile' : ''}`}
@@ -448,6 +447,7 @@ const StyledSongCard = styled(motion.div)`
 			align-items: center;
 			column-gap: 1rem;
 			padding: 0.2rem 1rem;
+			cursor: pointer;
 			.action-icon-wrapper {
 				display: grid;
 				place-content: center;

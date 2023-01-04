@@ -576,7 +576,7 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 						<p>Reset</p>
 						</button> */}
 						<button className='form-action-btn btn-6 custom-btn' type='submit'>
-							<p>Submit</p>
+							<p>Update</p>
 						</button>
 					</div>
 				</div>

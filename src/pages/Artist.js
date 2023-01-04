@@ -11,6 +11,7 @@ import { useSongsContext } from '../hooks/useSongContext';
 // import SearchBar from '../components/SearchBar';
 import { useViewport } from '../hooks/useViewport';
 import SongsListContainer from '../features/artists/SongsListContainer';
+// import BackButton from '../components/BackButton';
 
 const Artist = ({ artistSongStatusHandler, artistFilteredSongs, theme }) => {
 	const { user } = useAuthContext();
@@ -92,6 +93,7 @@ const Artist = ({ artistSongStatusHandler, artistFilteredSongs, theme }) => {
 				// 	setFilterValue={setFilterValue}
 				songs={artistSongs}
 				filteredSongs={artistFilteredSongs}
+				// url='artists'
 				theme={theme}
 			/>
 			{/* <SongsWidget songs={artistSongs} filteredSongs={artistFilteredSongs} /> */}

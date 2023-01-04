@@ -4,6 +4,7 @@ import Tooltip from '../../components/Tooltip';
 import { useViewport } from '../../hooks/useViewport';
 import { SiStylelint } from 'react-icons/si';
 import { IoHandLeftSharp } from 'react-icons/io5';
+import Counter from '../../components/Counter';
 
 const StyleStat = ({ stat, theme }) => {
 	const { width } = useViewport();
@@ -15,7 +16,9 @@ const StyleStat = ({ stat, theme }) => {
 		>
 			<div className='stat-header'>
 				<p className='stat-figure'>
-					{stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount}
+					{stat.statCount < 10 && 0}
+					<Counter from={0} to={stat && stat.statCount} time={3} />
+					{/* {stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount} */}
 				</p>
 				<div className='stat-icon-wrapper'>
 					{stat.statName === 'fingerstyle' && (

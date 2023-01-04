@@ -5,45 +5,28 @@ import { motion } from 'framer-motion';
 // import useSWR from 'swr';
 import { useViewport } from '../../hooks/useViewport';
 import ArtistCard from './ArtistCard';
+// import ArtistsPaginationNav from './ArtistsPaginationNav';
 // import SongCard from './SongCard';
 // import SongsPaginationNav from './SongsPaginationNav';
 
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 
-function ArtistsList({ filterValue, artists }) {
+function ArtistsList({ artistsSortValue, artists }) {
 	// const [page, setPage] = useState(1);
 	// const [pageCount, setPageCount] = useState(0);
-	// const [songCount, setSongCount] = useState(0);
+	// const [artistCount, setArtistCount] = useState(0);
 
 	const { width } = useViewport();
 	const breakpoint = 620;
 
-	const container = {
-		hidden: { opacity: 0 },
-		show: {
-			opacity: 1,
-			delay: 2,
-			transition: {
-				staggerChildren: 0.2,
-				// delayChildren: 0.5
-			},
-		},
-	};
-
-	const item = {
-		hidden: { opacity: 0 },
-		show: { opacity: 1 },
-		exit: { opacity: 0 },
-	};
-
 	// const { data, error } = useSWR(
-	// 	`${process.env.REACT_APP_BACKEND_URL}/api/products/${filterValue}?page=${page}`,
+	// 	`${process.env.REACT_APP_BACKEND_URL}/api/artists/sort/${artistsSortValue}?page=${page}`,
 	// 	fetcher
 	// );
 	// useEffect(() => {
 	// 	if (data) {
 	// 		setPageCount(data.pagination.pageCount);
-	// 		setSongCount(data.pagination.count);
+	// 		setArtistCount(data.pagination.count);
 	// 	}
 	// }, [data]);
 
@@ -69,8 +52,26 @@ function ArtistsList({ filterValue, artists }) {
 	// }
 
 	// if (!data) {
-	// 	return <p>Loading...</p>;
+	// 	return <p className='text-center'>Loading...</p>;
 	// }
+
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			delay: 2,
+			transition: {
+				staggerChildren: 0.2,
+				// delayChildren: 0.5
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
 
 	return (
 		<StyledArtistsList className={`${width < breakpoint ? 'mobile' : ''}`}>
@@ -85,7 +86,7 @@ function ArtistsList({ filterValue, artists }) {
 						return <ArtistCard key={index} artist={artist} item={item} />;
 					})}
 				{/* {data.items.map((product) => {
-					return <SongCard key={product._id} song={product} />;
+					return <ArtistCard key={product._id} song={product} item={item} />;
 				})} */}
 			</motion.div>
 			{/* <div
@@ -97,7 +98,7 @@ function ArtistsList({ filterValue, artists }) {
 						{page}/{pageCount}
 					</span>
 				</p>
-				<SongsPaginationNav
+				<ArtistsPaginationNav
 					page={page}
 					setPage={setPage}
 					pageCount={pageCount}
@@ -105,7 +106,7 @@ function ArtistsList({ filterValue, artists }) {
 					handleNext={handleNext}
 				/>
 				<p>
-					Songs:<span>{songCount}</span>
+					Artists:<span>{artistCount}</span>
 				</p>
 			</div> */}
 		</StyledArtistsList>

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from '../../hooks/useViewport';
 import ArtistsList from './ArtistsList';
+// import ArtistsSort from './ArtistsSort';
 
 // import SongsList from './SongsList';
 
@@ -13,6 +14,8 @@ const ArtistsListContainer = ({
 	artists,
 	filteredSongs,
 	theme,
+	artistsSortValue,
+	artistsSortHandler,
 }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -30,6 +33,7 @@ const ArtistsListContainer = ({
 					artists
 				</p>
 				{/* <AddSongButton /> */}
+				{/* <ArtistsSort artistsSortHandler={artistsSortHandler} /> */}
 				{/* <SongsFilter
 					filterValue={filterValue}
 					homeSongFilterHandler={homeSongFilterHandler}
@@ -37,7 +41,11 @@ const ArtistsListContainer = ({
 				/> */}
 			</div>
 			<AnimatePresence mode='wait'>
-				<ArtistsList artists={artists} />
+				<ArtistsList
+					artists={artists}
+					// homeSongFilterHandler={homeSongFilterHandler}
+					artistsSortValue={artistsSortValue}
+				/>
 			</AnimatePresence>
 
 			{/* <SongsList

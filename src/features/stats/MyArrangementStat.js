@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Tooltip from '../../components/Tooltip';
 import { useViewport } from '../../hooks/useViewport';
 import { ImUsers } from 'react-icons/im';
+import Counter from '../../components/Counter';
 
 const MyArrangementStat = ({ stat, theme }) => {
 	const { width } = useViewport();
@@ -13,7 +14,9 @@ const MyArrangementStat = ({ stat, theme }) => {
 		>
 			<div className='stat-header'>
 				<p className='stat-figure'>
-					{stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount}
+					{stat.statCount < 10 && 0}
+					<Counter from={0} to={stat && stat.statCount} time={3} />
+					{/* {stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount} */}
 				</p>
 				<div className='stat-icon-wrapper'>
 					{stat.statName === 'terrorvision' && (

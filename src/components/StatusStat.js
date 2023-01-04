@@ -13,6 +13,7 @@ import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
 import { useViewport } from '../hooks/useViewport';
+import Counter from './Counter';
 
 const StatusStat = ({ stat, theme }) => {
 	const { width } = useViewport();
@@ -24,7 +25,9 @@ const StatusStat = ({ stat, theme }) => {
 		>
 			<div className='stat-header'>
 				<p className='stat-figure'>
-					{stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount}
+					{stat.statCount < 10 && 0}
+					<Counter from={0} to={stat && stat.statCount} time={3} />
+					{/* {stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount} */}
 				</p>
 				<div className='stat-icon-wrapper'>
 					{stat.statName === 'Recorded' && (

@@ -10,6 +10,7 @@ import ArtistModal from '../features/artists/ArtistModal';
 import { useViewport } from '../hooks/useViewport';
 import ArtistsListContainer from '../features/artists/ArtistsListContainer';
 import { useSongsContext } from '../hooks/useSongContext';
+// import { log } from '../utils/helper';
 
 const Artists = () => {
 	const { dataLoaded, isArtistFormOpen } = useStateContext();
@@ -28,6 +29,87 @@ const Artists = () => {
 		}
 	}, [navigate, dataLoaded]);
 
+	const [artistsFilterValue, setArtistsFilterValue] = useState('all');
+	const [artistsSortValue, setArtistsSortValue] = useState('songs');
+
+	// const [sortedArtists, setSortedArtists] = useState([]);
+	// const [currentId, setCurrentId] = useState(null);
+
+	// const [modalOpen, setModalOpen] = useState(false);
+
+	// const close = () => setModalOpen(false);
+	// const open = () => setModalOpen(true);
+
+	// function sand events
+	const artistsFilterHandler = (e) => {
+		console.log(e, 'e');
+		switch (e.target.value) {
+			case 'tabs':
+				setArtistsFilterValue('tabs');
+				break;
+			case 'scores':
+				setArtistsFilterValue('scores');
+				break;
+			case 'favourites':
+				setArtistsFilterValue('favourites');
+				break;
+			case 'deadlines':
+				setArtistsFilterValue('deadlines');
+				break;
+			case 'practicing':
+				setArtistsFilterValue('practicing');
+				break;
+
+			case 'songs':
+				setArtistsFilterValue('songs');
+				break;
+			default:
+				setArtistsFilterValue('all');
+				break;
+		}
+	};
+	// function sand events
+	const artistsSortHandler = (e) => {
+		console.log(e, 'e');
+		switch (e.target.value) {
+			case 'songs-asc':
+				setArtistsSortValue('songs-asc');
+				break;
+			case 'songs-desc':
+				setArtistsSortValue('songs-desc');
+				break;
+			// case 'favourites':
+			// 	setArtistsSortValue('favourites');
+			// 	break;
+			// case 'deadlines':
+			// 	setArtistsSortValue('deadlines');
+			// 	break;
+			// case 'practicing':
+			// 	setArtistsSortValue('practicing');
+			// 	break;
+
+			// case 'songs':
+			// 	setArtistsSortValue('songs');
+			// 	break;
+			default:
+				setArtistsSortValue('default');
+				break;
+		}
+	};
+
+	// useEffect(() => {
+	// 	log('artistsSortValue changed - ', artistsSortValue);
+	// 	const cloned = [...artistsCounters];
+	// 	setSortedArtists(
+	// 		cloned.sort((a, b) => b.artistsSortValue - a.artistsSortValue)
+	// 	);
+	// }, [artistsSortValue]);
+	// useEffect(() => {
+	// 	log('artistsSortValue changed - ', artistsSortValue);
+	// 	const cloned = [...artistsCounters];
+	// 	setSortedArtists(cloned.sort((a, b) => b.songs - a.songs));
+	// }, [artistsSortValue]);
+
 	return (
 		<StyledArtists
 			initial={{ width: 0 }}
@@ -45,12 +127,21 @@ const Artists = () => {
 				</div>
 			) : (
 				<div className='user-actions-container'>
-					<AddArtistButton />
+					<AddArtistButton /> 
 					<SearchBar />
 					{width > breakpoint && <SearchBar />}
 				</div>
 			)} */}
-			<ArtistsListContainer artists={artistsCounters} />
+			<ArtistsListContainer
+				// artists={sortedArtists}
+				artists={artistsCounters}
+				artistsFilterValue={artistsFilterValue}
+				artistsSortValue={artistsSortValue}
+				setArtistsSortValue={setArtistsSortValue}
+				artistsSortHandler={artistsSortHandler}
+				artistsFilterHandler={artistsFilterHandler}
+				setArtistsFilterValue={setArtistsFilterValue}
+			/>
 		</StyledArtists>
 	);
 };

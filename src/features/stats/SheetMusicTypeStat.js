@@ -4,6 +4,7 @@ import Tooltip from '../../components/Tooltip';
 import { useViewport } from '../../hooks/useViewport';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
+import Counter from '../../components/Counter';
 
 const SheetMusicTypeStat = ({ stat }) => {
 	const { width } = useViewport();
@@ -14,7 +15,9 @@ const SheetMusicTypeStat = ({ stat }) => {
 		>
 			<div className='stat-header'>
 				<p className='stat-figure'>
-					{stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount}
+					{stat.statCount < 10 && 0}
+					<Counter from={0} to={stat && stat.statCount} time={3} />
+					{/* {stat.statCount < 10 ? `0${stat.statCount}` : stat.statCount} */}
 				</p>
 				<div className='stat-icon-wrapper'>
 					{stat.statName === 'tablature' && (

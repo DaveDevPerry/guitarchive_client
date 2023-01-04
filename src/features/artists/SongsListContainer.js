@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import BackButton from '../../components/BackButton';
 import { useViewport } from '../../hooks/useViewport';
 
 import SongsList from './SongsList';
@@ -26,6 +27,7 @@ const SongsListContainer = ({
 					{/* {filterValue === 'songs' ? `all ${filterValue}` : filterValue} */}
 					{songs[0].artist.name}
 				</p>
+				<BackButton url='artists' />
 				{/* <AddSongButton /> */}
 				{/* <SongsFilter
 					filterValue={filterValue}

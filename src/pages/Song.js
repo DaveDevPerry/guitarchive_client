@@ -688,10 +688,10 @@ const StyledSongContainer = styled.div`
 				display: grid;
 				place-content: center;
 				.heart-on {
-					font-size: 3.5rem;
+					font-size: 2.5rem;
 				}
 				.heart-off {
-					font-size: 3.5rem;
+					font-size: 2.5rem;
 				}
 			}
 			.back-icon {

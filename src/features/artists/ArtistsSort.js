@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SongsFilter = ({ homeSongFilterHandler, theme }) => {
+const ArtistsSort = ({ artistsSortHandler, theme }) => {
 	return (
 		<StyledSongsFilter className='filter-song-dropdown'>
 			<select
 				name='songs'
 				className='filter-song-select'
-				onChange={homeSongFilterHandler}
+				onChange={artistsSortHandler}
 				id={`${theme === 'dark' ? 'dark-select' : 'light-select'}`}
 			>
-				<option value='songs' className='form-option'>
-					All Songs
+				<option value='songs-desc' className='form-option'>
+					Songs (high-low)
 				</option>
-				<option value='favourites' className='form-option'>
-					Favourites
+				<option value='songs-asc' className='form-option'>
+					Songs (low-high)
 				</option>
-				<option value='tabs' className='form-option'>
+				{/* <option value='tabs' className='form-option'>
 					Tabs
 				</option>
 				<option value='scores' className='form-option'>
@@ -24,7 +24,7 @@ const SongsFilter = ({ homeSongFilterHandler, theme }) => {
 				</option>
 				<option value='deadlines' className='form-option'>
 					Deadlines
-				</option>
+				</option> */}
 				{/* <option value='practicing' className='form-option'>
 					Practicing
 				</option> */}
@@ -194,4 +194,4 @@ const StyledSongsFilter = styled.div`
 	}
 `;
 
-export default SongsFilter;
+export default ArtistsSort;
