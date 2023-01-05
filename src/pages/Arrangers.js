@@ -10,6 +10,7 @@ import ArrangerModal from '../features/arrangers/ArrangerModal';
 import { useViewport } from '../hooks/useViewport';
 import ArrangersListContainer from '../features/arrangers/ArrangersListContainer';
 import { useSongsContext } from '../hooks/useSongContext';
+import ArrangersStats from '../features/arrangers/ArrangersStats';
 
 const Arrangers = () => {
 	const { dataLoaded, isArrangerFormOpen } = useStateContext();
@@ -50,6 +51,7 @@ const Arrangers = () => {
 					{width > breakpoint && <SearchBar />}
 				</div>
 			)} */}
+			<ArrangersStats />
 			<ArrangersListContainer arrangers={arrangersCounters} />
 		</StyledArrangers>
 	);
@@ -58,7 +60,8 @@ const StyledArrangers = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 0.5rem;
+	row-gap: 2rem;
+	/* row-gap: 0.5rem; */
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	z-index: 1;

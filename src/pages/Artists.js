@@ -10,6 +10,7 @@ import ArtistModal from '../features/artists/ArtistModal';
 import { useViewport } from '../hooks/useViewport';
 import ArtistsListContainer from '../features/artists/ArtistsListContainer';
 import { useSongsContext } from '../hooks/useSongContext';
+import ArtistsStats from '../features/artists/ArtistsStats';
 // import { log } from '../utils/helper';
 
 const Artists = () => {
@@ -132,6 +133,7 @@ const Artists = () => {
 					{width > breakpoint && <SearchBar />}
 				</div>
 			)} */}
+			<ArtistsStats />
 			<ArtistsListContainer
 				// artists={sortedArtists}
 				artists={artistsCounters}
@@ -149,7 +151,8 @@ const StyledArtists = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 0.5rem;
+	row-gap: 2rem;
+	/* row-gap: 0.5rem; */
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	z-index: 1;

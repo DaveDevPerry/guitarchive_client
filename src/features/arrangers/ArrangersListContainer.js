@@ -70,6 +70,7 @@ const StyledArrangersListContainer = styled.div`
 		box-shadow: none;
 		/* border-radius: 0.4rem; */
 		padding: 1rem 1rem 0rem;
+		row-gap: 0.5rem;
 		&#dark {
 			background-image: none;
 		}
@@ -94,7 +95,7 @@ const StyledArrangersListContainer = styled.div`
 				0px -1px 0px rgb(0 0 0 / 70%);
 			flex: 1;
 			&.mobile {
-				font-size: 2.2rem;
+				font-size: 1.8rem;
 			}
 		}
 	}

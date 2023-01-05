@@ -102,7 +102,7 @@ const StyledSongsListContainer = styled.div`
 			flex: 1;
 			&.mobile {
 				font-size: 2.2rem;
-				font-weight: lighter;
+				/* font-weight: lighter; */
 			}
 		}
 	}

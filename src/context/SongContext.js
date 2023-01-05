@@ -118,7 +118,74 @@ const getArtistData = (arr) => {
 	}
 	log(artistsCounterData, 'art counter data');
 
-	return artistsCounterData;
+	// var res = Math.max.apply(
+	// 	Math,
+	// 	[...artistsCounterData].map(function (o) {
+	// 		return o;
+	// 	})
+	// );
+	// var res = Math.max.apply(
+	// 	Math,
+	// 	[...artistsCounterData].map(function (o) {
+	// 		return o.songs;
+	// 	})
+	// );
+	// let maxGame = [...artistsCounterData].reduce((min, artist) =>
+	// 	min.songs < artist.songs ? min : artist
+	// );
+	const getMaxFavCount = [...artistsCounterData].sort(
+		(a, b) => b.fav - a.fav
+	)[0].fav;
+	const getMaxFavs = [...artistsCounterData].filter(
+		(artist) => artist.fav === getMaxFavCount
+	);
+
+	const getMaxSongCount = [...artistsCounterData].sort(
+		(a, b) => b.songs - a.songs
+	)[0].songs;
+	const getMaxSongs = [...artistsCounterData].filter(
+		(artist) => artist.songs === getMaxSongCount
+	);
+	const getMinSongCount = [...artistsCounterData].sort(
+		(a, b) => a.songs - b.songs
+	)[0].songs;
+	const getMinSongs = [...artistsCounterData].filter(
+		(artist) => artist.songs === getMinSongCount
+	);
+
+	const artistsStatData = [
+		{
+			statTitle: 'most favourited songs count',
+			statName: getMaxFavs,
+			statCount: getMaxFavCount,
+		},
+		{
+			statTitle: 'most songs by artist',
+			statName: getMaxSongs,
+			// statName: [...artistsCounterData].sort((a, b) => b.songs - a.songs)
+			// .map((artist) => )
+			// .name,
+			// var res = Math.max.apply(Math, array.map(function(o) {
+			// 	return o.y; }));
+			statCount: getMaxSongCount,
+		},
+		// {
+		// 	statTitle: 'total artists',
+		// 	statName: [{ name: '' }],
+		// 	statCount: [...artistsCounterData].length,
+		// },
+	];
+
+	log(artistsCounterData, 'art counter data');
+	log(artistsStatData, 'art stat data');
+	// log(res, 'art max songs data');
+	// log(maxGame, 'art maxGame songs data');
+	log(getMinSongs, 'art getMinSongs songs data');
+	log(getMaxSongs, 'art getMaxSongs songs data');
+
+	// return artistsCounterData;
+	return [artistsCounterData, artistsStatData];
+
 	// getArtistNames.forEach((artist) => {
 	// 	// const tempArr = [];
 	// 	const songsByArtist = [...flatten].map((song) => {
@@ -229,7 +296,57 @@ const getArrangerData = (arr) => {
 	}
 	log(arrangersCounterData, 'art counter data');
 
-	return arrangersCounterData;
+	const getMaxFavCount = [...arrangersCounterData].sort(
+		(a, b) => b.fav - a.fav
+	)[0].fav;
+	const getMaxFavs = [...arrangersCounterData].filter(
+		(artist) => artist.fav === getMaxFavCount
+	);
+
+	const getMaxSongCount = [...arrangersCounterData].sort(
+		(a, b) => b.songs - a.songs
+	)[0].songs;
+	const getMaxSongs = [...arrangersCounterData].filter(
+		(artist) => artist.songs === getMaxSongCount
+	);
+	const getMinSongCount = [...arrangersCounterData].sort(
+		(a, b) => a.songs - b.songs
+	)[0].songs;
+	const getMinSongs = [...arrangersCounterData].filter(
+		(artist) => artist.songs === getMinSongCount
+	);
+
+	const arrangersStatData = [
+		{
+			statTitle: 'most favourited songs count',
+			statName: getMaxFavs,
+			statCount: getMaxFavCount,
+		},
+		{
+			statTitle: 'most songs by arranger',
+			statName: getMaxSongs,
+			// statName: [...artistsCounterData].sort((a, b) => b.songs - a.songs)
+			// .map((artist) => )
+			// .name,
+			// var res = Math.max.apply(Math, array.map(function(o) {
+			// 	return o.y; }));
+			statCount: getMaxSongCount,
+		},
+		// {
+		// 	statTitle: 'total artists',
+		// 	statName: [{ name: '' }],
+		// 	statCount: [...artistsCounterData].length,
+		// },
+	];
+
+	log(arrangersCounterData, 'arr counter data');
+	log(arrangersStatData, 'arr stat data');
+	// log(res, 'art max songs data');
+	// log(maxGame, 'art maxGame songs data');
+	log(getMinSongs, 'arr getMinSongs songs data');
+	log(getMaxSongs, 'arr getMaxSongs songs data');
+
+	return [arrangersCounterData, arrangersStatData];
 	// getArtistNames.forEach((artist) => {
 	// 	// const tempArr = [];
 	// 	const songsByArtist = [...flatten].map((song) => {
@@ -313,7 +430,37 @@ export const songsReducer = (state, action) => {
 						count: value,
 					}))
 					.sort((a, b) => a.name.localeCompare(b.name)),
-				artistsCounters: getArtistData(action.payload),
+				artistsCounters: getArtistData(action.payload)[0],
+				artistsStats: getArtistData(action.payload)[1],
+				// 	{
+				// 		statName: 'favourite',
+				// 		statCount:  getArtistData(action.payload)[1],
+				// 		statSongs: [
+				// 			// ...action.payload.filter((song) => song.isTab === true),
+				// 		],
+				// 	},
+				// 	{
+				// 		statName: 'arrangers',
+				// 		statCount: Object.entries(
+				// 			[...action.payload]
+				// 				.map(({ arranger }) => arranger.name)
+				// 				.reduce(function (count, currentValue) {
+				// 					return (
+				// 						count[currentValue]
+				// 							? ++count[currentValue]
+				// 							: (count[currentValue] = 1),
+				// 						count
+				// 					);
+				// 				}, {})
+				// 		).map(([key, value]) => ({
+				// 			name: key,
+				// 			count: value,
+				// 		})).length,
+				// 		statSongs: [
+				// 			// ...action.payload.filter((song) => song.isTab === false),
+				// 		],
+				// 	},
+				// ],
 				arrangers: Object.entries(
 					[...action.payload]
 						.map(({ arranger }) => arranger.name)
@@ -331,7 +478,8 @@ export const songsReducer = (state, action) => {
 						count: value,
 					}))
 					.sort((a, b) => a.name.localeCompare(b.name)),
-				arrangersCounters: getArrangerData(action.payload),
+				arrangersCounters: getArrangerData(action.payload)[0],
+				arrangersStats: getArrangerData(action.payload)[1],
 				artistSongs: action.payload,
 				arrangerSongs: action.payload,
 				nextDeadlineSong: action.payload[0],
@@ -623,10 +771,12 @@ export const songsReducer = (state, action) => {
 				songs: null,
 				artists: null,
 				artistsCounters: null,
+				artistsStats: null,
 				artistSongs: null,
 				artistStats: null,
 				arrangers: null,
 				arrangersCounters: null,
+				arrangersStats: null,
 				arrangerSongs: null,
 				readySongs: null,
 				practicingSongs: null,
@@ -651,10 +801,12 @@ export const SongsContextProvider = ({ children }) => {
 		songs: null,
 		artists: null,
 		artistsCounters: null,
+		artistsStats: null,
 		artistSongs: null,
 		artistStats: null,
 		arrangers: null,
 		arrangersCounters: null,
+		arrangersStats: null,
 		arrangerSongs: null,
 		readySongs: null,
 		practicingSongs: null,
