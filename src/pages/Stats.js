@@ -74,7 +74,8 @@ const StyledStats = styled(motion.div)`
 		flex-wrap: wrap;
 	}
 	&.mobile {
-		row-gap: 1rem;
+		row-gap: 0rem;
+		/* row-gap: 1rem; */
 		padding-bottom: 2rem;
 	}
 `;

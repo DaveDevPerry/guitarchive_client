@@ -2,15 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
 import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
+import { BsStarFill } from 'react-icons/bs';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
 import { TfiYoutube } from 'react-icons/tfi';
 import Counter from './Counter';
+import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 // import Tooltip from './Tooltip';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import StatusStat from './StatusStat';
 
 const YoutubeStats = ({ youtubeData, theme }) => {
+	const { targetData } = useYoutubeTargetsContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
@@ -35,6 +38,22 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 					{/* <span className='yt-channel-link'>visit channel</span> */}
 					<HiExternalLink className='external-link-icon' />
 				</a>
+			</div>
+			<div className='targets-container'>
+				{targetData &&
+					targetData.map((target, index) => {
+						return (
+							<div key={index} className='target-wrapper'>
+								<BsStarFill
+									className={
+										target.isComplete === true
+											? 'target-icon achieved'
+											: 'target-icon'
+									}
+								/>
+							</div>
+						);
+					})}
 			</div>
 			<div className='stats-container'>
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
@@ -129,7 +148,7 @@ const StyledYoutubeStats = styled.div`
 		row-gap: 0.5rem;
 		padding: 0.5rem 0rem 1rem;
 		box-shadow: none;
-		height: 11.4rem;
+		/* height: 11.4rem; */
 		/* display: hidden; */
 		&#dark {
 			background-image: none;
@@ -174,6 +193,26 @@ const StyledYoutubeStats = styled.div`
 			.external-link-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 3rem;
+			}
+		}
+	}
+	.targets-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		gap: 1rem;
+		border-radius: 4px;
+		/* border: 2px solid red; */
+		.target-wrapper {
+			display: grid;
+			place-content: center;
+			.target-icon {
+				font-size: 3rem;
+				color: ${({ theme }) => theme.grey};
+				&.achieved {
+					color: ${({ theme }) => theme.green};
+				}
 			}
 		}
 	}
