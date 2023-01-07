@@ -16,9 +16,11 @@ import { useStylesContext } from '../hooks/useStyleContext';
 import { useViewport } from '../hooks/useViewport';
 import { useIdeasContext } from '../hooks/useIdeaContext';
 import { useRequestsContext } from '../hooks/useRequestContext';
+import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 
 const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const { user } = useAuthContext();
+	const { dispatch: youtubeDispatch } = useYoutubeTargetsContext();
 	const { setDataLoaded } = useStateContext();
 	const { dispatch } = useSongsContext();
 	const { dispatch: artistDispatch } = useArtistsContext();
@@ -31,6 +33,61 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const fetchYouTubeTargetData = async () => {
+			log(user.userId, 'user.userId');
+			log(user._id, 'user._id');
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/user/${user.userId}`,
+				{
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json user');
+
+			const getYTTargetNumber = [...json.yTData].filter(
+				(obj) => obj.isComplete === false
+			)[0].targetViews;
+
+			// log()
+
+			// log(response, 'response');
+			// if (!response.ok) {
+			// 	setMode('offline');
+			// 	let collection = JSON.parse(localStorage.getItem('songs'));
+			// 	dispatch({
+			// 		type: 'SET_SONGS',
+			// 		payload: collection,
+			// 	});
+			// }
+			if (response.ok) {
+				log(getYTTargetNumber, 'target number');
+				youtubeDispatch({
+					type: 'SET_TARGET_DATA',
+					payload: [...json.yTData],
+				});
+				youtubeDispatch({
+					type: 'SET_YOUTUBE_TARGET',
+					payload: getYTTargetNumber,
+				});
+				// localStorage.setItem('songs', JSON.stringify(json));
+			}
+		};
+		if (user) {
+			fetchYouTubeTargetData();
+		}
+		setTimeout(() => {
+			setDataLoaded(true);
+			setTimeout(() => {
+				navigate('/home');
+			}, 1000);
+		}, 2000);
+	}, []);
 
 	useEffect(() => {
 		const fetchSongs = async () => {
@@ -46,7 +103,7 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 			log(json, 'json songs');
 			log(response, 'response');
 			if (!response.ok) {
-				setMode('offline');
+				// setMode('offline');
 				let collection = JSON.parse(localStorage.getItem('songs'));
 				dispatch({
 					type: 'SET_SONGS',
@@ -64,12 +121,12 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 		if (user) {
 			fetchSongs();
 		}
-		setTimeout(() => {
-			setDataLoaded(true);
-			setTimeout(() => {
-				navigate('/home');
-			}, 1000);
-		}, 2000);
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 2000);
 	}, []);
 
 	useEffect(() => {
@@ -85,7 +142,7 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 			const json = await response.json();
 			log(json, 'json ideas');
 			if (!response.ok) {
-				setMode('offline');
+				// setMode('offline');
 				let collection = JSON.parse(localStorage.getItem('ideas'));
 				ideasDispatch({
 					type: 'SET_SONGS',
@@ -117,7 +174,7 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 			const json = await response.json();
 			log(json, 'json requests');
 			if (!response.ok) {
-				setMode('offline');
+				// setMode('offline');
 				let collection = JSON.parse(localStorage.getItem('requests'));
 				requestsDispatch({
 					type: 'SET_SONGS',

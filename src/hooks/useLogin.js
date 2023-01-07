@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { log } from '../utils/helper';
 import { useAuthContext } from './useAuthContext';
+// import { useYoutubeTargetsContext } from './useYoutubeTargetContext';
 
 export const useLogin = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(null);
 	const { dispatch } = useAuthContext();
+	// const { dispatch: youtubeDispatch } = useYoutubeTargetsContext();
 
 	const login = async (email, password) => {
 		setIsLoading(true);
@@ -47,7 +49,7 @@ export const useLogin = () => {
 			);
 			// update auth context with email
 			dispatch({ type: 'LOGIN', payload: json });
-			// userDispatch({ type: 'SET_USER', payload: json });
+			// youtubeDispatch({ type: 'SET_USER', payload: json });
 			// update loading state to false as finished
 			setIsLoading(false);
 		}

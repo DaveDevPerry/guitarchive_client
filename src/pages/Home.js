@@ -8,8 +8,11 @@ import SongsListContainer from '../features/home/SongsListContainer';
 import SongModal from '../features/home/SongModal';
 import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
 import Modal from '../components/Modal';
+// import { useAuthContext } from '../hooks/useAuthContext';
+import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 
 const Home = ({ theme, youtubeData }) => {
+	const { youtubeTarget } = useYoutubeTargetsContext();
 	const { dataLoaded, isFormOpen, youtubeGoal, setYoutubeGoal } =
 		useStateContext();
 	const { width } = useViewport();
@@ -61,13 +64,22 @@ const Home = ({ theme, youtubeData }) => {
 
 	useEffect(() => {
 		if (youtubeGoal === true) return;
-		if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
+		if (youtubeData && youtubeData[0].statistics.viewCount >= youtubeTarget) {
 			setTimeout(() => {
 				modalOpen ? close() : open();
 			}, 1000);
 			setYoutubeGoal(true);
 		}
 	}, []);
+	// useEffect(() => {
+	// 	if (youtubeGoal === true) return;
+	// 	if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
+	// 		setTimeout(() => {
+	// 			modalOpen ? close() : open();
+	// 		}, 1000);
+	// 		setYoutubeGoal(true);
+	// 	}
+	// }, []);
 
 	return (
 		<StyledHome

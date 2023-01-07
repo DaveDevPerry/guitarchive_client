@@ -7,6 +7,10 @@ import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useViewport } from '../../hooks/useViewport';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { log } from '../../utils/helper';
+import { useNavigate } from 'react-router-dom';
+import { useYoutubeTargetsContext } from '../../hooks/useYoutubeTargetContext';
 
 const dropIn = {
 	hidden: {
@@ -31,8 +35,69 @@ const dropIn = {
 };
 
 const Modal = ({ handleClose, youtubeData, theme }) => {
+	const { user, dispatch } = useAuthContext();
+	// const { user, youtubeTarget, dispatch } = useAuthContext();
+	const { youtubeTarget } = useYoutubeTargetsContext();
+
 	const { width } = useViewport();
 	const breakpoint = 620;
+
+	const navigate = useNavigate();
+
+	// const handleClick = (e) => {
+	// 	e.preventDefault();
+	// };
+
+	const handleClick = async (e) => {
+		e.preventDefault();
+
+		log('clicked claim trophy', user, 'user');
+
+		const clonedTargetArr = [...user.yTData].map((obj) => {
+			if (obj.targetViews === youtubeTarget) {
+				log(obj, youtubeTarget, 'obj to update');
+				obj.isComplete = true;
+				obj.dateAchieved = Date.now();
+				return obj;
+			}
+			return obj;
+		});
+
+		log(clonedTargetArr, 'updated target?');
+
+		const updatedUserData = {
+			userID: user.userId,
+			youTubeData: clonedTargetArr,
+			// youTubeData: user.yTData,
+		};
+
+		log(updatedUserData, 'updatedUserData');
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/${user.userId}`,
+			{
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+				body: JSON.stringify({ updatedUserData }),
+			}
+		);
+		const json = await response.json();
+		log(json, 'updated user json');
+
+		if (response.ok) {
+			// dispatch({
+			// 	type: 'UPDATE_USER_TARGETS',
+			// 	payload: json,
+			// });
+			log('here');
+		}
+
+		handleClose();
+		navigate('/');
+	};
 	return (
 		<Backdrop onClick={handleClose}>
 			<StyledModal
@@ -161,6 +226,12 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 							videos
 						</p>
 					</StyledYoutubeStat>
+				</div>
+
+				<div className='yt-target-modal-btns-container'>
+					<button className='btn-6 custom-btn' onClick={handleClick}>
+						<p>claim trophy</p>
+					</button>
 				</div>
 			</StyledModal>
 		</Backdrop>
