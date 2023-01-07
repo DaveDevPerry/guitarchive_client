@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStateContext } from '../../lib/context';
 import { CgPlayListAdd } from 'react-icons/cg';
+// import { IoMdAdd } from 'react-icons/io';
 // import { GrAdd } from 'react-icons/gr';
 import { useViewport } from '../../hooks/useViewport';
 
@@ -16,6 +17,7 @@ const AddSongButton = () => {
 				isFormOpen === true ? setIsFormOpen(false) : setIsFormOpen(true);
 			}}
 		>
+			{/* <IoMdAdd className='add-song-btn' /> */}
 			<CgPlayListAdd className='add-song-btn' />
 			{/* <GrAdd className='add-song-btn' /> */}
 			{/* <p>upload</p> */}
@@ -38,7 +40,7 @@ const StyledAddSongButton = styled.button`
 		/* width: unset; */
 		.add-song-btn {
 			margin-top: 0.5rem;
-			/* font-size: 2.4rem; */
+			/* font-size: 2rem; */
 			color: ${({ theme }) => theme.btnIcon};
 			font-weight: bolder;
 		}

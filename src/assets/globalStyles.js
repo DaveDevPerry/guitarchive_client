@@ -432,10 +432,9 @@ input[type="file"] {
 						);
 				}
         .btn-6 {
-			${'' /* flex: 1; */}
-			${'' /* border-color: #7c7c7c; */}
 			border-color: rgba(16, 16, 16,0.5);
-			background: linear-gradient(
+			${
+				'' /* background: linear-gradient(
 				top,
 				rgba(38, 38, 38, 0.8),
 				#e6e6e6 25%,
@@ -443,7 +442,19 @@ input[type="file"] {
 				#c5c5c5 63%,
 				#f7f7f7 87%,
 				rgba(38, 38, 38, 0.8)
-			);
+			); */
+			}
+			${
+				'' /* background: -webkit-linear-gradient(
+				top,
+				${({ theme }) => theme.btnGradient1},
+				#e6e6e6 25%,
+				#ffffff 38%,
+				rgba(0, 0, 0, 0.25) 63%,
+				#e6e6e6 87%,
+				rgba(38, 38, 38, 0.4)
+			); */
+			}
 			background: -webkit-linear-gradient(
 				top,
 				rgba(38, 38, 38, 0.5),
@@ -452,7 +463,8 @@ input[type="file"] {
 				rgba(0, 0, 0, 0.25) 63%,
 				#e6e6e6 87%,
 				rgba(38, 38, 38, 0.4)
-			);
+			); 
+			
 		}
     button.page-number-btn:disabled,
 button.page-number-btn[disabled]{

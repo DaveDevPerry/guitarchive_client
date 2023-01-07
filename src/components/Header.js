@@ -5,7 +5,11 @@ import { FiMenu } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
 import { log } from '../utils/helper';
 import { IoMdArrowDropdown } from 'react-icons/io';
+// import { GrUserSettings } from 'react-icons/gr';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { useStateContext } from '../lib/context';
+import { useLogout } from '../hooks/useLogout';
+import { toast } from 'react-hot-toast';
 
 const Header = ({ mode }) => {
 	const location = useLocation();
@@ -17,6 +21,7 @@ const Header = ({ mode }) => {
 		showMusiciansMenu,
 		setShowMusiciansMenu,
 	} = useStateContext();
+	const { logout } = useLogout();
 
 	const handleSubMenu = () => {
 		log('clicked');
@@ -27,6 +32,20 @@ const Header = ({ mode }) => {
 		log('clicked');
 		setShowMusiciansMenu(!showMusiciansMenu);
 		setShowListsMenu(false);
+	};
+
+	const handleClick = () => {
+		logout();
+		notify();
+	};
+	// create a toast
+	const notify = () => {
+		toast.success(`you are now logged out.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (
@@ -139,15 +158,27 @@ const Header = ({ mode }) => {
 									>
 										<p>stats</p>
 									</NavLink>
+									<div className='logout-nav-wrapper' onClick={handleClick}>
+										<RiLogoutBoxLine className='logout-user-icon' />
+									</div>
 
 									{/* <NavLink
-									to='/settings'
-									className={({ isActive }) =>
-										isActive ? 'active' : 'inactive'
-									}
-								>
-									<p>settings</p>
-								</NavLink> */}
+										to='/settings'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<GrUserSettings className='settings-icon' />
+										<p>settings</p>
+									</NavLink> */}
+									{/* <NavLink
+										to='/settings'
+										className={({ isActive }) =>
+											isActive ? 'active' : 'inactive'
+										}
+									>
+										<p>settings</p>
+									</NavLink> */}
 								</nav>
 							</>
 						)}
@@ -271,17 +302,38 @@ const StyledHeader = styled(motion.header)`
 			a {
 				display: grid;
 				place-content: center;
+				.settings-icon {
+					color: ${({ theme }) => theme.primaryColor};
+					font-size: 3rem;
+					padding-left: 1rem;
+					font-weight: bolder;
+				}
 				p {
 					color: ${({ theme }) => theme.primaryColor};
 					font-size: 1.6rem;
 					text-transform: uppercase;
 					font-size: 2rem;
 					font-weight: bolder;
+					padding-left: 0.5rem;
 				}
 			}
 			a.active {
+				.settings-icon {
+					color: ${({ theme }) => theme.secondaryColor};
+				}
 				p {
 					color: ${({ theme }) => theme.secondaryColor};
+				}
+			}
+			.logout-nav-wrapper {
+				display: grid;
+				place-content: center;
+				cursor: pointer;
+				.logout-user-icon {
+					color: ${({ theme }) => theme.primaryColor};
+					font-size: 4rem;
+					padding-left: 1rem;
+					font-weight: bolder;
 				}
 			}
 		}

@@ -69,7 +69,7 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 			setTimeout(() => {
 				navigate('/home');
 			}, 1000);
-		}, 3000);
+		}, 2000);
 	}, []);
 
 	useEffect(() => {

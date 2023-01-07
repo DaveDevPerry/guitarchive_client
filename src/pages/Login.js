@@ -4,7 +4,10 @@ import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
 import AppDetails from '../components/AppDetails';
 import { useViewport } from '../hooks/useViewport';
-import { RiLogoutBoxLine } from 'react-icons/ri';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import { log } from '../utils/helper';
+// import { RiLogoutBoxLine } from 'react-icons/ri';
 
 const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
@@ -18,6 +21,15 @@ const Login = ({ theme }) => {
 		await login(email, password);
 	};
 
+	const loginForm = useRef(null);
+
+	useEffect(() => {
+		log('login page');
+		setTimeout(() => {
+			loginForm.current.reset();
+		}, 400);
+	}, []);
+
 	return (
 		<StyledLogin
 			className={`login-page page ${width < breakpoint ? 'mobile' : ''}`}
@@ -30,6 +42,7 @@ const Login = ({ theme }) => {
 					onSubmit={handleSubmit}
 					className={`login ${width < breakpoint ? 'mobile' : ''}`}
 					id={`${theme === 'dark' ? 'dark' : 'light'}`}
+					ref={loginForm}
 				>
 					<h3>Log in</h3>
 					<div className='login-input-wrapper'>
@@ -53,7 +66,7 @@ const Login = ({ theme }) => {
 					</div>
 					<div className='login-btn-container'>
 						<button className='btn-6 custom-btn' disabled={isLoading}>
-							<RiLogoutBoxLine className='login-icon' />
+							{/* <RiLogoutBoxLine className='login-icon' /> */}
 							<p>Log in</p>
 						</button>
 						{error && <div className='error'>{error}</div>}
