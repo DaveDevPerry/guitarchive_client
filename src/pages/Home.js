@@ -42,9 +42,15 @@ const Home = ({ theme, youtubeData }) => {
 			case 'deadlines':
 				setFilterValue('deadlines');
 				break;
-			case 'practicing':
-				setFilterValue('practicing');
+			case 'no-capo':
+				setFilterValue('no-capo');
 				break;
+			case 'capo':
+				setFilterValue('capo');
+				break;
+			// case 'practicing':
+			// 	setFilterValue('practicing');
+			// 	break;
 
 			case 'songs':
 				setFilterValue('songs');
@@ -94,6 +100,7 @@ const Home = ({ theme, youtubeData }) => {
 						modalOpen={modalOpen}
 						handleClose={close}
 						youtubeData={youtubeData}
+						handleSnooze={close}
 					/>
 				)}
 				{isFormOpen === true && (

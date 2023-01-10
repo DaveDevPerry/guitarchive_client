@@ -17,3 +17,19 @@
 } */
 
 /* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap'); */
+
+#unmounted{
+  background-image: url('../src/assets/images/light wood background.webp');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width:100vw;
+  
+}
+#unmounted h1{
+  /* color:red; */
+  color: transparent;
+  font-family: 'NewTegomin', serif;
+  font-size: 10rem;
+}

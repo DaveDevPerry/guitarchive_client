@@ -6,6 +6,7 @@ import { useViewport } from '../../hooks/useViewport';
 // import { log } from '../../utils/helper';
 import SongCard from './SongCard';
 import SongsPaginationNav from './SongsPaginationNav';
+import { Bars } from 'react-loader-spinner';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -94,8 +95,33 @@ function SongsList({ filterValue }) {
 	}
 
 	if (!data) {
-		return <p className='text-center'>Loading...</p>;
+		return (
+			<div className='loader-center'>
+				<Bars
+					height='100'
+					width='100'
+					color='#7f0101'
+					ariaLabel='bars-loading'
+					wrapperStyle={{}}
+					wrapperClass=''
+					visible={true}
+				/>
+			</div>
+		);
 	}
+	// if (!data) {
+	// 	return <p className='text-center'>Loading...</p>;
+	// }
+
+	// 	<Bars
+	//   height="80"
+	//   width="80"
+	//   color="#4fa94d"
+	//   ariaLabel="bars-loading"
+	//   wrapperStyle={{}}
+	//   wrapperClass=""
+	//   visible={true}
+	// />
 
 	const container = {
 		hidden: { opacity: 0 },

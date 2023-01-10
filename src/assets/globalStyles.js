@@ -166,6 +166,7 @@ ${
 }
 .form-input {
 				width: 100%;
+        text-transform: capitalize;
 			}
       .input-grow {
 				resize: none;
@@ -304,6 +305,9 @@ input[type="date"]{
     background-color: ${({ theme }) => theme.inputBg};
     ${'' /* background-color: rgba(168, 105, 69, 0.57); */}
     box-shadow: rgb(0 0 0 / 30%) 2px 2px 2px, rgb(0 0 0 / 10%) -2px -2px 2px;
+    text-transform: capitalize;
+font-weight: bolder;
+padding: 10px 20px 10px 10px;
 }
 select.form-select:focus {
   border: 2px solid ${({ theme }) => theme.borderDark};
@@ -493,5 +497,17 @@ button[disabled]{
         .text-center{
           width: 100%;
           text-align: center;
+          
         }
+        .loader-center{
+          width: 100%;
+          height: 100%;
+          margin-top: 10rem;
+          flex: 1;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
+
+        
 `;

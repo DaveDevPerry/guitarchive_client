@@ -25,6 +25,12 @@ const SongsFilter = ({ homeSongFilterHandler, theme }) => {
 				<option value='deadlines' className='form-option'>
 					Deadlines
 				</option>
+				<option value='capo' className='form-option'>
+					With Capo
+				</option>
+				<option value='no-capo' className='form-option'>
+					No Capo
+				</option>
 				{/* <option value='practicing' className='form-option'>
 					Practicing
 				</option> */}

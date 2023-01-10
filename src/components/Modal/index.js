@@ -34,7 +34,7 @@ const dropIn = {
 	},
 };
 
-const Modal = ({ handleClose, youtubeData, theme }) => {
+const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 	const { user, dispatch } = useAuthContext();
 	// const { user, youtubeTarget, dispatch } = useAuthContext();
 	const { youtubeTarget } = useYoutubeTargetsContext();
@@ -99,7 +99,9 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 		navigate('/');
 	};
 	return (
-		<Backdrop onClick={handleClose}>
+		<Backdrop
+		//  onClick={handleClose}
+		>
 			<StyledModal
 				className={`${width < breakpoint ? 'mobile' : ''}`}
 				onClick={(e) => e.stopPropagation()}
@@ -229,8 +231,17 @@ const Modal = ({ handleClose, youtubeData, theme }) => {
 				</div>
 
 				<div className='yt-target-modal-btns-container'>
-					<button className='btn-6 custom-btn' onClick={handleClick}>
-						<p>claim trophy</p>
+					<button
+						className='btn-6 custom-btn yt-state-btn'
+						onClick={handleSnooze}
+					>
+						<p>snooze</p>
+					</button>
+					<button
+						className='btn-6 custom-btn yt-state-btn'
+						onClick={handleClick}
+					>
+						<p>level up</p>
 					</button>
 				</div>
 			</StyledModal>
@@ -371,6 +382,15 @@ const StyledModal = styled(motion.div)`
 		gap: 1rem;
 		border-radius: 4px;
 		margin-top: 1rem;
+	}
+	.yt-target-modal-btns-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 2rem;
+		.yt-state-btn {
+			flex: 1 1 48%;
+		}
 	}
 
 	@keyframes showText {

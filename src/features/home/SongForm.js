@@ -50,6 +50,9 @@ const SongForm = ({ currentId, setCurrentId }) => {
 		reason: '',
 		isFavourite: false,
 		isTab: true,
+		// isCapo: false,
+		capoFret: 0,
+		notes: '',
 		selectedFile: '',
 	});
 
@@ -106,6 +109,9 @@ const SongForm = ({ currentId, setCurrentId }) => {
 			reason: '',
 			isFavourite: false,
 			isTab: true,
+			// isCapo: false,
+			capoFret: 0,
+			notes: '',
 			selectedFile: '',
 		});
 	};
@@ -128,6 +134,9 @@ const SongForm = ({ currentId, setCurrentId }) => {
 			reason: '',
 			isFavourite: false,
 			isTab: true,
+			// isCapo: false,
+			capoFret: 0,
+			notes: '',
 			selectedFile: '',
 		});
 		setIsFormOpen(false);
@@ -230,6 +239,19 @@ const SongForm = ({ currentId, setCurrentId }) => {
 										className='plus'
 									></button>
 								</div>
+							</div>
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='favourite'>
+									Favourite
+								</label>
+								<input
+									checked={songData.isFavourite}
+									onChange={(e) =>
+										setSongData({ ...songData, isFavourite: e.target.checked })
+									}
+									type='checkbox'
+									name='favourite'
+								/>
 							</div>
 							{/* <div className='form-item-row'>
 								<label className='song-label' htmlFor='difficulty'>
@@ -461,6 +483,45 @@ const SongForm = ({ currentId, setCurrentId }) => {
 						</div>
 						<div className='form-item'>
 							<div className='form-item-row'>
+								<label className='song-label' htmlFor='capoFret'>
+									capo fret
+								</label>
+								<div className='number-input'>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												capoFret: songData.capoFret - 1,
+											});
+										}}
+										className='minus'
+									></button>
+									<input
+										className='form-number'
+										min='0'
+										max='12'
+										name='capoFret'
+										value={songData.capoFret}
+										type='number'
+										onChange={(e) =>
+											setSongData({ ...songData, capoFret: e.target.value })
+										}
+									/>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												capoFret: songData.capoFret + 1,
+											});
+										}}
+										// onClick="this.parentNode.querySelector('input[type=number]').stepUp()"
+										className='plus'
+									></button>
+								</div>
+							</div>
+							<div className='form-item-row'>
 								<label className='song-label' htmlFor='tab'>
 									tablature
 								</label>
@@ -473,7 +534,21 @@ const SongForm = ({ currentId, setCurrentId }) => {
 									name='tab'
 								/>
 							</div>
-							<div className='form-item-row'>
+							{/* <div className='form-item-row'>
+								<label className='song-label' htmlFor='capo'>
+									capo
+								</label>
+								<input
+									checked={songData.isCapo}
+									onChange={(e) =>
+										setSongData({ ...songData, isCapo: e.target.checked })
+									}
+									type='checkbox'
+									name='capo'
+								/>
+							</div> */}
+
+							{/* <div className='form-item-row'>
 								<label className='song-label' htmlFor='favourite'>
 									Favourite
 								</label>
@@ -485,7 +560,7 @@ const SongForm = ({ currentId, setCurrentId }) => {
 									type='checkbox'
 									name='favourite'
 								/>
-							</div>
+							</div> */}
 						</div>
 
 						{/* <div className='form-item'> */}
@@ -505,7 +580,7 @@ const SongForm = ({ currentId, setCurrentId }) => {
 						{/* </div> */}
 					</div>
 				</div>
-
+				{/* <div> Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div> */}
 				<div className='form-section'>
 					<div className='form-row'>
 						<button className='form-action-btn btn-6 custom-btn' onClick={back}>

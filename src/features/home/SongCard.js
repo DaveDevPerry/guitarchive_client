@@ -11,7 +11,7 @@ import {
 import { SiStylelint } from 'react-icons/si';
 import { IoHandLeftSharp } from 'react-icons/io5';
 import { BsFileEarmarkPdf } from 'react-icons/bs';
-import { ImYoutube2 } from 'react-icons/im';
+// import { ImYoutube2 } from 'react-icons/im';
 import { GiMetronome } from 'react-icons/gi';
 import { GiGuitarHead } from 'react-icons/gi';
 
@@ -20,6 +20,8 @@ import { BiArchiveOut, BiArchive } from 'react-icons/bi';
 import { GoAlert } from 'react-icons/go';
 import { IoMusicalNotes } from 'react-icons/io5';
 import { TbNumbers } from 'react-icons/tb';
+import { TfiYoutube } from 'react-icons/tfi';
+
 import { format, parseISO } from 'date-fns';
 import { log } from '../../utils/helper';
 import { useNavigate } from 'react-router-dom';
@@ -76,6 +78,28 @@ const SongCard = ({ song, item }) => {
 				)}
 			</div>
 			<div className={`file-wrapper ${width < breakpoint ? 'hide' : ''}`}>
+				{/* {song.isCapo && (
+					<Tooltip content='capo' direction='left'>
+						<img
+							src='./images/capo.png'
+							alt='capo'
+							className='music-type-icon capo-icon'
+						/>
+					</Tooltip>
+				)} */}
+				{/* {song.capoFret && song.isCapo ? (
+					<Tooltip content='capo' direction='left'>
+						<p className='capo-fret'>
+							<strong>C{song.capoFret}</strong>
+						</p>
+					</Tooltip>
+				) : (
+					<Tooltip content='guitar pro file' direction='left'>
+						<p className='capo-fret'>
+							<strong>&nbsp;</strong>
+						</p>
+					</Tooltip>
+				)} */}
 				{song.fileType === 'pdf' ? (
 					<Tooltip content='pdf file' direction='left'>
 						<BsFileEarmarkPdf className='status-icon pdf-icon' />
@@ -127,7 +151,8 @@ const SongCard = ({ song, item }) => {
 			<div className={`status-wrapper ${width < breakpoint ? 'hide' : ''}`}>
 				{song.status.name === 'Recorded' && (
 					<Tooltip content='Recorded' direction='left'>
-						<ImYoutube2 className='card-icon song-status-icon yt-icon' />
+						<TfiYoutube className='card-icon song-status-icon youtube-channel-icon' />
+						{/* <ImYoutube2 className='card-icon song-status-icon yt-icon' /> */}
 					</Tooltip>
 				)}
 				{song.status.name === 'Practicing' && (
@@ -274,6 +299,10 @@ const StyledSongCard = styled(motion.div)`
 			.electric-icon {
 				font-size: 3rem;
 			}
+			.capo-fret {
+				font-size: 3rem;
+				font-weight: bolder;
+			}
 		}
 		.deadline-wrapper {
 			width: 100px;
@@ -323,6 +352,9 @@ const StyledSongCard = styled(motion.div)`
 			}
 			.yt-icon {
 				font-size: 4rem;
+			}
+			.youtube-channel-icon {
+				font-size: 2.8rem;
 			}
 
 			.file-download-icon {

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
@@ -15,7 +15,9 @@ import {
 	FaGuitar,
 } from 'react-icons/fa';
 import { BsFileEarmarkPdf } from 'react-icons/bs';
-import { ImYoutube2 } from 'react-icons/im';
+// import { ImYoutube2 } from 'react-icons/im';
+import { TfiYoutube } from 'react-icons/tfi';
+
 import { GiMetronome } from 'react-icons/gi';
 import { CgCamera } from 'react-icons/cg';
 import { BiArchiveOut, BiArchive } from 'react-icons/bi';
@@ -33,6 +35,7 @@ import BackButton from '../features/song/BackButton';
 import DownloadSongButton from '../features/song/DownloadSongButton';
 import { SiStylelint } from 'react-icons/si';
 import { IoHandLeftSharp } from 'react-icons/io5';
+import { Bars } from 'react-loader-spinner';
 
 const Song = ({ theme }) => {
 	const { user } = useAuthContext();
@@ -56,6 +59,8 @@ const Song = ({ theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	const [songLoaded, setSongLoaded] = useState(false);
+
 	useEffect(() => {
 		const fetchSong = async () => {
 			const response = await fetch(
@@ -75,6 +80,7 @@ const Song = ({ theme }) => {
 					type: 'SET_SONG',
 					payload: songAllData[0],
 				});
+				setSongLoaded(true);
 			}
 		};
 		if (user) {
@@ -144,17 +150,164 @@ const Song = ({ theme }) => {
 					<div className='songs-list-header'>
 						<div className='nav-btns-container'>
 							<BackButton />
-							<div className='heart-wrapper'>
+							{songLoaded === true && (
+								<div className='heart-wrapper'>
+									{song.isFavourite === true ? (
+										<FaHeart className='card-icon heart-on' />
+									) : (
+										<FaRegHeart className='card-icon heart-off' />
+									)}
+								</div>
+							)}
+							<DownloadSongButton song={song} />
+						</div>
+					</div>
+					{songLoaded === true ? (
+						<StyledSongDetails
+							className={`song-details-container ${
+								width < breakpoint ? 'mobile' : ''
+							}`}
+						>
+							<div className='song-wrapper'>
+								<p className='primary-text'>{song.title}</p>
+								<h4
+									className='secondary-text'
+									onClick={(e) => {
+										e.preventDefault();
+										log(song.artist.name, 'song artist id on click');
+										setArtistToView(song.artist.name);
+										navigate('/artist');
+									}}
+								>
+									{song.artist.name}
+								</h4>
+							</div>
+							<div className='artist-wrapper'>
+								<p
+									className='primary-text smaller'
+									onClick={(e) => {
+										e.preventDefault();
+										log(song.arranger.name, 'song arranger id on click');
+										setArrangerToView(song.arranger.name);
+										navigate('/arranger');
+									}}
+								>
+									{song.arranger.name}
+								</p>
+								<div className='rating-wrapper'>
+									{[...Array(song.difficulty)].map((elementInArray, index) => (
+										<FaStar key={index} className='star-on' />
+									))}
+									{[...Array(5 - song.difficulty)].map(
+										(elementInArray, index) => (
+											<FaRegStar key={index} className='star-off' />
+										)
+									)}
+								</div>
+							</div>
+							{song.isCapo && (
+								<p className='capo-status'>Capo on {song.capoFret}</p>
+							)}
+							<div className='line-wrapper'></div>
+							<div className='favourite-wrapper'>
 								{song.isFavourite === true ? (
 									<FaHeart className='card-icon heart-on' />
 								) : (
 									<FaRegHeart className='card-icon heart-off' />
 								)}
 							</div>
-							<DownloadSongButton song={song} />
-						</div>
-					</div>
-					<StyledSongDetails
+							{song.deadlineDate && (
+								<div className='deadline-wrapper'>
+									<p className='primary-text'>
+										{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+									</p>
+									{song.reason && (
+										<h4 className='secondary-text'>{song.reason}</h4>
+									)}
+								</div>
+							)}
+							<div className='file-wrapper'>
+								{song.fileType === 'pdf' ? (
+									<Tooltip content='pdf file' direction='bottom'>
+										<BsFileEarmarkPdf className='status-icon pdf-icon' />
+									</Tooltip>
+								) : (
+									<Tooltip content='guitar pro file' direction='bottom'>
+										<FaGuitar className='status-icon guitar-icon' />
+									</Tooltip>
+								)}
+								{song.style.name === 'fingerstyle' && (
+									<Tooltip content='fingerstyle' direction='bottom'>
+										<IoHandLeftSharp className='status-icon fingerstyle-icon' />
+									</Tooltip>
+								)}
+								{song.style.name === 'classical' && (
+									<Tooltip content='classical' direction='bottom'>
+										<SiStylelint className='status-icon classical-icon' />
+									</Tooltip>
+								)}
+								{song.selectedFile && (
+									<a href={song.selectedFile} download>
+										<FaCloudDownloadAlt className='file-download-icon card-icon' />
+									</a>
+								)}
+								{song.isTab ? (
+									<Tooltip content='tablature' direction='bottom'>
+										<TbNumbers className='music-type-icon' />
+									</Tooltip>
+								) : (
+									<Tooltip content='music score' direction='bottom'>
+										<IoMusicalNotes className='music-type-icon' />
+									</Tooltip>
+								)}
+								{song.status.name === 'Recorded' && (
+									<Tooltip content='recorded' direction='bottom'>
+										<TfiYoutube className='card-icon status-icon youtube-channel-icon' />
+										{/* <ImYoutube2 className='card-icon status-icon yt-icon' /> */}
+									</Tooltip>
+								)}
+								{song.status.name === 'Practicing' && (
+									<Tooltip content='practicing' direction='bottom'>
+										<GiMetronome className='card-icon status-icon' />
+									</Tooltip>
+								)}
+								{song.status.name === 'Ready' && (
+									<Tooltip content='ready to record' direction='bottom'>
+										<CgCamera className='card-icon status-icon' />
+									</Tooltip>
+								)}
+								{song.status.name === 'Backlog' && (
+									<Tooltip content='backlog' direction='bottom'>
+										<BiArchiveOut className='card-icon status-icon' />
+									</Tooltip>
+								)}
+								{song.status.name === 'Archived' && (
+									<Tooltip content='archived' direction='bottom'>
+										<BiArchive className='card-icon status-icon' />
+									</Tooltip>
+								)}
+							</div>
+						</StyledSongDetails>
+					) : (
+						<StyledSongDetails
+							className={`song-details-container loading ${
+								width < breakpoint ? 'mobile' : ''
+							}`}
+						>
+							<div className='loader-center'>
+								<Bars
+									height='100'
+									width='100'
+									color='#7f0101'
+									ariaLabel='bars-loading'
+									wrapperStyle={{}}
+									wrapperClass=''
+									visible={true}
+								/>
+							</div>
+						</StyledSongDetails>
+					)}
+					{/* <StyledSongDetails
 						className={`song-details-container ${
 							width < breakpoint ? 'mobile' : ''
 						}`}
@@ -196,6 +349,9 @@ const Song = ({ theme }) => {
 								)}
 							</div>
 						</div>
+						{song.isCapo && (
+							<p className='capo-status'>Capo on {song.capoFret}</p>
+						)}
 						<div className='line-wrapper'></div>
 						<div className='favourite-wrapper'>
 							{song.isFavourite === true ? (
@@ -250,7 +406,7 @@ const Song = ({ theme }) => {
 							)}
 							{song.status.name === 'Recorded' && (
 								<Tooltip content='recorded' direction='bottom'>
-									<ImYoutube2 className='card-icon status-icon yt-icon' />
+									<TfiYoutube className='card-icon status-icon youtube-channel-icon' />
 								</Tooltip>
 							)}
 							{song.status.name === 'Practicing' && (
@@ -274,7 +430,7 @@ const Song = ({ theme }) => {
 								</Tooltip>
 							)}
 						</div>
-					</StyledSongDetails>
+					</StyledSongDetails> */}
 					<div className='songs-list-header'>
 						<div className='nav-btns-container'>
 							<DeleteSongButton />
@@ -448,6 +604,20 @@ const StyledSongDetails = styled.div`
 			font-size: 2.5rem;
 		}
 	}
+	&.loading {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 200ms linear;
+		.loader-center {
+			margin: 0;
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 	.song-wrapper,
 	.artist-wrapper {
 		padding: 1rem;
@@ -494,6 +664,15 @@ const StyledSongDetails = styled.div`
 				font-size: 3rem;
 			}
 		}
+	}
+	.capo-status {
+		text-transform: uppercase;
+		font-size: 3rem;
+		color: ${({ theme }) => theme.primaryColor};
+		/* text-transform: capitalize; */
+		font-weight: bolder;
+		text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
+			0px -1px 0px rgb(0 0 0 / 70%);
 	}
 	.line-wrapper {
 		width: 20rem;
@@ -596,6 +775,10 @@ const StyledSongDetails = styled.div`
 			font-size: 4.5rem;
 			color: ${({ theme }) => theme.secondaryColor};
 		}
+		.youtube-channel-icon {
+			font-size: 4rem;
+			color: ${({ theme }) => theme.secondaryColor};
+		}
 	}
 	.deadline-wrapper {
 		padding: 1rem;
@@ -679,11 +862,21 @@ const StyledSongContainer = styled.div`
 		}
 		.nav-btns-container {
 			display: flex;
+			/* justify-content: center; */
 			justify-content: space-between;
 			align-items: center;
 			column-gap: 1rem;
 			flex: 1;
 			color: ${({ theme }) => theme.secondaryColor};
+			button {
+				width: 18rem;
+				display: flex;
+				justify-content: center;
+				a {
+					display: flex;
+					justify-content: center;
+				}
+			}
 			.heart-wrapper {
 				display: grid;
 				place-content: center;

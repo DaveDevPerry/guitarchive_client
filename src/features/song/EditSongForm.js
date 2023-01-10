@@ -48,6 +48,9 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 		reason: song.reason,
 		isFavourite: song.isFavourite,
 		isTab: song.isTab,
+		// isCapo: song.isCapo,
+		capoFret: song.capoFret,
+		notes: song.notes,
 		selectedFile: song.selectedFile,
 	});
 
@@ -131,6 +134,9 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 			reason: '',
 			isFavourite: false,
 			isTab: true,
+			// isCapo: false,
+			capoFret: 0,
+			notes: '',
 			selectedFile: '',
 		});
 		setIsEditFormOpen(false);
@@ -235,19 +241,24 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 										className='plus'
 									></button>
 								</div>
-								{/* <input
-									type='number'
-									value={songData.difficulty}
+							</div>
+
+							<div className='form-item-row'>
+								<label className='song-label' htmlFor='favourite'>
+									Favourite
+								</label>
+								<input
+									checked={songData.isFavourite}
 									onChange={(e) => {
-										setSongData({ ...songData, difficulty: e.target.value });
+										setSongData({ ...songData, isFavourite: e.target.checked });
 										setNewSongData({
 											...newSongData,
-											difficulty: e.target.value,
+											isFavourite: e.target.checked,
 										});
 									}}
-									className='form-number'
-									name='difficulty'
-								/> */}
+									type='checkbox'
+									name='favourite'
+								/>
 							</div>
 						</div>
 					</div>
@@ -533,6 +544,57 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 						</div>
 						<div className='form-item'>
 							<div className='form-item-row'>
+								<label className='song-label' htmlFor='capoFret'>
+									capo fret
+								</label>
+								<div className='number-input'>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												capoFret: songData.capoFret - 1,
+											});
+											setNewSongData({
+												...newSongData,
+												capoFret: newSongData.capoFret - 1,
+											});
+										}}
+										className='minus'
+									></button>
+									<input
+										className='form-number'
+										min='0'
+										max='12'
+										name='capoFret'
+										value={songData.capoFret}
+										type='number'
+										onChange={(e) => {
+											setSongData({ ...songData, capoFret: e.target.value });
+											setNewSongData({
+												...newSongData,
+												capoFret: e.target.value,
+											});
+										}}
+									/>
+									<button
+										onClick={(e) => {
+											e.preventDefault();
+											setSongData({
+												...songData,
+												capoFret: songData.capoFret + 1,
+											});
+											setNewSongData({
+												...newSongData,
+												capoFret: newSongData.capoFret + 1,
+											});
+										}}
+										// onClick="this.parentNode.querySelector('input[type=number]').stepUp()"
+										className='plus'
+									></button>
+								</div>
+							</div>
+							<div className='form-item-row'>
 								<label className='song-label' htmlFor='tab'>
 									tablature
 								</label>
@@ -546,7 +608,26 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 									name='tab'
 								/>
 							</div>
-							<div className='form-item-row'>
+
+							{/* <div className='form-item-row'>
+								<label className='song-label' htmlFor='capo'>
+									capo
+								</label>
+								<input
+									checked={songData.isCapo}
+									onChange={(e) => {
+										setSongData({ ...songData, isCapo: e.target.checked });
+										setNewSongData({
+											...newSongData,
+											isCapo: e.target.checked,
+										});
+									}}
+									type='checkbox'
+									name='capo'
+								/>
+							</div> */}
+
+							{/* <div className='form-item-row'>
 								<label className='song-label' htmlFor='favourite'>
 									Favourite
 								</label>
@@ -562,7 +643,7 @@ const EditSongForm = ({ currentId, setCurrentId }) => {
 									type='checkbox'
 									name='favourite'
 								/>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

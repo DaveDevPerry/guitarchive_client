@@ -372,7 +372,13 @@ function App() {
 	const { width } = useViewport();
 	const breakpoint = 620;
 
-	if (!mountedComponent) return <div id='unmounted'>Can i see this</div>;
+	// if (!mountedComponent) return <div id='unmounted'>Can i see this</div>;
+	if (!mountedComponent)
+		return (
+			<div id='unmounted'>
+				<h1>guitarchive</h1>
+			</div>
+		);
 
 	return (
 		<ThemeProvider theme={themeMode}>

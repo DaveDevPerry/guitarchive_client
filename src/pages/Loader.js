@@ -115,6 +115,10 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 					type: 'SET_SONGS',
 					payload: json,
 				});
+				dispatch({
+					type: 'SET_SONG',
+					payload: json[0],
+				});
 				localStorage.setItem('songs', JSON.stringify(json));
 			}
 		};

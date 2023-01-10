@@ -11,7 +11,8 @@ export const StateContext = ({ children }) => {
 	const [isRequestFormOpen, setIsRequestFormOpen] = useState(false);
 	const [isArtistFormOpen, setIsArtistFormOpen] = useState(false);
 	const [isArrangerFormOpen, setIsArrangerFormOpen] = useState(false);
-	const [songToView, setSongToView] = useState(null);
+	const [songToView, setSongToView] = useState('637dc04817393cf8b324a558');
+	// const [songToView, setSongToView] = useState(null);
 	const [artistToView, setArtistToView] = useState(null);
 	const [arrangerToView, setArrangerToView] = useState(null);
 	const [isEditFormOpen, setIsEditFormOpen] = useState(false);
