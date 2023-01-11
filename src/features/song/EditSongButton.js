@@ -58,7 +58,7 @@ const StyledEditSongButton = styled.button`
 		color: ${({ theme }) => theme.btnIcon};
 	}
 	p {
-		font-family: 'NewTegomin';
+		font-family: 'New Tegomin';
 		color: ${({ theme }) => theme.btnColor};
 		text-transform: uppercase;
 		font-size: 1.6rem;

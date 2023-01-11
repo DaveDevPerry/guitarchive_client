@@ -479,7 +479,7 @@ const StyledLoader = styled(motion.div)`
 	} */
 	h1.app-name {
 		color: ${({ theme }) => theme.secondaryColor};
-		font-family: 'NewTegomin';
+		font-family: 'New Tegomin';
 		font-weight: lighter;
 		font-size: 4rem;
 		text-align: center;

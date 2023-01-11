@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: 'NewTegomin', serif;
+    font-family: 'New Tegomin', serif;
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
@@ -103,7 +103,7 @@ position: relative;
   }
   button {
 		background-color: ${({ theme }) => theme.btnBg};
-    font-family: 'NewTegomin', serif;
+    font-family: 'New Tegomin', serif;
 		padding: 1rem 3rem;
 		text-transform: uppercase;
 		border: none;
@@ -322,7 +322,7 @@ option.form-option {
           ${'' /* border: 2px solid rgba(16, 16, 16, 0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
-          font-family: 'NewTegomin',serif;
+          font-family: 'New Tegomin',serif;
           cursor: pointer;
           &:nth-child(odd){
             background-color:  ${({ theme }) => theme.optionBgOdd};

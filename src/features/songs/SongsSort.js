@@ -71,7 +71,7 @@ const StyledSongsSort = styled.div`
 
 				} */
 		&.filter-song {
-			font-family: 'NewTegomin';
+			font-family: 'New Tegomin';
 			text-transform: uppercase;
 			font-size: 1.6rem;
 		}
@@ -93,7 +93,7 @@ const StyledSongsSort = styled.div`
 			}
 		}
 		&.default-filter {
-			font-family: 'NewTegomin';
+			font-family: 'New Tegomin';
 			text-transform: uppercase;
 		}
 	}

@@ -201,7 +201,7 @@ const StyledHeader = styled(motion.header)`
 		z-index: 500;
 		h1 {
 			color: ${({ theme }) => theme.secondaryColor};
-			font-family: 'NewTegomin';
+			font-family: 'New Tegomin';
 			font-weight: lighter;
 			font-size: 4rem;
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),

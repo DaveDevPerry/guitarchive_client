@@ -63,7 +63,7 @@ const StyledSongsFilter = styled.div`
 		border: none;
 		-webkit-transition: 0.5s;
 		transition: 0.5s;
-		font-family: 'NewTegomin';
+		font-family: 'New Tegomin';
 		text-transform: uppercase;
 		font-size: 1.6rem;
 		font-weight: bolder;
@@ -142,7 +142,7 @@ const StyledSongsFilter = styled.div`
 				cursor: pointer;
 			}
 			&.default-filter {
-				font-family: 'NewTegomin';
+				font-family: 'New Tegomin';
 				text-transform: uppercase;
 				cursor: pointer;
 				&:hover {

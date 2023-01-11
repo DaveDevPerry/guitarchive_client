@@ -107,7 +107,7 @@ const StyledSongsPaginationNav = styled.nav`
 			color: ${({ theme }) => theme.white};
 			/* height: 3.8rem; */
 			cursor: pointer;
-			font-family: 'NewTegomin';
+			font-family: 'New Tegomin';
 			text-transform: uppercase;
 			font-size: 1.6rem;
 			option {
@@ -126,7 +126,7 @@ const StyledSongsPaginationNav = styled.nav`
 					cursor: pointer;
 				}
 				&.default-filter {
-					font-family: 'NewTegomin';
+					font-family: 'New Tegomin';
 					text-transform: uppercase;
 					cursor: pointer;
 					&:hover {

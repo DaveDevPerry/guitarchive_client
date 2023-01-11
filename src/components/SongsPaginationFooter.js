@@ -112,7 +112,7 @@ const StyledSongsPaginationFooter = styled.footer`
 			color: ${({ theme }) => theme.white};
 			height: 3.8rem;
 			cursor: pointer;
-			font-family: 'NewTegomin';
+			font-family: 'New Tegomin';
 			text-transform: uppercase;
 			font-size: 1.6rem;
 			option {
@@ -131,7 +131,7 @@ const StyledSongsPaginationFooter = styled.footer`
 					cursor: pointer;
 				}
 				&.default-filter {
-					font-family: 'NewTegomin';
+					font-family: 'New Tegomin';
 					text-transform: uppercase;
 					cursor: pointer;
 					&:hover {
