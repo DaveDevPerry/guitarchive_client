@@ -124,7 +124,7 @@ const StyledSearchSongs = styled.div`
 		/* margin-left: 2rem; */
 		/* font-weight: lighter; */
 		height: 3.8rem;
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		&:focus {
 			border: 1px solid ${({ theme }) => theme.darkBrown};
 			outline: none;

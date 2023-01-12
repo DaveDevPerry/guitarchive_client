@@ -10,8 +10,15 @@ import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
 import Modal from '../components/Modal';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
+// import { log } from '../utils/helper';
+// import { useSongsContext } from '../hooks/useSongContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = ({ theme, youtubeData }) => {
+	// const { user } = useAuthContext();
+
+	// const { dispatch } = useSongsContext();
+
 	const { youtubeTarget } = useYoutubeTargetsContext();
 	const { dataLoaded, isFormOpen, youtubeGoal, setYoutubeGoal } =
 		useStateContext();
@@ -25,6 +32,44 @@ const Home = ({ theme, youtubeData }) => {
 
 	const close = () => setModalOpen(false);
 	const open = () => setModalOpen(true);
+
+	// useEffect(() => {
+	// 	const fetchSongs = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+	// 		log(json, 'json songs');
+	// 		log(response, 'response');
+	// 		if (!response.ok) {
+	// 			// setMode('offline');
+	// 			let collection = JSON.parse(localStorage.getItem('songs'));
+	// 			dispatch({
+	// 				type: 'SET_SONGS',
+	// 				payload: collection,
+	// 			});
+	// 		}
+	// 		if (response.ok) {
+	// 			dispatch({
+	// 				type: 'SET_SONGS',
+	// 				payload: json,
+	// 			});
+	// 			dispatch({
+	// 				type: 'SET_SONG',
+	// 				payload: json[0],
+	// 			});
+	// 			localStorage.setItem('songs', JSON.stringify(json));
+	// 		}
+	// 	};
+	// 	if (user) {
+	// 		fetchSongs();
+	// 	}
+	// }, []);
 
 	// function sand events
 	const homeSongFilterHandler = (e) => {

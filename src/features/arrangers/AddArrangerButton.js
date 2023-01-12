@@ -38,7 +38,7 @@ const StyledAddArrangerButton = styled.div`
 		font-size: 2.5rem;
 	}
 	p {
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		color: white;
 		text-transform: uppercase;
 		font-size: 1.6rem;

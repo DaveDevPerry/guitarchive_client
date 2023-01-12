@@ -70,7 +70,7 @@ const StyledSearchBar = styled.div`
 		border-radius: 0 0.4rem 0.4rem 0;
 		// border-radius: 0 0.7rem 0.7rem 0;
 		padding: 0 1rem;
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		text-transform: uppercase;
 		height: 3.8rem;
 		cursor: pointer;

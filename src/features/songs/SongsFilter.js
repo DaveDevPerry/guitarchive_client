@@ -49,7 +49,7 @@ const StyledSongsFilter = styled.div`
 
 				} */
 		&.filter-song {
-			font-family: 'New Tegomin';
+			/* font-family: 'New Tegomin', serif; */
 			text-transform: uppercase;
 			font-size: 1.6rem;
 
@@ -69,7 +69,7 @@ const StyledSongsFilter = styled.div`
 					cursor: pointer;
 				}
 				&.default-filter {
-					font-family: 'New Tegomin';
+					/* font-family: 'New Tegomin', serif; */
 					text-transform: uppercase;
 					cursor: pointer;
 					&:hover {

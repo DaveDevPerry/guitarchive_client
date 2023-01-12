@@ -35,7 +35,7 @@ const StyledAddSongButton = styled.button`
 		font-weight: bolder;
 	}
 	p {
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		color: ${({ theme }) => theme.btnColor};
 		text-transform: uppercase;
 		font-size: 1.6rem;

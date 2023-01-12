@@ -53,7 +53,7 @@ const StyledDeleteSongModal = styled(motion.dialog)`
 	place-content: center;
 	background-color: rgba(0, 0, 0, 0.8);
 	border: none;
-	font-family: 'New Tegomin';
+	/* font-family: 'New Tegomin', serif; */
 	.posts-box {
 		width: calc(100vw - 2rem);
 		padding: 1rem 2rem 2rem;
@@ -92,7 +92,7 @@ const StyledDeleteSongModal = styled(motion.dialog)`
 			color: ${({ theme }) => theme.primaryColor};
 		}
 		p {
-			font-family: 'New Tegomin';
+			/* font-family: 'New Tegomin', serif; */
 			color: ${({ theme }) => theme.secondaryColor};
 			text-transform: uppercase;
 			font-size: 1.6rem;

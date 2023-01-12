@@ -50,6 +50,7 @@ position: relative;
 	}
 	&#light {
     background-image: url('/images/light wood background.webp');
+    ${'' /* background-image: url('/images/light wood background.webp'); */}
 	}
   &.mobile{
     row-gap:0;

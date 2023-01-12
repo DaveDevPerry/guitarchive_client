@@ -752,7 +752,7 @@ const StyledSongForm = styled.form`
 		.form-action-btn {
 			color: ${({ theme }) => theme.white};
 			flex: 1;
-			font-family: 'New Tegomin';
+			/* font-family: 'New Tegomin', serif; */
 			padding: 0.5rem 1rem;
 			background-color: ${({ theme }) => theme.btnBg};
 			border-radius: 0.4rem;
@@ -898,7 +898,7 @@ const StyledSongForm = styled.form`
 			background-color: ${({ theme }) => theme.lightBrown};
 			color: ${({ theme }) => theme.white};
 			flex: 1;
-			font-family: 'New Tegomin';
+			/* font-family: 'New Tegomin', serif; */
 			padding: 0.5rem 1rem;
 			font-size: 1.6rem;
 		}

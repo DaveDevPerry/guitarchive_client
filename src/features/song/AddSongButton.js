@@ -46,8 +46,7 @@ const StyledAddSongButton = styled.div`
 		color: white;
 	}
 	p {
-		/* font-family: 'Roboto'; */
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		color: white;
 		text-transform: uppercase;
 		font-size: 1.6rem;

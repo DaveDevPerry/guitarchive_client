@@ -54,17 +54,6 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 				(obj) => obj.isComplete === false
 			)[0].targetViews;
 
-			// log()
-
-			// log(response, 'response');
-			// if (!response.ok) {
-			// 	setMode('offline');
-			// 	let collection = JSON.parse(localStorage.getItem('songs'));
-			// 	dispatch({
-			// 		type: 'SET_SONGS',
-			// 		payload: collection,
-			// 	});
-			// }
 			if (response.ok) {
 				log(getYTTargetNumber, 'target number');
 				youtubeDispatch({
@@ -75,7 +64,6 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 					type: 'SET_YOUTUBE_TARGET',
 					payload: getYTTargetNumber,
 				});
-				// localStorage.setItem('songs', JSON.stringify(json));
 			}
 		};
 		if (user) {
@@ -85,8 +73,8 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 			setDataLoaded(true);
 			setTimeout(() => {
 				navigate('/home');
-			}, 1000);
-		}, 2000);
+			}, 500);
+		}, 500);
 	}, []);
 
 	useEffect(() => {
@@ -125,12 +113,6 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 		if (user) {
 			fetchSongs();
 		}
-		// setTimeout(() => {
-		// 	setDataLoaded(true);
-		// 	setTimeout(() => {
-		// 		navigate('/home');
-		// 	}, 1000);
-		// }, 2000);
 	}, []);
 
 	useEffect(() => {
@@ -479,7 +461,7 @@ const StyledLoader = styled(motion.div)`
 	} */
 	h1.app-name {
 		color: ${({ theme }) => theme.secondaryColor};
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		font-weight: lighter;
 		font-size: 4rem;
 		text-align: center;

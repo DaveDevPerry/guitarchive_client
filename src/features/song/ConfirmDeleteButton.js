@@ -29,7 +29,7 @@ const StyledConfirmDeleteButton = styled.button`
 	flex: 1 1 48%;
 	color: ${({ theme }) => theme.primaryColor};
 	p.btn-text {
-		font-family: 'New Tegomin';
+		/* font-family: 'New Tegomin', serif; */
 		color: ${({ theme }) => theme.primaryColor} !important;
 		text-transform: uppercase;
 		font-size: 1.6rem;
