@@ -209,12 +209,15 @@ ${
   div.error {
     padding: 1rem;
     background: ${({ theme }) => theme.bgError};
-    border: 1px solid ${({ theme }) => theme.error};
+    border: 2px solid ${({ theme }) => theme.error};
     color: ${({ theme }) => theme.error};
     border-radius: 4px;
+    ${'' /* margin-top: 2rem; */}
+    ${'' /* flex: 1 1 48%; */}
   }
   input.error {
     border: 2px solid ${({ theme }) => theme.error};
+    
   }
   .stroke{
     -webkit-text-stroke: 1px ${({ theme }) => theme.secondaryColor};

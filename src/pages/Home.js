@@ -166,7 +166,7 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 0.5rem;
+	row-gap: 1.5rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
 	z-index: 1;

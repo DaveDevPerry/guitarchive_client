@@ -39,7 +39,7 @@ export const lightTheme = {
 	veryLightBrown: 'rgb(253, 225, 209)',
 	grey: 'rgba(124, 124, 124, 1)',
 	congratulations: '#ea6909',
-	error: '#e7195a',
+	error: '#7f0101',
 	borderGrey: '#ddd',
 	bgGrey: '#efefef',
 	bgLightGrey: '#e3e3e3',

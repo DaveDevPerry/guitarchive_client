@@ -74,6 +74,9 @@ const StyledAlertDeadlineSong = styled.div`
 		width: 100%;
 		column-gap: 1rem;
 		cursor: pointer;
+		overflow: hidden;
+		white-space: nowrap; /* Don't forget this one */
+		text-overflow: ellipsis;
 		.alert-icon {
 			font-size: 2.4rem;
 			color: ${({ theme }) => theme.alert};

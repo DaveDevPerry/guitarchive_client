@@ -65,30 +65,12 @@ const Login = ({ theme }) => {
 						/>
 					</div>
 					<div className='login-btn-container'>
-						{error ? (
-							<div className='error'>
-								<p>{error}</p>
-							</div>
-						) : (
-							<div className='error'>
-								<p>&nbsp;</p>
-							</div>
-						)}
 						<button className='btn-6 custom-btn' disabled={isLoading}>
 							{/* <RiLogoutBoxLine className='login-icon' /> */}
 							<p>Log in</p>
 						</button>
+						{error && <div className='error'>{error}</div>}
 					</div>
-					{/* <div className='login-btn-container'>
-						{error && (
-							<div className='error'>
-								<p>{error}</p>
-							</div>
-						)}
-						<button className='btn-6 custom-btn' disabled={isLoading}>
-							<p>Log in</p>
-						</button>
-					</div> */}
 				</form>
 				<div className='app-details-container'>
 					<AppDetails theme={theme} />
@@ -161,39 +143,12 @@ const StyledLogin = styled(motion.div)`
 			}
 			.login-btn-container {
 				flex: 1;
-				display: flex;
-				column-gap: 2rem;
-				justify-content: flex-end;
-				/* margin-top: 2rem; */
 				.custom-btn {
 					width: 100%;
 					display: flex;
 					justify-content: center;
 					align-items: center;
 					column-gap: 0.5rem;
-					flex: 1 1 48%;
-					max-width: 48%;
-				}
-				div.error {
-					/* padding: 1rem;
-    background: ${({ theme }) => theme.bgError};
-    border: 1px solid ${({ theme }) => theme.error};
-    color: ${({ theme }) => theme.error};
-    border-radius: 4px; */
-					border: none;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					margin-top: 2rem;
-					flex: 1 1 48%;
-					padding: 7px 0px;
-					font-size: 1.8rem;
-					font-weight: 900;
-					text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
-					p {
-						text-transform: uppercase;
-						text-align: center;
-					}
 				}
 				.login-icon {
 					color: ${({ theme }) => theme.btnIcon};
@@ -227,14 +182,6 @@ const StyledLogin = styled(motion.div)`
 					flex: 1;
 					width: 100%;
 					/* background-color: transparent; */
-				}
-				input[type='email'],
-				input[type='password'] {
-					/* padding: 0.8rem 1rem;
-						font-size: 1.8rem;
-
-						width: 100%; */
-					background-color: transparent !important;
 				}
 				/* input[type='email'],
 				input[type='password'] {
@@ -273,53 +220,11 @@ const StyledLogin = styled(motion.div)`
 				row-gap: 1rem;
 				padding: 1rem;
 				border-radius: 0.4rem;
-				.login-btn-container {
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-					/* row-gap: 2rem; */
-					/* justify-content: flex-end; */
-					/* margin-top: 2rem; */
-					.custom-btn {
-						width: 100%;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						column-gap: 0.5rem;
-						flex: 1;
 
-						max-width: unset;
-						margin-top: 1rem;
-					}
-					div.error {
-						border: none;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						margin-top: 0rem;
-						flex: 1;
-						padding: 7px 0px;
-						font-size: 1.8rem;
-						font-weight: 900;
-						text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
-						p {
-							text-transform: uppercase;
-							text-align: center;
-							/* background-color: ${({ theme }) => theme.primaryColor}; */
-							/* padding: 0 0.5rem; */
-						}
-					}
-					.login-icon {
-						color: ${({ theme }) => theme.btnIcon};
-						font-size: 2rem;
-						margin-right: 1rem;
-					}
-				}
 				h3 {
 					font-size: 2.5rem;
 					line-height: 2.5rem;
 				}
-
 				.login-input-wrapper {
 					label {
 						font-size: 1.6rem;

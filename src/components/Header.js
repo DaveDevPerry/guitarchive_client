@@ -2,12 +2,13 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useViewport } from '../hooks/useViewport';
 import { FiMenu } from 'react-icons/fi';
-import { AnimatePresence, motion } from 'framer-motion';
-import { log } from '../utils/helper';
+import { motion } from 'framer-motion';
+// import { AnimatePresence, motion } from 'framer-motion';
+// import { log } from '../utils/helper';
 import { IoMdArrowDropdown } from 'react-icons/io';
 // import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-import { useStateContext } from '../lib/context';
+// import { useStateContext } from '../lib/context';
 import { useLogout } from '../hooks/useLogout';
 import { toast } from 'react-hot-toast';
 
@@ -15,24 +16,24 @@ const Header = ({ mode }) => {
 	const location = useLocation();
 	const { width } = useViewport();
 	const breakpoint = 620;
-	const {
-		showListsMenu,
-		setShowListsMenu,
-		showMusiciansMenu,
-		setShowMusiciansMenu,
-	} = useStateContext();
+	// const {
+	// 	// showListsMenu,
+	// 	// setShowListsMenu,
+	// 	// showMusiciansMenu,
+	// 	// setShowMusiciansMenu,
+	// } = useStateContext();
 	const { logout } = useLogout();
 
-	const handleSubMenu = () => {
-		log('clicked');
-		setShowListsMenu(!showListsMenu);
-		setShowMusiciansMenu(false);
-	};
-	const handleMusicianSubMenu = () => {
-		log('clicked');
-		setShowMusiciansMenu(!showMusiciansMenu);
-		setShowListsMenu(false);
-	};
+	// const handleSubMenu = () => {
+	// 	log('clicked');
+	// 	setShowListsMenu(!showListsMenu);
+	// 	setShowMusiciansMenu(false);
+	// };
+	// const handleMusicianSubMenu = () => {
+	// 	log('clicked');
+	// 	setShowMusiciansMenu(!showMusiciansMenu);
+	// 	setShowListsMenu(false);
+	// };
 
 	const handleClick = () => {
 		logout();
@@ -80,7 +81,61 @@ const Header = ({ mode }) => {
 									>
 										<p>library</p>
 									</NavLink>
-									<div className='sub-menu' onClick={handleSubMenu}>
+									<div className='test-sub-menu'>
+										<p>
+											lists{' '}
+											<span>
+												<IoMdArrowDropdown className='arrow-icon' />
+											</span>
+										</p>
+
+										<div className='test-dropdown-links'>
+											<NavLink
+												to='/ideas'
+												className={({ isActive }) =>
+													isActive ? 'active' : 'inactive'
+												}
+											>
+												<p>ideas</p>
+											</NavLink>
+											<NavLink
+												to='/requests'
+												className={({ isActive }) =>
+													isActive ? 'active' : 'inactive'
+												}
+											>
+												<p>requests</p>
+											</NavLink>
+										</div>
+									</div>
+									<div className='test-sub-menu'>
+										<p>
+											musicians{' '}
+											<span>
+												<IoMdArrowDropdown className='arrow-icon' />
+											</span>
+										</p>
+
+										<div className='test-dropdown-links'>
+											<NavLink
+												to='/artists'
+												className={({ isActive }) =>
+													isActive ? 'active' : 'inactive'
+												}
+											>
+												<p>artists</p>
+											</NavLink>
+											<NavLink
+												to='/arrangers'
+												className={({ isActive }) =>
+													isActive ? 'active' : 'inactive'
+												}
+											>
+												<p>arrangers</p>
+											</NavLink>
+										</div>
+									</div>
+									{/* <div className='sub-menu' onClick={handleSubMenu}>
 										<p>
 											lists{' '}
 											<span>
@@ -114,8 +169,8 @@ const Header = ({ mode }) => {
 												</motion.div>
 											)}
 										</AnimatePresence>
-									</div>
-									<div className='sub-menu' onClick={handleMusicianSubMenu}>
+									</div> */}
+									{/* <div className='sub-menu' onClick={handleMusicianSubMenu}>
 										<p>
 											musicians{' '}
 											<span>
@@ -149,7 +204,7 @@ const Header = ({ mode }) => {
 												</motion.div>
 											)}
 										</AnimatePresence>
-									</div>
+									</div> */}
 									<NavLink
 										to='/stats'
 										className={({ isActive }) =>
@@ -189,7 +244,7 @@ const Header = ({ mode }) => {
 	);
 };
 const StyledHeader = styled(motion.header)`
-	transition: all 200ms linear;
+	/* transition: all 200ms linear; */
 	position: relative;
 	.container {
 		max-width: 100rem;
@@ -255,6 +310,13 @@ const StyledHeader = styled(motion.header)`
 					font-weight: bolder;
 					display: flex;
 					align-items: center;
+					transition: all 200ms ease-in-out;
+					text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+						0px -1px 0px rgb(0 0 0 / 70%);
+					&:hover {
+						color: ${({ theme }) => theme.secondaryColor};
+						transition: all 200ms ease-in-out;
+					}
 					span {
 						display: flex;
 						align-items: center;
@@ -287,6 +349,13 @@ const StyledHeader = styled(motion.header)`
 							font-weight: bolder;
 							padding: 0.5rem;
 							font-size: 1.8rem;
+							transition: all 200ms ease-in-out;
+							text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+								0px -1px 0px rgb(0 0 0 / 70%);
+							&:hover {
+								color: ${({ theme }) => theme.secondaryColor};
+								transition: all 200ms ease-in-out;
+							}
 						}
 						&:hover {
 							background-color: rgba(0, 0, 0, 0.05);
@@ -315,6 +384,13 @@ const StyledHeader = styled(motion.header)`
 					font-size: 2rem;
 					font-weight: bolder;
 					padding-left: 0.5rem;
+					transition: all 200ms ease-in-out;
+					text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+						0px -1px 0px rgb(0 0 0 / 70%);
+					&:hover {
+						color: ${({ theme }) => theme.secondaryColor};
+						transition: all 200ms ease-in-out;
+					}
 				}
 			}
 			a.active {
@@ -334,6 +410,92 @@ const StyledHeader = styled(motion.header)`
 					font-size: 4rem;
 					padding-left: 1rem;
 					font-weight: bolder;
+				}
+			}
+			.test-sub-menu {
+				position: relative;
+				display: grid;
+				place-content: center;
+				column-gap: 0.5rem;
+				padding-left: 0.5rem;
+				cursor: pointer;
+				p {
+					color: ${({ theme }) => theme.primaryColor};
+					font-size: 1.6rem;
+					text-transform: uppercase;
+					font-size: 2rem;
+					font-weight: bolder;
+					display: flex;
+					align-items: center;
+					transition: all 200ms ease-in-out;
+					text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+						0px -1px 0px rgb(0 0 0 / 70%);
+					&:hover {
+						color: ${({ theme }) => theme.secondaryColor};
+						transition: all 200ms ease-in-out;
+					}
+					span {
+						display: flex;
+						align-items: center;
+						.arrow-icon {
+							font-size: 2rem;
+							color: ${({ theme }) => theme.secondaryColor};
+						}
+					}
+				}
+				.test-dropdown-links {
+					position: absolute;
+					top: calc(100% + 0.5rem);
+					left: 0.5rem;
+					border: 1px solid rgba(0, 0, 0, 0.2);
+					box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+					border-radius: 0.4rem;
+					z-index: 3000000;
+					background-color: ${({ theme }) => theme.dropDownLinks};
+					padding-bottom: 0.5rem;
+					font-size: 1.8rem;
+					opacity: 0;
+					visibility: hidden;
+					-webkit-transition: opacity 0.5s;
+					-moz-transition: opacity 0.5s;
+					transition: opacity 0.5s;
+					a {
+						display: flex;
+						justify-content: flex-start;
+						padding: 0rem 0.3rem;
+						p {
+							color: ${({ theme }) => theme.primaryColor};
+							font-size: 1.6rem;
+							text-transform: uppercase;
+							font-size: 2rem;
+							font-weight: bolder;
+							padding: 0.5rem;
+							font-size: 1.8rem;
+							transition: all 200ms ease-in-out;
+							text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+								0px -1px 0px rgb(0 0 0 / 70%);
+							&:hover {
+								color: ${({ theme }) => theme.secondaryColor};
+								transition: all 200ms ease-in-out;
+							}
+						}
+						&:hover {
+							background-color: rgba(0, 0, 0, 0.05);
+						}
+						&.active {
+							p {
+								color: ${({ theme }) => theme.secondaryColor};
+							}
+						}
+					}
+				}
+				&:hover .test-dropdown-links {
+					opacity: 1;
+					visibility: visible;
+				}
+				&.test-dropdown-links:hover {
+					opacity: 0;
+					visibility: hidden;
 				}
 			}
 		}
