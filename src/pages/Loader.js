@@ -34,6 +34,49 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 	const breakpoint = 620;
 	const navigate = useNavigate();
 
+	// useEffect(() => {
+	// 	const fetchYouTubeTargetData = async () => {
+	// 		log(user.userId, 'user.userId');
+	// 		log(user._id, 'user._id');
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/user/${user.userId}`,
+	// 			{
+	// 				method: 'GET',
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+	// 		log(json, 'json user');
+
+	// 		const getYTTargetNumber = [...json.yTData].filter(
+	// 			(obj) => obj.isComplete === false
+	// 		)[0].targetViews;
+
+	// 		if (response.ok) {
+	// 			log(getYTTargetNumber, 'target number');
+	// 			youtubeDispatch({
+	// 				type: 'SET_TARGET_DATA',
+	// 				payload: [...json.yTData],
+	// 			});
+	// 			youtubeDispatch({
+	// 				type: 'SET_YOUTUBE_TARGET',
+	// 				payload: getYTTargetNumber,
+	// 			});
+	// 		}
+	// 	};
+	// 	if (user) {
+	// 		fetchYouTubeTargetData();
+	// 	}
+	// 	setTimeout(() => {
+	// 		setDataLoaded(true);
+	// 		setTimeout(() => {
+	// 			navigate('/home');
+	// 		}, 500);
+	// 	}, 500);
+	// }, []);
+
 	useEffect(() => {
 		const fetchYouTubeTargetData = async () => {
 			log(user.userId, 'user.userId');
@@ -56,6 +99,10 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 
 			if (response.ok) {
 				log(getYTTargetNumber, 'target number');
+				youtubeDispatch({
+					type: 'SET_YOUTUBE_DATA',
+					payload: json.youtubeData,
+				});
 				youtubeDispatch({
 					type: 'SET_TARGET_DATA',
 					payload: [...json.yTData],

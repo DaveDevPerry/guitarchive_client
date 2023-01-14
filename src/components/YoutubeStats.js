@@ -13,7 +13,7 @@ import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 // import StatusStat from './StatusStat';
 
 const YoutubeStats = ({ youtubeData, theme }) => {
-	const { targetData } = useYoutubeTargetsContext();
+	const { targetData, youtubeTargetData } = useYoutubeTargetsContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
@@ -122,6 +122,121 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 					</p>
 				</StyledYoutubeStat>
 			</div>
+			<div className='stats-container'>
+				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
+					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
+						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
+							<Counter
+								from={0}
+								to={Number(youtubeData && youtubeData[0].statistics.viewCount)}
+								time={3}
+							/>
+						</p>
+						<div
+							className={`stat-icon-wrapper ${
+								width < breakpoint ? 'mobile' : ''
+							}`}
+						>
+							<MdOutlineOndemandVideo className='status-icon' />
+						</div>
+					</div>
+					<p className={`stat-name ${width < breakpoint ? 'mobile' : ''}`}>
+						VIEWS
+					</p>
+					<div className='stat-trophy-container'>
+						{youtubeTargetData &&
+							youtubeTargetData[0].data.map((target, index) => {
+								return (
+									<div key={index} className='target-wrapper'>
+										<BsStarFill
+											className={
+												target.isComplete === true
+													? 'target-icon achieved'
+													: 'target-icon'
+											}
+										/>
+									</div>
+								);
+							})}
+					</div>
+				</StyledYoutubeStat>
+				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
+					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
+						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
+							<Counter
+								from={0}
+								to={Number(
+									youtubeData && youtubeData[0].statistics.subscriberCount
+								)}
+								time={3}
+							/>
+						</p>
+						<div
+							className={`stat-icon-wrapper ${
+								width < breakpoint ? 'mobile' : ''
+							}`}
+						>
+							<ImUsers className='status-icon' />
+						</div>
+					</div>
+					<p className={`stat-name ${width < breakpoint ? 'mobile' : ''}`}>
+						subscribers
+					</p>
+					<div className='stat-trophy-container'>
+						{youtubeTargetData &&
+							youtubeTargetData[1].data.map((target, index) => {
+								return (
+									<div key={index} className='target-wrapper'>
+										<BsStarFill
+											className={
+												target.isComplete === true
+													? 'target-icon achieved'
+													: 'target-icon'
+											}
+										/>
+									</div>
+								);
+							})}
+					</div>
+				</StyledYoutubeStat>
+				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
+					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
+						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
+							<Counter
+								from={0}
+								to={Number(youtubeData && youtubeData[0].statistics.videoCount)}
+								time={3}
+							/>
+						</p>
+						<div
+							className={`stat-icon-wrapper ${
+								width < breakpoint ? 'mobile' : ''
+							}`}
+						>
+							<HiVideoCamera className='status-icon' />
+						</div>
+					</div>
+					<p className={`stat-name ${width < breakpoint ? 'mobile' : ''}`}>
+						videos
+					</p>
+					<div className='stat-trophy-container'>
+						{youtubeTargetData &&
+							youtubeTargetData[2].data.map((target, index) => {
+								return (
+									<div key={index} className='target-wrapper'>
+										<BsStarFill
+											className={
+												target.isComplete === true
+													? 'target-icon achieved'
+													: 'target-icon'
+											}
+										/>
+									</div>
+								);
+							})}
+					</div>
+				</StyledYoutubeStat>
+			</div>
 		</StyledYoutubeStats>
 	);
 };
@@ -212,6 +327,38 @@ const StyledYoutubeStats = styled.div`
 				color: ${({ theme }) => theme.grey};
 				&.achieved {
 					color: ${({ theme }) => theme.green};
+				}
+			}
+		}
+	}
+	.stat-trophy-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		gap: 1rem;
+		border-radius: 4px;
+		/* border: 2px solid red; */
+		.target-wrapper {
+			display: grid;
+			place-content: center;
+			.target-icon {
+				font-size: 3rem;
+				color: ${({ theme }) => theme.grey};
+				&.achieved {
+					color: ${({ theme }) => theme.green};
+					&:nth-of-type(1) {
+						color: ${({ theme }) => theme.bronze};
+					}
+					&:nth-of-type(2) {
+						color: ${({ theme }) => theme.silver};
+					}
+					&:nth-of-type(3) {
+						color: ${({ theme }) => theme.gold};
+					}
+					&:nth-of-type(4) {
+						color: ${({ theme }) => theme.platinum};
+					}
 				}
 			}
 		}

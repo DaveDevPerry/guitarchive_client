@@ -590,5 +590,8 @@ button[disabled]{
           justify-content: center;
         }
 
-        
+        .test-data{
+          display: flex;
+          justify-content: space-evenly;
+        }
 `;

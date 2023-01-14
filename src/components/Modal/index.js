@@ -37,7 +37,8 @@ const dropIn = {
 const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 	const { user, dispatch } = useAuthContext();
 	// const { user, youtubeTarget, dispatch } = useAuthContext();
-	const { youtubeTarget } = useYoutubeTargetsContext();
+	const { youtubeTarget, targetViewCount, targetSubCount, targetVideoCount } =
+		useYoutubeTargetsContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -111,6 +112,40 @@ const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 				exit='exit'
 				id={`${theme === 'dark' ? 'dark-modal' : 'light-modal'}`}
 			>
+				<div className='test-data'>
+					<div className='test-data-wrapper'>
+						<p>views: {youtubeData && youtubeData[0].statistics.viewCount}</p>
+						<p>target: {targetViewCount}</p>
+						<p>
+							result:{' '}
+							{youtubeData &&
+								youtubeData[0].statistics.viewCount >= targetViewCount &&
+								'trophy'}
+						</p>
+					</div>
+					<div className='test-data-wrapper'>
+						<p>
+							subs: {youtubeData && youtubeData[0].statistics.subscriberCount}
+						</p>
+						<p>target: {targetSubCount}</p>
+						<p>
+							result:{' '}
+							{youtubeData &&
+								youtubeData[0].statistics.subscriberCount >= targetSubCount &&
+								'trophy'}
+						</p>
+					</div>
+					<div className='test-data-wrapper'>
+						<p>videos: {youtubeData && youtubeData[0].statistics.videoCount}</p>
+						<p>target: {targetVideoCount}</p>
+						<p>
+							result:{' '}
+							{youtubeData &&
+								youtubeData[0].statistics.videoCount >= targetVideoCount &&
+								'trophy'}
+						</p>
+					</div>
+				</div>
 				<div className='youtube-stats-header'>
 					<TfiYoutube className='youtube-channel-icon' />
 					<div

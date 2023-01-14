@@ -10,6 +10,7 @@ import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
 import Modal from '../components/Modal';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
+import { log } from '../utils/helper';
 // import { log } from '../utils/helper';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -19,7 +20,8 @@ const Home = ({ theme, youtubeData }) => {
 
 	// const { dispatch } = useSongsContext();
 
-	const { youtubeTarget } = useYoutubeTargetsContext();
+	const { youtubeTarget, targetViewCount, targetSubCount, targetVideoCount } =
+		useYoutubeTargetsContext();
 	const { dataLoaded, isFormOpen, youtubeGoal, setYoutubeGoal } =
 		useStateContext();
 	const { width } = useViewport();
@@ -113,18 +115,85 @@ const Home = ({ theme, youtubeData }) => {
 		}
 	}, [navigate, dataLoaded]);
 
+	const handleAchievement = async () => {
+		log('achievement gained');
+		const isViewTrophy =
+			youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount;
+		log(isViewTrophy, ' is view trophy ?');
+		const isSubTrophy =
+			youtubeData &&
+			youtubeData[0].statistics.subscriberCount >= targetSubCount;
+		log(isSubTrophy, ' is sub trophy ?');
+		const isVideoTrophy =
+			youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount;
+		log(isVideoTrophy, ' is video trophy ?');
+	};
+
+	// youtubeData -
 	useEffect(() => {
-		if (youtubeGoal === true) return;
-		if (youtubeData && youtubeData[0].statistics.viewCount >= youtubeTarget) {
+		// check each target type
+		if (
+			(youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) ||
+			(youtubeData &&
+				youtubeData[0].statistics.subscriberCount >= targetSubCount) ||
+			(youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount)
+		) {
+			handleAchievement();
 			setTimeout(() => {
 				modalOpen ? close() : open();
 			}, 1000);
-			setYoutubeGoal(true);
+			// setYoutubeGoal(true);
 		}
+		// if (youtubeGoal === true) return;
 	}, []);
+	// // youtubeData - working without rendering
+	// useEffect(() => {
+	// 	// check each target type
+	// 	if (
+	// 		(youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) ||
+	// 		(youtubeData &&
+	// 			youtubeData[0].statistics.subscriberCount >= targetSubCount) ||
+	// 		(youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount)
+	// 	) {
+
+	// 		setTimeout(() => {
+	// 			modalOpen ? close() : open();
+	// 		}, 1000);
+	// 		// setYoutubeGoal(true);
+	// 	}
+	// 	// if (youtubeGoal === true) return;
+	// }, []);
+
+	// // youtubeData -
+	// useEffect(() => {
+	// 	// check each target type
+	// 	if (youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) {
+	// 	setTimeout(() => {
+	// 		modalOpen ? close() : open();
+	// 	}, 1000);
+	// 	// setYoutubeGoal(true);
+	// 	}
+	// 	// if (youtubeGoal === true) return;
+
+	// 	if (youtubeData && youtubeData[0].statistics.subscriberCount >= targetSubCount) {
+	// 		setTimeout(() => {
+	// 			modalOpen ? close() : open();
+	// 		}, 1000);
+	// 		// setYoutubeGoal(true);
+	// 		}
+
+	// 		if (youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount) {
+	// 			setTimeout(() => {
+	// 				modalOpen ? close() : open();
+	// 			}, 1000);
+	// 			// setYoutubeGoal(true);
+	// 			}
+	// }, []);
+
+	// original ytData - working
 	// useEffect(() => {
 	// 	if (youtubeGoal === true) return;
-	// 	if (youtubeData && youtubeData[0].statistics.viewCount >= 100000) {
+	// 	if (youtubeData && youtubeData[0].statistics.viewCount >= youtubeTarget) {
 	// 		setTimeout(() => {
 	// 			modalOpen ? close() : open();
 	// 		}, 1000);

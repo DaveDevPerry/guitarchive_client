@@ -20,10 +20,11 @@ export const StateContext = ({ children }) => {
 	const [showOptions, setShowOptions] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [showNotes, setShowNotes] = useState(false);
-	const [youtubeGoal, setYoutubeGoal] = useState(false);
 	const [showListsMenu, setShowListsMenu] = useState(false);
 	const [showMusiciansMenu, setShowMusiciansMenu] = useState(false);
 	const [isAdmin, setIsAdmin] = useState(true);
+	const [youtubeGoal, setYoutubeGoal] = useState(false);
+	// const [first, setfirst] = useState(second)
 
 	return (
 		<AppContext.Provider

@@ -75,5 +75,7 @@ yarn-error.log*
 /src/components/AppLogo.js
 /src/components/Song copy.js
 /src/components/MobileHeader.js
+/src/components/Modal/index copy.js
+
 /src/pages/Song copy.js
 
