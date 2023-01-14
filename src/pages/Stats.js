@@ -63,11 +63,13 @@ const StyledStats = styled(motion.div)`
 	row-gap: 2rem;
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
-	overflow-y: auto;
+	overflow-y: hidden;
+	/* overflow-y: auto; */
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
+
 	.stat-flex-container {
 		display: flex;
 		gap: 1rem;

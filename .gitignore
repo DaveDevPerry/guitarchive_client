@@ -47,6 +47,9 @@ yarn-error.log*
 /src/service-worker.js
 /src/serviceWorkerRegistration.js
 /src/sw.js
+/src/swDev.js
+/src/vercel.json
+
 
 /src/registerSW.js
 
@@ -67,6 +70,7 @@ yarn-error.log*
 # /src/features/artists/Artist.js
 /src/pages/Loader copy.js
 /src/pages/Songs copy.js
+/src/pages/Song copy 2.js
 /src/components/ListProducts copy.js
 /src/components/AppLogo.js
 /src/components/Song copy.js

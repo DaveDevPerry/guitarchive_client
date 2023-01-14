@@ -410,6 +410,11 @@ const StyledHeader = styled(motion.header)`
 					font-size: 4rem;
 					padding-left: 1rem;
 					font-weight: bolder;
+					transition: all 200ms ease-in-out;
+					&:hover {
+						color: ${({ theme }) => theme.secondaryColor};
+						transition: all 200ms ease-in-out;
+					}
 				}
 			}
 			.test-sub-menu {

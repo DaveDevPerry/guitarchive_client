@@ -157,7 +157,7 @@ function SongsList({ filterValue }) {
 			<div
 				className={`pagination-header ${width < breakpoint ? 'mobile' : ''}`}
 			>
-				<p>
+				<p className='count-text'>
 					Page:
 					<span>
 						{page}/{pageCount}
@@ -171,7 +171,7 @@ function SongsList({ filterValue }) {
 					handleNext={handleNext}
 					handleChoosePage={handleChoosePage}
 				/>
-				<p>
+				<p className='count-text'>
 					Songs:<span>{songCount}</span>
 				</p>
 			</div>
@@ -203,10 +203,7 @@ const StyledSongsList = styled.div`
 		box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
 			inset -2px -2px 2px rgba(0, 0, 0, 08);
 		background-color: rgba(0, 0, 0, 0.1); */
-		&.mobile {
-			border-radius: 0.4rem;
-			padding: 0;
-		}
+
 		p {
 			font-weight: bolder;
 			color: ${({ theme }) => theme.primaryColor};
@@ -217,6 +214,19 @@ const StyledSongsList = styled.div`
 				/* text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
 					0px -1px 0px rgb(0 0 0 / 70%); */
 			}
+		}
+		&.mobile {
+			border-radius: 0.4rem;
+			padding: 0;
+			/* p {
+				font-size: 1.6rem;
+			} */
+			.count-text {
+				font-size: 1.8rem;
+			}
+		}
+		.count-text {
+			font-size: 2rem;
 		}
 	}
 	.songs-container {

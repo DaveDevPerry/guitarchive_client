@@ -21,7 +21,84 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
     -webkit-tap-highlight-color: transparent;
+    
   }
+  ${
+		'' /* ::-webkit-scrollbar {
+		height: 12px;
+		width: 12px;
+		background: rgb(75, 74, 74);
+    user-select: none; 
+   -webkit-user-select: none; 
+   -khtml-user-select: none; 
+   -moz-user-select: none; 
+   -ms-user-select: none;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.secondaryColor};
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+ 
+	}
+
+	::-webkit-scrollbar-corner {
+		background: rgb(75, 74, 74);
+	} */
+	}
+    ${
+			'' /* ::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+  ::-webkit-scrollbar {
+		width: 12px;
+		background: rgb(75, 74, 74);
+    user-select: none;
+   -webkit-user-select: none; 
+   -khtml-user-select: none; 
+   -moz-user-select: none; 
+   -ms-user-select: none; 
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.secondaryColor};
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+
+ 
+	}
+
+	::-webkit-scrollbar-corner {
+		background: rgb(75, 74, 74);
+
+	} */
+		}
+
+  ${
+		'' /* * {
+    scrollbar-width: auto;
+    scrollbar-color: #8f54a0 #464444;
+  }
+
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #464444;
+
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #8f54a0;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  } */
+	}
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

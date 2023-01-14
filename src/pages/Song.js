@@ -124,6 +124,24 @@ const Song = ({ theme }) => {
 		});
 	};
 
+	const container = {
+		hidden: { opacity: 1 },
+		show: {
+			opacity: 1,
+			delay: 2,
+			transition: {
+				staggerChildren: 0.2,
+				// delayChildren: 0.5
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
+
 	return (
 		<StyledSong
 			initial={{ width: 0 }}
@@ -150,144 +168,165 @@ const Song = ({ theme }) => {
 					<div className='songs-list-header'>
 						<div className='nav-btns-container'>
 							<BackButton />
-							{songLoaded === true && (
-								<div className='heart-wrapper'>
+							<DownloadSongButton song={song} />
+						</div>
+					</div>
+
+					{songLoaded === true ? (
+						<AnimatePresence mode='wait'>
+							<StyledSongDetails
+								className={`song-details-container ${
+									width < breakpoint ? 'mobile' : ''
+								}`}
+								variants={container}
+								initial='hidden'
+								animate='show'
+							>
+								<motion.div className='song-wrapper' variants={item}>
+									<p className='primary-text'>{song.title}</p>
+									<h4
+										className='secondary-text'
+										onClick={(e) => {
+											e.preventDefault();
+											log(song.artist.name, 'song artist id on click');
+											setArtistToView(song.artist.name);
+											navigate('/artist');
+										}}
+									>
+										{song.artist.name}
+									</h4>
+								</motion.div>
+								<motion.div
+									className='favourite-status-container'
+									variants={item}
+								>
+									<div className='heart-wrapper'>
+										{song.isFavourite === true ? (
+											<FaHeart className='card-icon heart-on' />
+										) : (
+											<FaRegHeart className='card-icon heart-off' />
+										)}
+									</div>
+								</motion.div>
+								<motion.div className='artist-wrapper' variants={item}>
+									<p
+										className='primary-text smaller'
+										onClick={(e) => {
+											e.preventDefault();
+											log(song.arranger.name, 'song arranger id on click');
+											setArrangerToView(song.arranger.name);
+											navigate('/arranger');
+										}}
+									>
+										{song.arranger.name}
+									</p>
+									<div className='rating-wrapper'>
+										{[...Array(song.difficulty)].map(
+											(elementInArray, index) => (
+												<FaStar key={index} className='star-on' />
+											)
+										)}
+										{[...Array(5 - song.difficulty)].map(
+											(elementInArray, index) => (
+												<FaRegStar key={index} className='star-off' />
+											)
+										)}
+									</div>
+								</motion.div>
+								{song.isCapo ? (
+									<motion.p className='capo-status' variants={item}>
+										Capo on {song.capoFret}
+									</motion.p>
+								) : (
+									<motion.p className='capo-status' variants={item}>
+										No Capo
+									</motion.p>
+								)}
+								{/* <motion.div
+									className='line-wrapper'
+									variants={item}
+								></motion.div> */}
+								{/* <motion.div className='favourite-wrapper' variants={item}>
 									{song.isFavourite === true ? (
 										<FaHeart className='card-icon heart-on' />
 									) : (
 										<FaRegHeart className='card-icon heart-off' />
 									)}
-								</div>
-							)}
-							<DownloadSongButton song={song} />
-						</div>
-					</div>
-					{songLoaded === true ? (
-						<StyledSongDetails
-							className={`song-details-container ${
-								width < breakpoint ? 'mobile' : ''
-							}`}
-						>
-							<div className='song-wrapper'>
-								<p className='primary-text'>{song.title}</p>
-								<h4
-									className='secondary-text'
-									onClick={(e) => {
-										e.preventDefault();
-										log(song.artist.name, 'song artist id on click');
-										setArtistToView(song.artist.name);
-										navigate('/artist');
-									}}
-								>
-									{song.artist.name}
-								</h4>
-							</div>
-							<div className='artist-wrapper'>
-								<p
-									className='primary-text smaller'
-									onClick={(e) => {
-										e.preventDefault();
-										log(song.arranger.name, 'song arranger id on click');
-										setArrangerToView(song.arranger.name);
-										navigate('/arranger');
-									}}
-								>
-									{song.arranger.name}
-								</p>
-								<div className='rating-wrapper'>
-									{[...Array(song.difficulty)].map((elementInArray, index) => (
-										<FaStar key={index} className='star-on' />
-									))}
-									{[...Array(5 - song.difficulty)].map(
-										(elementInArray, index) => (
-											<FaRegStar key={index} className='star-off' />
-										)
+								</motion.div> */}
+
+								<motion.div className='file-wrapper' variants={item}>
+									{song.fileType === 'pdf' ? (
+										<Tooltip content='pdf file' direction='bottom'>
+											<BsFileEarmarkPdf className='status-icon pdf-icon' />
+										</Tooltip>
+									) : (
+										<Tooltip content='guitar pro file' direction='bottom'>
+											<FaGuitar className='status-icon guitar-icon' />
+										</Tooltip>
 									)}
-								</div>
-							</div>
-							{song.isCapo && (
-								<p className='capo-status'>Capo on {song.capoFret}</p>
-							)}
-							<div className='line-wrapper'></div>
-							<div className='favourite-wrapper'>
-								{song.isFavourite === true ? (
-									<FaHeart className='card-icon heart-on' />
-								) : (
-									<FaRegHeart className='card-icon heart-off' />
-								)}
-							</div>
-							{song.deadlineDate && (
-								<div className='deadline-wrapper'>
-									<p className='primary-text'>
-										{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
-									</p>
-									{song.reason && (
-										<h4 className='secondary-text'>{song.reason}</h4>
+									{song.style.name === 'fingerstyle' && (
+										<Tooltip content='fingerstyle' direction='bottom'>
+											<IoHandLeftSharp className='status-icon fingerstyle-icon' />
+										</Tooltip>
 									)}
-								</div>
-							)}
-							<div className='file-wrapper'>
-								{song.fileType === 'pdf' ? (
-									<Tooltip content='pdf file' direction='bottom'>
-										<BsFileEarmarkPdf className='status-icon pdf-icon' />
-									</Tooltip>
-								) : (
-									<Tooltip content='guitar pro file' direction='bottom'>
-										<FaGuitar className='status-icon guitar-icon' />
-									</Tooltip>
+									{song.style.name === 'classical' && (
+										<Tooltip content='classical' direction='bottom'>
+											<SiStylelint className='status-icon classical-icon' />
+										</Tooltip>
+									)}
+									{song.selectedFile && (
+										<a href={song.selectedFile} download>
+											<FaCloudDownloadAlt className='file-download-icon card-icon' />
+										</a>
+									)}
+									{song.isTab ? (
+										<Tooltip content='tablature' direction='bottom'>
+											<TbNumbers className='music-type-icon' />
+										</Tooltip>
+									) : (
+										<Tooltip content='music score' direction='bottom'>
+											<IoMusicalNotes className='music-type-icon' />
+										</Tooltip>
+									)}
+									{song.status.name === 'Recorded' && (
+										<Tooltip content='recorded' direction='bottom'>
+											<TfiYoutube className='card-icon status-icon youtube-channel-icon' />
+											{/* <ImYoutube2 className='card-icon status-icon yt-icon' /> */}
+										</Tooltip>
+									)}
+									{song.status.name === 'Practicing' && (
+										<Tooltip content='practicing' direction='bottom'>
+											<GiMetronome className='card-icon status-icon' />
+										</Tooltip>
+									)}
+									{song.status.name === 'Ready' && (
+										<Tooltip content='ready to record' direction='bottom'>
+											<CgCamera className='card-icon status-icon' />
+										</Tooltip>
+									)}
+									{song.status.name === 'Backlog' && (
+										<Tooltip content='backlog' direction='bottom'>
+											<BiArchiveOut className='card-icon status-icon' />
+										</Tooltip>
+									)}
+									{song.status.name === 'Archived' && (
+										<Tooltip content='archived' direction='bottom'>
+											<BiArchive className='card-icon status-icon' />
+										</Tooltip>
+									)}
+								</motion.div>
+								{song.deadlineDate && (
+									<motion.div className='deadline-wrapper' variants={item}>
+										<p className='primary-text'>
+											{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
+										</p>
+										{song.reason && (
+											<h4 className='secondary-text'>{song.reason}</h4>
+										)}
+									</motion.div>
 								)}
-								{song.style.name === 'fingerstyle' && (
-									<Tooltip content='fingerstyle' direction='bottom'>
-										<IoHandLeftSharp className='status-icon fingerstyle-icon' />
-									</Tooltip>
-								)}
-								{song.style.name === 'classical' && (
-									<Tooltip content='classical' direction='bottom'>
-										<SiStylelint className='status-icon classical-icon' />
-									</Tooltip>
-								)}
-								{song.selectedFile && (
-									<a href={song.selectedFile} download>
-										<FaCloudDownloadAlt className='file-download-icon card-icon' />
-									</a>
-								)}
-								{song.isTab ? (
-									<Tooltip content='tablature' direction='bottom'>
-										<TbNumbers className='music-type-icon' />
-									</Tooltip>
-								) : (
-									<Tooltip content='music score' direction='bottom'>
-										<IoMusicalNotes className='music-type-icon' />
-									</Tooltip>
-								)}
-								{song.status.name === 'Recorded' && (
-									<Tooltip content='recorded' direction='bottom'>
-										<TfiYoutube className='card-icon status-icon youtube-channel-icon' />
-										{/* <ImYoutube2 className='card-icon status-icon yt-icon' /> */}
-									</Tooltip>
-								)}
-								{song.status.name === 'Practicing' && (
-									<Tooltip content='practicing' direction='bottom'>
-										<GiMetronome className='card-icon status-icon' />
-									</Tooltip>
-								)}
-								{song.status.name === 'Ready' && (
-									<Tooltip content='ready to record' direction='bottom'>
-										<CgCamera className='card-icon status-icon' />
-									</Tooltip>
-								)}
-								{song.status.name === 'Backlog' && (
-									<Tooltip content='backlog' direction='bottom'>
-										<BiArchiveOut className='card-icon status-icon' />
-									</Tooltip>
-								)}
-								{song.status.name === 'Archived' && (
-									<Tooltip content='archived' direction='bottom'>
-										<BiArchive className='card-icon status-icon' />
-									</Tooltip>
-								)}
-							</div>
-						</StyledSongDetails>
+							</StyledSongDetails>
+						</AnimatePresence>
 					) : (
 						<StyledSongDetails
 							className={`song-details-container loading ${
@@ -307,130 +346,7 @@ const Song = ({ theme }) => {
 							</div>
 						</StyledSongDetails>
 					)}
-					{/* <StyledSongDetails
-						className={`song-details-container ${
-							width < breakpoint ? 'mobile' : ''
-						}`}
-					>
-						<div className='song-wrapper'>
-							<p className='primary-text'>{song.title}</p>
-							<h4
-								className='secondary-text'
-								onClick={(e) => {
-									e.preventDefault();
-									log(song.artist.name, 'song artist id on click');
-									setArtistToView(song.artist.name);
-									navigate('/artist');
-								}}
-							>
-								{song.artist.name}
-							</h4>
-						</div>
-						<div className='artist-wrapper'>
-							<p
-								className='primary-text smaller'
-								onClick={(e) => {
-									e.preventDefault();
-									log(song.arranger.name, 'song arranger id on click');
-									setArrangerToView(song.arranger.name);
-									navigate('/arranger');
-								}}
-							>
-								{song.arranger.name}
-							</p>
-							<div className='rating-wrapper'>
-								{[...Array(song.difficulty)].map((elementInArray, index) => (
-									<FaStar key={index} className='star-on' />
-								))}
-								{[...Array(5 - song.difficulty)].map(
-									(elementInArray, index) => (
-										<FaRegStar key={index} className='star-off' />
-									)
-								)}
-							</div>
-						</div>
-						{song.isCapo && (
-							<p className='capo-status'>Capo on {song.capoFret}</p>
-						)}
-						<div className='line-wrapper'></div>
-						<div className='favourite-wrapper'>
-							{song.isFavourite === true ? (
-								<FaHeart className='card-icon heart-on' />
-							) : (
-								<FaRegHeart className='card-icon heart-off' />
-							)}
-						</div>
-						{song.deadlineDate && (
-							<div className='deadline-wrapper'>
-								<p className='primary-text'>
-									{format(parseISO(song.deadlineDate), 'dd/MM/yyyy')}
-								</p>
-								{song.reason && (
-									<h4 className='secondary-text'>{song.reason}</h4>
-								)}
-							</div>
-						)}
-						<div className='file-wrapper'>
-							{song.fileType === 'pdf' ? (
-								<Tooltip content='pdf file' direction='bottom'>
-									<BsFileEarmarkPdf className='status-icon pdf-icon' />
-								</Tooltip>
-							) : (
-								<Tooltip content='guitar pro file' direction='bottom'>
-									<FaGuitar className='status-icon guitar-icon' />
-								</Tooltip>
-							)}
-							{song.style.name === 'fingerstyle' && (
-								<Tooltip content='fingerstyle' direction='bottom'>
-									<IoHandLeftSharp className='status-icon fingerstyle-icon' />
-								</Tooltip>
-							)}
-							{song.style.name === 'classical' && (
-								<Tooltip content='classical' direction='bottom'>
-									<SiStylelint className='status-icon classical-icon' />
-								</Tooltip>
-							)}
-							{song.selectedFile && (
-								<a href={song.selectedFile} download>
-									<FaCloudDownloadAlt className='file-download-icon card-icon' />
-								</a>
-							)}
-							{song.isTab ? (
-								<Tooltip content='tablature' direction='bottom'>
-									<TbNumbers className='music-type-icon' />
-								</Tooltip>
-							) : (
-								<Tooltip content='music score' direction='bottom'>
-									<IoMusicalNotes className='music-type-icon' />
-								</Tooltip>
-							)}
-							{song.status.name === 'Recorded' && (
-								<Tooltip content='recorded' direction='bottom'>
-									<TfiYoutube className='card-icon status-icon youtube-channel-icon' />
-								</Tooltip>
-							)}
-							{song.status.name === 'Practicing' && (
-								<Tooltip content='practicing' direction='bottom'>
-									<GiMetronome className='card-icon status-icon' />
-								</Tooltip>
-							)}
-							{song.status.name === 'Ready' && (
-								<Tooltip content='ready to record' direction='bottom'>
-									<CgCamera className='card-icon status-icon' />
-								</Tooltip>
-							)}
-							{song.status.name === 'Backlog' && (
-								<Tooltip content='backlog' direction='bottom'>
-									<BiArchiveOut className='card-icon status-icon' />
-								</Tooltip>
-							)}
-							{song.status.name === 'Archived' && (
-								<Tooltip content='archived' direction='bottom'>
-									<BiArchive className='card-icon status-icon' />
-								</Tooltip>
-							)}
-						</div>
-					</StyledSongDetails> */}
+
 					<div className='songs-list-header'>
 						<div className='nav-btns-container'>
 							<DeleteSongButton />
@@ -460,8 +376,8 @@ const StyledSong = styled(motion.div)`
 	}
 `;
 
-const StyledSongDetails = styled.div`
-	row-gap: 2rem;
+const StyledSongDetails = styled(motion.div)`
+	row-gap: 1rem;
 	transition: all 200ms linear;
 	text-align: center;
 	display: flex;
@@ -650,6 +566,23 @@ const StyledSongDetails = styled.div`
 				0px -1px 0px rgb(0 0 0 / 70%);
 		}
 	}
+	.favourite-status-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* border: 1px solid; */
+		.heart-wrapper {
+			display: grid;
+			place-content: center;
+			.heart-on {
+				font-size: 4.5rem;
+				color: ${({ theme }) => theme.red};
+			}
+			.heart-off {
+				font-size: 4.5rem;
+			}
+		}
+	}
 	.artist-wrapper {
 		padding: 1rem;
 		.primary-text {
@@ -667,7 +600,7 @@ const StyledSongDetails = styled.div`
 	}
 	.capo-status {
 		text-transform: uppercase;
-		font-size: 3rem;
+		font-size: 2rem;
 		color: ${({ theme }) => theme.primaryColor};
 		/* text-transform: capitalize; */
 		font-weight: bolder;
@@ -677,6 +610,7 @@ const StyledSongDetails = styled.div`
 	.line-wrapper {
 		width: 20rem;
 		border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
+		display: none;
 	}
 	.favourite-wrapper {
 		display: none;

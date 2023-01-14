@@ -5,7 +5,7 @@ import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
 import { BsStarFill } from 'react-icons/bs';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
-import { TfiYoutube } from 'react-icons/tfi';
+// import { TfiYoutube } from 'react-icons/tfi';
 import Counter from './Counter';
 import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 // import Tooltip from './Tooltip';
@@ -27,7 +27,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 						width < breakpoint ? 'mobile' : ''
 					}`}
 				>
-					<TfiYoutube className='youtube-channel-icon' />
+					{/* <TfiYoutube className='youtube-channel-icon' /> */}
 					<p>dave perry guitarist</p>
 				</div>
 				<a
