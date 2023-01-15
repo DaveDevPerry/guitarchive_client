@@ -110,9 +110,8 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
     background-image: url('/images/light wood background.webp');
-    ${'' /* font-family: 'New Tegomin', serif; */}
-  }
-	.App {
+    #root{
+    	.App {
     width: 100vw;
     height: 100vh;
     width: clamp(32rem, 100vw, 100vw);
@@ -154,6 +153,51 @@ position: relative;
     z-index: 2000000;
   }
   }
+  }
+  }
+
+	${
+		'' /* .App {
+    width: 100vw;
+    height: 100vh;
+    width: clamp(32rem, 100vw, 100vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+	overflow: hidden;
+  padding-bottom: 1rem;
+  background-repeat: repeat;
+	background-size: contain;
+position: relative;
+  &#dark {
+		background-image: url('/images/dark wood background.webp');
+	}
+	&#light {
+    background-image: url('/images/light wood background.webp');
+	}
+  &.mobile{
+    row-gap:0;
+    &#dark {
+		background-image: url('/images/black wood.webp');
+	}
+	&#light {
+    background-image: url('/images/white wood.webp');
+	}
+  }
+  .test-modal{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    height: 20rem;
+    width: 20rem;
+    padding: 2rem;
+    background-color: blue;
+    transform: translate(-50%,-50%);
+    z-index: 2000000;
+  }
+  } */
+	}
   .widget-container{
     padding: 1rem 2rem;
 	border-radius: 1rem;

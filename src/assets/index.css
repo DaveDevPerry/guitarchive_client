@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin:wght@200;400&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap'); */
-/* @font-face {
-  font-family: 'NewTegomin';
-  src: url("./fonts/NewTegomin-Regular.woff2") format("woff2"), url("./fonts/NewTegomin-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
+
 #unmounted{
   display: flex;
   justify-content: center;
@@ -20,10 +9,7 @@
   background-color: red;
 }
 #unmounted h1{
-  /* color:red; */
   color: transparent;
-  /* font-family: 'New Tegomin', serif; */
-  /* font-family: 'New Tegomin', serif; */
   font-size: 10rem;
 }
 .page{
@@ -41,5 +27,5 @@
 	z-index: 600;
   overflow: hidden;
 }
-/* @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap');
