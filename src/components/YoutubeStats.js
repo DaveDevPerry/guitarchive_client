@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
 import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
-import { BsStarFill } from 'react-icons/bs';
+// import { BsStarFill } from 'react-icons/bs';
 import { ImUsers } from 'react-icons/im';
 import { useViewport } from '../hooks/useViewport';
 // import { TfiYoutube } from 'react-icons/tfi';
@@ -11,9 +11,16 @@ import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 // import Tooltip from './Tooltip';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import StatusStat from './StatusStat';
+import {
+	GiTrophy,
+	GiTrophyCup,
+	GiLaurelsTrophy,
+	GiDiamondTrophy,
+} from 'react-icons/gi';
 
 const YoutubeStats = ({ youtubeData, theme }) => {
-	const { targetData, youtubeTargetData } = useYoutubeTargetsContext();
+	const { youtubeTargetData } = useYoutubeTargetsContext();
+	// const { targetData, youtubeTargetData } = useYoutubeTargetsContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 	return (
@@ -39,7 +46,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 					<HiExternalLink className='external-link-icon' />
 				</a>
 			</div>
-			<div className='targets-container'>
+			{/* <div className='targets-container'>
 				{targetData &&
 					targetData.map((target, index) => {
 						return (
@@ -54,8 +61,8 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							</div>
 						);
 					})}
-			</div>
-			<div className='stats-container'>
+			</div> */}
+			{/* <div className='stats-container'>
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
 						<p className={`stat-figure ${width < breakpoint ? 'mobile' : ''}`}>
@@ -121,7 +128,8 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 						videos
 					</p>
 				</StyledYoutubeStat>
-			</div>
+			</div> */}
+
 			<div className='stats-container'>
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
@@ -148,6 +156,51 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							youtubeTargetData[0].data.map((target, index) => {
 								return (
 									<div key={index} className='target-wrapper'>
+										{index === 0 && (
+											<GiTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved bronze'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 1 && (
+											<GiTrophyCup
+												className={
+													target.isComplete === true
+														? 'target-icon achieved silver'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 2 && (
+											<GiLaurelsTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved gold'
+														: 'target-icon gold'
+												}
+											/>
+										)}
+										{index === 3 && (
+											<GiDiamondTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved platinum'
+														: 'target-icon platinum'
+												}
+											/>
+										)}
+									</div>
+								);
+							})}
+					</div>
+					{/* <div className='stat-trophy-container'>
+						{youtubeTargetData &&
+							youtubeTargetData[0].data.map((target, index) => {
+								return (
+									<div key={index} className='target-wrapper'>
 										<BsStarFill
 											className={
 												target.isComplete === true
@@ -158,7 +211,7 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 									</div>
 								);
 							})}
-					</div>
+					</div> */}
 				</StyledYoutubeStat>
 				<StyledYoutubeStat className={`${width < breakpoint ? 'mobile' : ''}`}>
 					<div className={`stat-header ${width < breakpoint ? 'mobile' : ''}`}>
@@ -187,13 +240,42 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							youtubeTargetData[1].data.map((target, index) => {
 								return (
 									<div key={index} className='target-wrapper'>
-										<BsStarFill
-											className={
-												target.isComplete === true
-													? 'target-icon achieved'
-													: 'target-icon'
-											}
-										/>
+										{index === 0 && (
+											<GiTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved bronze'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 1 && (
+											<GiTrophyCup
+												className={
+													target.isComplete === true
+														? 'target-icon achieved silver'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 2 && (
+											<GiLaurelsTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved gold'
+														: 'target-icon gold'
+												}
+											/>
+										)}
+										{index === 3 && (
+											<GiDiamondTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved platinum'
+														: 'target-icon platinum'
+												}
+											/>
+										)}
 									</div>
 								);
 							})}
@@ -224,13 +306,42 @@ const YoutubeStats = ({ youtubeData, theme }) => {
 							youtubeTargetData[2].data.map((target, index) => {
 								return (
 									<div key={index} className='target-wrapper'>
-										<BsStarFill
-											className={
-												target.isComplete === true
-													? 'target-icon achieved'
-													: 'target-icon'
-											}
-										/>
+										{index === 0 && (
+											<GiTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved bronze'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 1 && (
+											<GiTrophyCup
+												className={
+													target.isComplete === true
+														? 'target-icon achieved silver'
+														: 'target-icon'
+												}
+											/>
+										)}
+										{index === 2 && (
+											<GiLaurelsTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved gold'
+														: 'target-icon gold'
+												}
+											/>
+										)}
+										{index === 3 && (
+											<GiDiamondTrophy
+												className={
+													target.isComplete === true
+														? 'target-icon achieved platinum'
+														: 'target-icon platinum'
+												}
+											/>
+										)}
 									</div>
 								);
 							})}
@@ -335,16 +446,31 @@ const StyledYoutubeStats = styled.div`
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
-		gap: 1rem;
+		justify-content: flex-end;
+		/* justify-content: space-evenly; */
+		gap: 0.5rem;
+		/* gap: 1rem; */
 		border-radius: 4px;
 		/* border: 2px solid red; */
 		.target-wrapper {
 			display: grid;
 			place-content: center;
+			height: 3rem;
+			width: 3rem;
+			border-radius: 50%;
+			background-color: ${({ theme }) => theme.primaryColor};
+			/* background-color: ${({ theme }) => theme.white}; */
 			.target-icon {
-				font-size: 3rem;
+				font-size: 2rem;
 				color: ${({ theme }) => theme.grey};
+				&.gold {
+					/* color: ${({ theme }) => theme.gold}; */
+					font-size: 2.2rem;
+				}
+				&.platinum {
+					/* color: ${({ theme }) => theme.platinum}; */
+					font-size: 2.4rem;
+				}
 				&.achieved {
 					color: ${({ theme }) => theme.green};
 					&:nth-of-type(1) {
@@ -353,11 +479,24 @@ const StyledYoutubeStats = styled.div`
 					&:nth-of-type(2) {
 						color: ${({ theme }) => theme.silver};
 					}
+					&.silver {
+						color: ${({ theme }) => theme.silver};
+					}
 					&:nth-of-type(3) {
 						color: ${({ theme }) => theme.gold};
+						font-size: 2.2rem;
+					}
+					&.gold {
+						color: ${({ theme }) => theme.gold};
+						font-size: 2.2rem;
 					}
 					&:nth-of-type(4) {
 						color: ${({ theme }) => theme.platinum};
+						font-size: 2.4rem;
+					}
+					&.platinum {
+						color: ${({ theme }) => theme.platinum};
+						font-size: 2.4rem;
 					}
 				}
 			}
@@ -378,7 +517,7 @@ const StyledYoutubeStat = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	/* row-gap: 1rem; */
 	flex: 1;
 	border: 1px solid ${({ theme }) => theme.primaryColor};
 	border-radius: 0.4rem 0.4rem 1rem 1rem;

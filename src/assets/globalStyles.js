@@ -107,6 +107,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     color: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
+    background-image: url('/images/light wood background.webp');
   }
 	.App {
     width: 100vw;

@@ -98,8 +98,8 @@ function SongsList({ filterValue }) {
 		return (
 			<div className='loader-center'>
 				<Bars
-					height='100'
-					width='100'
+					height='80'
+					width='80'
 					color='#7f0101'
 					ariaLabel='bars-loading'
 					wrapperStyle={{}}

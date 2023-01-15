@@ -2,9 +2,10 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Backdrop from '../Backdrop';
 import Counter from '../Counter';
-import { MdOutlineOndemandVideo } from 'react-icons/md';
-import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
-import { ImUsers } from 'react-icons/im';
+// import { MdOutlineOndemandVideo } from 'react-icons/md';
+import { HiExternalLink } from 'react-icons/hi';
+// import { HiVideoCamera, HiExternalLink } from 'react-icons/hi';
+// import { ImUsers } from 'react-icons/im';
 import { TfiYoutube } from 'react-icons/tfi';
 import { useViewport } from '../../hooks/useViewport';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -34,10 +35,10 @@ const dropIn = {
 	},
 };
 
-const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
+const ViewModal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 	const { user } = useAuthContext();
 	// const { user, youtubeTarget, dispatch } = useAuthContext();
-	const { youtubeTarget, targetViewCount, targetSubCount, targetVideoCount } =
+	const { targetViewCount, targetSubCount, targetVideoCount } =
 		useYoutubeTargetsContext();
 
 	const { width } = useViewport();
@@ -54,17 +55,32 @@ const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 
 		log('clicked claim trophy', user, 'user');
 
-		const clonedTargetArr = [...user.yTData].map((obj) => {
-			if (obj.targetViews === youtubeTarget) {
-				log(obj, youtubeTarget, 'obj to update');
+		const clonedTargetArr = [...user.youtubeData];
+		log(clonedTargetArr, 'pre updated target?');
+		const updateTarget = clonedTargetArr[0].data.map((obj) => {
+			if (obj.target === targetViewCount) {
+				log(obj, targetViewCount, 'obj to update');
 				obj.isComplete = true;
 				obj.dateAchieved = Date.now();
 				return obj;
 			}
 			return obj;
 		});
+		// const clonedTargetArr = [...user.youtubeData[0].data].map((obj) => {
+		// 	if (obj.target === targetViewCount) {
+		// 		log(obj, targetViewCount, 'obj to update');
+		// 		obj.isComplete = true;
+		// 		obj.dateAchieved = Date.now();
+		// 		return obj;
+		// 	}
+		// 	return obj;
+		// });
 
-		log(clonedTargetArr, 'updated target?');
+		log(clonedTargetArr, 'updated target? 1');
+
+		log(updateTarget, 'update target');
+
+		log(clonedTargetArr, 'updated target? 2');
 
 		const updatedUserData = {
 			userID: user.userId,
@@ -169,13 +185,16 @@ const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 					<div className='congrats-wrapper'>
 						<p>you have reached</p>
 						<p className='congrats-figure'>
-							<Counter from={0} to={100000} time={6} />
+							<Counter from={0} to={targetViewCount} time={6} />
 						</p>
+						{/* <p className='congrats-figure'>
+							<Counter from={0} to={100000} time={6} />
+						</p> */}
 						<p>views on youtube</p>
 					</div>
 					<p className='congrats-text'>congratulations</p>
 				</div>
-				<div className='stats-container'>
+				{/* <div className='stats-container'>
 					<StyledYoutubeStat
 						className={`${width < breakpoint ? 'mobile' : ''}`}
 					>
@@ -263,7 +282,7 @@ const Modal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 							videos
 						</p>
 					</StyledYoutubeStat>
-				</div>
+				</div> */}
 
 				<div className='yt-target-modal-btns-container'>
 					<button
@@ -451,75 +470,75 @@ const StyledModal = styled(motion.div)`
 	} */
 `;
 
-const StyledYoutubeStat = styled.div`
-	border-radius: 1rem;
-	padding: 1rem 2rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	/* row-gap: 1rem; */
-	flex: 1;
-	border: 1px solid ${({ theme }) => theme.primaryColor};
-	border-radius: 0.4rem 0.4rem 1rem 1rem;
-	box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
-		inset -2px -2px 2px rgba(0, 0, 0, 08);
-	background-color: rgba(0, 0, 0, 0.1);
-	&.mobile {
-		border-radius: 0.4rem;
-		padding: 1rem;
-		row-gap: 0.5rem;
-		flex: 1 1 30%;
-	}
-	.stat-header {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-start;
-		column-gap: 2rem;
-		&.mobile {
-			column-gap: 1rem;
-		}
-		.stat-figure {
-			font-size: 2.4rem;
-			font-weight: bolder;
-			line-height: 0.8;
-			color: ${({ theme }) => theme.secondaryColor};
-			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-				0px -1px 0px rgb(0 0 0 / 70%);
-			&.mobile {
-				column-gap: 1rem;
-				font-size: 2.2rem;
-			}
-		}
-		.stat-icon-wrapper {
-			height: 100%;
-			.status-icon {
-				font-size: 2.5rem;
-				&.yt-icon {
-					font-size: 3rem;
-				}
-			}
-			&.mobile {
-				.status-icon {
-					font-size: 1.6rem;
-					&.yt-icon {
-						font-size: 2rem;
-					}
-				}
-			}
-		}
-	}
-	.stat-name {
-		text-transform: uppercase;
-		font-size: 1.4rem;
-		color: ${({ theme }) => theme.primaryColor};
-		font-weight: bolder;
-		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
-			0px -1px 0px rgb(0 0 0 / 70%);
-		&.mobile {
-			font-size: 1.2rem;
-		}
-	}
-`;
+// const StyledYoutubeStat = styled.div`
+// 	border-radius: 1rem;
+// 	padding: 1rem 2rem;
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: flex-start;
+// 	/* row-gap: 1rem; */
+// 	flex: 1;
+// 	border: 1px solid ${({ theme }) => theme.primaryColor};
+// 	border-radius: 0.4rem 0.4rem 1rem 1rem;
+// 	box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0005),
+// 		inset -2px -2px 2px rgba(0, 0, 0, 08);
+// 	background-color: rgba(0, 0, 0, 0.1);
+// 	&.mobile {
+// 		border-radius: 0.4rem;
+// 		padding: 1rem;
+// 		row-gap: 0.5rem;
+// 		flex: 1 1 30%;
+// 	}
+// 	.stat-header {
+// 		display: flex;
+// 		flex-direction: row;
+// 		justify-content: space-between;
+// 		align-items: flex-start;
+// 		column-gap: 2rem;
+// 		&.mobile {
+// 			column-gap: 1rem;
+// 		}
+// 		.stat-figure {
+// 			font-size: 2.4rem;
+// 			font-weight: bolder;
+// 			line-height: 0.8;
+// 			color: ${({ theme }) => theme.secondaryColor};
+// 			text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+// 				0px -1px 0px rgb(0 0 0 / 70%);
+// 			&.mobile {
+// 				column-gap: 1rem;
+// 				font-size: 2.2rem;
+// 			}
+// 		}
+// 		.stat-icon-wrapper {
+// 			height: 100%;
+// 			.status-icon {
+// 				font-size: 2.5rem;
+// 				&.yt-icon {
+// 					font-size: 3rem;
+// 				}
+// 			}
+// 			&.mobile {
+// 				.status-icon {
+// 					font-size: 1.6rem;
+// 					&.yt-icon {
+// 						font-size: 2rem;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// 	.stat-name {
+// 		text-transform: uppercase;
+// 		font-size: 1.4rem;
+// 		color: ${({ theme }) => theme.primaryColor};
+// 		font-weight: bolder;
+// 		text-shadow: 0px 1px 0px rgb(255 255 255 / 30%),
+// 			0px -1px 0px rgb(0 0 0 / 70%);
+// 		&.mobile {
+// 			font-size: 1.2rem;
+// 		}
+// 	}
+// `;
 
-export default Modal;
+export default ViewModal;

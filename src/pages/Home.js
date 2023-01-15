@@ -7,10 +7,13 @@ import { useViewport } from '../hooks/useViewport';
 import SongsListContainer from '../features/home/SongsListContainer';
 import SongModal from '../features/home/SongModal';
 import AlertDeadlineSong from '../features/home/AlertDeadlineSong';
-import Modal from '../components/Modal';
+// import Modal from '../components/Modal';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 import { log } from '../utils/helper';
+import ViewModal from '../components/ViewModal';
+import SubModal from '../components/SubModal';
+import VideoModal from '../components/VideoModal';
 // import { log } from '../utils/helper';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -20,20 +23,28 @@ const Home = ({ theme, youtubeData }) => {
 
 	// const { dispatch } = useSongsContext();
 
-	const { youtubeTarget, targetViewCount, targetSubCount, targetVideoCount } =
+	const { targetViewCount, targetSubCount, targetVideoCount } =
 		useYoutubeTargetsContext();
-	const { dataLoaded, isFormOpen, youtubeGoal, setYoutubeGoal } =
-		useStateContext();
+	const { dataLoaded, isFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
 
 	const [filterValue, setFilterValue] = useState('songs');
 	const [currentId, setCurrentId] = useState(null);
 
-	const [modalOpen, setModalOpen] = useState(false);
+	// const [modalOpen, setModalOpen] = useState(false);
+	const [viewModalOpen, setViewModalOpen] = useState(false);
+	const [subModalOpen, setSubModalOpen] = useState(false);
+	const [videoModalOpen, setVideoModalOpen] = useState(false);
 
-	const close = () => setModalOpen(false);
-	const open = () => setModalOpen(true);
+	// const close = () => setModalOpen(false);
+	// const open = () => setModalOpen(true);
+	const viewClose = () => setViewModalOpen(false);
+	const viewOpen = () => setViewModalOpen(true);
+	const subClose = () => setSubModalOpen(false);
+	const subOpen = () => setSubModalOpen(true);
+	const videoClose = () => setVideoModalOpen(false);
+	const videoOpen = () => setVideoModalOpen(true);
 
 	// useEffect(() => {
 	// 	const fetchSongs = async () => {
@@ -132,20 +143,55 @@ const Home = ({ theme, youtubeData }) => {
 	// youtubeData -
 	useEffect(() => {
 		// check each target type
+		if (youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) {
+			handleAchievement();
+			setTimeout(() => {
+				viewModalOpen ? viewClose() : viewOpen();
+			}, 1000);
+			// setYoutubeGoal(true);
+			return;
+		}
 		if (
-			(youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) ||
-			(youtubeData &&
-				youtubeData[0].statistics.subscriberCount >= targetSubCount) ||
-			(youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount)
+			youtubeData &&
+			youtubeData[0].statistics.subscriberCount >= targetSubCount
 		) {
 			handleAchievement();
 			setTimeout(() => {
-				modalOpen ? close() : open();
+				subModalOpen ? subClose() : subOpen();
 			}, 1000);
 			// setYoutubeGoal(true);
+			return;
+		}
+		if (
+			youtubeData &&
+			youtubeData[0].statistics.videoCount >= targetVideoCount
+		) {
+			handleAchievement();
+			setTimeout(() => {
+				videoModalOpen ? videoClose() : videoOpen();
+			}, 1000);
+			// setYoutubeGoal(true);
+			return;
 		}
 		// if (youtubeGoal === true) return;
 	}, []);
+	// // youtubeData -
+	// useEffect(() => {
+	// 	// check each target type
+	// 	if (
+	// 		(youtubeData && youtubeData[0].statistics.viewCount >= targetViewCount) ||
+	// 		(youtubeData &&
+	// 			youtubeData[0].statistics.subscriberCount >= targetSubCount) ||
+	// 		(youtubeData && youtubeData[0].statistics.videoCount >= targetVideoCount)
+	// 	) {
+	// 		handleAchievement();
+	// 		setTimeout(() => {
+	// 			modalOpen ? close() : open();
+	// 		}, 1000);
+	// 		// setYoutubeGoal(true);
+	// 	}
+	// 	// if (youtubeGoal === true) return;
+	// }, []);
 	// // youtubeData - working without rendering
 	// useEffect(() => {
 	// 	// check each target type
@@ -209,12 +255,36 @@ const Home = ({ theme, youtubeData }) => {
 			className={`page ${width < breakpoint ? 'mobile' : ''}`}
 		>
 			<AnimatePresence mode='wait'>
-				{modalOpen && (
+				{/* {modalOpen && (
 					<Modal
 						modalOpen={modalOpen}
 						handleClose={close}
 						youtubeData={youtubeData}
 						handleSnooze={close}
+					/>
+				)} */}
+				{viewModalOpen && (
+					<ViewModal
+						modalOpen={viewModalOpen}
+						handleClose={viewClose}
+						youtubeData={youtubeData}
+						handleSnooze={viewClose}
+					/>
+				)}
+				{subModalOpen && (
+					<SubModal
+						modalOpen={subModalOpen}
+						handleClose={subClose}
+						youtubeData={youtubeData}
+						handleSnooze={subClose}
+					/>
+				)}
+				{videoModalOpen && (
+					<VideoModal
+						modalOpen={videoModalOpen}
+						handleClose={videoClose}
+						youtubeData={youtubeData}
+						handleSnooze={videoClose}
 					/>
 				)}
 				{isFormOpen === true && (
