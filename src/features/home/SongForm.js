@@ -77,6 +77,14 @@ const SongForm = ({ currentId, setCurrentId }) => {
 			const json = await response.json();
 			log(json, 'new song json');
 
+			// if (!response.ok) {
+
+			// 	toast.error(`song upload error.`, {
+			// 		duration: 3000,
+			// 		className: 'toast-success',
+			// 	});
+			// }
+
 			if (response.ok) {
 				songDispatch({
 					type: 'CREATE_SONG',
@@ -142,13 +150,21 @@ const SongForm = ({ currentId, setCurrentId }) => {
 		setIsFormOpen(false);
 	};
 
+	// // create a toast
+	// const notify = () => {
+	// 	toast.success(`new song successfully added.`, {
+	// 		duration: 3000,
+	// 		style: {
+	// 			border: '2px solid #1da000',
+	// 		},
+	// 	});
+	// };
+
 	// create a toast
 	const notify = () => {
-		toast.success(`new song successfully added.`, {
+		toast.success(`song successfully added.`, {
 			duration: 3000,
-			style: {
-				border: '2px solid #1da000',
-			},
+			className: 'toast-success',
 		});
 	};
 

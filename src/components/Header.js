@@ -39,15 +39,38 @@ const Header = ({ mode }) => {
 		logout();
 		notify();
 	};
+
+	// const testToast = () => {
+	// 	notifyTest();
+	// };
 	// create a toast
 	const notify = () => {
 		toast.success(`you are now logged out.`, {
 			duration: 3000,
-			style: {
-				border: '2px solid #1da000',
-			},
+			className: 'toast-success',
 		});
 	};
+	// create a toast
+	// const notifyTest = () => {
+	// 	toast.success(`this is some test text for toast.`, {
+	// 		duration: 3000,
+	// 		className: 'toast-success',
+	// 		// style: {
+	// 		// 	border: '2px solid #1d0b01',
+	// 		// 	fontWeight: 'bolder',
+	// 		// 	// background: '#7f0101',
+	// 		// 	// border: '2px solid #7f0101',
+	// 		// 	// background: '#1d0b01',
+	// 		// 	color: '#1d0b01',
+	// 		// 	// color: '#ffffff',
+	// 		// },
+	// 		// iconTheme: {
+	// 		// 	primary: '#156d01',
+	// 		// 	secondary: '#7f0101',
+	// 		// 	// color: '#ffffff',
+	// 		// },
+	// 	});
+	// };
 
 	return (
 		<>
@@ -216,6 +239,8 @@ const Header = ({ mode }) => {
 									<div className='logout-nav-wrapper' onClick={handleClick}>
 										<RiLogoutBoxLine className='logout-user-icon' />
 									</div>
+
+									{/* <div onClick={testToast}>toast</div> */}
 
 									{/* <NavLink
 										to='/settings'

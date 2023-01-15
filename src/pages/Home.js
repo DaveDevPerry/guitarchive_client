@@ -14,6 +14,7 @@ import { log } from '../utils/helper';
 import ViewModal from '../components/ViewModal';
 import SubModal from '../components/SubModal';
 import VideoModal from '../components/VideoModal';
+// import { toast } from 'react-hot-toast';
 // import { log } from '../utils/helper';
 // import { useSongsContext } from '../hooks/useSongContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -247,6 +248,32 @@ const Home = ({ theme, youtubeData }) => {
 	// 	}
 	// }, []);
 
+	// const handleToast = (str) => {
+	// 	log(str, 'toast str');
+
+	// 	toast.promise(
+	// 		saveSettings(settings),
+	// 		 {
+	// 			 loading: 'Saving...',
+	// 			 success: <b>Settings saved!</b>,
+	// 			 error: <b>Could not save.</b>,
+	// 		 }
+	// 	 );
+
+	// }
+
+	// create a toast
+	// const notifyTest = () => {
+	// 	toast.success(`this is some test text for toast.`, {
+	// 		duration: 3000,
+	// 		style: {
+	// 			border: '2px solid #7f0101',
+	// 			background: '#1d0b01',
+	// 			color: '#ffffff',
+	// 		},
+	// 	});
+	// };
+
 	return (
 		<StyledHome
 			initial={{ width: 0 }}
@@ -292,6 +319,7 @@ const Home = ({ theme, youtubeData }) => {
 				)}
 			</AnimatePresence>
 			<AlertDeadlineSong theme={theme} />
+
 			<SongsListContainer
 				filterValue={filterValue}
 				homeSongFilterHandler={homeSongFilterHandler}

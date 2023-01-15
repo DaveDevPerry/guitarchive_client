@@ -82,6 +82,15 @@ const ViewModal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 
 		log(clonedTargetArr, 'updated target? 2');
 
+		const fromLS = JSON.parse(localStorage.getItem('guitarchive'));
+		log(fromLS, 'from ls');
+
+		// localStorage.setItem(
+		// 	'guitarchive',
+		// 	JSON.stringify(json)
+		// 	// JSON.stringify(userForLocalStorage)
+		// );
+
 		const updatedUserData = {
 			userID: user.userId,
 			youTubeData: clonedTargetArr,

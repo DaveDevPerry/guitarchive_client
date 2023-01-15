@@ -595,4 +595,23 @@ button[disabled]{
           display: flex;
           justify-content: space-evenly;
         }
+
+
+
+
+        .toast-success{
+          border: 2px solid #1d0b01;
+          ${'' /* background-color: blue; */}
+          font-size: 1.8rem;
+          font-weight: bolder;
+          text-transform: capitalize;
+          color: #1d0b01;
+          border-radius: 1rem;
+          padding: 0.5rem 1rem;
+          display: flex;
+          flex-wrap: nowrap;
+          min-width: fit-content;
+          align-items: center;
+
+        }
 `;
