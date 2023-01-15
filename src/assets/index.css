@@ -17,13 +17,13 @@
   align-items: center;
   height: 100vh;
   width:100vw;
-  
+  background-color: red;
 }
 #unmounted h1{
   /* color:red; */
   color: transparent;
   /* font-family: 'New Tegomin', serif; */
-  font-family: 'New Tegomin', serif;
+  /* font-family: 'New Tegomin', serif; */
   font-size: 10rem;
 }
 .page{

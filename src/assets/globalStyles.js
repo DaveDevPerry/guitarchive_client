@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: 'New Tegomin', serif;
+    ${'' /* font-family: 'New Tegomin', serif; */}
     -webkit-text-stroke: inherit;
     -webkit-text-stroke: initial;
     -webkit-text-stroke: unset;
@@ -98,7 +98,9 @@ export const GlobalStyles = createGlobalStyle`
     border: 3px solid #ffffff;
   } */
 	}
-
+  button, option.form-option, body{
+    font-family: 'New Tegomin', serif;
+  }
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -108,6 +110,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
     background-image: url('/images/light wood background.webp');
+    ${'' /* font-family: 'New Tegomin', serif; */}
   }
 	.App {
     width: 100vw;
@@ -180,9 +183,10 @@ position: relative;
   h3,h4{
     font-size: 1.4rem;
   }
+
   button {
 		background-color: ${({ theme }) => theme.btnBg};
-    font-family: 'New Tegomin', serif;
+    ${'' /* font-family: 'New Tegomin', serif; */}
 		padding: 1rem 3rem;
 		text-transform: uppercase;
 		border: none;
@@ -404,7 +408,7 @@ option.form-option {
           ${'' /* border: 2px solid rgba(16, 16, 16, 0.5); */}
 					border-radius: 1rem 0 0 1rem;
           text-transform: capitalize;
-          font-family: 'New Tegomin',serif;
+          ${'' /* font-family: 'New Tegomin',serif; */}
           cursor: pointer;
           &:nth-child(odd){
             background-color:  ${({ theme }) => theme.optionBgOdd};
