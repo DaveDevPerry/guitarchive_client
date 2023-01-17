@@ -497,18 +497,20 @@ const StyledSongDetails = styled(motion.div)`
 		.deadline-wrapper {
 			.primary-text {
 				font-size: 2.4rem;
+				color: ${({ theme }) => theme.secondaryColor};
 				line-height: 2.4rem;
 				&.smaller {
 					font-size: 3rem;
 				}
 			}
 			.secondary-text {
-				text-transform: uppercase;
-				font-size: 2.2rem;
+				/* text-transform: uppercase; */
+				font-size: 1.8rem;
 				margin: 0;
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.primaryColor};
 				text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
 					0px -1px 0px rgb(0 0 0 / 70%);
+				margin-top: 1rem;
 			}
 		}
 		.star-on {
@@ -736,8 +738,8 @@ const StyledSongDetails = styled(motion.div)`
 			}
 		}
 		.secondary-text {
-			text-transform: uppercase;
-			font-size: 2.2rem;
+			/* text-transform: uppercase; */
+			font-size: 1.8rem;
 			margin: 0;
 			color: ${({ theme }) => theme.secondaryColor};
 			text-shadow: 0px 1px 0px rgb(255 255 255 / 20%),
@@ -775,6 +777,11 @@ const StyledSongContainer = styled.div`
 	&.mobile {
 		border-radius: 0rem;
 		padding: 1rem 1rem 0;
+		.nav-btns-container {
+			button.btn-6 {
+				width: 12rem;
+			}
+		}
 	}
 	.songs-list-header {
 		display: flex;

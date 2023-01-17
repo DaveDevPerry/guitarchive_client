@@ -408,6 +408,9 @@ const StyledYoutubeStats = styled.div`
 			}
 			&.mobile {
 				font-size: 1.8rem;
+				p {
+					font-size: 2rem;
+				}
 			}
 		}
 		a {
@@ -527,8 +530,11 @@ const StyledYoutubeStat = styled.div`
 	&.mobile {
 		border-radius: 0.4rem;
 		padding: 1rem;
-		row-gap: 0.5rem;
+		/* row-gap: 0.5rem; */
 		flex: 1 1 30%;
+		.stat-trophy-container {
+			justify-content: center;
+		}
 	}
 	.stat-header {
 		display: flex;
