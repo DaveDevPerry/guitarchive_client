@@ -27,6 +27,13 @@ const AppDetails = ({ theme }) => {
 						<span>.</span>tech
 					</Brand>
 				</a>
+				<div className='qr-code-wrapper'>
+					<img
+						src='./images/qr-code-daveperry.png'
+						alt='qr code'
+						className='qr-code'
+					/>
+				</div>
 			</div>
 			<div className='studio-img'></div>
 		</StyledAppDetails>
@@ -70,6 +77,15 @@ const StyledAppDetails = styled.div`
 			text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
 				0px -1px 0px rgba(0, 0, 0, 0.7);
 		}
+		.qr-code-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.qr-code {
+				width: 10rem;
+				height: 10rem;
+			}
+		}
 	}
 	a.developer-link {
 		text-decoration: none;
@@ -78,7 +94,7 @@ const StyledAppDetails = styled.div`
 		color: ${({ theme }) => theme.white};
 	}
 	.label-img {
-		background-image: url('KTMA_logo.webp');
+		background-image: url('/images/KTMA_logo.webp');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -86,7 +102,7 @@ const StyledAppDetails = styled.div`
 		transition: all 200ms linear;
 	}
 	.label-img.dark {
-		background-image: url('KTMA_Logo1.webp');
+		background-image: url('/images/KTMA_Logo1.webp');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -94,7 +110,7 @@ const StyledAppDetails = styled.div`
 		transition: all 200ms linear;
 	}
 	.studio-img {
-		background-image: url('Rox_logo.webp');
+		background-image: url('/images/Rox_logo.webp');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;

@@ -1,10 +1,4 @@
 export const lightTheme = {
-	// btnGradient1: '	rgba(38, 38, 38, 0.5)',
-	// btnGradient2: '	#e6e6e6 25%',
-	// btnGradient3: '	#ffffff 38%',
-	// btnGradient4: 'rgba(0, 0, 0, 0.25) 63%',
-	// btnGradient5: '#e6e6e6 87%',
-	// btnGradient6: '	rgba(38, 38, 38, 0.4)',
 	primaryColor: '#1d0b01',
 	secondaryColor: '#7f0101',
 	bodyBg: '#b9b9b9',
