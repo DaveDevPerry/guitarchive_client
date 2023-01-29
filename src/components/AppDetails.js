@@ -27,13 +27,13 @@ const AppDetails = ({ theme }) => {
 						<span>.</span>tech
 					</Brand>
 				</a>
-				<div className='qr-code-wrapper'>
+				{/* <div className='qr-code-wrapper'>
 					<img
 						src='./images/qr-code-daveperry.png'
 						alt='qr code'
 						className='qr-code'
 					/>
-				</div>
+				</div> */}
 			</div>
 			<div className='studio-img'></div>
 		</StyledAppDetails>

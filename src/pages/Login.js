@@ -10,7 +10,7 @@ import { log } from '../utils/helper';
 // import { RiLogoutBoxLine } from 'react-icons/ri';
 
 const Login = ({ theme }) => {
-	const [email, setEmail] = useState('');
+	const [email, setEmail] = useState('demo@dpga.com');
 	const [password, setPassword] = useState('');
 	const { login, error, isLoading } = useLogin();
 	const { width } = useViewport();
