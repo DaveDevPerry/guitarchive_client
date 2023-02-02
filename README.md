@@ -95,10 +95,6 @@ For support, email dave@daveperry.tech.
 
 If you have any feedback, please reach out to me at dave@daveperry.tech
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 <!--
 
 
