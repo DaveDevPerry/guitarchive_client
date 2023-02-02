@@ -14,6 +14,7 @@ import { log } from '../utils/helper';
 import ViewModal from '../components/ViewModal';
 import SubModal from '../components/SubModal';
 import VideoModal from '../components/VideoModal';
+import { useSongsContext } from '../hooks/useSongContext';
 // import { toast } from 'react-hot-toast';
 // import { log } from '../utils/helper';
 // import { useSongsContext } from '../hooks/useSongContext';
@@ -24,8 +25,12 @@ const Home = ({ theme, youtubeData }) => {
 
 	// const { dispatch } = useSongsContext();
 
-	const { targetViewCount, targetSubCount, targetVideoCount } =
-		useYoutubeTargetsContext();
+	const {
+		targetViewCount,
+		targetSubCount,
+		targetVideoCount,
+		hasYoutubeAccount,
+	} = useYoutubeTargetsContext();
 	const { dataLoaded, isFormOpen } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -273,6 +278,7 @@ const Home = ({ theme, youtubeData }) => {
 	// 		},
 	// 	});
 	// };
+	const { nextDeadlineSong } = useSongsContext();
 
 	return (
 		<StyledHome
@@ -290,7 +296,7 @@ const Home = ({ theme, youtubeData }) => {
 						handleSnooze={close}
 					/>
 				)} */}
-				{viewModalOpen && (
+				{hasYoutubeAccount && viewModalOpen && (
 					<ViewModal
 						modalOpen={viewModalOpen}
 						handleClose={viewClose}
@@ -298,7 +304,7 @@ const Home = ({ theme, youtubeData }) => {
 						handleSnooze={viewClose}
 					/>
 				)}
-				{subModalOpen && (
+				{hasYoutubeAccount && subModalOpen && (
 					<SubModal
 						modalOpen={subModalOpen}
 						handleClose={subClose}
@@ -306,7 +312,7 @@ const Home = ({ theme, youtubeData }) => {
 						handleSnooze={subClose}
 					/>
 				)}
-				{videoModalOpen && (
+				{hasYoutubeAccount && videoModalOpen && (
 					<VideoModal
 						modalOpen={videoModalOpen}
 						handleClose={videoClose}
@@ -318,7 +324,9 @@ const Home = ({ theme, youtubeData }) => {
 					<SongModal currentId={currentId} setCurrentId={setCurrentId} />
 				)}
 			</AnimatePresence>
-			<AlertDeadlineSong theme={theme} />
+			{nextDeadlineSong && nextDeadlineSong.deadlineDate !== null && (
+				<AlertDeadlineSong theme={theme} />
+			)}
 
 			<SongsListContainer
 				filterValue={filterValue}

@@ -5,7 +5,7 @@ import { GlobalStyles } from './assets/globalStyles';
 import { lightTheme, darkTheme } from './assets/Themes';
 import { ThemeProvider } from 'styled-components';
 import { useAuthContext } from './hooks/useAuthContext';
-import { StateContext } from './lib/context';
+import { StateContext, useStateContext } from './lib/context';
 import { log } from './utils/helper';
 import { Toaster } from 'react-hot-toast';
 import AnimatedRoutes from './AnimatedRoutes';
@@ -16,6 +16,7 @@ import { useViewport } from './hooks/useViewport';
 import Footer from './components/Footer';
 import { useIdeasContext } from './hooks/useIdeaContext';
 import { useRequestsContext } from './hooks/useRequestContext';
+import { useYoutubeTargetsContext } from './hooks/useYoutubeTargetContext';
 
 function App() {
 	// run one when app starts
@@ -24,6 +25,7 @@ function App() {
 	}, []);
 	const { user } = useAuthContext();
 	const { songs, artistSongs, arrangerSongs } = useSongsContext();
+	const { dispatch: youtubeDispatch } = useYoutubeTargetsContext();
 	const { ideas } = useIdeasContext();
 	const { requests } = useRequestsContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
@@ -31,17 +33,58 @@ function App() {
 	const [currentDate] = useState(new Date().toLocaleDateString());
 	const [youtubeData, setYoutubeData] = useState(null);
 	const [mode, setMode] = useState('online');
+	// const [hasYoutubeAccount, setHasYoutubeAccount] = useState(false);
+	// const { hasYoutubeAccount, setHasYoutubeAccount } = useStateContext();
 
 	useEffect(() => {
+		if (
+			process.env.REACT_APP_PUBLIC_MY_USER_ID === undefined ||
+			process.env.REACT_APP_PUBLIC_MY_KEY === undefined
+		) {
+			log('undefined no youtube api data');
+			youtubeDispatch({
+				type: 'SET_HAS_YOUTUBE',
+				payload: false,
+			});
+			// setHasYoutubeAccount(false);
+			return;
+		}
 		axios
 			.get(
 				`https://www.googleapis.com/youtube/v3
 		/channels?part=statistics&id=${process.env.REACT_APP_PUBLIC_MY_USER_ID}&key=${process.env.REACT_APP_PUBLIC_MY_KEY}`
 			)
 			.then((response) => {
+				log(response, 'response youtube api data');
+
 				const data = response.data.items;
 				setYoutubeData(data);
+				// setHasYoutubeAccount(true);
+				youtubeDispatch({
+					type: 'SET_HAS_YOUTUBE',
+					payload: true,
+				});
 			});
+		// .catch((error) => {
+		// 	// do something with error
+		// 	log(error, 'no youtube api data');
+		// })
+		// .finally(() => {
+		// 	//  dataIsLoading = false;
+		// 	log('no youtube api data');
+		// });
+		// .catch((error) => {
+		// 	log(error, 'no youtube api data');
+		// });
+		// axios
+		// 	.get(
+		// 		`https://www.googleapis.com/youtube/v3
+		// /channels?part=statistics&id=${process.env.REACT_APP_PUBLIC_MY_USER_ID}&key=${process.env.REACT_APP_PUBLIC_MY_KEY}`
+		// 	)
+		// 	.then((response) => {
+		// 		const data = response.data.items;
+		// 		setYoutubeData(data);
+		// 	});
 	}, []);
 
 	const [songStatus, setSongStatus] = useState('all');

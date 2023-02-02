@@ -62,13 +62,15 @@ Here is the link to the backend code for this project
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`REACT_APP_PUBLIC_MY_KEY`=youtube channel api key
-
-`REACT_APP_PUBLIC_MY_USER_ID`=youtube user/channel id
-
 `REACT_APP_BACKEND_URL`=https://example-backend-server.onrender.com
 
 `REACT_APP_NODE_ENV`=production
+
+### Required if you want to link your Youtube channel
+
+`REACT_APP_PUBLIC_MY_KEY`=youtube channel api key
+
+`REACT_APP_PUBLIC_MY_USER_ID`=youtube user/channel id
 
 ## Color Reference
 

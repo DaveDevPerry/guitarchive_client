@@ -11,6 +11,7 @@ import { useViewport } from '../hooks/useViewport';
 import { ImStatsDots } from 'react-icons/im';
 import { GiMusicalScore, GiLightBulb } from 'react-icons/gi';
 import { FaUserEdit } from 'react-icons/fa';
+import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 
 const MobileMenu = ({ theme }) => {
 	const { dataLoaded, isAdmin } = useStateContext();
@@ -40,6 +41,8 @@ const MobileMenu = ({ theme }) => {
 		show: { opacity: 1 },
 		exit: { opacity: 0 },
 	};
+
+	const { hasYoutubeAccount } = useYoutubeTargetsContext();
 	return (
 		<StyledMobileMenu
 			initial={{ width: 0 }}
@@ -104,7 +107,7 @@ const MobileMenu = ({ theme }) => {
 					</motion.div>
 
 					<Suspense fallback={''}>
-						{isAdmin && (
+						{hasYoutubeAccount && isAdmin && (
 							<motion.div className='menu-item' variants={item}>
 								<NavLink
 									to='/youtube'

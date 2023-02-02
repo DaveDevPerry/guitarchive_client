@@ -97,6 +97,12 @@ export const youtubeTargetsReducer = (state, action) => {
 				...state,
 				youtubeTarget: action.payload,
 			};
+		case 'SET_HAS_YOUTUBE':
+			log(action.payload, 'payload -  has youtube data context');
+			return {
+				...state,
+				hasYoutubeAccount: action.payload,
+			};
 
 		case 'LOGOUT':
 			return {
@@ -108,6 +114,7 @@ export const youtubeTargetsReducer = (state, action) => {
 				targetViewCount: null,
 				targetSubCount: null,
 				targetVideoCount: null,
+				hasYoutubeAccount: false,
 			};
 		default:
 			return state;
@@ -125,6 +132,7 @@ export const YoutubeTargetsContextProvider = ({ children }) => {
 		targetViewCount: null,
 		targetSubCount: null,
 		targetVideoCount: null,
+		hasYoutubeAccount: false,
 	});
 
 	return (

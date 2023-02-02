@@ -97,6 +97,10 @@ const Loader = ({ youtubeData, theme, mode, setMode }) => {
 				(obj) => obj.isComplete === false
 			)[0].targetViews;
 
+			if (!response.ok) {
+				log('no youtube target data');
+			}
+
 			if (response.ok) {
 				log(getYTTargetNumber, 'target number');
 				youtubeDispatch({

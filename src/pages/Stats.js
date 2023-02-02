@@ -11,6 +11,7 @@ import MyArrangementStats from '../features/stats/MyArrangementStats';
 import SheetMusicTypeStats from '../features/stats/SheetMusicTypeStats';
 import StyleStats from '../features/stats/StyleStats';
 import MusicianStats from '../features/stats/MusicianStats';
+import { useYoutubeTargetsContext } from '../hooks/useYoutubeTargetContext';
 
 // const YoutubeStats = lazy(() => import('../components/YoutubeStats'));
 // .then(module => {
@@ -19,6 +20,7 @@ import MusicianStats from '../features/stats/MusicianStats';
 
 const Stats = ({ youtubeData, theme }) => {
 	const { dataLoaded } = useStateContext();
+	const { hasYoutubeAccount } = useYoutubeTargetsContext();
 	// const { dataLoaded, isAdmin } = useStateContext();
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -43,7 +45,7 @@ const Stats = ({ youtubeData, theme }) => {
 					<h4>Not Admin</h4>
 				)}
 			</Suspense> */}
-			<YoutubeStats youtubeData={youtubeData} />
+			{hasYoutubeAccount && <YoutubeStats youtubeData={youtubeData} />}
 			<SongStatusStats theme={theme} />
 			<div className='stat-flex-container'>
 				<MyArrangementStats />

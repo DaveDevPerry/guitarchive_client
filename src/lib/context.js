@@ -25,6 +25,7 @@ export const StateContext = ({ children }) => {
 	const [isAdmin, setIsAdmin] = useState(true);
 	const [youtubeGoal, setYoutubeGoal] = useState(false);
 	// const [first, setfirst] = useState(second)
+	const [hasYoutubeAccount, setHasYoutubeAccount] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -65,6 +66,8 @@ export const StateContext = ({ children }) => {
 				setShowMusiciansMenu,
 				isAdmin,
 				setIsAdmin,
+				hasYoutubeAccount,
+				setHasYoutubeAccount,
 			}}
 		>
 			{children}
