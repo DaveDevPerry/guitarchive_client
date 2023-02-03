@@ -38,8 +38,9 @@ const dropIn = {
 const ViewModal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 	const { user } = useAuthContext();
 	// const { user, youtubeTarget, dispatch } = useAuthContext();
-	const { targetViewCount, targetSubCount, targetVideoCount } =
-		useYoutubeTargetsContext();
+	const { targetViewCount } = useYoutubeTargetsContext();
+	// const { targetViewCount, targetSubCount, targetVideoCount } =
+	// 	useYoutubeTargetsContext();
 
 	const { width } = useViewport();
 	const breakpoint = 620;
@@ -137,7 +138,7 @@ const ViewModal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 				exit='exit'
 				id={`${theme === 'dark' ? 'dark-modal' : 'light-modal'}`}
 			>
-				<div className='test-data'>
+				{/* <div className='test-data'>
 					<div className='test-data-wrapper'>
 						<p>views: {youtubeData && youtubeData[0].statistics.viewCount}</p>
 						<p>target: {targetViewCount}</p>
@@ -170,7 +171,7 @@ const ViewModal = ({ handleClose, youtubeData, theme, handleSnooze }) => {
 								'trophy'}
 						</p>
 					</div>
-				</div>
+				</div> */}
 				<div className='youtube-stats-header'>
 					<TfiYoutube className='youtube-channel-icon' />
 					<div
