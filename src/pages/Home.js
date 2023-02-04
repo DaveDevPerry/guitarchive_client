@@ -281,14 +281,16 @@ const Home = ({ theme, youtubeData }) => {
 	const { nextDeadlineSong } = useSongsContext();
 
 	return (
-		<StyledHome
-			initial={{ width: 0 }}
-			animate={{ width: '100%' }}
-			exit={{ x: window.innerWidth }}
-			className={`page ${width < breakpoint ? 'mobile' : ''}`}
-		>
-			<AnimatePresence mode='wait'>
-				{/* {modalOpen && (
+		<>
+			{nextDeadlineSong && (
+				<StyledHome
+					initial={{ width: 0 }}
+					animate={{ width: '100%' }}
+					exit={{ x: window.innerWidth }}
+					className={`page ${width < breakpoint ? 'mobile' : ''}`}
+				>
+					<AnimatePresence mode='wait'>
+						{/* {modalOpen && (
 					<Modal
 						modalOpen={modalOpen}
 						handleClose={close}
@@ -296,45 +298,48 @@ const Home = ({ theme, youtubeData }) => {
 						handleSnooze={close}
 					/>
 				)} */}
-				{hasYoutubeAccount && viewModalOpen && (
-					<ViewModal
-						modalOpen={viewModalOpen}
-						handleClose={viewClose}
-						youtubeData={youtubeData}
-						handleSnooze={viewClose}
-					/>
-				)}
-				{hasYoutubeAccount && subModalOpen && (
-					<SubModal
-						modalOpen={subModalOpen}
-						handleClose={subClose}
-						youtubeData={youtubeData}
-						handleSnooze={subClose}
-					/>
-				)}
-				{hasYoutubeAccount && videoModalOpen && (
-					<VideoModal
-						modalOpen={videoModalOpen}
-						handleClose={videoClose}
-						youtubeData={youtubeData}
-						handleSnooze={videoClose}
-					/>
-				)}
-				{isFormOpen === true && (
-					<SongModal currentId={currentId} setCurrentId={setCurrentId} />
-				)}
-			</AnimatePresence>
-			{nextDeadlineSong && nextDeadlineSong.deadlineDate !== null && (
-				<AlertDeadlineSong theme={theme} />
+						{hasYoutubeAccount && viewModalOpen && (
+							<ViewModal
+								modalOpen={viewModalOpen}
+								handleClose={viewClose}
+								youtubeData={youtubeData}
+								handleSnooze={viewClose}
+							/>
+						)}
+						{hasYoutubeAccount && subModalOpen && (
+							<SubModal
+								modalOpen={subModalOpen}
+								handleClose={subClose}
+								youtubeData={youtubeData}
+								handleSnooze={subClose}
+							/>
+						)}
+						{hasYoutubeAccount && videoModalOpen && (
+							<VideoModal
+								modalOpen={videoModalOpen}
+								handleClose={videoClose}
+								youtubeData={youtubeData}
+								handleSnooze={videoClose}
+							/>
+						)}
+						{isFormOpen === true && (
+							<SongModal currentId={currentId} setCurrentId={setCurrentId} />
+						)}
+					</AnimatePresence>
+					{nextDeadlineSong && nextDeadlineSong.deadlineDate !== null && (
+						<AlertDeadlineSong theme={theme} />
+					)}
+					{nextDeadlineSong && (
+						<SongsListContainer
+							filterValue={filterValue}
+							homeSongFilterHandler={homeSongFilterHandler}
+							setFilterValue={setFilterValue}
+							theme={theme}
+						/>
+					)}
+				</StyledHome>
 			)}
-
-			<SongsListContainer
-				filterValue={filterValue}
-				homeSongFilterHandler={homeSongFilterHandler}
-				setFilterValue={setFilterValue}
-				theme={theme}
-			/>
-		</StyledHome>
+		</>
 	);
 };
 const StyledHome = styled(motion.div)`
